@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:honey/presentation/page/auth/registerPage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,18 +45,55 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
+  Animation<double> animation;
+  AnimationController animationController;
+  var _visible = true;
 
-  void _incrementCounter() {
+
+  startTime() async {
+    var _duration = new Duration(seconds: 4);
+
+    return new Timer(_duration, navigationPage);
+  }
+
+  Future navigationPage() async {
+    var preferences = await SharedPreferences.getInstance();
+    String token = preferences.getString('token');
+    if(token!=null){
+      //  Navigator.of(context).pushReplacementNamed(HOME_SCREEN);
+      /*   Navigator.of(context).push(
+        PageRouteBuilder(
+          pageBuilder: (_, __, ___) => myrest(),
+        ),
+      );*/
+    }else {
+      Navigator.of(context).push(
+        PageRouteBuilder(
+          pageBuilder: (_, __, ___) => register(),
+        ),
+      );
+
+    }
+  }
+  @override
+  void initState() {
+
+    animationController = new AnimationController(
+        vsync: this, duration: new Duration(seconds: 10));
+
+    animation =
+    new CurvedAnimation(parent: animationController, curve: Curves.easeOut);
+
+    animation.addListener(() => this.setState(() {}));
+
+    animationController.forward();
+
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      _visible = !_visible;
     });
+
+    startTime();
   }
 
   @override
@@ -63,32 +104,35 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+    return  Scaffold(
+      body: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+
+              new Image.asset(
+                'assets/images/splash_log.png',
+                // height: 25.0,
+                width: 350,
+                //  fit: BoxFit.scaleDown,
+              )
+            ],
+          ),
+          new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Image.asset(
+                'assets/images/logo_new.png',
+                width: animation.value * 150,
+                height: animation.value * 150,
+              ),
+            ],
+          ),
+        ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-           Row(children: <Widget>[ Text(
-             'You have pushed the button this many times after Dani Edit:',
-           ),
-             Text(
-               'You have pushed the button this many times after Heba Edit:',
-             )],),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
