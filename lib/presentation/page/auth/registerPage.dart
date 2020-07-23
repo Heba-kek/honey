@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'file:///C:/Users/heba/Desktop/bee/honey/lib/presentation/page/AppLocalizations.dart';
+import 'package:honey/presentation/page/AppLocalizations.dart';
 import 'package:honey/presentation/page/LocalHelper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,10 +14,6 @@ class RegistreActivity extends State<register> {
   final _username = TextEditingController();
   final _password = TextEditingController();
   SpecificLocalizationDelegate _specificLocalizationDelegate;
-
-
-
-
 
   @override
   Future initState() {
@@ -211,9 +207,7 @@ class RegistreActivity extends State<register> {
                                   style: TextStyle(
                                       fontSize: 13, color: Colors.black),
                                 ),
-                                onTap: () {
-
-                                },
+                                onTap: () {},
                               ),
                             ),
                             Center(
@@ -244,7 +238,7 @@ class RegistreActivity extends State<register> {
                                         //  onPressed: addNumbers,
                                         onPressed: () async {
                                           setState(() {
-                                          //  _apiCall = true;
+                                            //  _apiCall = true;
                                           });
                                           /* String lang =  AppLocalizations().locale;
                                       var  preferences = await SharedPreferences.getInstance();
@@ -267,7 +261,7 @@ class RegistreActivity extends State<register> {
 
                                       }*/
 
-                                     //     _callPostAPI();
+                                          //     _callPostAPI();
 
                                           //   helper.onLocaleChanged(new Locale('ar'));
                                         },

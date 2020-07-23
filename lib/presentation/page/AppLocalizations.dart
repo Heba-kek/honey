@@ -1,11 +1,10 @@
-
 import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:honey/application/lang/messages_all.dart';
+import 'package:honey/Core/lang/messages_all.dart';
 import 'package:intl/intl.dart';
 
 class AppLocalizations {
@@ -15,7 +14,7 @@ class AppLocalizations {
 
   static Future<AppLocalizations> load(Locale locale) {
     final String name =
-    locale.countryCode == null ? locale.languageCode : locale.toString();
+        locale.countryCode == null ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
 
     return initializeMessages(localeName).then((bool _) {
@@ -71,23 +70,23 @@ class AppLocalizations {
   String get lbInsetInsD {
     return Intl.message('Please Insert installment Date', name: 'lbInsetInsD');
   }
-  String get lbCardName{
+
+  String get lbCardName {
     return Intl.message('Card Name', name: 'lbCardName');
-
   }
 
-
-  String get lbsignout{
+  String get lbsignout {
     return Intl.message('Sign Out', name: 'lbsignout');
-
   }
-  String get lbsignoutAr{
+
+  String get lbsignoutAr {
     return Intl.message('تسجيل خروج', name: 'lbsignout');
-
   }
+
   String get lbEngWord {
     return Intl.message('English Word', name: 'lbEngWord');
   }
+
   String get lbcreate {
     return Intl.message('Create New Account', name: 'lbcreate');
   }
@@ -176,6 +175,7 @@ class AppLocalizations {
   String get lbTReport {
     return Intl.message('Total Report', name: 'lbTReport');
   }
+
   String get lbfirstn {
     return Intl.message('First Name', name: 'lbfirstn');
   }
@@ -183,22 +183,26 @@ class AppLocalizations {
   String get lblastname {
     return Intl.message('Last Name', name: 'lblastname');
   }
+
   String get lbemail {
     return Intl.message('Email', name: 'lbemail');
   }
+
   String get lbpass {
     return Intl.message('Password', name: 'lbpass');
   }
+
   String get lbpassC {
     return Intl.message('Confirm Password', name: 'lbpassC');
   }
+
   String get lbmobile {
     return Intl.message('MobileNumber', name: 'lbmobile');
   }
+
   String get lbCode {
     return Intl.message('Code', name: 'lbCode');
   }
-
 
   String get lbGTReport {
     return Intl.message('Get Total Report', name: 'lbGTReport');
@@ -232,12 +236,15 @@ class AppLocalizations {
   String get lbDeleteBank {
     return Intl.message('Delete Bank', name: 'lbDeleteBank');
   }
+
   String get lbSign {
     return Intl.message('Sign Out', name: 'lbSign');
   }
+
   String get lbSignUp {
     return Intl.message('Sign Up', name: 'lbSignUp');
   }
+
   String get lbSignM {
     return Intl.message('Are you confirm log out ?', name: 'lbSignM');
   }
@@ -256,7 +263,7 @@ class AppLocalizations {
         name: 'lbDeleteCardM');
   }
 
-  String get lbDeleteMem{
+  String get lbDeleteMem {
     return Intl.message('Delete Memory', name: 'lbDeleteMem');
   }
 
@@ -272,9 +279,11 @@ class AppLocalizations {
   String get lbDateE {
     return Intl.message('Date Field is Empty', name: 'lbDateE');
   }
+
   String get lbEmpty {
     return Intl.message('Please insert the empty value', name: 'lbEmpty');
   }
+
   String get lbViewD {
     return Intl.message('View data from start date', name: 'lbViewD');
   }
@@ -345,12 +354,15 @@ class AppLocalizations {
   String get lbSP {
     return Intl.message('SYP', name: 'lbSP');
   }
+
   String get lbVisaCard {
     return Intl.message('Visa Card', name: 'lbVisaCard');
   }
+
   String get lbMasterCard {
     return Intl.message('MAster Card', name: 'lbMasterCard');
   }
+
   String get lbManual {
     return Intl.message('Manual', name: 'lbManual');
   }
@@ -359,17 +371,13 @@ class AppLocalizations {
     return Intl.message('EUP', name: 'lbEU');
   }
 
-
-
   String get lbFees {
     return Intl.message('Fees', name: 'lbFees');
   }
 
-
   String get lbCash {
     return Intl.message('Cash withdrawal', name: 'lbCash');
   }
-
 
   String get lbWithdrawal {
     return Intl.message('Withdrawal', name: 'lbWithdrawal');
@@ -394,6 +402,7 @@ class AppLocalizations {
   String get lbAddBank {
     return Intl.message('Add Bank', name: 'lbAddBank');
   }
+
   String get lbAddMed {
     return Intl.message('Add Medicines', name: 'lbAddMed');
   }
@@ -405,6 +414,7 @@ class AppLocalizations {
   String get lbBankName {
     return Intl.message('Bank Name', name: 'lbBankName');
   }
+
   String get lbMediName {
     return Intl.message('Medicines Name', name: 'lbMediName');
   }
@@ -424,9 +434,11 @@ class AppLocalizations {
   String get lbReportBank {
     return Intl.message('Report Bank', name: 'lbReportBank');
   }
+
   String get lbcardAmou {
     return Intl.message('Account statement : ', name: 'lbcardAmou');
   }
+
   String get lbReportCard {
     return Intl.message('Report Card', name: 'lbReportCard');
   }
@@ -442,60 +454,74 @@ class AppLocalizations {
   String get lbType {
     return Intl.message('Type', name: 'lbType');
   }
+
   String get lbSelectDate {
     return Intl.message('Select Date....', name: 'lbSelectDate');
   }
+
   String get lbDaile {
     return Intl.message('Daily', name: 'lbDaile');
   }
+
   String get lbWeekly {
     return Intl.message('Weekly', name: 'lbWeekly');
   }
+
   String get lbGetDate {
     return Intl.message('Get Data', name: 'lbGetDate');
   }
+
   String get lbEditDateT {
     return Intl.message('Edit Date', name: 'lbEditDateT');
   }
+
   String get lbStartTime {
     return Intl.message('Start Time', name: 'lbStartTime');
   }
+
   String get lbEndTime {
     return Intl.message('End Time', name: 'lbEndTime');
   }
+
   String get lbPlaces {
     return Intl.message('Place', name: 'lbPlaces');
   }
+
   String get lbPhoneNum {
     return Intl.message('PhoneNumber', name: 'lbPhoneNum');
   }
+
   String get lbEnterPerNam {
     return Intl.message('Enter Person Name', name: 'lbEnterPerNam');
   }
+
   String get lbEnterPhone {
     return Intl.message('Enter phone number', name: 'lbEnterPhone');
   }
+
   String get lbEnterReq {
     return Intl.message('Enter Required material', name: 'lbEnterReq');
   }
+
   String get lbEnterReq2 {
     return Intl.message('Enter Required material', name: 'lbEnterReq2');
   }
 
-
   String get lbDes {
     return Intl.message('Description', name: 'lbDes');
   }
+
   String get lbcardLimit {
     return Intl.message('Credit Limit', name: 'lbcardLimit');
   }
+
   String get lbcardLimitA {
     return Intl.message('Available Credit Line', name: 'lbcardLimitA');
   }
+
   String get lbAmountDe {
     return Intl.message('Deserved Amount', name: 'lbAmountDe');
   }
-
 
   String get lbSubmit {
     return Intl.message('Submit', name: 'lbSubmit');
@@ -592,8 +618,8 @@ class AppLocalizations {
   String get lbPayCard {
     return Intl.message('Payments/Fees/Cash withdrawal', name: 'lbPayCard');
   }
-  String get lbPayoff {
 
+  String get lbPayoff {
     return Intl.message('Pay Off', name: 'lbPayoff');
   }
 
@@ -604,15 +630,19 @@ class AppLocalizations {
   String get lbcardAR {
     return Intl.message('البطاقة الإئتمانية', name: 'lbcardAR');
   }
+
   String get lbworkdAr {
     return Intl.message('يوميات العمل', name: 'lbworkdAr');
   }
+
   String get lbworkdEn {
     return Intl.message('Work Diaries', name: 'lbworkdEn');
   }
+
   String get lbmedEn {
     return Intl.message('Medicines', name: 'lbmedEn');
   }
+
   String get lbmedAr {
     return Intl.message('أدوية', name: 'lbmedAr');
   }
@@ -620,12 +650,10 @@ class AppLocalizations {
   String get lbPreEn {
     return Intl.message('Prepaid Card', name: 'lbPreEn');
   }
+
   String get lbPreAr {
     return Intl.message('بطاقة مسبقة الدفع', name: 'lbPreAr');
   }
-
-
-
 
   String get lbLoanAr {
     return Intl.message('قروض', name: 'lbLoanAr');
@@ -650,10 +678,10 @@ class AppLocalizations {
   String get lbPrice {
     return Intl.message('Price', name: 'lbPrice');
   }
+
   String get lbLoanEN {
     return Intl.message('Loans', name: 'lbLoanEN');
   }
-
 
   String get lbDueDate {
     return Intl.message('Due Date', name: 'lbDueDate');
@@ -774,25 +802,27 @@ class AppLocalizations {
   String get lbNameLec {
     return Intl.message('Name your Lecture', name: 'lbNameLec');
   }
+
   String get lbsubLec {
     return Intl.message('Course Title', name: 'lbsubLec');
   }
+
   String get lbsubme {
     return Intl.message('Meeting Subject', name: 'lbsubme');
   }
-  String get lbDestanation{
+
+  String get lbDestanation {
     return Intl.message('The Destination', name: 'lbDestanation');
-
-
   }
-  String get lbEnterdesta{
+
+  String get lbEnterdesta {
     return Intl.message('Please enter The destination', name: 'lbEnterdesta');
-
-
   }
+
   String get lbNameDoc {
     return Intl.message('Doctor Name', name: 'lbNameDoc');
   }
+
   String get lbEnterN {
     return Intl.message('Please enter The Name of your', name: 'lbEnterN');
   }
@@ -808,7 +838,6 @@ class AppLocalizations {
   String get lbSubject {
     return Intl.message('Subject', name: 'lbSubject');
   }
-
 
   String get lbEnterNotYoy {
     return Intl.message('Please enter Notes of your', name: 'lbEnterNotYoy');
@@ -853,15 +882,19 @@ class AppLocalizations {
   String get lbE {
     return Intl.message('E', name: 'lbE');
   }
+
   String get lbPlace {
     return Intl.message('Place your', name: 'lbPlace');
   }
+
   String get lbNames {
     return Intl.message('Name your ', name: 'lbNames');
   }
+
   String get lbEnterName {
     return Intl.message('Please enter The Name of your', name: 'lbEnterName');
   }
+
   String get lbEnterPlace {
     return Intl.message('Please enter The Place of your', name: 'lbEnterPlace');
   }
@@ -874,6 +907,7 @@ class AppLocalizations {
   String get lbAddMateNew {
     return Intl.message('Add New Material Required', name: 'lbAddMateNew');
   }
+
   String get lbAddMateNew2 {
     return Intl.message('Add New Material Required', name: 'lbAddMateNew2');
   }
@@ -1199,9 +1233,11 @@ class AppLocalizations {
   String get lbPersonalA {
     return Intl.message('Personal Appointment', name: 'lbPersonalA');
   }
+
   String get lbPerson {
     return Intl.message('Person', name: 'lbPerson');
   }
+
   String get lbMeetingReq {
     return Intl.message('Meeting Requirements', name: 'lbMeetingReq');
   }

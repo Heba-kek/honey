@@ -3,56 +3,37 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
-import 'package:honey/application/lang/messages_all.dart';
+import 'package:honey/Core/lang/messages_all.dart';
 
 import 'package:intl/intl.dart';
 
-
-
-
-class AppLocalizations{
-
-  static AppLocalizations of(BuildContext context){
-
-    return Localizations.of<AppLocalizations>(context , AppLocalizations);
-
+class AppLocalizations {
+  static AppLocalizations of(BuildContext context) {
+    return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
   static Future<AppLocalizations> load(Locale locale) {
-
     final String name =
-
-    locale.countryCode == null ? locale.languageCode : locale.toString();
+        locale.countryCode == null ? locale.languageCode : locale.toString();
 
     final String localeName = Intl.canonicalizedLocale(name);
 
-
-
     return initializeMessages(localeName).then((bool _) {
-
       Intl.defaultLocale = localeName;
 
       return new AppLocalizations();
-
     });
-
   }
 
-
-
-  String get locale{
-
-    return Intl.message('en' , name:'locale');
-
+  String get locale {
+    return Intl.message('en', name: 'locale');
   }
 
-
-
-  String get pushedTheButton{
-
-    return Intl.message('you have pushed the button this many times' , name:'pushedTheButton');
-
+  String get pushedTheButton {
+    return Intl.message('you have pushed the button this many times',
+        name: 'pushedTheButton');
   }
+
   String get title {
     return Intl.message('Contact Us', name: 'title');
   }
@@ -60,8 +41,6 @@ class AppLocalizations{
   String get btnsubmit {
     return Intl.message('Submit', name: 'btnsubmit');
   }
-
-
 
   String get lblname {
     return Intl.message('Name', name: 'lblname');
@@ -242,6 +221,7 @@ class AppLocalizations{
   String get lbDebtEN {
     return Intl.message('Debts', name: 'lbDebt');
   }
+
   String get lbDebtAR {
     return Intl.message('ديون', name: 'lbDebt');
   }
@@ -319,26 +299,27 @@ class AppLocalizations{
     return Intl.message('Add Personal Debts', name: 'lbAddDebtPersonel');
   }
 
-  String get lbHomeAR  {
-
+  String get lbHomeAR {
     return Intl.message('الصفحة الرئيسية', name: 'lbHome');
-
   }
-  String get lbHomeEN  {
 
+  String get lbHomeEN {
     return Intl.message('Home', name: 'lbHome');
-
   }
+
   String get lbNoteEn {
     return Intl.message('Notes', name: 'lbNote');
   }
+
   String get lbNoteAR {
     return Intl.message('ملاحظات', name: 'lbNote');
   }
+
   String get lbMemoryEN {
     return Intl.message('Memories', name: 'lbMemory');
   }
-  String get lbMemoryAr{
+
+  String get lbMemoryAr {
     return Intl.message('مذكرات', name: 'lbMemory');
   }
 
@@ -353,6 +334,7 @@ class AppLocalizations{
   String get lbRevEN {
     return Intl.message('Revenue', name: 'lbRev');
   }
+
   String get lbExAR {
     return Intl.message('مصاريف', name: 'lbEx');
   }
@@ -364,6 +346,7 @@ class AppLocalizations{
   String get lbRevAR {
     return Intl.message('إيرادات', name: 'lbRev');
   }
+
   String get lbBudEN {
     return Intl.message('Budjet', name: 'lbBud');
   }
@@ -375,6 +358,7 @@ class AppLocalizations{
   String get lbRepoEN {
     return Intl.message('Reports', name: 'lbRepo');
   }
+
   String get lbBudAR {
     return Intl.message('ميزانية', name: 'lbBud');
   }
@@ -386,6 +370,7 @@ class AppLocalizations{
   String get lbRepoAR {
     return Intl.message('تقارير', name: 'lbRepo');
   }
+
   String get lbSchEn {
     return Intl.message('Sechdule Meeting', name: 'lbSch');
   }
@@ -393,6 +378,7 @@ class AppLocalizations{
   String get lbBankAEn {
     return Intl.message('Bank Account', name: 'lbBankA');
   }
+
   String get lbSchAr {
     return Intl.message('مواعيد', name: 'lbSch');
   }
@@ -400,55 +386,82 @@ class AppLocalizations{
   String get lbBankAAr {
     return Intl.message('حسابات بنكية', name: 'lbBankA');
   }
+
   String get lbSelectL {
     return Intl.message('Select Language', name: 'lbSelectL');
   }
+
   String get lbCash {
     return Intl.message('Cash', name: 'lbCash');
   }
+
   String get lbToday {
     return Intl.message('Today Schedule', name: 'lbToday');
   }
+
   String get lbMeeting {
     return Intl.message('Meetings', name: 'lbMeeting');
   }
+
   String get lbhealth {
     return Intl.message('Health Managment', name: 'lbhealth');
   }
+
   String get lbTime {
     return Intl.message('Times', name: 'lbTime');
   }
+
   String get lbRemain {
     return Intl.message('Remain', name: 'lbRemain');
   }
+
   String get lbJan {
     return Intl.message('January', name: 'lbJan');
-  }String get lbFab {
-    return Intl.message('February', name: 'lbFab');
-  }String get lbMar {
-    return Intl.message('March', name: 'lbMar');
-  }String get lbApr {
-    return Intl.message('April', name: 'lbApr');
-  }String get lbMay {
-    return Intl.message('May', name: 'lbMay');
-  }String get lbJune {
-    return Intl.message('June', name: 'lbJune');
-  }String get lbJuly {
-    return Intl.message('July', name: 'lbJuly');
-  }String get lbSep {
-    return Intl.message('September', name: 'lbSep');
-  }String get lbOct {
-    return Intl.message('October', name: 'lbOct');
-  }String get lbNov {
-    return Intl.message('November', name: 'lbNov');
-  }String get lbAug {
-    return Intl.message('Augest', name: 'lbAug');
-  }String get lbDec {
-    return Intl.message('December', name: 'lbDec');
   }
 
+  String get lbFab {
+    return Intl.message('February', name: 'lbFab');
+  }
 
+  String get lbMar {
+    return Intl.message('March', name: 'lbMar');
+  }
 
+  String get lbApr {
+    return Intl.message('April', name: 'lbApr');
+  }
+
+  String get lbMay {
+    return Intl.message('May', name: 'lbMay');
+  }
+
+  String get lbJune {
+    return Intl.message('June', name: 'lbJune');
+  }
+
+  String get lbJuly {
+    return Intl.message('July', name: 'lbJuly');
+  }
+
+  String get lbSep {
+    return Intl.message('September', name: 'lbSep');
+  }
+
+  String get lbOct {
+    return Intl.message('October', name: 'lbOct');
+  }
+
+  String get lbNov {
+    return Intl.message('November', name: 'lbNov');
+  }
+
+  String get lbAug {
+    return Intl.message('Augest', name: 'lbAug');
+  }
+
+  String get lbDec {
+    return Intl.message('December', name: 'lbDec');
+  }
 
 //and add all the text you have inside the app that you need to make it in
 
@@ -457,35 +470,20 @@ class AppLocalizations{
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
-
   const AppLocalizationsDelegate();
 
-
-
   @override
-
   bool isSupported(Locale locale) {
-
     return ['en', 'ar'].contains(locale.languageCode);
-
   }
 
   @override
-
   Future<AppLocalizations> load(Locale locale) {
-
     return AppLocalizations.load(locale);
-
   }
 
   @override
-
   bool shouldReload(AppLocalizationsDelegate old) {
-
     return false;
-
   }
-
-
-
 }
