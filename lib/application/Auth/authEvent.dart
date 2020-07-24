@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -7,12 +9,22 @@ abstract class AuthEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class Signin extends AuthEvent {
+class SigninEvent extends AuthEvent {
   final String userName;
   final String password;
 
-  Signin(this.userName, this.password);
+  SigninEvent(
+    this.userName,
+    this.password,
+  );
 
   @override
   List<Object> get props => [userName, password];
+
+  Map<String, dynamic> toMap() {
+    return {
+      'userName': userName,
+      'password': password,
+    };
+  }
 }

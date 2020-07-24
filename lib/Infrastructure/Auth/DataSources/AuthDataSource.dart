@@ -1,5 +1,5 @@
 import 'package:honey/Infrastructure/Auth/Models/SigninModel.dart';
 
-abstract class AuthRepository {
+abstract class AuthDataSource {
   Future<SigninModel> signin(Map<String, dynamic> data);
 }
