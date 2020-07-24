@@ -6,12 +6,16 @@ class SigninEntity extends Equatable {
   final String code;
   final SigninData data;
   final String token;
+  final String msg;
 
   SigninEntity(
-      {@required this.code, @required this.data, @required this.token});
+      {@required this.code,
+      @required this.data,
+      @required this.token,
+      @required this.msg});
 
   @override
-  List<Object> get props => [this.code, this.data, this.token];
+  List<Object> get props => [this.code, this.data, this.token, this.msg];
 }
 
 class SigninData extends Equatable {

@@ -5,15 +5,17 @@ class SigninModel extends SigninEntity {
   SigninModel(
       {@required String code,
       @required SigninData data,
-      @required String token})
-      : super(code: code, data: data, token: token);
+      @required String token,
+      @required String msg})
+      : super(code: code, data: data, token: token, msg: msg);
 
   factory SigninModel.fromJson(Map<String, dynamic> json) {
     return SigninModel(
         code: json['code'],
         data:
             json['data'] != null ? new SigninData.fromJson(json['data']) : null,
-        token: json['token']);
+        token: json['token'],
+        msg: json['msg'] != null ? json['msg'] : "Success");
   }
 
   Map<String, dynamic> toJson() {

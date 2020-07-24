@@ -97,6 +97,10 @@ class ApiProvider {
 
       case 403:
         throw UnauthorisedException(response.data.toString());
+      case 404:
+        var responseJson = json.decode(response.data.toString());
+        print(responseJson);
+        return responseJson;
       case 500:
 
       default:
