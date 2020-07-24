@@ -13,9 +13,9 @@ class Empty extends AuthState {}
 class Loading extends AuthState {}
 
 class Loaded extends AuthState {
-  final SigninEntity response;
+  final SigninEntity signinResponse;
 
-  Loaded({this.response});
+  Loaded({this.signinResponse});
 
   @override
   List<Object> get props => [];
