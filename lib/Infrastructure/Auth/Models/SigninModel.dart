@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:honey/Domain/Auth/Entities/SigninEntity.dart';
 
-class SigninModel extends Signin {
+class SigninModel extends SigninEntity {
   SigninModel(
       {@required String code,
       @required SigninData data,
