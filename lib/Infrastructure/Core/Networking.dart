@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 enum HttpMethod { GET, POST }
 
 class ApiProvider {
-  final String _baseUrl = "http://honey-bee.life/APi/";
+  final String _baseUrl = "http://honey-bee.life/Api/";
   Dio _dio;
 
   ApiProvider() {
@@ -35,17 +35,26 @@ class ApiProvider {
       _dio.interceptors
           .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
         // Do something before request is sent
-        options.headers["Authorization"] = "Bearer " + token;
+
+        if (token != null) options.headers["Authorization"] = "Bearer " + token;
+
+        if (lang != null) options.headers["lang"] = lang;
+
         options.contentType = Headers.formUrlEncodedContentType;
-        options.headers["lang"] = lang;
+
+        print('options ${options.contentType}');
         return options;
       }, onResponse: (Response response) {
-        //  responseJson = _response(response);
         return response; // continue
       }, onError: (DioError error) async {
-        print('error calling get');
-        print(error.response);
-        throw Exception(error.response);
+        print('error calling dio method');
+
+        if (error.response.statusCode == 404) {
+          print(error.response.data.toString());
+          return error.response;
+        }
+
+        throw Exception(error.toString());
       }));
 
       String apiURL = _baseUrl + url;
@@ -62,50 +71,28 @@ class ApiProvider {
             queryParamsTemp = Map<String, dynamic>();
             queryParamsTemp["user_id"] = id;
           }
-          response = await _dio.get(apiURL,
-              queryParameters: queryParamsTemp, cancelToken: cancelToken);
-          break;
+          print("queryParamsTemp $queryParamsTemp");
+          response = await _dio.get(apiURL, queryParameters: queryParamsTemp);
+
+          return response.data;
         case HttpMethod.POST:
           Map<String, dynamic> tempData;
-          if (bodyData != null) {
+          if (bodyData != null && id != null) {
             tempData = bodyData;
             tempData["user_id"] = id;
-          } else {
+          } else if (id != null) {
             tempData = Map<String, dynamic>();
             tempData["user_id"] = id;
           }
-          response =
-              await _dio.post(apiURL, data: tempData, cancelToken: cancelToken);
-          break;
+          print(tempData != null ? "tempData $tempData" : "bodyData $bodyData");
+
+          response = await _dio.post(apiURL,
+              data: tempData != null ? tempData : bodyData);
+
+          return response.data;
       }
-      print(response);
-      return _response(response);
-    } on SocketException {
-      throw FetchDataException('No Internet connection');
-    }
-  }
-
-  dynamic _response(Response response) {
-    switch (response.statusCode) {
-      case 200:
-        var responseJson = json.decode(response.data.toString());
-        print(responseJson);
-        return responseJson;
-      case 400:
-        throw BadRequestException(response.data.toString());
-      case 401:
-
-      case 403:
-        throw UnauthorisedException(response.data.toString());
-      case 404:
-        var responseJson = json.decode(response.data.toString());
-        print(responseJson);
-        return responseJson;
-      case 500:
-
-      default:
-        throw FetchDataException(
-            'Error occured while Communication with Server with StatusCode : ${response.statusCode}');
+    } catch (exception) {
+      throw FetchDataException(exception.toString());
     }
   }
 }

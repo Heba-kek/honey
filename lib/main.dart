@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:honey/presentation/page/auth/loginPage.dart';
 import 'package:honey/presentation/page/auth/registerPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -45,11 +46,11 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   Animation<double> animation;
   AnimationController animationController;
   var _visible = true;
-
 
   startTime() async {
     var _duration = new Duration(seconds: 4);
@@ -60,30 +61,29 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   Future navigationPage() async {
     var preferences = await SharedPreferences.getInstance();
     String token = preferences.getString('token');
-    if(token!=null){
+    if (token != null) {
       //  Navigator.of(context).pushReplacementNamed(HOME_SCREEN);
       /*   Navigator.of(context).push(
         PageRouteBuilder(
           pageBuilder: (_, __, ___) => myrest(),
         ),
       );*/
-    }else {
-      Navigator.of(context).push(
+    } else {
+      Navigator.of(context).pushReplacement(
         PageRouteBuilder(
-          pageBuilder: (_, __, ___) => register(),
+          pageBuilder: (_, __, ___) => Login(),
         ),
       );
-
     }
   }
+
   @override
   void initState() {
-
     animationController = new AnimationController(
         vsync: this, duration: new Duration(seconds: 10));
 
     animation =
-    new CurvedAnimation(parent: animationController, curve: Curves.easeOut);
+        new CurvedAnimation(parent: animationController, curve: Curves.easeOut);
 
     animation.addListener(() => this.setState(() {}));
 
@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return  Scaffold(
+    return Scaffold(
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
@@ -112,7 +112,6 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-
               new Image.asset(
                 'assets/images/splash_log.png',
                 // height: 25.0,

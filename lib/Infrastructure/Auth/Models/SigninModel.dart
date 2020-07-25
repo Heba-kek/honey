@@ -11,10 +11,10 @@ class SigninModel extends SigninEntity {
 
   factory SigninModel.fromJson(Map<String, dynamic> json) {
     return SigninModel(
-        code: json['code'],
+        code: json['code'] != null ? json['code'] : "",
         data:
             json['data'] != null ? new SigninData.fromJson(json['data']) : null,
-        token: json['token'],
+        token: json['token'] != null ? json['token'] : null,
         msg: json['msg'] != null ? json['msg'] : "Success");
   }
 

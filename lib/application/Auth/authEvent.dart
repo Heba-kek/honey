@@ -8,20 +8,20 @@ abstract class AuthEvent extends Equatable {
 }
 
 class SigninEvent extends AuthEvent {
-  final String userName;
+  final String email;
   final String password;
 
   SigninEvent(
-    this.userName,
+    this.email,
     this.password,
   );
 
   @override
-  List<Object> get props => [userName, password];
+  List<Object> get props => [email, password];
 
   Map<String, dynamic> toMap() {
     return {
-      'userName': userName,
+      'email': email,
       'password': password,
     };
   }

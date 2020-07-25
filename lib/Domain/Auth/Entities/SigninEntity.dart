@@ -84,7 +84,7 @@ class SigninData extends Equatable {
         createdAt: json["created_at"] == null ? null : json["created_at"],
         status: json["status"] == null ? null : json["status"],
         code: json["code"] == null ? null : json["code"],
-        adminId: json["admin_id"],
+        adminId: json["admin_id"] == null ? null : json["admin_id"],
         price: json["price"] == null ? null : json["price"],
         currency: json["currency"] == null ? null : json["currency"],
         active: json["active"] == null ? null : json["active"],
