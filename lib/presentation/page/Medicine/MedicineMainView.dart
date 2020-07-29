@@ -137,7 +137,8 @@ class _MedicineMainViewState extends State<MedicineMainView> {
             ],
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               getMedcineInfoNames(local.lbMedicineShape),
               getMedcineInfoNames(local.lbdose),
@@ -150,46 +151,48 @@ class _MedicineMainViewState extends State<MedicineMainView> {
   }
 
   Widget getMedcineInfoNames(String title) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey[300],
-          border: Border.all(color: Colors.blueGrey[400], width: 1),
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+              width: MediaQuery.of(context).size.width * 0.3,
+              child: Text(title)),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(title),
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              border: Border.all(color: Colors.blueGrey[400], width: 1),
+              borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
-            SizedBox(
-              width: 24,
-            ),
-            Expanded(
-                child: FlatButton(
-                    onPressed: () {
-                      showMaterialSelectionPicker(
-                        headerColor: Colors.yellow,
-                        context: context,
-                        title: "Starship Speed",
-                        items: speedOptions,
-                        selectedItem: speed,
-                        icons: speedIcons,
-                        onChanged: (value) => setState(() => speed = value),
-                      );
-                    },
-                    child: Row(
-                      children: <Widget>[
-                        Text(speed),
-                        Icon(Icons.arrow_drop_down)
-                      ],
-                    )))
-          ],
+            child: FlatButton(
+                onPressed: () {
+                  showMaterialSelectionPicker(
+                    headerColor: Colors.yellow,
+                    context: context,
+                    title: "Starship Speed",
+                    items: speedOptions,
+                    selectedItem: speed,
+                    icons: speedIcons,
+                    onChanged: (value) => setState(() => speed = value),
+                  );
+                },
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(right: 12.0),
+                      child: Text(speed),
+                    ),
+                    Icon(Icons.arrow_drop_down)
+                  ],
+                )),
+          ),
         ),
-      ),
+        Container(),
+      ],
     );
   }
 }
