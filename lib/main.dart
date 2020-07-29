@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:honey/presentation/page/Medicine/MedicineMainView.dart';
 import 'package:honey/presentation/page/auth/loginPage.dart';
 import 'package:honey/presentation/page/auth/registerPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -71,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage>
     } else {
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
-          pageBuilder: (_, __, ___) => Login(),
+          pageBuilder: (_, __, ___) => MedicineMainView(),
         ),
       );
     }

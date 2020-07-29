@@ -35,6 +35,7 @@ dependencies:
   dartz: ^0.9.1
   dio: ^3.0.9
   data_connection_checker: ^0.3.4
+  flutter_material_pickers: ^1.7.1
 
 
 dev_dependencies:

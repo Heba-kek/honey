@@ -463,6 +463,30 @@ class AppLocalizations {
     return Intl.message('December', name: 'lbDec');
   }
 
+  String get lbmedicine {
+    return Intl.message('Medince date', name: 'lbmedicine');
+  }
+
+  String get lbPatient {
+    return Intl.message("Patient Name", name: "lbPatient");
+  }
+
+  String get lbMedicine {
+    return Intl.message("Medicine Name", name: "lbMedicine");
+  }
+
+  String get lbMedicineShape {
+    return Intl.message("Medicine Shape", name: "lbMedicineShape");
+  }
+
+  String get lbdose {
+    return Intl.message("dose", name: "lbdose");
+  }
+
+  String get lbInstruction {
+    return Intl.message("Intsruction", name: "lbInstruction");
+  }
+
 //and add all the text you have inside the app that you need to make it in
 
 //arabic and english launguages
