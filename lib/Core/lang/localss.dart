@@ -487,6 +487,21 @@ class AppLocalizations {
     return Intl.message("Intsruction", name: "lbInstruction");
   }
 
+  String get lbwhennecessary {
+    return Intl.message("when necessary", name: "lbInstruction");
+  }
+
+  String get lbDaile {
+    return Intl.message("Daily", name: "lbDaile");
+  }
+
+  String get lbNumberofTimes {
+    return Intl.message("Number of times", name: "lbNumberofTimes");
+  }
+
+  String get lbDay {
+    return Intl.message("day", name: "lbDay");
+  }
 //and add all the text you have inside the app that you need to make it in
 
 //arabic and english launguages

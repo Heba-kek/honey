@@ -109,7 +109,7 @@ class LoginActivity extends State<Login> {
       listener: (context, state) {
         if (state is Loaded) {
           print('Success');
-          print(state.signinResponse.msg);
+          print(state.signinResponse.token);
         }
       },
       builder: (context, state) {
@@ -256,7 +256,8 @@ class LoginActivity extends State<Login> {
                                           disabledColor: Colors.yellow,
                                           onPressed: () {
                                             context.bloc<AuthBloc>().add(
-                                                SigninEvent(_username.text,
+                                                SigninEvent(
+                                                    _username.text.trim(),
                                                     _password.text));
                                           },
                                           child: new Text(

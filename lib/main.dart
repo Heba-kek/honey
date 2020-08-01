@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:honey/presentation/page/Medicine/MedicineMainView.dart';
-import 'package:honey/presentation/page/auth/loginPage.dart';
-import 'package:honey/presentation/page/auth/registerPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {

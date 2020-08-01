@@ -366,5 +366,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الشكل الدوائي"),
         "lbdose": MessageLookupByLibrary.simpleMessage("الجرعة"),
         "lbInstruction": MessageLookupByLibrary.simpleMessage("التعليمات"),
+        "lbwhennecessary": MessageLookupByLibrary.simpleMessage("عند اللزوم"),
+        "lbNumberofTimes": MessageLookupByLibrary.simpleMessage("عدد المرات"),
+        "lbDay": MessageLookupByLibrary.simpleMessage("يوم"),
       };
 }
