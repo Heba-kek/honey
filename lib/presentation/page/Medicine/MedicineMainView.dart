@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:honey/Core/lang/localss.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'dart:io';
 
 class MedicineMainView extends StatefulWidget {
   @override
@@ -12,14 +14,19 @@ class _MedicineMainViewState extends State<MedicineMainView> {
   TextEditingController patientNameController = TextEditingController();
 
   TextEditingController medicineNameController = TextEditingController();
+  TextEditingController doctorNameController = TextEditingController();
+
+  TextEditingController conditionNameController = TextEditingController();
   AppLocalizations local = AppLocalizations();
 
   bool _whenNecessaryCheck = false;
-  bool _dailyCheck = true;
+  bool _dailyCheck = false;
   bool _otherCheck = false;
   bool _forEverChecked = false;
   bool _forEverOtherChecked = false;
   bool _doItByYourSelfCheck = false;
+  bool _insertImage = true;
+
   var numberOfDays = 0;
   var medicineDate = DateTime.now();
   var medicineTime = TimeOfDay.now();
@@ -42,6 +49,7 @@ class _MedicineMainViewState extends State<MedicineMainView> {
     Icon(Icons.swap_calls),
     Icon(Icons.select_all),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,6 +90,10 @@ class _MedicineMainViewState extends State<MedicineMainView> {
             getDaily(),
             getOther(),
             getDoItByYourSelf(),
+            getInsertImage(),
+            getReminder(),
+            getDoctorInfo(),
+            getSaveButton(),
           ],
         ),
       ),
@@ -231,7 +243,7 @@ class _MedicineMainViewState extends State<MedicineMainView> {
               const EdgeInsets.only(bottom: 6.0), //Same as `blurRadius` i guess
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
-            color: Colors.white,
+            color: _whenNecessaryCheck ? Colors.white : Colors.grey[300],
             boxShadow: [
               BoxShadow(
                 color: Colors.grey,
@@ -246,6 +258,9 @@ class _MedicineMainViewState extends State<MedicineMainView> {
             onChanged: (newValue) {
               setState(() {
                 _whenNecessaryCheck = newValue;
+                _dailyCheck = false;
+                _otherCheck = false;
+                _doItByYourSelfCheck = false;
               });
             },
             controlAffinity:
@@ -266,7 +281,7 @@ class _MedicineMainViewState extends State<MedicineMainView> {
               const EdgeInsets.only(bottom: 6.0), //Same as `blurRadius` i guess
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
-            color: Colors.white,
+            color: _dailyCheck ? Colors.white : Colors.grey[300],
             boxShadow: [
               BoxShadow(
                 color: Colors.grey,
@@ -281,7 +296,12 @@ class _MedicineMainViewState extends State<MedicineMainView> {
                 title: Text(local.lbDaile),
                 value: _dailyCheck,
                 onChanged: (newValue) {
-                  _dailyCheck = newValue;
+                  setState(() {
+                    _dailyCheck = newValue;
+                    _whenNecessaryCheck = false;
+                    _otherCheck = false;
+                    _doItByYourSelfCheck = false;
+                  });
                 },
                 controlAffinity:
                     ListTileControlAffinity.leading, //  <-- leading Checkbox
@@ -444,7 +464,7 @@ class _MedicineMainViewState extends State<MedicineMainView> {
               const EdgeInsets.only(bottom: 6.0), //Same as `blurRadius` i guess
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
-            color: Colors.white,
+            color: _otherCheck ? Colors.white : Colors.grey[300],
             boxShadow: [
               BoxShadow(
                 color: Colors.grey,
@@ -459,7 +479,12 @@ class _MedicineMainViewState extends State<MedicineMainView> {
                 title: Text("other"),
                 value: _otherCheck,
                 onChanged: (newValue) {
-                  _otherCheck = newValue;
+                  setState(() {
+                    _otherCheck = newValue;
+                    _whenNecessaryCheck = false;
+                    _dailyCheck = false;
+                    _doItByYourSelfCheck = false;
+                  });
                 },
                 controlAffinity:
                     ListTileControlAffinity.leading, //  <-- leading Checkbox
@@ -501,7 +526,7 @@ class _MedicineMainViewState extends State<MedicineMainView> {
               const EdgeInsets.only(bottom: 6.0), //Same as `blurRadius` i guess
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
-            color: Colors.white,
+            color: _doItByYourSelfCheck ? Colors.white : Colors.grey[300],
             boxShadow: [
               BoxShadow(
                 color: Colors.grey,
@@ -521,6 +546,9 @@ class _MedicineMainViewState extends State<MedicineMainView> {
                         onChanged: (newValue) {
                           setState(() {
                             _doItByYourSelfCheck = newValue;
+                            _whenNecessaryCheck = false;
+                            _dailyCheck = false;
+                            _otherCheck = false;
                           });
                         }),
                   ),
@@ -605,7 +633,7 @@ class _MedicineMainViewState extends State<MedicineMainView> {
                               ],
                             );
                           }),
-                      height: _animatedHeight,
+                      height: myDates.length > 0 ? _animatedHeight : 0,
                       width: MediaQuery.of(context).size.width * 0.8,
                     ),
                     Center(
@@ -624,6 +652,214 @@ class _MedicineMainViewState extends State<MedicineMainView> {
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget getInsertImage() {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(5.0),
+        child: Container(
+          margin:
+              const EdgeInsets.only(bottom: 6.0), //Same as `blurRadius` i guess
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color: _insertImage ? Colors.white : Colors.grey[300],
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(0.0, 1.0), //(x,y)
+                blurRadius: 6.0,
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CheckboxListTile(
+                title: Text("Insert Image"),
+                value: _insertImage,
+                onChanged: (newValue) {
+                  setState(() {
+                    _insertImage = newValue;
+                  });
+                },
+                controlAffinity:
+                    ListTileControlAffinity.leading, //  <-- leading Checkbox
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.add_a_photo,
+                        size: 44,
+                        color: Colors.blue[800],
+                      ),
+                      onPressed: () {
+                        pickImageFromGallery(ImageSource.camera);
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 5,
+                      height: MediaQuery.of(context).size.width * 0.45 - 32,
+                      color: Colors.blue[800],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      child: showImage(),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<File> imageFile;
+
+  //Open gallery
+  pickImageFromGallery(ImageSource source) {
+    setState(() {
+      // ignore: deprecated_member_use
+      imageFile = ImagePicker.pickImage(source: source);
+    });
+  }
+
+  Widget showImage() {
+    return FutureBuilder<File>(
+      future: imageFile,
+      builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.data != null) {
+          return Image.file(
+            snapshot.data,
+            width: MediaQuery.of(context).size.width * 0.45,
+            height: MediaQuery.of(context).size.width * 0.45 - 50,
+          );
+        } else if (snapshot.error != null) {
+          return const Text(
+            'Error Picking Image',
+            textAlign: TextAlign.center,
+          );
+        } else {
+          return const Text(
+            'No Image Selected',
+            textAlign: TextAlign.center,
+          );
+        }
+      },
+    );
+  }
+
+  Widget getReminder() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 12.0, right: 12),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(5.0),
+        child: Container(
+          margin:
+              const EdgeInsets.only(bottom: 6.0), //Same as `blurRadius` i guess
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(0.0, 1.0), //(x,y)
+                blurRadius: 6.0,
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset("assets/images/bell.png"),
+                  ),
+                  getMedcineInfoNames("Remind before"),
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset("assets/images/bell.png"),
+                  ),
+                  getMedcineInfoNames("Ring Tone"),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget getDoctorInfo() {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(5.0),
+        child: Container(
+          margin:
+              const EdgeInsets.only(bottom: 6.0), //Same as `blurRadius` i guess
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(0.0, 1.0), //(x,y)
+                blurRadius: 6.0,
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              getName("Doctor Name", doctorNameController),
+              getName("Condtion", conditionNameController),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget getSaveButton() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Center(
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.3,
+          height: 44,
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            border: Border.all(color: Colors.white, width: 2),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          child: FlatButton(
+            child: Text("Save"),
+            onPressed: () {},
           ),
         ),
       ),
