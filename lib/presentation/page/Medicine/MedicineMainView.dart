@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:honey/Core/lang/localss.dart';
+import 'package:honey/application/Medicine/bloc.dart';
+import 'package:honey/presentation/Common/ProgressWidget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'dart:io';
@@ -53,51 +56,80 @@ class _MedicineMainViewState extends State<MedicineMainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellow,
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Text(
-              "Honey Bee",
-              style: TextStyle(color: Colors.black),
-            ),
-            Text(local.lbmedicine, style: TextStyle(color: Colors.black)),
-            Container(
-              child: Image.asset("assets/images/logo_new.png"),
-              height: 30,
-              width: 30,
-            ),
-          ],
-        ),
         backgroundColor: Colors.yellow,
-        elevation: 0,
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            getBasicInfo(),
-            getMedicineInfo(),
-            Padding(
-              padding: EdgeInsets.all(12),
-              child: Center(
-                child: Text(local.lbmedicine),
+        appBar: AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Text(
+                "Honey Bee",
+                style: TextStyle(color: Colors.black),
               ),
-            ),
-            getWhenNecessary(),
-            getDaily(),
-            getOther(),
-            getDoItByYourSelf(),
-            getInsertImage(),
-            getReminder(),
-            getDoctorInfo(),
-            getSaveButton(),
-          ],
+              Text(local.lbmedicine, style: TextStyle(color: Colors.black)),
+              Container(
+                child: Image.asset("assets/images/logo_new.png"),
+                height: 30,
+                width: 30,
+              ),
+            ],
+          ),
+          backgroundColor: Colors.yellow,
+          elevation: 0,
+          centerTitle: true,
         ),
-      ),
-    );
+        body: getScaffoldBody());
+  }
+
+  Widget getScaffoldBody() {
+    return StreamBuilder<MedicineState>(
+        stream: BlocProvider.of<MedicineBloc>(context)
+            .mapEventToState(new GetMedicine()),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Container(
+              child: Center(
+                child: Text(snapshot.error),
+              ),
+            );
+          } else if (snapshot.hasData) {
+            var data = snapshot.data;
+            if (data is Loaded) {
+              return SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    getBasicInfo(),
+                    getMedicineInfo(),
+                    Padding(
+                      padding: EdgeInsets.all(12),
+                      child: Center(
+                        child: Text(local.lbmedicine),
+                      ),
+                    ),
+                    getWhenNecessary(),
+                    getDaily(),
+                    getOther(),
+                    getDoItByYourSelf(),
+                    getInsertImage(),
+                    getReminder(),
+                    getDoctorInfo(),
+                    getSaveButton(),
+                  ],
+                ),
+              );
+            } else if (data is Error) {
+              return Container(
+                child: Center(
+                  child: Text(data.message),
+                ),
+              );
+            } else {
+              return progressWidget();
+            }
+          } else {
+            return Container();
+          }
+        });
   }
 
   Widget getBasicInfo() {

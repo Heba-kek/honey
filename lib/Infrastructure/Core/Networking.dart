@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 enum HttpMethod { GET, POST }
 
 class ApiProvider {
-  final String _baseUrl = "http://honey-bee.life/Api/";
+  final String _baseUrl = "http://honey-bee.life/";
   Dio _dio;
 
   ApiProvider() {
