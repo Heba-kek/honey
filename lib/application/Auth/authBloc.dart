@@ -5,6 +5,8 @@ import 'package:honey/Domain/Auth/AuthRepository.dart';
 import 'package:honey/application/Auth/authEvent.dart';
 import 'package:honey/application/Auth/authState.dart';
 
+
+
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthRepository _authRepository;
 

@@ -9,6 +9,7 @@ import 'package:honey/Infrastructure/Core/NetworkInfo.dart';
 import 'package:honey/application/Auth/authBloc.dart';
 import 'package:honey/application/Auth/authEvent.dart';
 import 'package:honey/application/Auth/authState.dart';
+import 'package:honey/presentation/homePage.dart';
 import 'package:honey/presentation/page/AppLocalizations.dart';
 import 'package:honey/presentation/page/LocalHelper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -106,12 +107,21 @@ class LoginActivity extends State<Login> {
 
   Widget signinView() {
     return BlocConsumer<AuthBloc, AuthState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is Loaded) {
           print('Success');
-          print(state.signinResponse.token);
+          print(state.signinResponse.msg);
+          if(state.signinResponse.code=='1'){
+            var preferences = await SharedPreferences.getInstance();
+            preferences.setString('token',state.signinResponse.token);
+            preferences.setString('id',state.signinResponse.data.id.toString());
+            return  Navigator.of(context).push(
+              PageRouteBuilder(
+                pageBuilder: (_, __, ___) =>  HomeScreen(),
+              ),
+            );
         }
-      },
+      }},
       builder: (context, state) {
         if (state is Loading) {
           print('progress');
@@ -281,15 +291,4 @@ class LoginActivity extends State<Login> {
     );
   }
 
-  Future<String> _setText(var _text) async {
-    var preferences = await SharedPreferences.getInstance();
-
-// Save a value
-    String langSave = preferences.getString('lange');
-    if (langSave == 'ar') {
-      return 'enter';
-    } else {
-      return "ttttt";
-    }
-  }
 }

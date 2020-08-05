@@ -56,10 +56,11 @@ class ApiProvider {
 
         throw Exception(error.toString());
       }));
-
-      String apiURL = _baseUrl + url;
-      print(apiURL);
-
+      String apiURLPost = _baseUrl + url ;
+      String apiURLget;
+      if (id != null) {
+         apiURLget = _baseUrl + url + '?user_id=' + id;
+      }
       Response response;
       switch (method) {
         case HttpMethod.GET:
@@ -72,7 +73,7 @@ class ApiProvider {
             queryParamsTemp["user_id"] = id;
           }
           print("queryParamsTemp $queryParamsTemp");
-          response = await _dio.get(apiURL, queryParameters: queryParamsTemp);
+          response = await _dio.get(apiURLget, queryParameters: queryParamsTemp);
 
           return response.data;
         case HttpMethod.POST:
@@ -86,7 +87,7 @@ class ApiProvider {
           }
           print(tempData != null ? "tempData $tempData" : "bodyData $bodyData");
 
-          response = await _dio.post(apiURL,
+          response = await _dio.post(apiURLPost,
               data: tempData != null ? tempData : bodyData);
 
           return response.data;
