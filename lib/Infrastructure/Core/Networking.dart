@@ -36,6 +36,7 @@ class ApiProvider {
           .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
         // Do something before request is sent
 
+        print("token + $token");
         if (token != null) options.headers["Authorization"] = "Bearer " + token;
 
         if (lang != null) options.headers["lang"] = lang;
@@ -56,11 +57,15 @@ class ApiProvider {
 
         throw Exception(error.toString());
       }));
-      String apiURLPost = _baseUrl + url ;
+      String apiURLPost = _baseUrl + url;
       String apiURLget;
       if (id != null) {
-         apiURLget = _baseUrl + url + '?user_id=' + id;
+        apiURLget = _baseUrl + url + '?user_id=' + id;
+        print(apiURLget);
       }
+
+      print(apiURLPost);
+
       Response response;
       switch (method) {
         case HttpMethod.GET:
@@ -73,7 +78,8 @@ class ApiProvider {
             queryParamsTemp["user_id"] = id;
           }
           print("queryParamsTemp $queryParamsTemp");
-          response = await _dio.get(apiURLget, queryParameters: queryParamsTemp);
+          response =
+              await _dio.get(apiURLget, queryParameters: queryParamsTemp);
 
           return response.data;
         case HttpMethod.POST:

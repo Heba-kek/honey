@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:honey/presentation/page/AppLocalizations.dart';
 import 'package:honey/presentation/page/ExpensivePage.dart';
 import 'package:honey/presentation/page/LocalHelper.dart';
+import 'package:honey/presentation/page/Medicine/MedicineMainView.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -39,18 +40,16 @@ class HomeScreen extends StatefulWidget {
   final drawerItemEn = [
     new DrawerItem(AppLocalizations().lbHomeEN,
         ImageIcon(AssetImage('assets/images/home.png'))),
-
     new DrawerItem(AppLocalizations().lbRev,
         ImageIcon(AssetImage('assets/images/meet.png'))),
-
-
+    new DrawerItem(AppLocalizations().lbMediName,
+        ImageIcon(AssetImage('assets/images/meet.png'))),
   ];
   final drawerItemsAr = [
     new DrawerItem(AppLocalizations().lbHomeAR,
         ImageIcon(AssetImage('assets/images/home.png'))),
     new DrawerItem(AppLocalizations().lbRev,
         ImageIcon(AssetImage('assets/images/notes.png'))),
-
   ];
 
   HomeScreen();
@@ -58,8 +57,6 @@ class HomeScreen extends StatefulWidget {
   @override
   HomeFragment createState() => new HomeFragment();
 }
-
-
 
 class HomeFragment extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
@@ -77,7 +74,6 @@ class HomeFragment extends State<HomeScreen>
       _specificLocalizationDelegate = new SpecificLocalizationDelegate(locale);
     });
   }
-
 
   List<Widget> pages;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -118,7 +114,7 @@ class HomeFragment extends State<HomeScreen>
 
       AppLocalizations().locale == 'en';
       preferences.setString('lang', 'en');
-   //   helper.onLocaleChanged(new Locale("en"));
+      //   helper.onLocaleChanged(new Locale("en"));
       AppLocalizations.load(new Locale("en"));
       for (var i = 0; i < widget.drawerItemEn.length; i++) {
         var d = widget.drawerItemEn[i];
@@ -138,9 +134,8 @@ class HomeFragment extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
-    one =  Text('one');
+    one = Text('one');
     pages = new List<Widget>();
-
 
     pages = [one];
     currentPage = one;
@@ -161,18 +156,35 @@ class HomeFragment extends State<HomeScreen>
   }
 
   _getDrawerItemWidget(int pos) {
+    if (pos == 2) {}
     switch (pos) {
       case 0:
         return new Directionality(
             textDirection:
-            langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
             child: Text('one'));
 
       case 1:
         return new Directionality(
             textDirection:
-            langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
             child: expensivePage());
+
+      case 2:
+        // return Navigator.of(context).pushReplacement(
+        //   PageRouteBuilder(
+        //     pageBuilder: (_, __, ___) => MedicineMainView(),
+        //   ),
+        // );
+
+        //   break;
+
+        return MedicineMainView();
+
+      //  new Directionality(
+      //     textDirection:
+      //         langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+      //     child: );
 
       default:
         return new Text("Error");
@@ -193,28 +205,27 @@ class HomeFragment extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-
-
     return new Scaffold(
       key: _scaffoldKey,
       backgroundColor: Color(0xFFEEEEEE),
       drawer: new Drawer(
           child: new SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                new DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: Colors.yellow,
+        child: Column(
+          children: <Widget>[
+            new DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.yellow,
 
-                    /*  image: DecorationImage(
+                /*  image: DecorationImage(
                 image: AssetImage("assets/images/alco.jpg"),
                 fit: BoxFit.cover)*/
-                  ),
-                ),
-                new Column(children: drawerOptions)
-              ],
+              ),
+              child: null,
             ),
-          )),
+            new Column(children: drawerOptions)
+          ],
+        ),
+      )),
       appBar: AppBar(
         centerTitle: true,
         title: Text(
@@ -231,16 +242,12 @@ class HomeFragment extends State<HomeScreen>
             _scaffoldKey.currentState.openDrawer();
           },
         ),
-
         backgroundColor: Colors.white,
       ),
-      body:  SingleChildScrollView(
+      body: SingleChildScrollView(
         child: _getDrawerItemWidget(_selectedDrawerIndex),
       ),
-
     );
-
-
   }
 }
 

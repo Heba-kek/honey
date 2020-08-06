@@ -8,7 +8,7 @@ class MedicineRemoteDataSource extends MedicineDataSource {
   @override
   Future<MedicineModel> medicine() async {
     final response = await _provider.fetchData(
-        method: HttpMethod.POST, url: APINames.medicine, bodyData: {});
+        method: HttpMethod.GET, url: APINames.medicine, bodyData: {});
 
     return MedicineModel.fromJson(response);
   }

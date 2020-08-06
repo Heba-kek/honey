@@ -3,10 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:honey/presentation/homePage.dart';
 import 'package:honey/presentation/page/auth/loginPage.dart';
-import 'package:honey/presentation/page/auth/registerPage.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:honey/application/Medicine/bloc.dart';
-import 'package:honey/presentation/page/Medicine/MedicineMainView.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -67,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage>
     String token = preferences.getString('token');
     if (token != null) {
       //  Navigator.of(context).pushReplacementNamed(HOME_SCREEN);
-         Navigator.of(context).push(
+      Navigator.of(context).push(
         PageRouteBuilder(
           pageBuilder: (_, __, ___) => HomeScreen(),
         ),

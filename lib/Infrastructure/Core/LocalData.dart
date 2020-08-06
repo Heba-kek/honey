@@ -2,7 +2,7 @@ import 'package:localstorage/localstorage.dart';
 
 class LocalData {
   static final LocalData _singleton =
-      LocalData._internal(new LocalStorage('honeyBeeApp'));
+      LocalData._internal(new LocalStorage('honeyBeeApp.json'));
 
   final LocalStorage localStorage;
 

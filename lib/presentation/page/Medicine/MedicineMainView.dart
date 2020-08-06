@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/application/Medicine/bloc.dart';
@@ -7,6 +6,7 @@ import 'package:honey/presentation/Common/ProgressWidget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'dart:io';
+import 'package:intl/date_symbol_data_local.dart';
 
 class MedicineMainView extends StatefulWidget {
   @override
@@ -14,6 +14,8 @@ class MedicineMainView extends StatefulWidget {
 }
 
 class _MedicineMainViewState extends State<MedicineMainView> {
+  MedicineBloc _medicineBloc;
+
   TextEditingController patientNameController = TextEditingController();
 
   TextEditingController medicineNameController = TextEditingController();
@@ -33,6 +35,7 @@ class _MedicineMainViewState extends State<MedicineMainView> {
   var numberOfDays = 0;
   var medicineDate = DateTime.now();
   var medicineTime = TimeOfDay.now();
+  DateFormat dateFormat;
 
   List<DateTime> myDates = [];
 
@@ -54,36 +57,51 @@ class _MedicineMainViewState extends State<MedicineMainView> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _medicineBloc = new MedicineBloc();
+    initializeDateFormatting();
+    dateFormat = new DateFormat('yyyy-MM-dd', "en");
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _medicineBloc.close();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.yellow,
-        appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text(
-                "Honey Bee",
-                style: TextStyle(color: Colors.black),
-              ),
-              Text(local.lbmedicine, style: TextStyle(color: Colors.black)),
-              Container(
-                child: Image.asset("assets/images/logo_new.png"),
-                height: 30,
-                width: 30,
-              ),
-            ],
-          ),
-          backgroundColor: Colors.yellow,
-          elevation: 0,
-          centerTitle: true,
-        ),
-        body: getScaffoldBody());
+    return getScaffoldBody();
+
+    //  Scaffold(
+    //     backgroundColor: Colors.yellow,
+    //     appBar: AppBar(
+    //       title: Row(
+    //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //         children: <Widget>[
+    //           Text(
+    //             "Honey Bee",
+    //             style: TextStyle(color: Colors.black),
+    //           ),
+    //           Text(local.lbmedicine, style: TextStyle(color: Colors.black)),
+    //           Container(
+    //             child: Image.asset("assets/images/logo_new.png"),
+    //             height: 30,
+    //             width: 30,
+    //           ),
+    //         ],
+    //       ),
+    //       backgroundColor: Colors.yellow,
+    //       elevation: 0,
+    //       centerTitle: true,
+    //     ),
+    //     body: getScaffoldBody());
   }
 
   Widget getScaffoldBody() {
     return StreamBuilder<MedicineState>(
-        stream: BlocProvider.of<MedicineBloc>(context)
-            .mapEventToState(new GetMedicine()),
+        stream: _medicineBloc.mapEventToState(new GetMedicine()),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Container(
@@ -446,7 +464,7 @@ class _MedicineMainViewState extends State<MedicineMainView> {
                   child: Row(
                     children: [
                       Text(
-                        DateFormat('yyyy-MM-dd').format(medicineDate),
+                        dateFormat.format(medicineDate),
                       ),
                       Icon(Icons.arrow_drop_down)
                     ],
@@ -637,8 +655,9 @@ class _MedicineMainViewState extends State<MedicineMainView> {
                                           BorderRadius.all(Radius.circular(10)),
                                     ),
                                     child: Center(
-                                      child: Text(DateFormat('yyyy-MM-dd')
-                                          .format(myDates[index])),
+                                      child: Text(
+                                          new DateFormat('yyyy-MM-dd', "en")
+                                              .format(myDates[index])),
                                     ),
                                   ),
                                 ),

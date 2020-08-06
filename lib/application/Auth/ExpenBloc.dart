@@ -1,11 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'file:///C:/Users/heba/Desktop/bee/honey/lib/application/Auth/Expanstatus.dart';
-import 'file:///C:/Users/heba/Desktop/bee/honey/lib/application/Auth/ExpenEvent.dart';
+import 'package:honey/application/Auth/blocExp.dart';
+
 import 'package:honey/domain/Auth/ExpenReposi.dart';
-
-
 
 class ExpBloc extends Bloc<ExpEvent, ExpState> {
   expRepository _exRepository;
@@ -26,7 +24,7 @@ class ExpBloc extends Bloc<ExpEvent, ExpState> {
       } catch (e) {
         yield Error(
           e.toString(),
-              () {
+          () {
             this.add(event);
           },
         );

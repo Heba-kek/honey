@@ -20,9 +20,8 @@ class MedicineRepositoryIMPL extends MedicineRepository {
       print("fetch remote medicine data");
       MedicineModel medicineModel = await medicineRemoteDataSource.medicine();
       if (medicineModel.code == "1") {
-        LocalData()
-            .getLocalStorage()
-            .setItem(medicineLocalDataSource.medicineLocalKey, medicineModel);
+        print("Saving data to local");
+        medicineLocalDataSource.cacheMedicine(medicineModel);
       }
 
       return medicineModel;
