@@ -50,19 +50,19 @@ class ApiProvider {
       }, onError: (DioError error) async {
         print('error calling dio method');
 
-        if (error.response.statusCode == 404) {
-          print(error.response.data.toString());
-          return error.response;
-        }
+        // if (error.response.statusCode == 404) {
+        //   print(error.response.data.toString());
+        //   return error.response;
+        // }
 
         throw Exception(error.toString());
       }));
       String apiURLPost = _baseUrl + url;
       String apiURLget;
-      if (id != null) {
-        apiURLget = _baseUrl + url + '?user_id=' + id;
-        print(apiURLget);
-      }
+      // if (id != null) {
+      //   apiURLget = _baseUrl + url + '?user_id=' + id;
+      //   print(apiURLget);
+      // }
 
       print(apiURLPost);
 
@@ -79,7 +79,7 @@ class ApiProvider {
           }
           print("queryParamsTemp $queryParamsTemp");
           response =
-              await _dio.get(apiURLget, queryParameters: queryParamsTemp);
+              await _dio.get(apiURLPost, queryParameters: queryParamsTemp);
 
           return response.data;
         case HttpMethod.POST:

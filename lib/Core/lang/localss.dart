@@ -488,7 +488,7 @@ class AppLocalizations {
   }
 
   String get lbwhennecessary {
-    return Intl.message("when necessary", name: "lbInstruction");
+    return Intl.message("when necessary", name: "lbwhennecessary");
   }
 
   String get lbDaile {

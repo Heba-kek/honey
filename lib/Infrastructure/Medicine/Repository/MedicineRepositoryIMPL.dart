@@ -1,6 +1,4 @@
-import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:honey/Domain/Medicine/MedicineRepository.dart';
-import 'package:honey/Infrastructure/Core/LocalData.dart';
 import 'package:honey/Infrastructure/Core/NetworkInfo.dart';
 import 'package:honey/Infrastructure/Medicine/DataSource/MedicineRemoteDataSource.dart';
 import 'package:honey/Infrastructure/Medicine/DataSource/MedinceLocalDataSource.dart';
@@ -21,6 +19,7 @@ class MedicineRepositoryIMPL extends MedicineRepository {
       MedicineModel medicineModel = await medicineRemoteDataSource.medicine();
       if (medicineModel.code == "1") {
         print("Saving data to local");
+
         medicineLocalDataSource.cacheMedicine(medicineModel);
       }
 

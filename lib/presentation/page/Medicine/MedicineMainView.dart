@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:honey/Core/lang/localss.dart';
+import 'package:honey/Domain/Medicine/Entities/Medicine/MedicineEntity.dart';
 import 'package:honey/application/Medicine/bloc.dart';
 import 'package:honey/presentation/Common/ProgressWidget.dart';
 import 'package:image_picker/image_picker.dart';
@@ -117,7 +118,7 @@ class _MedicineMainViewState extends State<MedicineMainView> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     getBasicInfo(),
-                    getMedicineInfo(),
+                    getMedicineInfo(data.medicineResponse.data),
                     Padding(
                       padding: EdgeInsets.all(12),
                       child: Center(
@@ -204,7 +205,7 @@ class _MedicineMainViewState extends State<MedicineMainView> {
     );
   }
 
-  Widget getMedicineInfo() {
+  Widget getMedicineInfo(MedicineData data) {
     return Padding(
       padding: const EdgeInsets.only(left: 12.0, right: 12),
       child: ClipRRect(
@@ -227,9 +228,9 @@ class _MedicineMainViewState extends State<MedicineMainView> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              getMedcineInfoNames(local.lbMedicineShape),
-              getMedcineInfoNames(local.lbdose),
-              getMedcineInfoNames(local.lbInstruction),
+              getMedcineInfoNames(local.lbMedicineShape, data.dose, 1),
+              getMedcineInfoNames(local.lbdose, null, 2),
+              getMedcineInfoNames(local.lbInstruction, data.instruction, 3),
             ],
           ),
         ),
@@ -237,7 +238,28 @@ class _MedicineMainViewState extends State<MedicineMainView> {
     );
   }
 
-  Widget getMedcineInfoNames(String title) {
+  //1 dose type, 2 dose count, 3 instruction, 4 daily number of times, 5 reminder before, 6 evryDayCount
+  String selectedDose;
+  int selectedDoseCount;
+  String selectedInstruction;
+  int selectedDailyNumberOfTimes;
+  int selectedReminderBeforeValue;
+  int selectedEveryDayValue;
+  Widget getMedcineInfoNames(
+      String title, List<Appointment> dataSource, int type) {
+    if (type == 1) {
+      if (selectedDose == null) selectedDose = "Test";
+    } else if (type == 2) {
+      if (selectedDose == null) selectedDoseCount = 1;
+    } else if (type == 3) {
+      if (selectedInstruction == null) selectedInstruction = "";
+    } else if (type == 4) {
+      if (selectedDailyNumberOfTimes == null) selectedDailyNumberOfTimes = 1;
+    } else if (type == 5) {
+      if (selectedReminderBeforeValue == null) selectedReminderBeforeValue = 15;
+    } else if (type == 6) {
+      if (selectedEveryDayValue == null) selectedEveryDayValue = 1;
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -257,21 +279,58 @@ class _MedicineMainViewState extends State<MedicineMainView> {
             ),
             child: FlatButton(
                 onPressed: () {
-                  showMaterialSelectionPicker(
-                    headerColor: Colors.yellow,
-                    context: context,
-                    title: "Starship Speed",
-                    items: speedOptions,
-                    selectedItem: speed,
-                    icons: speedIcons,
-                    onChanged: (value) => setState(() => speed = value),
-                  );
+                  type != 2 && type != 4 && type != 5 && type != 6
+                      ? showMaterialSelectionPicker(
+                          headerColor: Colors.yellow,
+                          context: context,
+                          title: type == 1 ? "Dose" : "Instruction",
+                          items: dataSource.map((e) => e.name).toList(),
+                          selectedItem:
+                              type == 1 ? selectedDose : selectedInstruction,
+                          onChanged: (value) => setState(() => type == 1
+                              ? selectedDose = value
+                              : selectedInstruction = value),
+                        )
+                      : showMaterialNumberPicker(
+                          context: context,
+                          title: type == 2
+                              ? "Pick Your dose count"
+                              : type == 4
+                                  ? "Pick daily number of times"
+                                  : type == 5
+                                      ? "Pick reminder as minutes"
+                                      : "Pick Daily value",
+                          maxNumber: 100,
+                          minNumber: 1,
+                          selectedNumber: type == 2
+                              ? selectedDoseCount
+                              : type == 4
+                                  ? selectedDailyNumberOfTimes
+                                  : type == 5
+                                      ? selectedReminderBeforeValue
+                                      : selectedEveryDayValue,
+                          onChanged: (value) => setState(() => type == 2
+                              ? selectedDoseCount = value
+                              : type == 4
+                                  ? selectedDailyNumberOfTimes = value
+                                  : type == 5
+                                      ? selectedReminderBeforeValue = value
+                                      : selectedEveryDayValue = value),
+                        );
                 },
                 child: Row(
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(right: 12.0),
-                      child: Text(speed),
+                      child: Text(type == 1
+                          ? selectedDose
+                          : type == 2
+                              ? selectedDoseCount.toString()
+                              : type == 3
+                                  ? selectedInstruction
+                                  : type == 4
+                                      ? selectedDailyNumberOfTimes.toString()
+                                      : selectedReminderBeforeValue.toString()),
                     ),
                     Icon(Icons.arrow_drop_down)
                   ],
@@ -365,7 +424,7 @@ class _MedicineMainViewState extends State<MedicineMainView> {
                   ),
                   child: Column(
                     children: [
-                      getMedcineInfoNames(local.lbNumberofTimes),
+                      getMedcineInfoNames(local.lbNumberofTimes, null, 4),
                       getMedDuratio(4),
                       getMedStartDate(),
                     ],
@@ -549,7 +608,10 @@ class _MedicineMainViewState extends State<MedicineMainView> {
                   child: Column(
                     children: [
                       Row(
-                        children: [getMedcineInfoNames("Every"), Text("Day")],
+                        children: [
+                          getMedcineInfoNames("Every", null, 6),
+                          Text("Day")
+                        ],
                       ),
                       getMedDuratio(5),
                       getMedStartDate(),
@@ -846,18 +908,18 @@ class _MedicineMainViewState extends State<MedicineMainView> {
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset("assets/images/bell.png"),
                   ),
-                  getMedcineInfoNames("Remind before"),
+                  getMedcineInfoNames("Remind before", null, 5),
                 ],
               ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset("assets/images/bell.png"),
-                  ),
-                  getMedcineInfoNames("Ring Tone"),
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     Padding(
+              //       padding: const EdgeInsets.all(8.0),
+              //       child: Image.asset("assets/images/bell.png"),
+              //     ),
+              //     getMedcineInfoNames("Ring Tone"),
+              //   ],
+              // ),
             ],
           ),
         ),

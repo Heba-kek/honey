@@ -81,6 +81,11 @@ class Appointment {
         "id": id == null ? null : id,
         "name": name == null ? null : name,
       };
+
+  @override
+  String toString() {
+    return this.name;
+  }
 }
 
 class Weekly {
