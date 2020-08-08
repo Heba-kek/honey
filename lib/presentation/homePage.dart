@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:honey/presentation/page/AppLocalizations.dart';
 import 'package:honey/presentation/page/ExpensivePage.dart';
 import 'package:honey/presentation/page/LocalHelper.dart';
-import 'package:honey/presentation/page/Medicine/MedicineMainView.dart';
+import 'package:honey/presentation/page/Medicine/AddMedicineScreen.dart';
+import 'package:honey/presentation/page/Medicine/MedicineAppointment.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -162,7 +163,12 @@ class HomeFragment extends State<HomeScreen>
         return new Directionality(
             textDirection:
                 langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-            child: Text('one'));
+            child: FlatButton(
+                onPressed: () {
+                  Navigator.of(context).push((MaterialPageRoute(
+                      builder: (context) => MedicineAppointment())));
+                },
+                child: Text("Med app")));
 
       case 1:
         return new Directionality(
@@ -179,7 +185,7 @@ class HomeFragment extends State<HomeScreen>
 
         //   break;
 
-        return MedicineMainView();
+        return AddMedicineScreen();
 
       //  new Directionality(
       //     textDirection:

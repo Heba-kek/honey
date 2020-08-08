@@ -9,12 +9,12 @@ import 'package:intl/intl.dart';
 import 'dart:io';
 import 'package:intl/date_symbol_data_local.dart';
 
-class MedicineMainView extends StatefulWidget {
+class AddMedicineScreen extends StatefulWidget {
   @override
-  _MedicineMainViewState createState() => _MedicineMainViewState();
+  _AddMedicineScreenState createState() => _AddMedicineScreenState();
 }
 
-class _MedicineMainViewState extends State<MedicineMainView> {
+class _AddMedicineScreenState extends State<AddMedicineScreen> {
   MedicineBloc _medicineBloc;
 
   TextEditingController patientNameController = TextEditingController();
