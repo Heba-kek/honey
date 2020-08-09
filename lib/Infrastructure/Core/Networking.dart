@@ -41,7 +41,7 @@ class ApiProvider {
 
         if (lang != null) options.headers["lang"] = lang;
 
-        options.contentType = Headers.formUrlEncodedContentType;
+        options.contentType = 'form-data';
 
         print('options ${options.contentType}');
         return options;

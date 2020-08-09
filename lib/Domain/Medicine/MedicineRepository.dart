@@ -1,5 +1,12 @@
+import 'dart:html';
+
+import 'package:honey/Infrastructure/Medicine/Models/AddMedicineModel.dart';
+import 'package:honey/Infrastructure/Medicine/Models/MedicineBySickNameModel.dart';
 import 'package:honey/Infrastructure/Medicine/Models/MedicineModel.dart';
 
 abstract class MedicineRepository {
   Future<MedicineModel> medicine();
+  Future<AddMedicineModel> addMedicine(Map<String, dynamic> data);
+  Future<MedicineBySickNameModel> getMedicineBySickName(
+      Map<String, dynamic> data);
 }
