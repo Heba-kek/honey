@@ -101,14 +101,44 @@ class AddMedicineEvent extends MedicineEvent {
   }
 }
 
-class GetMedicineBySickName extends MedicineEvent {
+class GetMedicineBySickNameEvent extends MedicineEvent {
   final String sickName;
-  GetMedicineBySickName(this.sickName);
+  GetMedicineBySickNameEvent(this.sickName);
 
   @override
   List<Object> get props => [sickName];
 
   Map<String, dynamic> toMap() {
     return {"sick_name": sickName};
+  }
+}
+
+class GetSickNameEvent extends MedicineEvent {
+  GetSickNameEvent();
+
+  @override
+  List<Object> get props => [];
+
+  Map<String, dynamic> toMap() {
+    return {};
+  }
+}
+
+class GetMedicineReportEvent extends MedicineEvent {
+  final String startDate;
+  final String endDate;
+  final String sickName;
+
+  GetMedicineReportEvent(this.startDate, this.endDate, this.sickName);
+
+  @override
+  List<Object> get props => [startDate, endDate, sickName];
+
+  Map<String, dynamic> toMap() {
+    return {
+      "start_date": startDate,
+      "end_date": endDate,
+      "sick_name": sickName,
+    };
   }
 }

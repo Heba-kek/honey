@@ -46,12 +46,39 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
           },
         );
       }
-    } else if (event is GetMedicineBySickName) {
+    } else if (event is GetMedicineBySickNameEvent) {
       yield Loading();
       try {
         final result =
             await _medicineRepository.getMedicineBySickName(event.toMap());
         yield GetMedicineBySickNameLoaded(medicinesBySickNameEntity: result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is GetSickNameEvent) {
+      yield Loading();
+      try {
+        final result = await _medicineRepository.getSickName();
+        yield GetSickNameLoaded(sickNameEntity: result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is GetMedicineReportEvent) {
+      yield Loading();
+      try {
+        final result =
+            await _medicineRepository.getMedicineReport(event.toMap());
+        yield GetMedicineReportLoaded(medicineReportEntity: result);
       } catch (e) {
         yield Error(
           e.toString(),

@@ -5,11 +5,14 @@ import 'package:honey/Infrastructure/Medicine/DataSource/MedicineDataSource.dart
 import 'package:honey/Infrastructure/Medicine/Models/AddMedicineModel.dart';
 import 'package:honey/Infrastructure/Medicine/Models/MedicineBySickNameModel.dart';
 import 'package:honey/Infrastructure/Medicine/Models/MedicineModel.dart';
+import 'package:honey/Infrastructure/Medicine/Models/MedicineReportModel.dart';
+import 'package:honey/Infrastructure/Medicine/Models/SickNameModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MedicineLocalDataSource extends MedicineDataSource {
   final medicineLocalKey = "Medicine";
   final addMedicineLocalKey = "AddMedicine";
+  final sickNameLocalKey = "SickName";
   @override
   Future<MedicineModel> medicine() async {
     var preferences = await SharedPreferences.getInstance();
@@ -60,5 +63,29 @@ class MedicineLocalDataSource extends MedicineDataSource {
   Future<MedicineBySickNameModel> getMedicineBySickName(
       Map<String, dynamic> data) async {
     throw ("needs to be checked with ola");
+  }
+
+  @override
+  Future<SickNameModel> getSickName() async {
+    var preferences = await SharedPreferences.getInstance();
+    var jsonString = preferences.get(sickNameLocalKey);
+    print("Model $jsonString");
+    if (jsonString != null) {
+      return Future.value(SickNameModel.fromJson(json.decode(jsonString)));
+    }
+    throw (ExceptionWithMessageOnly("No Data Found"));
+  }
+
+  Future<void> cacheSickName(SickNameModel model) async {
+    var preferences = await SharedPreferences.getInstance();
+    return preferences.setString(
+      sickNameLocalKey,
+      json.encode(model.toJson()),
+    );
+  }
+
+  Future<MedicineReportModel> getMedicineReport(
+      Map<String, dynamic> data) async {
+    throw ("No Cache Needed");
   }
 }

@@ -2,7 +2,9 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:honey/Domain/Medicine/Entities/AddMedicineEntity.dart';
 import 'package:honey/Domain/Medicine/Entities/Medicine/MedicineEntity.dart';
+import 'package:honey/Domain/Medicine/Entities/MedicineReportEntity.dart';
 import 'package:honey/Domain/Medicine/Entities/MedicinesBySickNameEntity.dart';
+import 'package:honey/Domain/Medicine/Entities/SickNameEntity.dart';
 
 @immutable
 abstract class MedicineState extends Equatable {
@@ -48,4 +50,22 @@ class GetMedicineBySickNameLoaded extends MedicineState {
 
   @override
   List<Object> get props => [this.medicinesBySickNameEntity];
+}
+
+class GetSickNameLoaded extends MedicineState {
+  final SickNameEntity sickNameEntity;
+
+  GetSickNameLoaded({this.sickNameEntity});
+
+  @override
+  List<Object> get props => [this.sickNameEntity];
+}
+
+class GetMedicineReportLoaded extends MedicineState {
+  final MedicineReportEntity medicineReportEntity;
+
+  GetMedicineReportLoaded({this.medicineReportEntity});
+
+  @override
+  List<Object> get props => [this.medicineReportEntity];
 }

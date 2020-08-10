@@ -6,6 +6,8 @@ import 'package:honey/Infrastructure/Medicine/DataSource/MedicineDataSource.dart
 import 'package:honey/Infrastructure/Medicine/Models/AddMedicineModel.dart';
 import 'package:honey/Infrastructure/Medicine/Models/MedicineBySickNameModel.dart';
 import 'package:honey/Infrastructure/Medicine/Models/MedicineModel.dart';
+import 'package:honey/Infrastructure/Medicine/Models/MedicineReportModel.dart';
+import 'package:honey/Infrastructure/Medicine/Models/SickNameModel.dart';
 
 class MedicineRemoteDataSource extends MedicineDataSource {
   ApiProvider _provider = ApiProvider();
@@ -33,5 +35,22 @@ class MedicineRemoteDataSource extends MedicineDataSource {
         bodyData: {});
 
     return MedicineBySickNameModel.fromJson(response);
+  }
+
+  Future<SickNameModel> getSickName() async {
+    final response = await _provider.fetchData(
+        method: HttpMethod.GET, url: APINames.getSickName, bodyData: {});
+
+    return SickNameModel.fromJson(response);
+  }
+
+  Future<MedicineReportModel> getMedicineReport(
+      Map<String, dynamic> data) async {
+    final response = await _provider.fetchData(
+        method: HttpMethod.POST,
+        url: APINames.getMedicineReport,
+        bodyData: data);
+
+    return MedicineReportModel.fromJson(response);
   }
 }
