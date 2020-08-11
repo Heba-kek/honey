@@ -5,6 +5,7 @@ import 'package:honey/Domain/Medicine/Entities/Medicine/MedicineEntity.dart';
 import 'package:honey/Domain/Medicine/Entities/MedicineReportEntity.dart';
 import 'package:honey/Domain/Medicine/Entities/MedicinesBySickNameEntity.dart';
 import 'package:honey/Domain/Medicine/Entities/SickNameEntity.dart';
+import 'package:honey/Domain/Medicine/Entities/UpdateMedicineEntity.dart';
 
 @immutable
 abstract class MedicineState extends Equatable {
@@ -68,4 +69,13 @@ class GetMedicineReportLoaded extends MedicineState {
 
   @override
   List<Object> get props => [this.medicineReportEntity];
+}
+
+class UpdateMedicineLoaded extends MedicineState {
+  final UpdateMedicineEntity updateMedicineEntity;
+
+  UpdateMedicineLoaded({this.updateMedicineEntity});
+
+  @override
+  List<Object> get props => [this.updateMedicineEntity];
 }

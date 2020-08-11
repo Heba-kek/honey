@@ -19,7 +19,7 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
 
   @override
   Stream<MedicineState> mapEventToState(MedicineEvent event) async* {
-    if (event is GetMedicine) {
+    if (event is GetMedicineInstructionEvent) {
       yield Loading();
 
       try {
@@ -79,6 +79,19 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
         final result =
             await _medicineRepository.getMedicineReport(event.toMap());
         yield GetMedicineReportLoaded(medicineReportEntity: result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is UpdateMedicineEvent) {
+      yield Loading();
+      try {
+        final result = await _medicineRepository.updateMedicine(event.toMap());
+        yield UpdateMedicineLoaded(updateMedicineEntity: result);
       } catch (e) {
         yield Error(
           e.toString(),

@@ -102,7 +102,8 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
 
   Widget getScaffoldBody() {
     return StreamBuilder<MedicineState>(
-        stream: _medicineBloc.mapEventToState(new GetMedicine()),
+        stream:
+            _medicineBloc.mapEventToState(new GetMedicineInstructionEvent()),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Container(

@@ -4,10 +4,12 @@ import 'package:honey/Infrastructure/Core/NetworkInfo.dart';
 import 'package:honey/Infrastructure/Medicine/DataSource/MedicineRemoteDataSource.dart';
 import 'package:honey/Infrastructure/Medicine/DataSource/MedinceLocalDataSource.dart';
 import 'package:honey/Infrastructure/Medicine/Models/AddMedicineModel.dart';
+import 'package:honey/Infrastructure/Medicine/Models/GetMedicinesModel.dart';
 import 'package:honey/Infrastructure/Medicine/Models/MedicineBySickNameModel.dart';
 import 'package:honey/Infrastructure/Medicine/Models/MedicineModel.dart';
 import 'package:honey/Infrastructure/Medicine/Models/MedicineReportModel.dart';
 import 'package:honey/Infrastructure/Medicine/Models/SickNameModel.dart';
+import 'package:honey/Infrastructure/Medicine/Models/UpdateMedicineModel.dart';
 
 class MedicineRepositoryIMPL extends MedicineRepository {
   final MedicineRemoteDataSource medicineRemoteDataSource;
@@ -99,6 +101,33 @@ class MedicineRepositoryIMPL extends MedicineRepository {
       return model;
     } else {
       print("fetch local Medicine Report data");
+      throw ("No Internet access");
+    }
+  }
+
+  @override
+  Future<GetMedicinesModel> getMedicines() async {
+    if (await networkInfo.isConnected) {
+      print("fetch remote Medicine getMedicines");
+      GetMedicinesModel model = await medicineRemoteDataSource.getMedicines();
+
+      return model;
+    } else {
+      print("fetch local getMedicines");
+      throw ("No Internet access");
+    }
+  }
+
+  @override
+  Future<UpdateMedicineModel> updateMedicine(Map<String, dynamic> data) async {
+    if (await networkInfo.isConnected) {
+      print("fetch remote Medicine getMedicines");
+      UpdateMedicineModel model =
+          await medicineRemoteDataSource.updateMedicine(data);
+
+      return model;
+    } else {
+      print("fetch local getMedicines");
       throw ("No Internet access");
     }
   }

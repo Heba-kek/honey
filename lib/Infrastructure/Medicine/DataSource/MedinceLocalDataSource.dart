@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'package:honey/Infrastructure/Core/CustomException.dart';
 import 'package:honey/Infrastructure/Medicine/DataSource/MedicineDataSource.dart';
 import 'package:honey/Infrastructure/Medicine/Models/AddMedicineModel.dart';
+import 'package:honey/Infrastructure/Medicine/Models/GetMedicinesModel.dart';
 import 'package:honey/Infrastructure/Medicine/Models/MedicineBySickNameModel.dart';
 import 'package:honey/Infrastructure/Medicine/Models/MedicineModel.dart';
 import 'package:honey/Infrastructure/Medicine/Models/MedicineReportModel.dart';
 import 'package:honey/Infrastructure/Medicine/Models/SickNameModel.dart';
+import 'package:honey/Infrastructure/Medicine/Models/UpdateMedicineModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MedicineLocalDataSource extends MedicineDataSource {
@@ -86,6 +88,16 @@ class MedicineLocalDataSource extends MedicineDataSource {
 
   Future<MedicineReportModel> getMedicineReport(
       Map<String, dynamic> data) async {
+    throw ("No Cache Needed");
+  }
+
+  @override
+  Future<GetMedicinesModel> getMedicines() {
+    throw ("No Cache Needed");
+  }
+
+  @override
+  Future<UpdateMedicineModel> updateMedicine(Map<String, dynamic> data) async {
     throw ("No Cache Needed");
   }
 }

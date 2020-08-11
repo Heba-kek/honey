@@ -8,8 +8,8 @@ abstract class MedicineEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetMedicine extends MedicineEvent {
-  GetMedicine();
+class GetMedicineInstructionEvent extends MedicineEvent {
+  GetMedicineInstructionEvent();
 
   @override
   List<Object> get props => [];
@@ -82,6 +82,85 @@ class AddMedicineEvent extends MedicineEvent {
 
   Map<String, dynamic> toMap() {
     return {
+      "sick_name": sick_name,
+      "medicine_name": medicine_name,
+      "qunantity": qunantity,
+      "dose_id": dose_id,
+      "instruction_id": instruction_id,
+      "type": type,
+      "start_date": start_date,
+      "period": period,
+      "number": number,
+      "freq": freq,
+      "reminder": reminder,
+      "appointement": appointement,
+      "doctor_name": doctor_name,
+      "sick_status": sick_status,
+      "image": image
+    };
+  }
+}
+
+class UpdateMedicineEvent extends AddMedicineEvent {
+  final int id;
+
+  UpdateMedicineEvent(
+      {sick_name,
+      medicine_name,
+      qunantity,
+      dose_id,
+      instruction_id,
+      type,
+      start_date,
+      period,
+      number,
+      freq,
+      reminder,
+      appointement,
+      doctor_name,
+      sick_status,
+      image,
+      this.id})
+      : super(
+            sick_name,
+            medicine_name,
+            qunantity,
+            dose_id,
+            instruction_id,
+            type,
+            start_date,
+            period,
+            number,
+            freq,
+            reminder,
+            appointement,
+            doctor_name,
+            sick_status,
+            image);
+
+  @override
+  List<Object> get props => [
+        id,
+        sick_name,
+        medicine_name,
+        qunantity,
+        dose_id,
+        instruction_id,
+        type,
+        start_date,
+        period,
+        number,
+        freq,
+        reminder,
+        appointement,
+        doctor_name,
+        sick_status,
+        image
+      ];
+
+  Map<String, dynamic> toMap() {
+    return {
+      "id": id,
       "sick_name": sick_name,
       "medicine_name": medicine_name,
       "qunantity": qunantity,
