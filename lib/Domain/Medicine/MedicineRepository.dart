@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:honey/Infrastructure/Medicine/Models/AddMedicineModel.dart';
 import 'package:honey/Infrastructure/Medicine/Models/GetMedicinesModel.dart';
 import 'package:honey/Infrastructure/Medicine/Models/MedicineBySickNameModel.dart';

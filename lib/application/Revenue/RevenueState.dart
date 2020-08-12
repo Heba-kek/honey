@@ -1,0 +1,42 @@
+import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:honey/Domain/Revenue/Entities/RevenueCategoryEntity.dart';
+import 'package:honey/Domain/Revenue/Entities/RevenueEntity.dart';
+
+@immutable
+abstract class RevenueState extends Equatable {
+  @override
+  List<Object> get props => [];
+}
+
+class Empty extends RevenueState {}
+
+class Loading extends RevenueState {}
+
+class GetRevenueLoaded extends RevenueState {
+  final RevenueEntity revenueEntity;
+
+  GetRevenueLoaded({this.revenueEntity});
+
+  @override
+  List<Object> get props => [];
+}
+
+class GetRevenueCategoriesLoaded extends RevenueState {
+  final RevenueCategoryEntity revenueCategoryEntity;
+
+  GetRevenueCategoriesLoaded({this.revenueCategoryEntity});
+
+  @override
+  List<Object> get props => [];
+}
+
+class Error extends RevenueState {
+  final String message;
+  final VoidCallback callback;
+
+  Error(this.message, this.callback);
+
+  @override
+  List<Object> get props => [message, this.callback];
+}

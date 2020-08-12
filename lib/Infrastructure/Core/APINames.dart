@@ -8,4 +8,6 @@ class APINames {
   static final getMedicineReport = "Medicine_Api/Report";
   static final getMedicines = "Medicine_Api/Medicines";
   static final updateMedicine = "Medicine_Api/UpdateMedicine";
+  static final getRevenues = "Financial_Api/revenues";
+  static final getRevenueCategories = "Financial_Api/RevenueCategory";
 }

@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:honey/Infrastructure/Core/APINames.dart';
 import 'package:honey/Infrastructure/Core/Networking.dart';
 import 'package:honey/Infrastructure/Medicine/DataSource/MedicineDataSource.dart';
