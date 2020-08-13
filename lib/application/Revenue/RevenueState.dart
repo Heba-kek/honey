@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:honey/Domain/BasicSuccessEntity.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueCategoryEntity.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueEntity.dart';
 
@@ -39,4 +40,13 @@ class Error extends RevenueState {
 
   @override
   List<Object> get props => [message, this.callback];
+}
+
+class BasicLoaded extends RevenueState {
+  final BasicSuccessEntity basicSuccessEntity;
+
+  BasicLoaded({this.basicSuccessEntity});
+
+  @override
+  List<Object> get props => [this.basicSuccessEntity];
 }

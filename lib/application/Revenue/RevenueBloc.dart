@@ -39,6 +39,35 @@ class RevenueBloc extends Bloc<RevenueEvent, RevenueState> {
           },
         );
       }
+    } else if (event is AddRevenueEvent) {
+      yield Loading();
+
+      try {
+        final result = await revenueRepository.addRevenue(event.toMap());
+        yield BasicLoaded(basicSuccessEntity: result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is AddRevenueCategoryEvent) {
+      yield Loading();
+
+      try {
+        final result =
+            await revenueRepository.addRevenueCategory(event.toMap());
+        yield BasicLoaded(basicSuccessEntity: result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
     }
   }
 }
