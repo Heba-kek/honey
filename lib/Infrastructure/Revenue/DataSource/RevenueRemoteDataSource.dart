@@ -2,6 +2,7 @@ import 'package:honey/Infrastructure/Core/APINames.dart';
 import 'package:honey/Infrastructure/Core/BasicSuccessModel.dart';
 import 'package:honey/Infrastructure/Core/Networking.dart';
 import 'package:honey/Infrastructure/Revenue/DataSource/RevenueDataSource.dart';
+import 'package:honey/Infrastructure/Revenue/Models/IconsModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueModel.dart';
 
@@ -41,5 +42,33 @@ class RevenueRemoteDataSource extends RevenueDataSource {
         bodyData: data);
 
     return BasicSuccessModel.fromJson(response);
+  }
+
+  Future<BasicSuccessModel> editCategory(Map<String, dynamic> data) async {
+    final response = await _provider.fetchData(
+        method: HttpMethod.POST, url: APINames.editCategory, bodyData: data);
+
+    return BasicSuccessModel.fromJson(response);
+  }
+
+  Future<BasicSuccessModel> deleteCategory(Map<String, dynamic> data) async {
+    final response = await _provider.fetchData(
+        method: HttpMethod.POST, url: APINames.deleteCategory, bodyData: data);
+
+    return BasicSuccessModel.fromJson(response);
+  }
+
+  Future<BasicSuccessModel> addSubCategory(Map<String, dynamic> data) async {
+    final response = await _provider.fetchData(
+        method: HttpMethod.POST, url: APINames.addSubCateogry, bodyData: data);
+
+    return BasicSuccessModel.fromJson(response);
+  }
+
+  Future<IconsModel> getIcons() async {
+    final response = await _provider.fetchData(
+        method: HttpMethod.GET, url: APINames.getICons, bodyData: {});
+
+    return IconsModel.fromJson(response);
   }
 }

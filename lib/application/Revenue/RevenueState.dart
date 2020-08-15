@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:honey/Domain/BasicSuccessEntity.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueCategoryEntity.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueEntity.dart';
+import 'package:honey/Infrastructure/Revenue/Models/IconsModel.dart';
 
 @immutable
 abstract class RevenueState extends Equatable {
@@ -49,4 +50,10 @@ class BasicLoaded extends RevenueState {
 
   @override
   List<Object> get props => [this.basicSuccessEntity];
+}
+
+class GEtIconsLoaded extends RevenueState {
+  final IconsModel iconsModel;
+
+  GEtIconsLoaded({this.iconsModel});
 }

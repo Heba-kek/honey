@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 @immutable
 abstract class RevenueEvent extends Equatable {
@@ -99,4 +100,43 @@ class AddRevenueCategoryEvent extends RevenueEvent {
       "icon": this.icon,
     };
   }
+}
+
+class EditCategoryEvent extends AddRevenueCategoryEvent {
+  final int category;
+
+  EditCategoryEvent({name, icon, this.category}) : super(name, icon);
+
+  @override
+  List<Object> get props => [name, icon, category];
+
+  @override
+  Map<String, dynamic> toMap() {
+    return {"name": this.name, "icon": this.icon, "category": this.category};
+  }
+}
+
+class AddSubCategoryEvent extends RevenueEvent {
+  final String name;
+  final String icon;
+  final int categoryID;
+
+  AddSubCategoryEvent(this.name, this.icon, this.categoryID);
+
+  @override
+  List<Object> get props => [name, icon, categoryID];
+
+  Map<String, dynamic> toMap() {
+    return {
+      "name": this.name,
+      "icon": this.icon,
+      "category_id": this.categoryID
+    };
+  }
+}
+
+class GetIconsEvent extends RevenueEvent {
+  GetIconsEvent();
+  @override
+  List<Object> get props => [];
 }

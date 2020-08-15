@@ -12,4 +12,8 @@ class APINames {
   static final getRevenueCategories = "Financial_Api/RevenueCategory";
   static final addRevenue = "Financial_Api/addrevenue";
   static final addRevenueCategory = "Financial_Api/addCategoryrevenue";
+  static final editCategory = "Financial_Api/EditCategory";
+  static final deleteCategory = "Financial_Api/DeleteCategory";
+  static final addSubCateogry = "Financial_Api/addSubCategory";
+  static final getICons = "Financial_Api/GetIcons";
 }
