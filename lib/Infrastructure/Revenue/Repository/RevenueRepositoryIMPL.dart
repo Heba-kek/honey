@@ -126,4 +126,25 @@ class RevenueRepositoryIMPL extends RevenueRepository {
       return localDataSource.getIcons();
     }
   }
+
+  Future<BasicSuccessModel> editSubCategory(Map<String, dynamic> data) async {
+    if (await networkInfo.isConnected) {
+      BasicSuccessModel model = await remoteDataSource.editSubCategory(data);
+
+      return model;
+    } else {
+      return localDataSource.editSubCategory(data);
+    }
+  }
+
+  Future<BasicSuccessModel> deleteSubcCategory(
+      Map<String, dynamic> data) async {
+    if (await networkInfo.isConnected) {
+      BasicSuccessModel model = await remoteDataSource.deleteSubcCategory(data);
+
+      return model;
+    } else {
+      return localDataSource.deleteSubcCategory(data);
+    }
+  }
 }

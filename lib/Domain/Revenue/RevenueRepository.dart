@@ -12,4 +12,6 @@ abstract class RevenueRepository {
   Future<BasicSuccessModel> deleteCategory(Map<String, dynamic> data);
   Future<BasicSuccessModel> addSubCategory(Map<String, dynamic> data);
   Future<IconsModel> getIcons();
+  Future<BasicSuccessModel> editSubCategory(Map<String, dynamic> data);
+  Future<BasicSuccessModel> deleteSubcCategory(Map<String, dynamic> data);
 }

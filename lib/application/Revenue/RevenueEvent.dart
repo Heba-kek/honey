@@ -140,3 +140,34 @@ class GetIconsEvent extends RevenueEvent {
   @override
   List<Object> get props => [];
 }
+
+class EditSubCategorEvent extends RevenueEvent {
+  final String name;
+  final String icon;
+  final int subCategory;
+
+  EditSubCategorEvent(this.name, this.icon, this.subCategory);
+  @override
+  List<Object> get props => [name, icon, subCategory];
+
+  Map<String, dynamic> toMap() {
+    return {
+      "name": this.name,
+      "icon": this.icon,
+      "sub_category": this.subCategory
+    };
+  }
+}
+
+class DeleteSubCategoryEvent extends RevenueEvent {
+  final int subCategory;
+
+  DeleteSubCategoryEvent(this.subCategory);
+
+  @override
+  List<Object> get props => [subCategory];
+
+  Map<String, dynamic> toMap() {
+    return {"sub_category": this.subCategory};
+  }
+}

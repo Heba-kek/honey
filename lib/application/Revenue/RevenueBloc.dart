@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:honey/Domain/Revenue/RevenueRepository.dart';
+import 'package:honey/Infrastructure/Core/BasicSuccessModel.dart';
 import 'package:honey/Infrastructure/Revenue/Repository/RevenueRepositoryIMPL.dart';
 import 'package:honey/application/Revenue/bloc.dart';
 
@@ -102,6 +103,35 @@ class RevenueBloc extends Bloc<RevenueEvent, RevenueState> {
       try {
         final result = await revenueRepository.getIcons();
         yield GEtIconsLoaded(iconsModel: result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is EditSubCategorEvent) {
+      yield Loading();
+
+      try {
+        final result = await revenueRepository.editSubCategory(event.toMap());
+        yield BasicLoaded(basicSuccessEntity: result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is DeleteSubCategoryEvent) {
+      yield Loading();
+
+      try {
+        final result =
+            await revenueRepository.deleteSubcCategory(event.toMap());
+        yield BasicLoaded(basicSuccessEntity: result);
       } catch (e) {
         yield Error(
           e.toString(),

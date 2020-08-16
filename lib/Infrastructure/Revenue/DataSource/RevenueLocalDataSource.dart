@@ -162,4 +162,12 @@ class RevenueLocalDataSource extends RevenueDataSource {
       json.encode(model.toJson()),
     );
   }
+
+  Future<BasicSuccessModel> editSubCategory(Map<String, dynamic> data) {
+    throw (ExceptionWithMessageOnly("cannot edit while you are offline"));
+  }
+
+  Future<BasicSuccessModel> deleteSubcCategory(Map<String, dynamic> data) {
+    throw (ExceptionWithMessageOnly("Cannot delete while you are offline"));
+  }
 }

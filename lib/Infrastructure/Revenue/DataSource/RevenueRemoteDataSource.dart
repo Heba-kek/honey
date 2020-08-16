@@ -71,4 +71,21 @@ class RevenueRemoteDataSource extends RevenueDataSource {
 
     return IconsModel.fromJson(response);
   }
+
+  Future<BasicSuccessModel> editSubCategory(Map<String, dynamic> data) async {
+    final response = await _provider.fetchData(
+        method: HttpMethod.POST, url: APINames.editSubCategory, bodyData: data);
+
+    return BasicSuccessModel.fromJson(response);
+  }
+
+  Future<BasicSuccessModel> deleteSubcCategory(
+      Map<String, dynamic> data) async {
+    final response = await _provider.fetchData(
+        method: HttpMethod.POST,
+        url: APINames.deleteSubCategory,
+        bodyData: data);
+
+    return BasicSuccessModel.fromJson(response);
+  }
 }

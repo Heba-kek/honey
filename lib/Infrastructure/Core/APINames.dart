@@ -16,4 +16,6 @@ class APINames {
   static final deleteCategory = "Financial_Api/DeleteCategory";
   static final addSubCateogry = "Financial_Api/addSubCategory";
   static final getICons = "Financial_Api/GetIcons";
+  static final editSubCategory = "Financial_Api/EditSubCategory";
+  static final deleteSubCategory = "Financial_Api/DeleteSubCategory";
 }
