@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:honey/Infrastructure/Core/NetworkInfo.dart';
 import 'package:honey/Infrastructure/Expensive/DataSources/AuthRemoteDataSource.dart';
+import 'package:honey/Infrastructure/Expensive/DataSources/ExpensesLocalDataSource.dart';
 import 'package:honey/Infrastructure/Expensive/Repository/ExpenRepository.dart';
 import 'package:honey/application/Auth/blocExp.dart';
 import 'package:honey/domain/Auth/Entities/ExpenAntity.dart';
@@ -36,7 +37,9 @@ class _expensivePage extends State<expensivePage> {
   Widget build(BuildContext context) {
     return new BlocProvider(
         create: (context) => ExpBloc(ExpenRepositoryImpl(
-            ExpenRemoteDataSource(), NetworkInfoImpl(DataConnectionChecker()))),
+            ExpenRemoteDataSource(),
+            NetworkInfoImpl(DataConnectionChecker()),
+            ExpensesLocalDataSource())),
         child: signinView());
   }
 
