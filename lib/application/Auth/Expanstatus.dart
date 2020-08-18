@@ -1,5 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:honey/Domain/Revenue/Entities/RevenueCategoryReportEntity.dart';
+import 'package:honey/Domain/Revenue/Entities/RevenueReportEntity.dart';
+import 'package:honey/Domain/Revenue/Entities/RevenueSubCategoryReportEntity.dart';
 import 'package:honey/domain/Auth/Entities/ExpenAntity.dart';
 
 @immutable
@@ -29,4 +32,31 @@ class Error extends ExpState {
 
   @override
   List<Object> get props => [message, this.callback];
+}
+
+class ExpensesReportLoaded extends ExpState {
+  final RevenueReportEntity expenseReportEnity;
+
+  ExpensesReportLoaded(this.expenseReportEnity);
+
+  @override
+  List<Object> get props => [this.expenseReportEnity];
+}
+
+class ExpensesCategoryReportLoaded extends ExpState {
+  final RevenueCategoryReportEntity expensesCategoryReportEntity;
+
+  ExpensesCategoryReportLoaded({this.expensesCategoryReportEntity});
+
+  @override
+  List<Object> get props => [this.expensesCategoryReportEntity];
+}
+
+class ExpensesSubCategoryReportLoaded extends ExpState {
+  final RevenueSubCategoryReportEntity expensesSubCategoryReportEntity;
+
+  ExpensesSubCategoryReportLoaded({this.expensesSubCategoryReportEntity});
+
+  @override
+  List<Object> get props => [this.expensesSubCategoryReportEntity];
 }

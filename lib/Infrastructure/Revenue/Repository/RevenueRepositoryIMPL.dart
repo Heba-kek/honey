@@ -6,7 +6,10 @@ import 'package:honey/Infrastructure/Revenue/DataSource/RevenueLocalDataSource.d
 import 'package:honey/Infrastructure/Revenue/DataSource/RevenueRemoteDataSource.dart';
 import 'package:honey/Infrastructure/Revenue/Models/IconsModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryModel.dart';
+import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryReportModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueModel.dart';
+import 'package:honey/Infrastructure/Revenue/Models/RevenueReportModel.dart';
+import 'package:honey/Infrastructure/Revenue/Models/RevenueSubCategoryReportModel.dart';
 
 class RevenueRepositoryIMPL extends RevenueRepository {
   final RevenueRemoteDataSource remoteDataSource = RevenueRemoteDataSource();
@@ -145,6 +148,40 @@ class RevenueRepositoryIMPL extends RevenueRepository {
       return model;
     } else {
       return localDataSource.deleteSubcCategory(data);
+    }
+  }
+
+  Future<RevenueReportModel> revenueReport(Map<String, dynamic> data) async {
+    if (await networkInfo.isConnected) {
+      RevenueReportModel model = await remoteDataSource.revenueReport(data);
+
+      return model;
+    } else {
+      throw ("no intenet connection and this request cannot be cached");
+    }
+  }
+
+  Future<RevenueCategoryReportModel> revenueCategoryReport(
+      Map<String, dynamic> data) async {
+    if (await networkInfo.isConnected) {
+      RevenueCategoryReportModel model =
+          await remoteDataSource.revenueCategoryReport(data);
+
+      return model;
+    } else {
+      throw ("no intenet connection and this request cannot be cached");
+    }
+  }
+
+  Future<RevenueSubCategoryReportModel> revenueSubCategoryReport(
+      Map<String, dynamic> data) async {
+    if (await networkInfo.isConnected) {
+      RevenueSubCategoryReportModel model =
+          await remoteDataSource.revenueSubCategoryReport(data);
+
+      return model;
+    } else {
+      throw ("no intenet connection and this request cannot be cached");
     }
   }
 }

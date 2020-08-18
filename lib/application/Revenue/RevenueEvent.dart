@@ -171,3 +171,52 @@ class DeleteSubCategoryEvent extends RevenueEvent {
     return {"sub_category": this.subCategory};
   }
 }
+
+class RevenueReportEvent extends RevenueEvent {
+  final String startDate;
+  final String endDate;
+
+  RevenueReportEvent(this.startDate, this.endDate);
+
+  @override
+  List<Object> get props => [startDate, endDate];
+
+  Map<String, dynamic> toMap() {
+    return {"start_date": this.startDate, "end_date": this.endDate};
+  }
+}
+
+class RevenueCategoryReportEvent extends RevenueEvent {
+  final int category;
+  final String startDate;
+  final String endDate;
+
+  RevenueCategoryReportEvent(this.category, this.startDate, this.endDate);
+
+  Map<String, dynamic> toMap() {
+    return {
+      "category": this.category,
+      "start_date": this.startDate,
+      "end_date": this.endDate
+    };
+  }
+}
+
+class RevenueSubCategoryReportEvent extends RevenueEvent {
+  final int category;
+  final String startDate;
+  final String endDate;
+  final int subCategory;
+
+  RevenueSubCategoryReportEvent(
+      this.category, this.startDate, this.endDate, this.subCategory);
+
+  Map<String, dynamic> toMap() {
+    return {
+      "category": this.category,
+      "start_date": this.startDate,
+      "end_date": this.endDate,
+      "sub_category": this.subCategory
+    };
+  }
+}

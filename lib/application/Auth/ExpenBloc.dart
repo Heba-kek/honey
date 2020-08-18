@@ -1,12 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:honey/Domain/Auth/ExpenReposi.dart';
 import 'package:honey/application/Auth/blocExp.dart';
 
-import 'package:honey/domain/Auth/ExpenReposi.dart';
-
 class ExpBloc extends Bloc<ExpEvent, ExpState> {
-  expRepository _exRepository;
+  ExpRepository _exRepository;
 
   ExpBloc(this._exRepository);
 
@@ -21,6 +20,52 @@ class ExpBloc extends Bloc<ExpEvent, ExpState> {
       try {
         final result = await _exRepository.getCateExpen(event.toMap());
         yield Loaded(ExpResponse: result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is ExpensesReportEvent) {
+      yield Loading();
+
+      try {
+        final result = await _exRepository.expensesReport(event.toMap());
+        yield ExpensesReportLoaded(result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is ExpensesCategoryReportEvent) {
+      yield Loading();
+
+      try {
+        final result =
+            await _exRepository.expensesCategoryReport(event.toMap());
+        yield ExpensesCategoryReportLoaded(
+            expensesCategoryReportEntity: result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is ExpensesSubCategoryReportEvent) {
+      yield Loading();
+
+      try {
+        final result =
+            await _exRepository.expensesSubCategoryReport(event.toMap());
+        yield ExpensesSubCategoryReportLoaded(
+            expensesSubCategoryReportEntity: result);
       } catch (e) {
         yield Error(
           e.toString(),

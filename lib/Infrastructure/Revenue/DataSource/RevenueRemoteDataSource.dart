@@ -4,7 +4,10 @@ import 'package:honey/Infrastructure/Core/Networking.dart';
 import 'package:honey/Infrastructure/Revenue/DataSource/RevenueDataSource.dart';
 import 'package:honey/Infrastructure/Revenue/Models/IconsModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryModel.dart';
+import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryReportModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueModel.dart';
+import 'package:honey/Infrastructure/Revenue/Models/RevenueReportModel.dart';
+import 'package:honey/Infrastructure/Revenue/Models/RevenueSubCategoryReportModel.dart';
 
 class RevenueRemoteDataSource extends RevenueDataSource {
   ApiProvider _provider = ApiProvider();
@@ -87,5 +90,32 @@ class RevenueRemoteDataSource extends RevenueDataSource {
         bodyData: data);
 
     return BasicSuccessModel.fromJson(response);
+  }
+
+  Future<RevenueReportModel> revenueReport(Map<String, dynamic> data) async {
+    final response = await _provider.fetchData(
+        method: HttpMethod.GET, url: APINames.revenueReport, bodyData: data);
+
+    return RevenueReportModel.fromJson(response);
+  }
+
+  Future<RevenueCategoryReportModel> revenueCategoryReport(
+      Map<String, dynamic> data) async {
+    final response = await _provider.fetchData(
+        method: HttpMethod.GET,
+        url: APINames.revenueCategoryReport,
+        bodyData: data);
+
+    return RevenueCategoryReportModel.fromJson(response);
+  }
+
+  Future<RevenueSubCategoryReportModel> revenueSubCategoryReport(
+      Map<String, dynamic> data) async {
+    final response = await _provider.fetchData(
+        method: HttpMethod.GET,
+        url: APINames.revenueSubCategoryReport,
+        bodyData: data);
+
+    return RevenueSubCategoryReportModel.fromJson(response);
   }
 }

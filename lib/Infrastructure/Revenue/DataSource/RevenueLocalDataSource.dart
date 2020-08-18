@@ -5,7 +5,10 @@ import 'package:honey/Infrastructure/Core/CustomException.dart';
 import 'package:honey/Infrastructure/Revenue/DataSource/RevenueDataSource.dart';
 import 'package:honey/Infrastructure/Revenue/Models/IconsModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryModel.dart';
+import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryReportModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueModel.dart';
+import 'package:honey/Infrastructure/Revenue/Models/RevenueReportModel.dart';
+import 'package:honey/Infrastructure/Revenue/Models/RevenueSubCategoryReportModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RevenueLocalDataSource extends RevenueDataSource {
@@ -15,6 +18,7 @@ class RevenueLocalDataSource extends RevenueDataSource {
   final String addRevenueCategoryKey = "addRevenueCategoryKey";
   final String addSubCategoryKey = "addSubCategoryKey";
   final String getIconsKey = "getIconsKey";
+  final String revenueReportKey = "revenueReportKey";
   @override
   Future<RevenueModel> getRevenues() async {
     var preferences = await SharedPreferences.getInstance();
@@ -169,5 +173,34 @@ class RevenueLocalDataSource extends RevenueDataSource {
 
   Future<BasicSuccessModel> deleteSubcCategory(Map<String, dynamic> data) {
     throw (ExceptionWithMessageOnly("Cannot delete while you are offline"));
+  }
+
+  Future<void> cacheRevenueReprt(RevenueReportModel model) async {
+    var preferences = await SharedPreferences.getInstance();
+    return preferences.setString(
+      revenueReportKey,
+      json.encode(model.toJson()),
+    );
+  }
+
+  Future<RevenueReportModel> revenueReport(Map<String, dynamic> data) async {
+    var preferences = await SharedPreferences.getInstance();
+    var jsonString = preferences.get(revenueReportKey);
+    print("Model $jsonString");
+    if (jsonString != null) {
+      return Future.value(RevenueReportModel.fromJson(json.decode(jsonString)));
+    }
+    throw (ExceptionWithMessageOnly("No Data Found"));
+  }
+
+  Future<RevenueCategoryReportModel> revenueCategoryReport(
+      Map<String, dynamic> data) {
+    throw ("Cannot be cached depends on changed data from server");
+  }
+
+  Future<RevenueSubCategoryReportModel> revenueSubCategoryReport(
+      Map<String, dynamic> data) {
+    throw (ExceptionWithMessageOnly(
+        "Cannot be cached, depends on changed data from server"));
   }
 }

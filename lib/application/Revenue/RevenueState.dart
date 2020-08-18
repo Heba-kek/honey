@@ -1,8 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:honey/Domain/BasicSuccessEntity.dart';
+import 'package:honey/Domain/Revenue/Entities/IconsEntity.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueCategoryEntity.dart';
+import 'package:honey/Domain/Revenue/Entities/RevenueCategoryReportEntity.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueEntity.dart';
+import 'package:honey/Domain/Revenue/Entities/RevenueReportEntity.dart';
+import 'package:honey/Domain/Revenue/Entities/RevenueSubCategoryReportEntity.dart';
 import 'package:honey/Infrastructure/Revenue/Models/IconsModel.dart';
 
 @immutable
@@ -53,7 +57,34 @@ class BasicLoaded extends RevenueState {
 }
 
 class GEtIconsLoaded extends RevenueState {
-  final IconsModel iconsModel;
+  final IconsEntity iconsModel;
 
   GEtIconsLoaded({this.iconsModel});
+}
+
+class RevenueReportLoaded extends RevenueState {
+  final RevenueReportEntity revenueReportEntity;
+
+  RevenueReportLoaded({this.revenueReportEntity});
+
+  @override
+  List<Object> get props => [this.revenueReportEntity];
+}
+
+class RevenueCategoryReportLoaded extends RevenueState {
+  final RevenueCategoryReportEntity revenueCategoryReportEntity;
+
+  RevenueCategoryReportLoaded({this.revenueCategoryReportEntity});
+
+  @override
+  List<Object> get props => [this.revenueCategoryReportEntity];
+}
+
+class RevenueSubCategoryReportLoaded extends RevenueState {
+  final RevenueSubCategoryReportEntity revenueSubCategoryReportEntity;
+
+  RevenueSubCategoryReportLoaded({this.revenueSubCategoryReportEntity});
+
+  @override
+  List<Object> get props => [this.revenueSubCategoryReportEntity];
 }
