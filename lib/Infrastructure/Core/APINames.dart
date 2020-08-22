@@ -26,4 +26,7 @@ class APINames {
   static final expensesCategoryReport = "Financial_Api/ExpensesCategoryReport";
   static final expensesSubCategoryReport =
       "Financial_Api/ExpensesSubCategoryReport";
+  static final getIcon = "Financial_Api/GetIcons";
+  static final getSubExp = "Financial_Api/SubCategory";
+
 }

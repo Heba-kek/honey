@@ -24,5 +24,6 @@ class SigninEvent extends AuthEvent {
       'email': email,
       'password': password,
     };
+
   }
 }

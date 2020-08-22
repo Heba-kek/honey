@@ -39,6 +39,10 @@ dependencies:
   intl: ^0.16.1
   image_picker: ^0.6.7+4
   localstorage: ^3.0.2+5
+  adobe_xd:
+  progress_dialog:
+  http:
+  toast:
 
 
 

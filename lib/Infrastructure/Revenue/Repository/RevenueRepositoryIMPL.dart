@@ -12,10 +12,11 @@ import 'package:honey/Infrastructure/Revenue/Models/RevenueReportModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueSubCategoryReportModel.dart';
 
 class RevenueRepositoryIMPL extends RevenueRepository {
-  final RevenueRemoteDataSource remoteDataSource = RevenueRemoteDataSource();
-  final RevenueLocalDataSource localDataSource = RevenueLocalDataSource();
-  final NetworkInfo networkInfo = NetworkInfoImpl(DataConnectionChecker());
-
+  final RevenueRemoteDataSource remoteDataSource ;
+  final RevenueLocalDataSource localDataSource ;
+  final NetworkInfo networkInfo ;
+  RevenueRepositoryIMPL(this.remoteDataSource, this.networkInfo,
+      this.localDataSource);
   Future<BasicSuccessModel> addRevenue(Map<String, dynamic> data) async {
     if (await networkInfo.isConnected) {
       BasicSuccessModel model = await remoteDataSource.addRevenue(data);

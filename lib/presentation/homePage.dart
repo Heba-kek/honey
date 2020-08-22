@@ -2,11 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:honey/XD.dart';
+import 'package:honey/expLexx.dart';
 import 'package:honey/presentation/page/AppLocalizations.dart';
 import 'package:honey/presentation/page/ExpensivePage.dart';
 import 'package:honey/presentation/page/LocalHelper.dart';
 import 'package:honey/presentation/page/Medicine/AddMedicineScreen.dart';
 import 'package:honey/presentation/page/Medicine/MedicineAppointment.dart';
+import 'package:honey/presentation/page/Revenue/revenuePage.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,15 +44,23 @@ class HomeScreen extends StatefulWidget {
   final drawerItemEn = [
     new DrawerItem(AppLocalizations().lbHomeEN,
         ImageIcon(AssetImage('assets/images/home.png'))),
-    new DrawerItem(AppLocalizations().lbRev,
+    new DrawerItem(AppLocalizations().lbEx,
         ImageIcon(AssetImage('assets/images/meet.png'))),
+
     new DrawerItem(AppLocalizations().lbMediName,
         ImageIcon(AssetImage('assets/images/meet.png'))),
+    new DrawerItem(AppLocalizations().lbRev,
+        ImageIcon(AssetImage('assets/images/notes.png'))),
   ];
   final drawerItemsAr = [
     new DrawerItem(AppLocalizations().lbHomeAR,
         ImageIcon(AssetImage('assets/images/home.png'))),
-    new DrawerItem(AppLocalizations().lbRev,
+    new DrawerItem(AppLocalizations().lbExAR,
+        ImageIcon(AssetImage('assets/images/notes.png'))),
+
+    new DrawerItem(AppLocalizations().lbMediName,
+        ImageIcon(AssetImage('assets/images/meet.png'))),
+    new DrawerItem(AppLocalizations().lbRevAR,
         ImageIcon(AssetImage('assets/images/notes.png'))),
   ];
 
@@ -135,7 +146,7 @@ class HomeFragment extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
-    one = Text('one');
+    one =  XD();
     pages = new List<Widget>();
 
     pages = [one];
@@ -157,40 +168,43 @@ class HomeFragment extends State<HomeScreen>
   }
 
   _getDrawerItemWidget(int pos) {
-    if (pos == 2) {}
     switch (pos) {
       case 0:
         return new Directionality(
             textDirection:
-                langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+            langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+            child:  XD());
+      case 3:
+
+      /*  return new Directionality(
+            textDirection:
+            langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
             child: FlatButton(
                 onPressed: () {
                   Navigator.of(context).push((MaterialPageRoute(
                       builder: (context) => MedicineAppointment())));
                 },
-                child: Text("Med app")));
+                child: Text("Med app")));*/
+
+print('rev');
+
+        return new Directionality(
+            textDirection:
+            langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+            child:  revenuePage());
 
       case 1:
         return new Directionality(
             textDirection:
-                langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+            langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
             child: expensivePage());
 
       case 2:
-        // return Navigator.of(context).pushReplacement(
-        //   PageRouteBuilder(
-        //     pageBuilder: (_, __, ___) => MedicineMainView(),
-        //   ),
-        // );
 
-        //   break;
 
         return AddMedicineScreen();
 
-      //  new Directionality(
-      //     textDirection:
-      //         langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-      //     child: );
+
 
       default:
         return new Text("Error");
@@ -250,9 +264,10 @@ class HomeFragment extends State<HomeScreen>
         ),
         backgroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
-        child: _getDrawerItemWidget(_selectedDrawerIndex),
-      ),
+
+      body:  _getDrawerItemWidget(_selectedDrawerIndex),
+
+
     );
   }
 }

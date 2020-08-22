@@ -237,6 +237,10 @@ class AppLocalizations {
     return Intl.message('Delete Bank', name: 'lbDeleteBank');
   }
 
+
+
+
+
   String get lbSign {
     return Intl.message('Sign Out', name: 'lbSign');
   }

@@ -5,7 +5,8 @@ import 'package:honey/Infrastructure/Revenue/Repository/RevenueRepositoryIMPL.da
 import 'package:honey/application/Revenue/bloc.dart';
 
 class RevenueBloc extends Bloc<RevenueEvent, RevenueState> {
-  final RevenueRepository revenueRepository = RevenueRepositoryIMPL();
+  final RevenueRepository revenueRepository ;
+  RevenueBloc(this.revenueRepository);
 
   @override
   RevenueState get initialState => Empty();
