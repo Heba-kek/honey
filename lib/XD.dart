@@ -1,32 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
-
-
-
-
-  class XD extends StatefulWidget {
+class XD extends StatefulWidget {
   @override
   _XD createState() => new _XD();
-  }
+}
 
-  class _XD extends State<XD> {
-    @override
-    Widget build(BuildContext context) {
-      return Stack(
-        children: <Widget>[
-          Container(
-            width: 375.0,
-            height: 1395.0,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment(0.0, -1.0),
-                end: Alignment(0.0, 1.0),
-                colors: [const Color(0xffffd64d), const Color(0xfff3f3f3)],
-                stops: [0.0, 1.0],
+class _XD extends State<XD> {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Container(
+          width: 375.0,
+          height: 1395.0,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment(0.0, -1.0),
+              end: Alignment(0.0, 1.0),
+              colors: [const Color(0xffffd64d), const Color(0xfff3f3f3)],
+              stops: [0.0, 1.0],
+            ),
+            border: Border.all(width: 1.0, color: const Color(0xff707070)),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0x29000000),
+                offset: Offset(0, 10),
+                blurRadius: 10,
               ),
-              border: Border.all(width: 1.0, color: const Color(0xff707070)),
+            ],
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(8.0, 164.0),
+          child: Container(
+            width: 358.0,
+            height: 154.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              color: const Color(0xfff3f3f3),
               boxShadow: [
                 BoxShadow(
                   color: const Color(0x29000000),
@@ -36,371 +49,199 @@ import 'package:flutter_svg/flutter_svg.dart';
               ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(8.0, 164.0),
-            child: Container(
-              width: 358.0,
-              height: 154.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-                color: const Color(0xfff3f3f3),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0x29000000),
-                    offset: Offset(0, 10),
-                    blurRadius: 10,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(9.0, 467.0),
-            child: Container(
-              width: 358.0,
-              height: 416.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                color: const Color(0xfff3f3f3),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0x29000000),
-                    offset: Offset(0, 10),
-                    blurRadius: 10,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(-5.0, 76.0),
-            child: SizedBox(
-              width: 153.0,
-              height: 14.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    'Honey Bee',
-                    style: TextStyle(
-                      fontFamily: 'Pristina',
-                      fontSize: 32,
-                      color: const Color(0xff0a0606),
-                    ),
-                    textAlign: TextAlign.center,
-                  )),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(9.8, 32.9),
-            child: SizedBox(
-              width: 24.0,
-              height: 20.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 23.8, 4.9),
-                    size: Size(23.8, 20.4),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    fixedHeight: true,
-                    child: SvgPicture.string(
-                      _svg_hwnc8n,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 7.8, 23.8, 4.9),
-                    size: Size(23.8, 20.4),
-                    pinLeft: true,
-                    pinRight: true,
-                    fixedHeight: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.0),
-                        color: const Color(0xff5b5a5a),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xff5b5a5a)),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 15.5, 23.8, 4.9),
-                    size: Size(23.8, 20.4),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinBottom: true,
-                    fixedHeight: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.0),
-                        color: const Color(0xff5b5a5a),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xff5b5a5a)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(78.0, 182.5),
-            child: Container(
-              width: 204.1,
-              height: 52.3,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(142.9, 204.5),
-            child: SizedBox(
-              width: 136.0,
-              height: 20.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    '500.000 ',
-                    style: TextStyle(
-                      fontFamily: 'Yu Gothic UI',
-                      fontSize: 20,
-                      color: const Color(0xf20a0606),
-                      fontWeight: FontWeight.w600,
-                    ),
-                    textAlign: TextAlign.center,
-                  )),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(118.9, 182.5),
-            child: SizedBox(
-              width: 136.0,
-              height: 20.0,
-              child: Text(
-                'السيولة النقدية',
-                style: TextStyle(
-                  fontFamily: 'Times New Roman',
-                  fontSize: 18,
-                  color: const Color(0xf20a0606),
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(126.9, 203.5),
-            child: SizedBox(
-              width: 42.0,
-              height: 20.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    'ل.س',
-                    style: TextStyle(
-                      fontFamily: 'Yu Gothic UI',
-                      fontSize: 20,
-                      color: const Color(0xf20a0606),
-                      fontWeight: FontWeight.w600,
-                    ),
-                    textAlign: TextAlign.center,
-                  )),
-            ),
-          ),
-          Container(
-            width: 375.0,
-            height: 14.0,
+        ),
+        Transform.translate(
+          offset: Offset(9.0, 467.0),
+          child: Container(
+            width: 358.0,
+            height: 416.0,
             decoration: BoxDecoration(
-              color: const Color(0xffffffff),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(356.5, -2.5),
-            child: Transform.rotate(
-              angle: 4.7124,
-              child:
-              // Adobe XD layer: 'ic_battery_60_24px' (group)
-              SizedBox(
-                width: 7.0,
-                height: 20.0,
-                child: Stack(
-                  children: <Widget>[
-                    Pinned.fromSize(
-                      bounds: Rect.fromLTWH(0.0, 0.0, 7.0, 9.0),
-                      size: Size(7.0, 20.0),
-                      pinLeft: true,
-                      pinRight: true,
-                      pinTop: true,
-                      fixedHeight: true,
-                      child: SvgPicture.string(
-                        _svg_kw07ha,
-                        allowDrawingOutsideViewBox: true,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    Pinned.fromSize(
-                      bounds: Rect.fromLTWH(0.0, 9.0, 7.0, 11.0),
-                      size: Size(7.0, 20.0),
-                      pinLeft: true,
-                      pinRight: true,
-                      pinBottom: true,
-                      fixedHeight: true,
-                      child: SvgPicture.string(
-                        _svg_xa6yi7,
-                        allowDrawingOutsideViewBox: true,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ],
+              borderRadius: BorderRadius.circular(20.0),
+              color: const Color(0xfff3f3f3),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0x29000000),
+                  offset: Offset(0, 10),
+                  blurRadius: 10,
                 ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(-5.0, 76.0),
+          child: SizedBox(
+            width: 153.0,
+            height: 14.0,
+            child: SingleChildScrollView(
+                child: Text(
+              'Honey Bee',
+              style: TextStyle(
+                fontFamily: 'Pristina',
+                fontSize: 32,
+                color: const Color(0xff0a0606),
               ),
-            ),
+              textAlign: TextAlign.center,
+            )),
           ),
-          Transform.translate(
-            offset: Offset(319.0, 0.0),
-            child: SizedBox(
-              width: 37.0,
-              height: 9.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    '%65',
-                    style: TextStyle(
-                      fontFamily: 'Yu Gothic UI',
-                      fontSize: 8,
-                      color: const Color(0xff0a0606),
-                      fontWeight: FontWeight.w600,
+        ),
+        Transform.translate(
+          offset: Offset(9.8, 32.9),
+          child: SizedBox(
+            width: 24.0,
+            height: 20.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 23.8, 4.9),
+                  size: Size(23.8, 20.4),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  fixedHeight: true,
+                  child: SvgPicture.string(
+                    _svg_hwnc8n,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 7.8, 23.8, 4.9),
+                  size: Size(23.8, 20.4),
+                  pinLeft: true,
+                  pinRight: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12.0),
+                      color: const Color(0xff5b5a5a),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xff5b5a5a)),
                     ),
-                    textAlign: TextAlign.center,
-                  )),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 15.5, 23.8, 4.9),
+                  size: Size(23.8, 20.4),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinBottom: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12.0),
+                      color: const Color(0xff5b5a5a),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xff5b5a5a)),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(6.0, 4.0),
-            child: SizedBox(
-              width: 20.0,
-              height: 5.0,
+        ),
+        Transform.translate(
+          offset: Offset(78.0, 182.5),
+          child: Container(
+            width: 204.1,
+            height: 52.3,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(142.9, 204.5),
+          child: SizedBox(
+            width: 136.0,
+            height: 20.0,
+            child: SingleChildScrollView(
+                child: Text(
+              '500.000 ',
+              style: TextStyle(
+                fontFamily: 'Yu Gothic UI',
+                fontSize: 20,
+                color: const Color(0xf20a0606),
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
+            )),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(118.9, 182.5),
+          child: SizedBox(
+            width: 136.0,
+            height: 20.0,
+            child: Text(
+              'السيولة النقدية',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 18,
+                color: const Color(0xf20a0606),
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(126.9, 203.5),
+          child: SizedBox(
+            width: 42.0,
+            height: 20.0,
+            child: SingleChildScrollView(
+                child: Text(
+              'ل.س',
+              style: TextStyle(
+                fontFamily: 'Yu Gothic UI',
+                fontSize: 20,
+                color: const Color(0xf20a0606),
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
+            )),
+          ),
+        ),
+        Container(
+          width: 375.0,
+          height: 14.0,
+          decoration: BoxDecoration(
+            color: const Color(0xffffffff),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(356.5, -2.5),
+          child: Transform.rotate(
+            angle: 4.7124,
+            child:
+                // Adobe XD layer: 'ic_battery_60_24px' (group)
+                SizedBox(
+              width: 7.0,
+              height: 20.0,
               child: Stack(
                 children: <Widget>[
                   Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 5.0, 5.0),
-                    size: Size(20.0, 5.0),
-                    pinLeft: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    fixedWidth: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        color: const Color(0xff0a0606),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xff0a0606)),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(5.0, 0.0, 5.0, 5.0),
-                    size: Size(20.0, 5.0),
-                    pinTop: true,
-                    pinBottom: true,
-                    fixedWidth: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        color: const Color(0xff0a0606),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xff0a0606)),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(10.0, 0.0, 5.0, 5.0),
-                    size: Size(20.0, 5.0),
-                    pinTop: true,
-                    pinBottom: true,
-                    fixedWidth: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        color: const Color(0xff0a0606),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xff0a0606)),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(15.0, 0.0, 5.0, 5.0),
-                    size: Size(20.0, 5.0),
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    fixedWidth: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        color: const Color(0xff0a0606),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xff0a0606)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(29.5, 3.5),
-            child: SizedBox(
-              width: 8.0,
-              height: 6.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 8.0, 1.0),
-                    size: Size(8.0, 6.0),
+                    bounds: Rect.fromLTWH(0.0, 0.0, 7.0, 9.0),
+                    size: Size(7.0, 20.0),
                     pinLeft: true,
                     pinRight: true,
                     pinTop: true,
                     fixedHeight: true,
                     child: SvgPicture.string(
-                      _svg_yv7ltq,
+                      _svg_kw07ha,
                       allowDrawingOutsideViewBox: true,
                       fit: BoxFit.fill,
                     ),
                   ),
                   Pinned.fromSize(
-                    bounds: Rect.fromLTWH(1.0, 2.0, 6.0, 1.0),
-                    size: Size(8.0, 6.0),
+                    bounds: Rect.fromLTWH(0.0, 9.0, 7.0, 11.0),
+                    size: Size(7.0, 20.0),
                     pinLeft: true,
                     pinRight: true,
-                    fixedHeight: true,
-                    child: SvgPicture.string(
-                      _svg_r0pq2s,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(2.0, 4.0, 4.0, 1.0),
-                    size: Size(8.0, 6.0),
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: SvgPicture.string(
-                      _svg_1knnuu,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(3.0, 6.0, 2.0, 1.0),
-                    size: Size(8.0, 6.0),
                     pinBottom: true,
-                    fixedWidth: true,
                     fixedHeight: true,
                     child: SvgPicture.string(
-                      _svg_7kj27s,
+                      _svg_xa6yi7,
                       allowDrawingOutsideViewBox: true,
                       fit: BoxFit.fill,
                     ),
@@ -409,237 +250,403 @@ import 'package:flutter_svg/flutter_svg.dart';
               ),
             ),
           ),
-          Transform.translate(
-            offset: Offset(169.0, 0.0),
-            child: SizedBox(
-              width: 37.0,
-              height: 9.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    '10:10 Am',
-                    style: TextStyle(
-                      fontFamily: 'Yu Gothic UI',
-                      fontSize: 8,
+        ),
+        Transform.translate(
+          offset: Offset(319.0, 0.0),
+          child: SizedBox(
+            width: 37.0,
+            height: 9.0,
+            child: SingleChildScrollView(
+                child: Text(
+              '%65',
+              style: TextStyle(
+                fontFamily: 'Yu Gothic UI',
+                fontSize: 8,
+                color: const Color(0xff0a0606),
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
+            )),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(6.0, 4.0),
+          child: SizedBox(
+            width: 20.0,
+            height: 5.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 5.0, 5.0),
+                  size: Size(20.0, 5.0),
+                  pinLeft: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  fixedWidth: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
                       color: const Color(0xff0a0606),
-                      fontWeight: FontWeight.w600,
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xff0a0606)),
                     ),
-                    textAlign: TextAlign.center,
-                  )),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(36.8, 486.9),
-            child: Container(
-              width: 139.6,
-              height: 39.3,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-                color: const Color(0xbfc8c6c6),
-                border: Border.all(width: 2.0, color: const Color(0xccf3f3f3)),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0x21000000),
-                    offset: Offset(0, 3),
-                    blurRadius: 6,
                   ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(197.8, 486.9),
-            child: Container(
-              width: 139.6,
-              height: 39.3,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-                color: const Color(0xbfc8c6c6),
-                border: Border.all(width: 2.0, color: const Color(0xccf3f3f3)),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0x21000000),
-                    offset: Offset(0, 3),
-                    blurRadius: 6,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(226.0, 495.8),
-            child: SizedBox(
-              width: 97.0,
-              height: 10.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    'إنشاء  موعد',
-                    style: TextStyle(
-                      fontFamily: 'Times New Roman',
-                      fontSize: 20,
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(5.0, 0.0, 5.0, 5.0),
+                  size: Size(20.0, 5.0),
+                  pinTop: true,
+                  pinBottom: true,
+                  fixedWidth: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
                       color: const Color(0xff0a0606),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xff0a0606)),
                     ),
-                    textAlign: TextAlign.left,
-                  )),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(70.0, 493.8),
-            child: SizedBox(
-              width: 113.0,
-              height: 10.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    'إنشاء مهمة',
-                    style: TextStyle(
-                      fontFamily: 'Times New Roman',
-                      fontSize: 20,
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(10.0, 0.0, 5.0, 5.0),
+                  size: Size(20.0, 5.0),
+                  pinTop: true,
+                  pinBottom: true,
+                  fixedWidth: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
                       color: const Color(0xff0a0606),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xff0a0606)),
                     ),
-                    textAlign: TextAlign.left,
-                  )),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(249.8, 255.9),
-            child: Container(
-              width: 105.6,
-              height: 48.7,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-                color: const Color(0xacc8c6c6),
-                border: Border.all(width: 1.0, color: const Color(0xb8ffffff)),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0x1e000000),
-                    offset: Offset(0, 3),
-                    blurRadius: 6,
                   ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(136.8, 255.9),
-            child: Container(
-              width: 101.6,
-              height: 48.7,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-                color: const Color(0xbfc8c6c6),
-                border: Border.all(width: 1.0, color: const Color(0xccffffff)),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0x21000000),
-                    offset: Offset(0, 3),
-                    blurRadius: 6,
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(15.0, 0.0, 5.0, 5.0),
+                  size: Size(20.0, 5.0),
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  fixedWidth: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                      color: const Color(0xff0a0606),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xff0a0606)),
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(19.8, 255.9),
-            child: Container(
-              width: 104.6,
-              height: 48.7,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-                color: const Color(0xbfc8c6c6),
-                border: Border.all(width: 1.0, color: const Color(0xccf3f3f3)),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0x21000000),
-                    offset: Offset(0, 3),
-                    blurRadius: 6,
+        ),
+        Transform.translate(
+          offset: Offset(29.5, 3.5),
+          child: SizedBox(
+            width: 8.0,
+            height: 6.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 8.0, 1.0),
+                  size: Size(8.0, 6.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  fixedHeight: true,
+                  child: SvgPicture.string(
+                    _svg_yv7ltq,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
                   ),
-                ],
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(1.0, 2.0, 6.0, 1.0),
+                  size: Size(8.0, 6.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  fixedHeight: true,
+                  child: SvgPicture.string(
+                    _svg_r0pq2s,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(2.0, 4.0, 4.0, 1.0),
+                  size: Size(8.0, 6.0),
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: SvgPicture.string(
+                    _svg_1knnuu,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(3.0, 6.0, 2.0, 1.0),
+                  size: Size(8.0, 6.0),
+                  pinBottom: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: SvgPicture.string(
+                    _svg_7kj27s,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(169.0, 0.0),
+          child: SizedBox(
+            width: 37.0,
+            height: 9.0,
+            child: SingleChildScrollView(
+                child: Text(
+              '10:10 Am',
+              style: TextStyle(
+                fontFamily: 'Yu Gothic UI',
+                fontSize: 8,
+                color: const Color(0xff0a0606),
+                fontWeight: FontWeight.w600,
               ),
+              textAlign: TextAlign.center,
+            )),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(36.8, 486.9),
+          child: Container(
+            width: 139.6,
+            height: 39.3,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              color: const Color(0xbfc8c6c6),
+              border: Border.all(width: 2.0, color: const Color(0xccf3f3f3)),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0x21000000),
+                  offset: Offset(0, 3),
+                  blurRadius: 6,
+                ),
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(146.4, 269.3),
-            child: SizedBox(
-              width: 57.0,
-              height: 14.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    'إيرادات',
-                    style: TextStyle(
-                      fontFamily: 'Times New Roman',
-                      fontSize: 18,
-                      color: const Color(0xf20a0606),
-                    ),
-                    textAlign: TextAlign.center,
-                  )),
+        ),
+        Transform.translate(
+          offset: Offset(197.8, 486.9),
+          child: Container(
+            width: 139.6,
+            height: 39.3,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              color: const Color(0xbfc8c6c6),
+              border: Border.all(width: 2.0, color: const Color(0xccf3f3f3)),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0x21000000),
+                  offset: Offset(0, 3),
+                  blurRadius: 6,
+                ),
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(29.5, 269.7),
-            child: SizedBox(
-              width: 57.0,
-              height: 14.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    'تحويل',
-                    style: TextStyle(
-                      fontFamily: 'Times New Roman',
-                      fontSize: 18,
-                      color: const Color(0xf20a0606),
-                    ),
-                    textAlign: TextAlign.center,
-                  )),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(260.2, 268.5),
-            child: SizedBox(
-              width: 57.0,
-              height: 11.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    'مصاريف',
-                    style: TextStyle(
-                      fontFamily: 'Times New Roman',
-                      fontSize: 18,
-                      color: const Color(0xf20a0606),
-                    ),
-                    textAlign: TextAlign.center,
-                  )),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(82.8, 265.8),
-            child: Container(
-              width: 27.2,
-              height: 28.5,
-              decoration: BoxDecoration(
-                borderRadius:
-                BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                border: Border.all(width: 1.0, color: const Color(0xff0e7816)),
+        ),
+        Transform.translate(
+          offset: Offset(226.0, 495.8),
+          child: SizedBox(
+            width: 97.0,
+            height: 10.0,
+            child: SingleChildScrollView(
+                child: Text(
+              'إنشاء  موعد',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 20,
+                color: const Color(0xff0a0606),
               ),
-            ),
+              textAlign: TextAlign.left,
+            )),
           ),
-          Transform.translate(
-            offset: Offset(87.7, 274.8),
-            child: SvgPicture.string(
-              _svg_x0wtco,
-              allowDrawingOutsideViewBox: true,
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(202.0, 267.0),
-            child: Container(
-              width: 27.0,
-              height: 27.0,
-              decoration: BoxDecoration(
-                borderRadius:
-                BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                border: Border.all(width: 1.0, color: const Color(0xf21966b4)),
+        ),
+        Transform.translate(
+          offset: Offset(70.0, 493.8),
+          child: SizedBox(
+            width: 113.0,
+            height: 10.0,
+            child: SingleChildScrollView(
+                child: Text(
+              'إنشاء مهمة',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 20,
+                color: const Color(0xff0a0606),
               ),
+              textAlign: TextAlign.left,
+            )),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(249.8, 255.9),
+          child: Container(
+            width: 105.6,
+            height: 48.7,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              color: const Color(0xacc8c6c6),
+              border: Border.all(width: 1.0, color: const Color(0xb8ffffff)),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0x1e000000),
+                  offset: Offset(0, 3),
+                  blurRadius: 6,
+                ),
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(209.0, 279.0),
+        ),
+        Transform.translate(
+          offset: Offset(136.8, 255.9),
+          child: Container(
+            width: 101.6,
+            height: 48.7,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              color: const Color(0xbfc8c6c6),
+              border: Border.all(width: 1.0, color: const Color(0xccffffff)),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0x21000000),
+                  offset: Offset(0, 3),
+                  blurRadius: 6,
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(19.8, 255.9),
+          child: Container(
+            width: 104.6,
+            height: 48.7,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              color: const Color(0xbfc8c6c6),
+              border: Border.all(width: 1.0, color: const Color(0xccf3f3f3)),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0x21000000),
+                  offset: Offset(0, 3),
+                  blurRadius: 6,
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(146.4, 269.3),
+          child: SizedBox(
+            width: 57.0,
+            height: 14.0,
+            child: SingleChildScrollView(
+                child: Text(
+              'إيرادات',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 18,
+                color: const Color(0xf20a0606),
+              ),
+              textAlign: TextAlign.center,
+            )),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(29.5, 269.7),
+          child: SizedBox(
+            width: 57.0,
+            height: 14.0,
+            child: SingleChildScrollView(
+                child: Text(
+              'تحويل',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 18,
+                color: const Color(0xf20a0606),
+              ),
+              textAlign: TextAlign.center,
+            )),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(260.2, 268.5),
+          child: SizedBox(
+            width: 57.0,
+            height: 11.0,
+            child: SingleChildScrollView(
+                child: Text(
+              'مصاريف',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 18,
+                color: const Color(0xf20a0606),
+              ),
+              textAlign: TextAlign.center,
+            )),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(82.8, 265.8),
+          child: Container(
+            width: 27.2,
+            height: 28.5,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+              border: Border.all(width: 1.0, color: const Color(0xff0e7816)),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(87.7, 274.8),
+          child: SvgPicture.string(
+            _svg_x0wtco,
+            allowDrawingOutsideViewBox: true,
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(202.0, 267.0),
+          child: Container(
+            width: 27.0,
+            height: 27.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+              border: Border.all(width: 1.0, color: const Color(0xf21966b4)),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(209.0, 279.0),
+          child: Container(
+            width: 13.0,
+            height: 3.0,
+            decoration: BoxDecoration(
+              color: const Color(0xf21966b4),
+              border: Border.all(width: 1.0, color: const Color(0xf21966b4)),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(209.0, 279.0),
+          child: Transform.rotate(
+            angle: 1.5708,
             child: Container(
               width: 13.0,
               height: 3.0,
@@ -649,97 +656,140 @@ import 'package:flutter_svg/flutter_svg.dart';
               ),
             ),
           ),
-          Transform.translate(
-            offset: Offset(209.0, 279.0),
-            child: Transform.rotate(
-              angle: 1.5708,
-              child: Container(
-                width: 13.0,
-                height: 3.0,
-                decoration: BoxDecoration(
-                  color: const Color(0xf21966b4),
-                  border:
-                  Border.all(width: 1.0, color: const Color(0xf21966b4)),
+        ),
+        Transform.translate(
+          offset: Offset(319.0, 267.0),
+          child: Container(
+            width: 27.0,
+            height: 27.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+              border: Border.all(width: 1.0, color: const Color(0xfff13535)),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(326.0, 279.0),
+          child: Container(
+            width: 13.0,
+            height: 3.0,
+            decoration: BoxDecoration(
+              color: const Color(0xfff13535),
+              border: Border.all(width: 1.0, color: const Color(0xfff13535)),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(182.0, 169.0),
+          child: SvgPicture.string(
+            _svg_tbug4o,
+            allowDrawingOutsideViewBox: true,
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(9.0, 542.0),
+          child: Container(
+            width: 357.0,
+            height: 341.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              color: const Color(0xffffffff),
+              border: Border.all(width: 1.0, color: const Color(0xf21966b4)),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0x29000000),
+                  offset: Offset(0, 15),
+                  blurRadius: 15,
                 ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(111.0, 550.0),
+          child: SizedBox(
+            width: 144.0,
+            height: 23.0,
+            child: SingleChildScrollView(
+                child: Text(
+              'July 2020',
+              style: TextStyle(
+                fontFamily: 'Yu Gothic UI',
+                fontSize: 18,
+                color: const Color(0xff0a0606),
+                fontWeight: FontWeight.w600,
               ),
-            ),
+              textAlign: TextAlign.center,
+            )),
           ),
-          Transform.translate(
-            offset: Offset(319.0, 267.0),
-            child: Container(
-              width: 27.0,
-              height: 27.0,
-              decoration: BoxDecoration(
-                borderRadius:
-                BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                border: Border.all(width: 1.0, color: const Color(0xfff13535)),
-              ),
-            ),
+        ),
+        Transform.translate(
+          offset: Offset(24.5, 581.5),
+          child: SvgPicture.string(
+            _svg_bfm08m,
+            allowDrawingOutsideViewBox: true,
           ),
-          Transform.translate(
-            offset: Offset(326.0, 279.0),
-            child: Container(
-              width: 13.0,
-              height: 3.0,
-              decoration: BoxDecoration(
-                color: const Color(0xfff13535),
-                border: Border.all(width: 1.0, color: const Color(0xfff13535)),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(182.0, 169.0),
-            child: SvgPicture.string(
-              _svg_tbug4o,
-              allowDrawingOutsideViewBox: true,
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(9.0, 542.0),
-            child: Container(
-              width: 357.0,
-              height: 341.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-                color: const Color(0xffffffff),
-                border: Border.all(width: 1.0, color: const Color(0xf21966b4)),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0x29000000),
-                    offset: Offset(0, 15),
-                    blurRadius: 15,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(111.0, 550.0),
-            child: SizedBox(
-              width: 144.0,
-              height: 23.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    'July 2020',
-                    style: TextStyle(
-                      fontFamily: 'Yu Gothic UI',
-                      fontSize: 18,
-                      color: const Color(0xff0a0606),
-                      fontWeight: FontWeight.w600,
+        ),
+        Transform.translate(
+          offset: Offset(239.0, 552.0),
+          child: SizedBox(
+            width: 22.0,
+            height: 22.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 22.0, 22.0),
+                  size: Size(22.0, 22.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                      color: const Color(0xffffffff),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xf21966b4)),
                     ),
-                    textAlign: TextAlign.center,
-                  )),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(8.5, 5.0, 6.9, 12.0),
+                  size: Size(22.0, 22.0),
+                  pinTop: true,
+                  pinBottom: true,
+                  fixedWidth: true,
+                  child:
+                      // Adobe XD layer: 'ic_chevron_right_24…' (shape)
+                      SvgPicture.string(
+                    _svg_joapjv,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(8.5, 5.0, 6.9, 12.0),
+                  size: Size(22.0, 22.0),
+                  pinTop: true,
+                  pinBottom: true,
+                  fixedWidth: true,
+                  child:
+                      // Adobe XD layer: 'ic_chevron_right_24…' (shape)
+                      SvgPicture.string(
+                    _svg_joapjv,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(24.5, 581.5),
-            child: SvgPicture.string(
-              _svg_bfm08m,
-              allowDrawingOutsideViewBox: true,
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(239.0, 552.0),
+        ),
+        Transform.translate(
+          offset: Offset(104.0, 552.0),
+          child: Transform.rotate(
+            angle: 3.1416,
             child: SizedBox(
               width: 22.0,
               height: 22.0,
@@ -755,7 +805,7 @@ import 'package:flutter_svg/flutter_svg.dart';
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                            BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
                         color: const Color(0xffffffff),
                         border: Border.all(
                             width: 1.0, color: const Color(0xf21966b4)),
@@ -769,22 +819,8 @@ import 'package:flutter_svg/flutter_svg.dart';
                     pinBottom: true,
                     fixedWidth: true,
                     child:
-                    // Adobe XD layer: 'ic_chevron_right_24…' (shape)
-                    SvgPicture.string(
-                      _svg_joapjv,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(8.5, 5.0, 6.9, 12.0),
-                    size: Size(22.0, 22.0),
-                    pinTop: true,
-                    pinBottom: true,
-                    fixedWidth: true,
-                    child:
-                    // Adobe XD layer: 'ic_chevron_right_24…' (shape)
-                    SvgPicture.string(
+                        // Adobe XD layer: 'ic_chevron_right_24…' (shape)
+                        SvgPicture.string(
                       _svg_joapjv,
                       allowDrawingOutsideViewBox: true,
                       fit: BoxFit.fill,
@@ -794,1664 +830,1636 @@ import 'package:flutter_svg/flutter_svg.dart';
               ),
             ),
           ),
-          Transform.translate(
-            offset: Offset(104.0, 552.0),
-            child: Transform.rotate(
-              angle: 3.1416,
-              child: SizedBox(
-                width: 22.0,
-                height: 22.0,
-                child: Stack(
-                  children: <Widget>[
-                    Pinned.fromSize(
-                      bounds: Rect.fromLTWH(0.0, 0.0, 22.0, 22.0),
-                      size: Size(22.0, 22.0),
-                      pinLeft: true,
-                      pinRight: true,
-                      pinTop: true,
-                      pinBottom: true,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                              Radius.elliptical(9999.0, 9999.0)),
-                          color: const Color(0xffffffff),
-                          border: Border.all(
-                              width: 1.0, color: const Color(0xf21966b4)),
+        ),
+        Transform.translate(
+          offset: Offset(223.0, 626.7),
+          child: SizedBox(
+            width: 50.0,
+            height: 46.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 11.3, 35.0, 35.0),
+                  size: Size(50.0, 46.3),
+                  pinLeft: true,
+                  pinBottom: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                      color: const Color(0xffffd64d),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xffffd64d)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x29000000),
+                          offset: Offset(3, 3),
+                          blurRadius: 6,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(22.0, 0.0, 28.0, 30.0),
+                  size: Size(50.0, 46.3),
+                  pinRight: true,
+                  pinTop: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Stack(
+                    children: <Widget>[
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(0.0, 0.0, 28.0, 30.0),
+                        size: Size(28.0, 30.0),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child: SvgPicture.string(
+                          _svg_ok82yn,
+                          allowDrawingOutsideViewBox: true,
+                          fit: BoxFit.fill,
                         ),
                       ),
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(11.7, 1.7, 4.6, 8.0),
+                        size: Size(28.0, 30.0),
+                        pinTop: true,
+                        fixedWidth: true,
+                        fixedHeight: true,
+                        child: SingleChildScrollView(
+                            child: Text(
+                          '5',
+                          style: TextStyle(
+                            fontFamily: 'Segoe UI',
+                            fontSize: 18,
+                            color: const Color(0xffffffff),
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(19.0, 593.0),
+          child: SingleChildScrollView(
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 28,
+              runSpacing: 16,
+              children: [
+                {
+                  'text': 'Mo',
+                },
+                {
+                  'text': 'Tu',
+                },
+                {
+                  'text': 'We',
+                },
+                {
+                  'text': 'Th',
+                },
+                {
+                  'text': 'Fr',
+                },
+                {
+                  'text': 'Su',
+                },
+                {
+                  'text': 'Sa',
+                }
+              ].map((map) {
+                final text = map['text'];
+                return Transform.translate(
+                  offset: Offset(0.0, -3.0),
+                  child: SizedBox(
+                    width: 24.0,
+                    height: 23.0,
+                    child: Stack(
+                      children: <Widget>[
+                        SizedBox(
+                          width: 24.0,
+                          height: 23.0,
+                          child: SingleChildScrollView(
+                              child: Text(
+                            text,
+                            style: TextStyle(
+                              fontFamily: 'Yu Gothic UI',
+                              fontSize: 18,
+                              color: const Color(0xff0a0606),
+                              fontWeight: FontWeight.w600,
+                            ),
+                            textAlign: TextAlign.center,
+                          )),
+                        ),
+                      ],
                     ),
-                    Pinned.fromSize(
-                      bounds: Rect.fromLTWH(8.5, 5.0, 6.9, 12.0),
-                      size: Size(22.0, 22.0),
-                      pinTop: true,
-                      pinBottom: true,
-                      fixedWidth: true,
-                      child:
-                      // Adobe XD layer: 'ic_chevron_right_24…' (shape)
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(20.0, 689.0),
+          child: SingleChildScrollView(
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 28,
+              runSpacing: 16,
+              children: [
+                {
+                  'text': '6',
+                },
+                {
+                  'text': '7',
+                },
+                {
+                  'text': '8',
+                },
+                {
+                  'text': '9',
+                },
+                {
+                  'text': '10',
+                },
+                {
+                  'text': '11',
+                },
+                {
+                  'text': '12',
+                }
+              ].map((map) {
+                final text = map['text'];
+                return SizedBox(
+                  width: 24.0,
+                  height: 23.0,
+                  child: Stack(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 24.0,
+                        height: 23.0,
+                        child: SingleChildScrollView(
+                            child: Text(
+                          text,
+                          style: TextStyle(
+                            fontFamily: 'Yu Gothic UI',
+                            fontSize: 18,
+                            color: const Color(0xff0a0606),
+                            fontWeight: FontWeight.w600,
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(19.0, 737.0),
+          child: SingleChildScrollView(
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 28,
+              runSpacing: 16,
+              children: [
+                {
+                  'text': '13',
+                },
+                {
+                  'text': '14',
+                },
+                {
+                  'text': '15',
+                },
+                {
+                  'text': '16',
+                },
+                {
+                  'text': '17',
+                },
+                {
+                  'text': '18',
+                },
+                {
+                  'text': '19',
+                }
+              ].map((map) {
+                final text = map['text'];
+                return SizedBox(
+                  width: 24.0,
+                  height: 23.0,
+                  child: Stack(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 24.0,
+                        height: 23.0,
+                        child: SingleChildScrollView(
+                            child: Text(
+                          text,
+                          style: TextStyle(
+                            fontFamily: 'Yu Gothic UI',
+                            fontSize: 18,
+                            color: const Color(0xff0a0606),
+                            fontWeight: FontWeight.w600,
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(19.0, 785.0),
+          child: SingleChildScrollView(
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 28,
+              runSpacing: 16,
+              children: [
+                {
+                  'text': '20',
+                },
+                {
+                  'text': '21',
+                },
+                {
+                  'text': '22',
+                },
+                {
+                  'text': '23',
+                },
+                {
+                  'text': '24',
+                },
+                {
+                  'text': '25',
+                },
+                {
+                  'text': '26',
+                }
+              ].map((map) {
+                final text = map['text'];
+                return SizedBox(
+                  width: 24.0,
+                  height: 23.0,
+                  child: Stack(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 24.0,
+                        height: 23.0,
+                        child: SingleChildScrollView(
+                            child: Text(
+                          text,
+                          style: TextStyle(
+                            fontFamily: 'Yu Gothic UI',
+                            fontSize: 18,
+                            color: const Color(0xff0a0606),
+                            fontWeight: FontWeight.w600,
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(19.0, 833.0),
+          child: SingleChildScrollView(
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 28,
+              runSpacing: 16,
+              children: [
+                {
+                  'text': '27',
+                },
+                {
+                  'text': '28',
+                },
+                {
+                  'text': '29',
+                },
+                {
+                  'text': '30',
+                },
+                {
+                  'text': '31',
+                }
+              ].map((map) {
+                final text = map['text'];
+                return SizedBox(
+                  width: 24.0,
+                  height: 23.0,
+                  child: Stack(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 24.0,
+                        height: 23.0,
+                        child: SingleChildScrollView(
+                            child: Text(
+                          text,
+                          style: TextStyle(
+                            fontFamily: 'Yu Gothic UI',
+                            fontSize: 18,
+                            color: const Color(0xff0a0606),
+                            fontWeight: FontWeight.w600,
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(23.0, 641.0),
+          child: SingleChildScrollView(
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 28,
+              runSpacing: 16,
+              children: [
+                {
+                  'text': '29',
+                },
+                {
+                  'text': '30',
+                }
+              ].map((map) {
+                final text = map['text'];
+                return Transform.translate(
+                  offset: Offset(-2.0, 0.0),
+                  child: SizedBox(
+                    width: 26.0,
+                    height: 20.0,
+                    child: Stack(
+                      children: <Widget>[
+                        SizedBox(
+                          width: 26.0,
+                          height: 20.0,
+                          child: SingleChildScrollView(
+                              child: Text(
+                            text,
+                            style: TextStyle(
+                              fontFamily: 'Yu Gothic UI',
+                              fontSize: 18,
+                              color: const Color(0xff707070),
+                              fontWeight: FontWeight.w600,
+                            ),
+                            textAlign: TextAlign.center,
+                          )),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(280.0, 833.0),
+          child: SingleChildScrollView(
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 34,
+              runSpacing: 16,
+              children: [
+                {
+                  'text': '1',
+                },
+                {
+                  'text': '2',
+                }
+              ].map((map) {
+                final text = map['text'];
+                return SizedBox(
+                  width: 19.0,
+                  height: 20.0,
+                  child: Stack(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 19.0,
+                        height: 20.0,
+                        child: SingleChildScrollView(
+                            child: Text(
+                          text,
+                          style: TextStyle(
+                            fontFamily: 'Yu Gothic UI',
+                            fontSize: 18,
+                            color: const Color(0xff707070),
+                            fontWeight: FontWeight.w600,
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(125.0, 641.0),
+          child: SingleChildScrollView(
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 34,
+              runSpacing: 16,
+              children: [
+                {
+                  'text': '1',
+                },
+                {
+                  'text': '2',
+                },
+                {
+                  'text': '3',
+                },
+                {
+                  'text': '4',
+                },
+                {
+                  'text': '5',
+                }
+              ].map((map) {
+                final text = map['text'];
+                return SizedBox(
+                  width: 19.0,
+                  height: 20.0,
+                  child: Stack(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 19.0,
+                        height: 20.0,
+                        child: SingleChildScrollView(
+                            child: Text(
+                          text,
+                          style: TextStyle(
+                            fontFamily: 'Yu Gothic UI',
+                            fontSize: 18,
+                            color: const Color(0xff0a0606),
+                            fontWeight: FontWeight.w600,
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(119.0, 670.4),
+          child: SizedBox(
+            width: 49.0,
+            height: 49.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 13.6, 35.0, 35.0),
+                  size: Size(49.0, 48.6),
+                  pinLeft: true,
+                  pinBottom: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xf21966b4)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x29000000),
+                          offset: Offset(3, 3),
+                          blurRadius: 6,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(21.0, 0.0, 28.0, 28.0),
+                  size: Size(49.0, 48.6),
+                  pinRight: true,
+                  pinTop: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Stack(
+                    children: <Widget>[
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(0.0, 0.0, 28.0, 28.0),
+                        size: Size(28.0, 28.0),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child: SvgPicture.string(
+                          _svg_gu9nkf,
+                          allowDrawingOutsideViewBox: true,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(10.8, 0.0, 6.5, 12.0),
+                        size: Size(28.0, 28.0),
+                        pinTop: true,
+                        fixedWidth: true,
+                        fixedHeight: true,
+                        child: SingleChildScrollView(
+                            child: Text(
+                          '5',
+                          style: TextStyle(
+                            fontFamily: 'Segoe UI',
+                            fontSize: 18,
+                            color: const Color(0xffffffff),
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(65.8, 669.9),
+          child: SizedBox(
+            width: 53.0,
+            height: 49.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 14.2, 35.0, 35.0),
+                  size: Size(52.6, 49.2),
+                  pinLeft: true,
+                  pinBottom: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xf21966b4)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x29000000),
+                          offset: Offset(3, 3),
+                          blurRadius: 6,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(24.6, 0.0, 28.0, 28.0),
+                  size: Size(52.6, 49.2),
+                  pinRight: true,
+                  pinTop: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Stack(
+                    children: <Widget>[
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(0.0, 0.0, 28.0, 28.0),
+                        size: Size(28.0, 28.0),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                                Radius.elliptical(9999.0, 9999.0)),
+                            color: const Color(0xfff13535),
+                            border: Border.all(
+                                width: 1.0, color: const Color(0xfff13535)),
+                          ),
+                        ),
+                      ),
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(10.1, 0.0, 7.8, 14.0),
+                        size: Size(28.0, 28.0),
+                        pinTop: true,
+                        fixedWidth: true,
+                        fixedHeight: true,
+                        child: SingleChildScrollView(
+                            child: Text(
+                          '3',
+                          style: TextStyle(
+                            fontFamily: 'Segoe UI',
+                            fontSize: 18,
+                            color: const Color(0xffffffff),
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(170.3, 670.2),
+          child: SizedBox(
+            width: 51.0,
+            height: 49.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 14.0, 35.0, 35.0),
+                  size: Size(50.8, 49.0),
+                  pinLeft: true,
+                  pinBottom: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xf21966b4)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x29000000),
+                          offset: Offset(3, 3),
+                          blurRadius: 6,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(22.8, 0.0, 28.0, 28.7),
+                  size: Size(50.8, 49.0),
+                  pinRight: true,
+                  pinTop: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Stack(
+                    children: <Widget>[
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(0.0, 0.0, 28.0, 28.7),
+                        size: Size(28.0, 28.7),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                                Radius.elliptical(9999.0, 9999.0)),
+                            color: const Color(0xfff13535),
+                            border: Border.all(
+                                width: 1.0, color: const Color(0xfff13535)),
+                          ),
+                        ),
+                      ),
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(10.1, 0.7, 7.8, 15.4),
+                        size: Size(28.0, 28.7),
+                        pinTop: true,
+                        fixedWidth: true,
+                        fixedHeight: true,
+                        child: SingleChildScrollView(
+                            child: Text(
+                          '2',
+                          style: TextStyle(
+                            fontFamily: 'Segoe UI',
+                            fontSize: 18,
+                            color: const Color(0xffffffff),
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(169.3, 721.8),
+          child: SizedBox(
+            width: 53.0,
+            height: 46.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 11.4, 35.0, 35.0),
+                  size: Size(52.8, 46.4),
+                  pinLeft: true,
+                  pinBottom: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xf21966b4)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x29000000),
+                          offset: Offset(3, 3),
+                          blurRadius: 6,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(24.8, 0.0, 28.0, 30.0),
+                  size: Size(52.8, 46.4),
+                  pinRight: true,
+                  pinTop: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Stack(
+                    children: <Widget>[
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(0.0, 0.0, 28.0, 30.0),
+                        size: Size(28.0, 30.0),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                                Radius.elliptical(9999.0, 9999.0)),
+                            color: const Color(0xfff13535),
+                            border: Border.all(
+                                width: 1.0, color: const Color(0xfff13535)),
+                          ),
+                        ),
+                      ),
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(11.2, 1.1, 5.5, 10.7),
+                        size: Size(28.0, 30.0),
+                        pinTop: true,
+                        fixedWidth: true,
+                        fixedHeight: true,
+                        child: SingleChildScrollView(
+                            child: Text(
+                          '2',
+                          style: TextStyle(
+                            fontFamily: 'Segoe UI',
+                            fontSize: 18,
+                            color: const Color(0xffffffff),
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(6.0, 112.0),
+          child: SizedBox(
+            width: 181.0,
+            height: 15.0,
+            child: SingleChildScrollView(
+                child: Text(
+              'Organize Your Life',
+              style: TextStyle(
+                fontFamily: 'Simple Indust Outline',
+                fontSize: 22,
+                color: const Color(0xff707070),
+              ),
+              textAlign: TextAlign.center,
+            )),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(8.0, 899.0),
+          child: SizedBox(
+            width: 358.0,
+            height: 131.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 8.0, 358.0, 123.0),
+                  size: Size(358.0, 131.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: const Color(0xffffffff),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x29000000),
+                          offset: Offset(0, 10),
+                          blurRadius: 10,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 358.0, 36.0),
+                  size: Size(358.0, 131.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: const Color(0xfff3f3f3),
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 94.0, 358.0, 36.0),
+                  size: Size(358.0, 131.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinBottom: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: const Color(0xfff3f3f3),
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(133.0, 5.0, 99.0, 19.0),
+                  size: Size(358.0, 131.0),
+                  pinTop: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: SingleChildScrollView(
+                      child: Text(
+                    'التنبيهات',
+                    style: TextStyle(
+                      fontFamily: 'Times New Roman',
+                      fontSize: 20,
+                      color: const Color(0xff0a0606),
+                    ),
+                    textAlign: TextAlign.center,
+                  )),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(145.0, 55.0, 185.0, 34.0),
+                  size: Size(358.0, 131.0),
+                  pinRight: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Text(
+                    'موعد جرعة الدواء',
+                    style: TextStyle(
+                      fontFamily: 'Times New Roman',
+                      fontSize: 20,
+                      color: const Color(0xff5b5a5a),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(7.0, 57.0, 108.0, 29.0),
+                  size: Size(358.0, 131.0),
+                  pinLeft: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Text(
+                    'باقي 45 دقيقة',
+                    style: TextStyle(
+                      fontFamily: 'Times New Roman',
+                      fontSize: 18,
+                      color: const Color(0xff5b5a5a),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(170.2, 108.0, 15.8, 9.8),
+                  size: Size(358.0, 131.0),
+                  pinBottom: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child:
+                      // Adobe XD layer: 'ic_keyboard_arrow_d…' (shape)
                       SvgPicture.string(
-                        _svg_joapjv,
-                        allowDrawingOutsideViewBox: true,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ],
+                    _svg_sar7d0,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
                 ),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(223.0, 626.7),
-            child: SizedBox(
-              width: 50.0,
-              height: 46.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 11.3, 35.0, 35.0),
-                    size: Size(50.0, 46.3),
-                    pinLeft: true,
-                    pinBottom: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        color: const Color(0xffffd64d),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xffffd64d)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0x29000000),
-                            offset: Offset(3, 3),
-                            blurRadius: 6,
-                          ),
-                        ],
-                      ),
-                    ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(315.8, 5.0, 21.3, 25.9),
+                  size: Size(358.0, 131.0),
+                  pinRight: true,
+                  pinTop: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child:
+                      // Adobe XD layer: 'ic_notifications_24…' (shape)
+                      SvgPicture.string(
+                    _svg_ryatj7,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
                   ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(22.0, 0.0, 28.0, 30.0),
-                    size: Size(50.0, 46.3),
-                    pinRight: true,
-                    pinTop: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Stack(
-                      children: <Widget>[
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(0.0, 0.0, 28.0, 30.0),
-                          size: Size(28.0, 30.0),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child: SvgPicture.string(
-                            _svg_ok82yn,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(11.7, 1.7, 4.6, 8.0),
-                          size: Size(28.0, 30.0),
-                          pinTop: true,
-                          fixedWidth: true,
-                          fixedHeight: true,
-                          child: SingleChildScrollView(
-                              child: Text(
-                                '5',
-                                style: TextStyle(
-                                  fontFamily: 'Segoe UI',
-                                  fontSize: 18,
-                                  color: const Color(0xffffffff),
-                                ),
-                                textAlign: TextAlign.center,
-                              )),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(19.0, 593.0),
-            child: SingleChildScrollView(
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 28,
-                runSpacing: 16,
-                children: [
-                  {
-                    'text': 'Mo',
-                  },
-                  {
-                    'text': 'Tu',
-                  },
-                  {
-                    'text': 'We',
-                  },
-                  {
-                    'text': 'Th',
-                  },
-                  {
-                    'text': 'Fr',
-                  },
-                  {
-                    'text': 'Su',
-                  },
-                  {
-                    'text': 'Sa',
-                  }
-                ].map((map) {
-                  final text = map['text'];
-                  return Transform.translate(
-                    offset: Offset(0.0, -3.0),
-                    child: SizedBox(
-                      width: 24.0,
-                      height: 23.0,
-                      child: Stack(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 24.0,
-                            height: 23.0,
-                            child: SingleChildScrollView(
-                                child: Text(
-                                  text,
-                                  style: TextStyle(
-                                    fontFamily: 'Yu Gothic UI',
-                                    fontSize: 18,
-                                    color: const Color(0xff0a0606),
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                )),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(20.0, 689.0),
-            child: SingleChildScrollView(
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 28,
-                runSpacing: 16,
-                children: [
-                  {
-                    'text': '6',
-                  },
-                  {
-                    'text': '7',
-                  },
-                  {
-                    'text': '8',
-                  },
-                  {
-                    'text': '9',
-                  },
-                  {
-                    'text': '10',
-                  },
-                  {
-                    'text': '11',
-                  },
-                  {
-                    'text': '12',
-                  }
-                ].map((map) {
-                  final text = map['text'];
-                  return SizedBox(
-                    width: 24.0,
-                    height: 23.0,
-                    child: Stack(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 24.0,
-                          height: 23.0,
-                          child: SingleChildScrollView(
-                              child: Text(
-                                text,
-                                style: TextStyle(
-                                  fontFamily: 'Yu Gothic UI',
-                                  fontSize: 18,
-                                  color: const Color(0xff0a0606),
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                textAlign: TextAlign.center,
-                              )),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(19.0, 737.0),
-            child: SingleChildScrollView(
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 28,
-                runSpacing: 16,
-                children: [
-                  {
-                    'text': '13',
-                  },
-                  {
-                    'text': '14',
-                  },
-                  {
-                    'text': '15',
-                  },
-                  {
-                    'text': '16',
-                  },
-                  {
-                    'text': '17',
-                  },
-                  {
-                    'text': '18',
-                  },
-                  {
-                    'text': '19',
-                  }
-                ].map((map) {
-                  final text = map['text'];
-                  return SizedBox(
-                    width: 24.0,
-                    height: 23.0,
-                    child: Stack(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 24.0,
-                          height: 23.0,
-                          child: SingleChildScrollView(
-                              child: Text(
-                                text,
-                                style: TextStyle(
-                                  fontFamily: 'Yu Gothic UI',
-                                  fontSize: 18,
-                                  color: const Color(0xff0a0606),
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                textAlign: TextAlign.center,
-                              )),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(19.0, 785.0),
-            child: SingleChildScrollView(
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 28,
-                runSpacing: 16,
-                children: [
-                  {
-                    'text': '20',
-                  },
-                  {
-                    'text': '21',
-                  },
-                  {
-                    'text': '22',
-                  },
-                  {
-                    'text': '23',
-                  },
-                  {
-                    'text': '24',
-                  },
-                  {
-                    'text': '25',
-                  },
-                  {
-                    'text': '26',
-                  }
-                ].map((map) {
-                  final text = map['text'];
-                  return SizedBox(
-                    width: 24.0,
-                    height: 23.0,
-                    child: Stack(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 24.0,
-                          height: 23.0,
-                          child: SingleChildScrollView(
-                              child: Text(
-                                text,
-                                style: TextStyle(
-                                  fontFamily: 'Yu Gothic UI',
-                                  fontSize: 18,
-                                  color: const Color(0xff0a0606),
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                textAlign: TextAlign.center,
-                              )),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(19.0, 833.0),
-            child: SingleChildScrollView(
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 28,
-                runSpacing: 16,
-                children: [
-                  {
-                    'text': '27',
-                  },
-                  {
-                    'text': '28',
-                  },
-                  {
-                    'text': '29',
-                  },
-                  {
-                    'text': '30',
-                  },
-                  {
-                    'text': '31',
-                  }
-                ].map((map) {
-                  final text = map['text'];
-                  return SizedBox(
-                    width: 24.0,
-                    height: 23.0,
-                    child: Stack(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 24.0,
-                          height: 23.0,
-                          child: SingleChildScrollView(
-                              child: Text(
-                                text,
-                                style: TextStyle(
-                                  fontFamily: 'Yu Gothic UI',
-                                  fontSize: 18,
-                                  color: const Color(0xff0a0606),
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                textAlign: TextAlign.center,
-                              )),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(23.0, 641.0),
-            child: SingleChildScrollView(
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 28,
-                runSpacing: 16,
-                children: [
-                  {
-                    'text': '29',
-                  },
-                  {
-                    'text': '30',
-                  }
-                ].map((map) {
-                  final text = map['text'];
-                  return Transform.translate(
-                    offset: Offset(-2.0, 0.0),
-                    child: SizedBox(
-                      width: 26.0,
-                      height: 20.0,
-                      child: Stack(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 26.0,
-                            height: 20.0,
-                            child: SingleChildScrollView(
-                                child: Text(
-                                  text,
-                                  style: TextStyle(
-                                    fontFamily: 'Yu Gothic UI',
-                                    fontSize: 18,
-                                    color: const Color(0xff707070),
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                )),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(280.0, 833.0),
-            child: SingleChildScrollView(
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 34,
-                runSpacing: 16,
-                children: [
-                  {
-                    'text': '1',
-                  },
-                  {
-                    'text': '2',
-                  }
-                ].map((map) {
-                  final text = map['text'];
-                  return SizedBox(
-                    width: 19.0,
-                    height: 20.0,
-                    child: Stack(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 19.0,
-                          height: 20.0,
-                          child: SingleChildScrollView(
-                              child: Text(
-                                text,
-                                style: TextStyle(
-                                  fontFamily: 'Yu Gothic UI',
-                                  fontSize: 18,
-                                  color: const Color(0xff707070),
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                textAlign: TextAlign.center,
-                              )),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(125.0, 641.0),
-            child: SingleChildScrollView(
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 34,
-                runSpacing: 16,
-                children: [
-                  {
-                    'text': '1',
-                  },
-                  {
-                    'text': '2',
-                  },
-                  {
-                    'text': '3',
-                  },
-                  {
-                    'text': '4',
-                  },
-                  {
-                    'text': '5',
-                  }
-                ].map((map) {
-                  final text = map['text'];
-                  return SizedBox(
-                    width: 19.0,
-                    height: 20.0,
-                    child: Stack(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 19.0,
-                          height: 20.0,
-                          child: SingleChildScrollView(
-                              child: Text(
-                                text,
-                                style: TextStyle(
-                                  fontFamily: 'Yu Gothic UI',
-                                  fontSize: 18,
-                                  color: const Color(0xff0a0606),
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                textAlign: TextAlign.center,
-                              )),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(119.0, 670.4),
-            child: SizedBox(
-              width: 49.0,
-              height: 49.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 13.6, 35.0, 35.0),
-                    size: Size(49.0, 48.6),
-                    pinLeft: true,
-                    pinBottom: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xf21966b4)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0x29000000),
-                            offset: Offset(3, 3),
-                            blurRadius: 6,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(21.0, 0.0, 28.0, 28.0),
-                    size: Size(49.0, 48.6),
-                    pinRight: true,
-                    pinTop: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Stack(
-                      children: <Widget>[
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(0.0, 0.0, 28.0, 28.0),
-                          size: Size(28.0, 28.0),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child: SvgPicture.string(
-                            _svg_gu9nkf,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(10.8, 0.0, 6.5, 12.0),
-                          size: Size(28.0, 28.0),
-                          pinTop: true,
-                          fixedWidth: true,
-                          fixedHeight: true,
-                          child: SingleChildScrollView(
-                              child: Text(
-                                '5',
-                                style: TextStyle(
-                                  fontFamily: 'Segoe UI',
-                                  fontSize: 18,
-                                  color: const Color(0xffffffff),
-                                ),
-                                textAlign: TextAlign.center,
-                              )),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(65.8, 669.9),
-            child: SizedBox(
-              width: 53.0,
-              height: 49.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 14.2, 35.0, 35.0),
-                    size: Size(52.6, 49.2),
-                    pinLeft: true,
-                    pinBottom: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xf21966b4)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0x29000000),
-                            offset: Offset(3, 3),
-                            blurRadius: 6,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(24.6, 0.0, 28.0, 28.0),
-                    size: Size(52.6, 49.2),
-                    pinRight: true,
-                    pinTop: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Stack(
-                      children: <Widget>[
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(0.0, 0.0, 28.0, 28.0),
-                          size: Size(28.0, 28.0),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                  Radius.elliptical(9999.0, 9999.0)),
-                              color: const Color(0xfff13535),
-                              border: Border.all(
-                                  width: 1.0, color: const Color(0xfff13535)),
-                            ),
-                          ),
-                        ),
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(10.1, 0.0, 7.8, 14.0),
-                          size: Size(28.0, 28.0),
-                          pinTop: true,
-                          fixedWidth: true,
-                          fixedHeight: true,
-                          child: SingleChildScrollView(
-                              child: Text(
-                                '3',
-                                style: TextStyle(
-                                  fontFamily: 'Segoe UI',
-                                  fontSize: 18,
-                                  color: const Color(0xffffffff),
-                                ),
-                                textAlign: TextAlign.center,
-                              )),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(170.3, 670.2),
-            child: SizedBox(
-              width: 51.0,
-              height: 49.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 14.0, 35.0, 35.0),
-                    size: Size(50.8, 49.0),
-                    pinLeft: true,
-                    pinBottom: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xf21966b4)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0x29000000),
-                            offset: Offset(3, 3),
-                            blurRadius: 6,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(22.8, 0.0, 28.0, 28.7),
-                    size: Size(50.8, 49.0),
-                    pinRight: true,
-                    pinTop: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Stack(
-                      children: <Widget>[
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(0.0, 0.0, 28.0, 28.7),
-                          size: Size(28.0, 28.7),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                  Radius.elliptical(9999.0, 9999.0)),
-                              color: const Color(0xfff13535),
-                              border: Border.all(
-                                  width: 1.0, color: const Color(0xfff13535)),
-                            ),
-                          ),
-                        ),
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(10.1, 0.7, 7.8, 15.4),
-                          size: Size(28.0, 28.7),
-                          pinTop: true,
-                          fixedWidth: true,
-                          fixedHeight: true,
-                          child: SingleChildScrollView(
-                              child: Text(
-                                '2',
-                                style: TextStyle(
-                                  fontFamily: 'Segoe UI',
-                                  fontSize: 18,
-                                  color: const Color(0xffffffff),
-                                ),
-                                textAlign: TextAlign.center,
-                              )),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(169.3, 721.8),
-            child: SizedBox(
-              width: 53.0,
-              height: 46.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 11.4, 35.0, 35.0),
-                    size: Size(52.8, 46.4),
-                    pinLeft: true,
-                    pinBottom: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xf21966b4)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0x29000000),
-                            offset: Offset(3, 3),
-                            blurRadius: 6,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(24.8, 0.0, 28.0, 30.0),
-                    size: Size(52.8, 46.4),
-                    pinRight: true,
-                    pinTop: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Stack(
-                      children: <Widget>[
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(0.0, 0.0, 28.0, 30.0),
-                          size: Size(28.0, 30.0),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                  Radius.elliptical(9999.0, 9999.0)),
-                              color: const Color(0xfff13535),
-                              border: Border.all(
-                                  width: 1.0, color: const Color(0xfff13535)),
-                            ),
-                          ),
-                        ),
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(11.2, 1.1, 5.5, 10.7),
-                          size: Size(28.0, 30.0),
-                          pinTop: true,
-                          fixedWidth: true,
-                          fixedHeight: true,
-                          child: SingleChildScrollView(
-                              child: Text(
-                                '2',
-                                style: TextStyle(
-                                  fontFamily: 'Segoe UI',
-                                  fontSize: 18,
-                                  color: const Color(0xffffffff),
-                                ),
-                                textAlign: TextAlign.center,
-                              )),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(6.0, 112.0),
-            child: SizedBox(
-              width: 181.0,
-              height: 15.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    'Organize Your Life',
-                    style: TextStyle(
-                      fontFamily: 'Simple Indust Outline',
-                      fontSize: 22,
-                      color: const Color(0xff707070),
-                    ),
-                    textAlign: TextAlign.center,
-                  )),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(8.0, 899.0),
-            child: SizedBox(
-              width: 358.0,
-              height: 131.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 8.0, 358.0, 123.0),
-                    size: Size(358.0, 131.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        color: const Color(0xffffffff),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0x29000000),
-                            offset: Offset(0, 10),
-                            blurRadius: 10,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 358.0, 36.0),
-                    size: Size(358.0, 131.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    fixedHeight: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        color: const Color(0xfff3f3f3),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 94.0, 358.0, 36.0),
-                    size: Size(358.0, 131.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinBottom: true,
-                    fixedHeight: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        color: const Color(0xfff3f3f3),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(133.0, 5.0, 99.0, 19.0),
-                    size: Size(358.0, 131.0),
-                    pinTop: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: SingleChildScrollView(
-                        child: Text(
-                          'التنبيهات',
-                          style: TextStyle(
-                            fontFamily: 'Times New Roman',
-                            fontSize: 20,
-                            color: const Color(0xff0a0606),
-                          ),
-                          textAlign: TextAlign.center,
-                        )),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(145.0, 55.0, 185.0, 34.0),
-                    size: Size(358.0, 131.0),
-                    pinRight: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Text(
-                      'موعد جرعة الدواء',
-                      style: TextStyle(
-                        fontFamily: 'Times New Roman',
-                        fontSize: 20,
-                        color: const Color(0xff5b5a5a),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(7.0, 57.0, 108.0, 29.0),
-                    size: Size(358.0, 131.0),
-                    pinLeft: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Text(
-                      'باقي 45 دقيقة',
-                      style: TextStyle(
-                        fontFamily: 'Times New Roman',
-                        fontSize: 18,
-                        color: const Color(0xff5b5a5a),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(170.2, 108.0, 15.8, 9.8),
-                    size: Size(358.0, 131.0),
-                    pinBottom: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child:
-                    // Adobe XD layer: 'ic_keyboard_arrow_d…' (shape)
-                    SvgPicture.string(
-                      _svg_sar7d0,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(315.8, 5.0, 21.3, 25.9),
-                    size: Size(358.0, 131.0),
-                    pinRight: true,
-                    pinTop: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child:
-                    // Adobe XD layer: 'ic_notifications_24…' (shape)
-                    SvgPicture.string(
-                      _svg_ryatj7,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(9.0, 1050.0),
-            child: SizedBox(
-              width: 357.0,
-              height: 296.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 357.0, 296.3),
-                    size: Size(357.0, 296.3),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        color: const Color(0xffffffff),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0x29000000),
-                            offset: Offset(0, 15),
-                            blurRadius: 10,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 357.0, 35.7),
-                    size: Size(357.0, 296.3),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    fixedHeight: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        color: const Color(0xfff3f3f3),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(91.7, 6.9, 176.5, 13.9),
-                    size: Size(357.0, 296.3),
-                    pinTop: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: SingleChildScrollView(
-                        child: Text(
-                          'ادارة الصحة والهوايات',
-                          style: TextStyle(
-                            fontFamily: 'Times New Roman',
-                            fontSize: 20,
-                            color: const Color(0xff0a0606),
-                          ),
-                          textAlign: TextAlign.center,
-                        )),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(240.0, 1101.0),
-            child: SizedBox(
-              width: 75.0,
-              height: 75.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
-                    size: Size(75.0, 75.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        color: const Color(0xefe4dcdc),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0x29000000),
-                            offset: Offset(0, 10),
-                            blurRadius: 10,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(17.0, 18.0, 42.0, 40.0),
-                    size: Size(75.0, 75.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    fixedHeight: true,
-                    child:
-                    // Adobe XD layer: 'ic_directions_run_2…' (shape)
-                    SvgPicture.string(
-                      _svg_sr84yq,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(50.0, 1219.0),
-            child: SizedBox(
-              width: 75.0,
-              height: 75.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
-                    size: Size(75.0, 75.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        color: const Color(0xefe4dcdc),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0x29000000),
-                            offset: Offset(0, 10),
-                            blurRadius: 10,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(11.0, 12.0, 42.0, 40.0),
-                    size: Size(75.0, 75.0),
-                    pinLeft: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child:
-                    // Adobe XD layer: 'ic_smoking_rooms_24…' (shape)
-                    SvgPicture.string(
-                      _svg_uoptdq,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(0.0, 335.0),
-            child: Container(
-              width: 375.0,
-              height: 114.0,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment(0.0, -1.0),
-                  end: Alignment(0.0, 3.2),
-                  colors: [const Color(0xffffffff), const Color(0xffc8c8c8)],
-                  stops: [0.0, 1.0],
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0x29000000),
-                    offset: Offset(15, 15),
-                    blurRadius: 15,
-                  ),
-                ],
-              ),
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(-4.0, 426.0),
-            child: SizedBox(
-              width: 101.0,
-              height: 12.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    ' مواعيد الدواء',
-                    style: TextStyle(
-                      fontFamily: 'Times New Roman',
-                      fontSize: 16,
-                      color: const Color(0xff0a0606),
-                    ),
-                    textAlign: TextAlign.center,
-                  )),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(195.0, 426.0),
-            child: SizedBox(
-              width: 73.0,
-              height: 12.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    'إيرادات',
-                    style: TextStyle(
-                      fontFamily: 'Times New Roman',
-                      fontSize: 16,
-                      color: const Color(0xff0a0606),
-                    ),
-                    textAlign: TextAlign.center,
-                  )),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(286.0, 426.0),
-            child: SizedBox(
-              width: 73.0,
-              height: 12.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    'إضافة',
-                    style: TextStyle(
-                      fontFamily: 'Times New Roman',
-                      fontSize: 16,
-                      color: const Color(0xff0a0606),
-                    ),
-                    textAlign: TextAlign.center,
-                  )),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(15.3, 346.0),
-            child: SizedBox(
-              width: 73.0,
-              height: 73.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 72.7, 72.7),
-                    size: Size(72.7, 72.7),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        color: const Color(0xffffd64d),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0x29000000),
-                            offset: Offset(0, 15),
-                            blurRadius: 15,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(32.0, 6.3, 19.4, 46.5),
-                    size: Size(72.7, 72.7),
-                    pinRight: true,
-                    pinTop: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Transform.rotate(
-                      angle: -0.8203,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          border: Border.all(
-                              width: 2.0, color: const Color(0xf2386694)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: const Color(0x29000000),
-                              offset: Offset(0, 3),
-                              blurRadius: 6,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(43.1, 29.6, 12.6, 13.6),
-                    size: Size(72.7, 72.7),
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: SvgPicture.string(
-                      _svg_yxn4yl,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(39.2, 25.7, 12.6, 13.6),
-                    size: Size(72.7, 72.7),
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: SvgPicture.string(
-                      _svg_477k2f,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(10.5, 38.6, 22.4, 22.4),
-                    size: Size(72.7, 72.7),
-                    pinLeft: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child:
-                    // Adobe XD layer: 'ic_update_24px' (shape)
-                    SvgPicture.string(
-                      _svg_6dmz9u,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(104.2, 346.0),
-            child: SizedBox(
-              width: 73.0,
-              height: 73.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 72.7, 72.7),
-                    size: Size(72.7, 72.7),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: SvgPicture.string(
-                      _svg_au9zo2,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(8.3, 8.4, 56.1, 56.1),
-                    size: Size(72.7, 72.7),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xf2386694)),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(25.5, 17.0, 22.0, 38.8),
-                    size: Size(72.7, 72.7),
-                    pinTop: true,
-                    pinBottom: true,
-                    fixedWidth: true,
-                    child:
-                    // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                    SvgPicture.string(
-                      _svg_gubfho,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(106.0, 426.0),
-            child: SizedBox(
-              width: 73.0,
-              height: 12.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    'مصاريف',
-                    style: TextStyle(
-                      fontFamily: 'Times New Roman',
-                      fontSize: 16,
-                      color: const Color(0xff0a0606),
-                    ),
-                    textAlign: TextAlign.center,
-                  )),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(285.0, 347.0),
-            child: SizedBox(
-              width: 75.0,
-              height: 75.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
-                    size: Size(75.0, 75.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        color: const Color(0xffffd64d),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0x29000000),
-                            offset: Offset(0, 15),
-                            blurRadius: 15,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(15.3, 35.9, 43.7, 3.8),
-                    size: Size(75.0, 75.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    fixedHeight: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7.0),
-                        color: const Color(0xf2386694),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xf2386694)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0x29000000),
-                            offset: Offset(0, 10),
-                            blurRadius: 10,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(35.2, 16.0, 3.8, 43.7),
-                    size: Size(75.0, 75.0),
-                    pinTop: true,
-                    pinBottom: true,
-                    fixedWidth: true,
-                    child: SvgPicture.string(
-                      _svg_qu82a4,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(193.0, 346.0),
-            child: SizedBox(
-              width: 75.0,
-              height: 75.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
-                    size: Size(75.0, 75.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Stack(
-                      children: <Widget>[
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
-                          size: Size(75.0, 75.0),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                  Radius.elliptical(9999.0, 9999.0)),
-                              color: const Color(0xffffd64d),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color(0x29000000),
-                                  offset: Offset(0, 15),
-                                  blurRadius: 10,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(15.1, 8.6, 44.8, 57.4),
-                          size: Size(75.0, 75.0),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child: SvgPicture.string(
-                            _svg_1bampq,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(23.3, 40.9, 3.3, 22.0),
-                          size: Size(75.0, 75.0),
-                          fixedWidth: true,
-                          fixedHeight: true,
-                          child: SvgPicture.string(
-                            _svg_s8qz2e,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(28.9, 38.7, 3.3, 24.2),
-                          size: Size(75.0, 75.0),
-                          fixedWidth: true,
-                          fixedHeight: true,
-                          child: SvgPicture.string(
-                            _svg_szxi62,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(34.5, 42.0, 3.3, 20.8),
-                          size: Size(75.0, 75.0),
-                          fixedWidth: true,
-                          fixedHeight: true,
-                          child: SvgPicture.string(
-                            _svg_ij7ovb,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(40.1, 38.7, 3.3, 24.2),
-                          size: Size(75.0, 75.0),
-                          fixedWidth: true,
-                          fixedHeight: true,
-                          child: SvgPicture.string(
-                            _svg_74s257,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(45.7, 35.3, 3.3, 27.5),
-                          size: Size(75.0, 75.0),
-                          fixedWidth: true,
-                          fixedHeight: true,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: const Color(0xf2386694),
-                              border: Border.all(
-                                  width: 1.0, color: const Color(0xf2386694)),
-                            ),
-                          ),
+        ),
+        Transform.translate(
+          offset: Offset(9.0, 1050.0),
+          child: SizedBox(
+            width: 357.0,
+            height: 296.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 357.0, 296.3),
+                  size: Size(357.0, 296.3),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: const Color(0xffffffff),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x29000000),
+                          offset: Offset(0, 15),
+                          blurRadius: 10,
                         ),
                       ],
                     ),
                   ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(29.2, 11.0, 13.5, 23.8),
-                    size: Size(75.0, 75.0),
-                    pinTop: true,
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child:
-                    // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                    SvgPicture.string(
-                      _svg_tmneyq,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 357.0, 35.7),
+                  size: Size(357.0, 296.3),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: const Color(0xfff3f3f3),
                     ),
                   ),
-                ],
-              ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(91.7, 6.9, 176.5, 13.9),
+                  size: Size(357.0, 296.3),
+                  pinTop: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: SingleChildScrollView(
+                      child: Text(
+                    'ادارة الصحة والهوايات',
+                    style: TextStyle(
+                      fontFamily: 'Times New Roman',
+                      fontSize: 20,
+                      color: const Color(0xff0a0606),
+                    ),
+                    textAlign: TextAlign.center,
+                  )),
+                ),
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(240.0, 1219.0),
-            child: SizedBox(
-              width: 75.0,
-              height: 75.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
-                    size: Size(75.0, 75.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Stack(
-                      children: <Widget>[
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
-                          size: Size(75.0, 75.0),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                  Radius.elliptical(9999.0, 9999.0)),
-                              color: const Color(0xefe4dcdc),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color(0x29000000),
-                                  offset: Offset(0, 10),
-                                  blurRadius: 10,
-                                ),
-                              ],
-                            ),
-                          ),
+        ),
+        Transform.translate(
+          offset: Offset(240.0, 1101.0),
+          child: SizedBox(
+            width: 75.0,
+            height: 75.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
+                  size: Size(75.0, 75.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                      color: const Color(0xefe4dcdc),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x29000000),
+                          offset: Offset(0, 10),
+                          blurRadius: 10,
                         ),
                       ],
                     ),
                   ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(20.0, 35.1, 35.0, 5.8),
-                    size: Size(75.0, 75.0),
-                    fixedWidth: true,
-                    fixedHeight: true,
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(17.0, 18.0, 42.0, 40.0),
+                  size: Size(75.0, 75.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  fixedHeight: true,
+                  child:
+                      // Adobe XD layer: 'ic_directions_run_2…' (shape)
+                      SvgPicture.string(
+                    _svg_sr84yq,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(50.0, 1219.0),
+          child: SizedBox(
+            width: 75.0,
+            height: 75.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
+                  size: Size(75.0, 75.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                      color: const Color(0xefe4dcdc),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x29000000),
+                          offset: Offset(0, 10),
+                          blurRadius: 10,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(11.0, 12.0, 42.0, 40.0),
+                  size: Size(75.0, 75.0),
+                  pinLeft: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child:
+                      // Adobe XD layer: 'ic_smoking_rooms_24…' (shape)
+                      SvgPicture.string(
+                    _svg_uoptdq,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(0.0, 335.0),
+          child: Container(
+            width: 375.0,
+            height: 114.0,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment(0.0, -1.0),
+                end: Alignment(0.0, 3.2),
+                colors: [const Color(0xffffffff), const Color(0xffc8c8c8)],
+                stops: [0.0, 1.0],
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0x29000000),
+                  offset: Offset(15, 15),
+                  blurRadius: 15,
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(-4.0, 426.0),
+          child: SizedBox(
+            width: 101.0,
+            height: 12.0,
+            child: SingleChildScrollView(
+                child: Text(
+              ' مواعيد الدواء',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 16,
+                color: const Color(0xff0a0606),
+              ),
+              textAlign: TextAlign.center,
+            )),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(195.0, 426.0),
+          child: SizedBox(
+            width: 73.0,
+            height: 12.0,
+            child: SingleChildScrollView(
+                child: Text(
+              'إيرادات',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 16,
+                color: const Color(0xff0a0606),
+              ),
+              textAlign: TextAlign.center,
+            )),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(286.0, 426.0),
+          child: SizedBox(
+            width: 73.0,
+            height: 12.0,
+            child: SingleChildScrollView(
+                child: Text(
+              'إضافة',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 16,
+                color: const Color(0xff0a0606),
+              ),
+              textAlign: TextAlign.center,
+            )),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(15.3, 346.0),
+          child: SizedBox(
+            width: 73.0,
+            height: 73.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 72.7, 72.7),
+                  size: Size(72.7, 72.7),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                      color: const Color(0xffffd64d),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x29000000),
+                          offset: Offset(0, 15),
+                          blurRadius: 15,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(32.0, 6.3, 19.4, 46.5),
+                  size: Size(72.7, 72.7),
+                  pinRight: true,
+                  pinTop: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Transform.rotate(
+                    angle: -0.8203,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(
+                            width: 2.0, color: const Color(0xf2386694)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0x29000000),
+                            offset: Offset(0, 3),
+                            blurRadius: 6,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(43.1, 29.6, 12.6, 13.6),
+                  size: Size(72.7, 72.7),
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: SvgPicture.string(
+                    _svg_yxn4yl,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(39.2, 25.7, 12.6, 13.6),
+                  size: Size(72.7, 72.7),
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: SvgPicture.string(
+                    _svg_477k2f,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(10.5, 38.6, 22.4, 22.4),
+                  size: Size(72.7, 72.7),
+                  pinLeft: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child:
+                      // Adobe XD layer: 'ic_update_24px' (shape)
+                      SvgPicture.string(
+                    _svg_6dmz9u,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(104.2, 346.0),
+          child: SizedBox(
+            width: 73.0,
+            height: 73.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 72.7, 72.7),
+                  size: Size(72.7, 72.7),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: SvgPicture.string(
+                    _svg_au9zo2,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(8.3, 8.4, 56.1, 56.1),
+                  size: Size(72.7, 72.7),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xf2386694)),
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(25.5, 17.0, 22.0, 38.8),
+                  size: Size(72.7, 72.7),
+                  pinTop: true,
+                  pinBottom: true,
+                  fixedWidth: true,
+                  child:
+                      // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                      SvgPicture.string(
+                    _svg_gubfho,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(106.0, 426.0),
+          child: SizedBox(
+            width: 73.0,
+            height: 12.0,
+            child: SingleChildScrollView(
+                child: Text(
+              'مصاريف',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 16,
+                color: const Color(0xff0a0606),
+              ),
+              textAlign: TextAlign.center,
+            )),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(285.0, 347.0),
+          child: SizedBox(
+            width: 75.0,
+            height: 75.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
+                  size: Size(75.0, 75.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                      color: const Color(0xffffd64d),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x29000000),
+                          offset: Offset(0, 15),
+                          blurRadius: 15,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(15.3, 35.9, 43.7, 3.8),
+                  size: Size(75.0, 75.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(7.0),
+                      color: const Color(0xf2386694),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xf2386694)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x29000000),
+                          offset: Offset(0, 10),
+                          blurRadius: 10,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(35.2, 16.0, 3.8, 43.7),
+                  size: Size(75.0, 75.0),
+                  pinTop: true,
+                  pinBottom: true,
+                  fixedWidth: true,
+                  child: SvgPicture.string(
+                    _svg_qu82a4,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(193.0, 346.0),
+          child: SizedBox(
+            width: 75.0,
+            height: 75.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
+                  size: Size(75.0, 75.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Stack(
+                    children: <Widget>[
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
+                        size: Size(75.0, 75.0),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                                Radius.elliptical(9999.0, 9999.0)),
+                            color: const Color(0xffffd64d),
+                            boxShadow: [
+                              BoxShadow(
+                                color: const Color(0x29000000),
+                                offset: Offset(0, 15),
+                                blurRadius: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(15.1, 8.6, 44.8, 57.4),
+                        size: Size(75.0, 75.0),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child: SvgPicture.string(
+                          _svg_1bampq,
+                          allowDrawingOutsideViewBox: true,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(23.3, 40.9, 3.3, 22.0),
+                        size: Size(75.0, 75.0),
+                        fixedWidth: true,
+                        fixedHeight: true,
+                        child: SvgPicture.string(
+                          _svg_s8qz2e,
+                          allowDrawingOutsideViewBox: true,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(28.9, 38.7, 3.3, 24.2),
+                        size: Size(75.0, 75.0),
+                        fixedWidth: true,
+                        fixedHeight: true,
+                        child: SvgPicture.string(
+                          _svg_szxi62,
+                          allowDrawingOutsideViewBox: true,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(34.5, 42.0, 3.3, 20.8),
+                        size: Size(75.0, 75.0),
+                        fixedWidth: true,
+                        fixedHeight: true,
+                        child: SvgPicture.string(
+                          _svg_ij7ovb,
+                          allowDrawingOutsideViewBox: true,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(40.1, 38.7, 3.3, 24.2),
+                        size: Size(75.0, 75.0),
+                        fixedWidth: true,
+                        fixedHeight: true,
+                        child: SvgPicture.string(
+                          _svg_74s257,
+                          allowDrawingOutsideViewBox: true,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(45.7, 35.3, 3.3, 27.5),
+                        size: Size(75.0, 75.0),
+                        fixedWidth: true,
+                        fixedHeight: true,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(0xf2386694),
+                            border: Border.all(
+                                width: 1.0, color: const Color(0xf2386694)),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(29.2, 11.0, 13.5, 23.8),
+                  size: Size(75.0, 75.0),
+                  pinTop: true,
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child:
+                      // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                      SvgPicture.string(
+                    _svg_tmneyq,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(240.0, 1219.0),
+          child: SizedBox(
+            width: 75.0,
+            height: 75.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
+                  size: Size(75.0, 75.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Stack(
+                    children: <Widget>[
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
+                        size: Size(75.0, 75.0),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                                Radius.elliptical(9999.0, 9999.0)),
+                            color: const Color(0xefe4dcdc),
+                            boxShadow: [
+                              BoxShadow(
+                                color: const Color(0x29000000),
+                                offset: Offset(0, 10),
+                                blurRadius: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(20.0, 35.1, 35.0, 5.8),
+                  size: Size(75.0, 75.0),
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: const Color(0xf2386694),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xf21966b4)),
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(20.0, 35.1, 35.0, 5.8),
+                  size: Size(75.0, 75.0),
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Transform.rotate(
+                    angle: 1.5708,
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.0),
@@ -2461,710 +2469,710 @@ import 'package:flutter_svg/flutter_svg.dart';
                       ),
                     ),
                   ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(20.0, 35.1, 35.0, 5.8),
-                    size: Size(75.0, 75.0),
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Transform.rotate(
-                      angle: 1.5708,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.0),
-                          color: const Color(0xf2386694),
-                          border: Border.all(
-                              width: 1.0, color: const Color(0xf21966b4)),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(62.5, 31.0),
+          child: SvgPicture.string(
+            _svg_84auew,
+            allowDrawingOutsideViewBox: true,
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(145.0, 1219.0),
+          child: SizedBox(
+            width: 75.0,
+            height: 75.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
+                  size: Size(75.0, 75.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Stack(
+                    children: <Widget>[
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
+                        size: Size(75.0, 75.0),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                                Radius.elliptical(9999.0, 9999.0)),
+                            color: const Color(0xefe4dcdc),
+                            boxShadow: [
+                              BoxShadow(
+                                color: const Color(0x29000000),
+                                offset: Offset(0, 10),
+                                blurRadius: 10,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(18.0, 18.0, 40.0, 40.0),
+                  size: Size(75.0, 75.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child:
+                      // Adobe XD layer: 'ic_import_contacts_…' (shape)
+                      SvgPicture.string(
+                    _svg_962h15,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(285.0, 1.0),
+          child:
+              // Adobe XD layer: 'honey bee new logo …' (shape)
+              Container(
+            width: 73.0,
+            height: 104.0,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: const AssetImage(''),
+                fit: BoxFit.fill,
               ),
             ),
           ),
-          Transform.translate(
-            offset: Offset(62.5, 31.0),
-            child: SvgPicture.string(
-              _svg_84auew,
-              allowDrawingOutsideViewBox: true,
-            ),
+        ),
+        Transform.translate(
+          offset: Offset(293.0, 80.0),
+          child: SizedBox(
+            width: 58.0,
+            height: 12.0,
+            child: SingleChildScrollView(
+                child: Text(
+              'Honey Bee',
+              style: TextStyle(
+                fontFamily: 'Pristina',
+                fontSize: 16,
+                color: const Color(0xff0a0606),
+              ),
+              textAlign: TextAlign.center,
+            )),
           ),
-          Transform.translate(
-            offset: Offset(145.0, 1219.0),
-            child: SizedBox(
-              width: 75.0,
-              height: 75.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
-                    size: Size(75.0, 75.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Stack(
-                      children: <Widget>[
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
-                          size: Size(75.0, 75.0),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                  Radius.elliptical(9999.0, 9999.0)),
-                              color: const Color(0xefe4dcdc),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color(0x29000000),
-                                  offset: Offset(0, 10),
-                                  blurRadius: 10,
+        ),
+        Transform.translate(
+          offset: Offset(145.0, 1101.0),
+          child: SizedBox(
+            width: 75.0,
+            height: 75.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
+                  size: Size(75.0, 75.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Stack(
+                    children: <Widget>[
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
+                        size: Size(75.0, 75.0),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child: Stack(
+                          children: <Widget>[
+                            Pinned.fromSize(
+                              bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
+                              size: Size(75.0, 75.0),
+                              pinLeft: true,
+                              pinRight: true,
+                              pinTop: true,
+                              pinBottom: true,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.elliptical(9999.0, 9999.0)),
+                                  color: const Color(0xefe4dcdc),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: const Color(0x29000000),
+                                      offset: Offset(0, 10),
+                                      blurRadius: 10,
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(13.0, 13.0, 50.0, 50.0),
+                        size: Size(75.0, 75.0),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child:
+                            // Adobe XD layer: 'bmi-01' (shape)
+                            Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: const AssetImage(''),
+                              fit: BoxFit.fill,
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(18.0, 18.0, 40.0, 40.0),
-                    size: Size(75.0, 75.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child:
-                    // Adobe XD layer: 'ic_import_contacts_…' (shape)
-                    SvgPicture.string(
-                      _svg_962h15,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(285.0, 1.0),
-            child:
-            // Adobe XD layer: 'honey bee new logo …' (shape)
-            Container(
-              width: 73.0,
-              height: 104.0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: const AssetImage(''),
-                  fit: BoxFit.fill,
                 ),
-              ),
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(293.0, 80.0),
-            child: SizedBox(
-              width: 58.0,
-              height: 12.0,
-              child: SingleChildScrollView(
-                  child: Text(
-                    'Honey Bee',
+        ),
+        Transform.translate(
+          offset: Offset(50.0, 1187.0),
+          child: SizedBox(
+            width: 78.0,
+            height: 17.0,
+            child: Text(
+              'غذاء و وجبات',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 15,
+                color: const Color(0xff0a0606),
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(50.0, 1306.0),
+          child: SizedBox(
+            width: 78.0,
+            height: 17.0,
+            child: Text(
+              'ادارة التدخين',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 15,
+                color: const Color(0xff0a0606),
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(143.0, 1306.0),
+          child: SizedBox(
+            width: 78.0,
+            height: 17.0,
+            child: Text(
+              'قراءة',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 15,
+                color: const Color(0xff0a0606),
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(239.0, 1306.0),
+          child: SizedBox(
+            width: 78.0,
+            height: 17.0,
+            child: Text(
+              'إضافة',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 15,
+                color: const Color(0xff0a0606),
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(144.0, 1187.0),
+          child: SizedBox(
+            width: 78.0,
+            height: 17.0,
+            child: Text(
+              'BMI',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 15,
+                color: const Color(0xff0a0606),
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(239.0, 1187.0),
+          child: SizedBox(
+            width: 78.0,
+            height: 17.0,
+            child: Text(
+              'رياضة',
+              style: TextStyle(
+                fontFamily: 'Times New Roman',
+                fontSize: 15,
+                color: const Color(0xff0a0606),
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(274.5, 552.0),
+          child: SizedBox(
+            width: 78.0,
+            height: 21.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 78.5, 21.0),
+                  size: Size(78.5, 21.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: const Color(0xfff13535),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xfff13535)),
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(1.1, 2.2, 67.4, 9.9),
+                  size: Size(78.5, 21.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  fixedHeight: true,
+                  child: SingleChildScrollView(
+                      child: Text(
+                    ' 2 Weeks',
                     style: TextStyle(
-                      fontFamily: 'Pristina',
-                      fontSize: 16,
-                      color: const Color(0xff0a0606),
+                      fontFamily: 'Verdana',
+                      fontSize: 12,
+                      color: const Color(0xffffffff),
                     ),
                     textAlign: TextAlign.center,
                   )),
+                ),
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(145.0, 1101.0),
-            child: SizedBox(
-              width: 75.0,
-              height: 75.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
-                    size: Size(75.0, 75.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Stack(
-                      children: <Widget>[
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
-                          size: Size(75.0, 75.0),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child: Stack(
-                            children: <Widget>[
-                              Pinned.fromSize(
-                                bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
-                                size: Size(75.0, 75.0),
-                                pinLeft: true,
-                                pinRight: true,
-                                pinTop: true,
-                                pinBottom: true,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.elliptical(9999.0, 9999.0)),
-                                    color: const Color(0xefe4dcdc),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: const Color(0x29000000),
-                                        offset: Offset(0, 10),
-                                        blurRadius: 10,
-                                      ),
-                                    ],
-                                  ),
+        ),
+        Transform.translate(
+          offset: Offset(50.0, 1101.0),
+          child: SizedBox(
+            width: 75.0,
+            height: 75.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
+                  size: Size(75.0, 75.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Stack(
+                    children: <Widget>[
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
+                        size: Size(75.0, 75.0),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child: Stack(
+                          children: <Widget>[
+                            Pinned.fromSize(
+                              bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
+                              size: Size(75.0, 75.0),
+                              pinLeft: true,
+                              pinRight: true,
+                              pinTop: true,
+                              pinBottom: true,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.elliptical(9999.0, 9999.0)),
+                                  color: const Color(0xefe4dcdc),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: const Color(0x29000000),
+                                      offset: Offset(0, 10),
+                                      blurRadius: 10,
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(17.0, 13.7, 41.3, 41.3),
+                  size: Size(75.0, 75.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  fixedHeight: true,
+                  child:
+                      // Adobe XD layer: 'ic_local_dining_24px' (shape)
+                      SvgPicture.string(
+                    _svg_fgksyb,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(0.0, 1365.0),
+          child: Container(
+            width: 375.0,
+            height: 57.0,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment(0.0, -1.0),
+                end: Alignment(0.0, 4.84),
+                colors: [const Color(0xefffffff), const Color(0xff7b7b7b)],
+                stops: [0.0, 1.0],
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0x29000000),
+                  offset: Offset(10, 3),
+                  blurRadius: 10,
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(90.0, 1369.2),
+          child: SizedBox(
+            width: 51.0,
+            height: 51.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
+                  size: Size(50.8, 50.8),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Stack(
+                    children: <Widget>[
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
+                        size: Size(50.8, 50.8),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                                Radius.elliptical(9999.0, 9999.0)),
+                            color: const Color(0xffffd64d),
                           ),
                         ),
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(13.0, 13.0, 50.0, 50.0),
-                          size: Size(75.0, 75.0),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child:
-                          // Adobe XD layer: 'bmi-01' (shape)
-                          Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: const AssetImage(''),
+                      ),
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(11.3, 12.1, 28.5, 28.5),
+                        size: Size(50.8, 50.8),
+                        fixedWidth: true,
+                        fixedHeight: true,
+                        child: Stack(
+                          children: <Widget>[
+                            Pinned.fromSize(
+                              bounds: Rect.fromLTWH(0.0, 0.0, 28.5, 28.5),
+                              size: Size(28.5, 28.5),
+                              pinLeft: true,
+                              pinRight: true,
+                              pinTop: true,
+                              pinBottom: true,
+                              child:
+                                  // Adobe XD layer: 'ic_settings_24px' (shape)
+                                  SvgPicture.string(
+                                _svg_alkmwu,
+                                allowDrawingOutsideViewBox: true,
                                 fit: BoxFit.fill,
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(50.0, 1187.0),
-            child: SizedBox(
-              width: 78.0,
-              height: 17.0,
-              child: Text(
-                'غذاء و وجبات',
-                style: TextStyle(
-                  fontFamily: 'Times New Roman',
-                  fontSize: 15,
-                  color: const Color(0xff0a0606),
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(50.0, 1306.0),
-            child: SizedBox(
-              width: 78.0,
-              height: 17.0,
-              child: Text(
-                'ادارة التدخين',
-                style: TextStyle(
-                  fontFamily: 'Times New Roman',
-                  fontSize: 15,
-                  color: const Color(0xff0a0606),
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(143.0, 1306.0),
-            child: SizedBox(
-              width: 78.0,
-              height: 17.0,
-              child: Text(
-                'قراءة',
-                style: TextStyle(
-                  fontFamily: 'Times New Roman',
-                  fontSize: 15,
-                  color: const Color(0xff0a0606),
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(239.0, 1306.0),
-            child: SizedBox(
-              width: 78.0,
-              height: 17.0,
-              child: Text(
-                'إضافة',
-                style: TextStyle(
-                  fontFamily: 'Times New Roman',
-                  fontSize: 15,
-                  color: const Color(0xff0a0606),
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(144.0, 1187.0),
-            child: SizedBox(
-              width: 78.0,
-              height: 17.0,
-              child: Text(
-                'BMI',
-                style: TextStyle(
-                  fontFamily: 'Times New Roman',
-                  fontSize: 15,
-                  color: const Color(0xff0a0606),
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(239.0, 1187.0),
-            child: SizedBox(
-              width: 78.0,
-              height: 17.0,
-              child: Text(
-                'رياضة',
-                style: TextStyle(
-                  fontFamily: 'Times New Roman',
-                  fontSize: 15,
-                  color: const Color(0xff0a0606),
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(274.5, 552.0),
-            child: SizedBox(
-              width: 78.0,
-              height: 21.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 78.5, 21.0),
-                    size: Size(78.5, 21.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        color: const Color(0xfff13535),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xfff13535)),
                       ),
-                    ),
+                    ],
                   ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(1.1, 2.2, 67.4, 9.9),
-                    size: Size(78.5, 21.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    fixedHeight: true,
-                    child: SingleChildScrollView(
-                        child: Text(
-                          ' 2 Weeks',
-                          style: TextStyle(
-                            fontFamily: 'Verdana',
-                            fontSize: 12,
-                            color: const Color(0xffffffff),
-                          ),
-                          textAlign: TextAlign.center,
-                        )),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(50.0, 1101.0),
-            child: SizedBox(
-              width: 75.0,
-              height: 75.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
-                    size: Size(75.0, 75.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Stack(
-                      children: <Widget>[
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
-                          size: Size(75.0, 75.0),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child: Stack(
-                            children: <Widget>[
-                              Pinned.fromSize(
-                                bounds: Rect.fromLTWH(0.0, 0.0, 75.0, 75.0),
-                                size: Size(75.0, 75.0),
-                                pinLeft: true,
-                                pinRight: true,
-                                pinTop: true,
-                                pinBottom: true,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.elliptical(9999.0, 9999.0)),
-                                    color: const Color(0xefe4dcdc),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: const Color(0x29000000),
-                                        offset: Offset(0, 10),
-                                        blurRadius: 10,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(17.0, 13.7, 41.3, 41.3),
-                    size: Size(75.0, 75.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    fixedHeight: true,
-                    child:
-                    // Adobe XD layer: 'ic_local_dining_24px' (shape)
-                    SvgPicture.string(
-                      _svg_fgksyb,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(0.0, 1365.0),
-            child: Container(
-              width: 375.0,
-              height: 57.0,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment(0.0, -1.0),
-                  end: Alignment(0.0, 4.84),
-                  colors: [const Color(0xefffffff), const Color(0xff7b7b7b)],
-                  stops: [0.0, 1.0],
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0x29000000),
-                    offset: Offset(10, 3),
-                    blurRadius: 10,
-                  ),
-                ],
-              ),
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(90.0, 1369.2),
-            child: SizedBox(
-              width: 51.0,
-              height: 51.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
-                    size: Size(50.8, 50.8),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Stack(
-                      children: <Widget>[
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
-                          size: Size(50.8, 50.8),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                  Radius.elliptical(9999.0, 9999.0)),
-                              color: const Color(0xffffd64d),
-                            ),
+        ),
+        Transform.translate(
+          offset: Offset(14.0, 1369.0),
+          child: SizedBox(
+            width: 50.0,
+            height: 51.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 50.1, 51.0),
+                  size: Size(50.1, 51.0),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Stack(
+                    children: <Widget>[
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(0.0, 0.0, 50.1, 51.0),
+                        size: Size(50.1, 51.0),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                                Radius.elliptical(9999.0, 9999.0)),
+                            color: const Color(0xffffd64d),
                           ),
                         ),
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(11.3, 12.1, 28.5, 28.5),
-                          size: Size(50.8, 50.8),
-                          fixedWidth: true,
-                          fixedHeight: true,
-                          child: Stack(
-                            children: <Widget>[
-                              Pinned.fromSize(
-                                bounds: Rect.fromLTWH(0.0, 0.0, 28.5, 28.5),
-                                size: Size(28.5, 28.5),
-                                pinLeft: true,
-                                pinRight: true,
-                                pinTop: true,
-                                pinBottom: true,
-                                child:
-                                // Adobe XD layer: 'ic_settings_24px' (shape)
-                                SvgPicture.string(
-                                  _svg_alkmwu,
-                                  allowDrawingOutsideViewBox: true,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(9.4, 8.9, 32.9, 31.9),
+                  size: Size(50.1, 51.0),
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Stack(
+                    children: <Widget>[
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(0.0, 0.0, 32.9, 31.9),
+                        size: Size(32.9, 31.9),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child:
+                            // Adobe XD layer: 'ic_person_24px' (shape)
+                            SvgPicture.string(
+                          _svg_glj5jl,
+                          allowDrawingOutsideViewBox: true,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(14.0, 1369.0),
-            child: SizedBox(
-              width: 50.0,
-              height: 51.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 50.1, 51.0),
-                    size: Size(50.1, 51.0),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Stack(
-                      children: <Widget>[
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(0.0, 0.0, 50.1, 51.0),
-                          size: Size(50.1, 51.0),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                  Radius.elliptical(9999.0, 9999.0)),
-                              color: const Color(0xffffd64d),
-                            ),
+        ),
+        Transform.translate(
+          offset: Offset(236.1, 1369.2),
+          child: SizedBox(
+            width: 51.0,
+            height: 51.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
+                  size: Size(50.8, 50.8),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Stack(
+                    children: <Widget>[
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
+                        size: Size(50.8, 50.8),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                                Radius.elliptical(9999.0, 9999.0)),
+                            color: const Color(0xffffd64d),
                           ),
                         ),
-                      ],
+                      ),
+                    ],
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(11.9, 8.8, 26.0, 33.0),
+                  size: Size(50.8, 50.8),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child:
+                      // Adobe XD layer: 'ic_insert_drive_fil…' (shape)
+                      SvgPicture.string(
+                    _svg_f426zk,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(15.9, 24.8, 17.0, 1.0),
+                  size: Size(50.8, 50.8),
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(3.0),
+                      color: const Color(0xffffffff),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xffffd64d)),
                     ),
                   ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(9.4, 8.9, 32.9, 31.9),
-                    size: Size(50.1, 51.0),
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Stack(
-                      children: <Widget>[
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(0.0, 0.0, 32.9, 31.9),
-                          size: Size(32.9, 31.9),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child:
-                          // Adobe XD layer: 'ic_person_24px' (shape)
-                          SvgPicture.string(
-                            _svg_glj5jl,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ],
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(15.9, 27.8, 17.0, 1.0),
+                  size: Size(50.8, 50.8),
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(3.0),
+                      color: const Color(0xffffffff),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xffffd64d)),
                     ),
                   ),
-                ],
-              ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(15.9, 30.8, 17.0, 1.0),
+                  size: Size(50.8, 50.8),
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(3.0),
+                      color: const Color(0xffffd64d),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xffffd64d)),
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(15.9, 33.8, 17.0, 1.0),
+                  size: Size(50.8, 50.8),
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(3.0),
+                      color: const Color(0xffffd64d),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xffffd64d)),
+                    ),
+                  ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(16.6, 13.8, 6.3, 6.3),
+                  size: Size(50.8, 50.8),
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child:
+                      // Adobe XD layer: 'ic_edit_24px' (shape)
+                      SvgPicture.string(
+                    _svg_yqbn5g,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(236.1, 1369.2),
-            child: SizedBox(
-              width: 51.0,
-              height: 51.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
-                    size: Size(50.8, 50.8),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Stack(
-                      children: <Widget>[
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
-                          size: Size(50.8, 50.8),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                  Radius.elliptical(9999.0, 9999.0)),
-                              color: const Color(0xffffd64d),
-                            ),
-                          ),
-                        ),
-                      ],
+        ),
+        Transform.translate(
+          offset: Offset(310.1, 1369.2),
+          child: SizedBox(
+            width: 51.0,
+            height: 51.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
+                  size: Size(50.8, 50.8),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                      color: const Color(0xffffd64d),
                     ),
                   ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(11.9, 8.8, 26.0, 33.0),
-                    size: Size(50.8, 50.8),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child:
-                    // Adobe XD layer: 'ic_insert_drive_fil…' (shape)
-                    SvgPicture.string(
-                      _svg_f426zk,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(10.9, 23.8, 30.0, 5.0),
+                  size: Size(50.8, 50.8),
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: const Color(0xff0a0606),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xff0a0606)),
                     ),
                   ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(15.9, 24.8, 17.0, 1.0),
-                    size: Size(50.8, 50.8),
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(3.0),
-                        color: const Color(0xffffffff),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xffffd64d)),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(15.9, 27.8, 17.0, 1.0),
-                    size: Size(50.8, 50.8),
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(3.0),
-                        color: const Color(0xffffffff),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xffffd64d)),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(15.9, 30.8, 17.0, 1.0),
-                    size: Size(50.8, 50.8),
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(3.0),
-                        color: const Color(0xffffd64d),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xffffd64d)),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(15.9, 33.8, 17.0, 1.0),
-                    size: Size(50.8, 50.8),
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(3.0),
-                        color: const Color(0xffffd64d),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0xffffd64d)),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(16.6, 13.8, 6.3, 6.3),
-                    size: Size(50.8, 50.8),
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child:
-                    // Adobe XD layer: 'ic_edit_24px' (shape)
-                    SvgPicture.string(
-                      _svg_yqbn5g,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(310.1, 1369.2),
-            child: SizedBox(
-              width: 51.0,
-              height: 51.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
-                    size: Size(50.8, 50.8),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        color: const Color(0xffffd64d),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(10.9, 23.8, 30.0, 5.0),
-                    size: Size(50.8, 50.8),
-                    fixedWidth: true,
-                    fixedHeight: true,
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(10.9, 23.8, 30.0, 5.0),
+                  size: Size(50.8, 50.8),
+                  fixedWidth: true,
+                  fixedHeight: true,
+                  child: Transform.rotate(
+                    angle: 1.5708,
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.0),
@@ -3174,92 +3182,74 @@ import 'package:flutter_svg/flutter_svg.dart';
                       ),
                     ),
                   ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(10.9, 23.8, 30.0, 5.0),
-                    size: Size(50.8, 50.8),
-                    fixedWidth: true,
-                    fixedHeight: true,
-                    child: Transform.rotate(
-                      angle: 1.5708,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.0),
-                          color: const Color(0xff0a0606),
-                          border: Border.all(
-                              width: 1.0, color: const Color(0xff0a0606)),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(162.1, 1368.2),
-            child: SizedBox(
-              width: 51.0,
-              height: 51.0,
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
-                    size: Size(50.8, 50.8),
-                    pinLeft: true,
-                    pinRight: true,
-                    pinTop: true,
-                    pinBottom: true,
-                    child: Stack(
-                      children: <Widget>[
-                        Pinned.fromSize(
-                          bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
-                          size: Size(50.8, 50.8),
-                          pinLeft: true,
-                          pinRight: true,
-                          pinTop: true,
-                          pinBottom: true,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                  Radius.elliptical(9999.0, 9999.0)),
-                              color: const Color(0xffffd64d),
-                            ),
+        ),
+        Transform.translate(
+          offset: Offset(162.1, 1368.2),
+          child: SizedBox(
+            width: 51.0,
+            height: 51.0,
+            child: Stack(
+              children: <Widget>[
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
+                  size: Size(50.8, 50.8),
+                  pinLeft: true,
+                  pinRight: true,
+                  pinTop: true,
+                  pinBottom: true,
+                  child: Stack(
+                    children: <Widget>[
+                      Pinned.fromSize(
+                        bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
+                        size: Size(50.8, 50.8),
+                        pinLeft: true,
+                        pinRight: true,
+                        pinTop: true,
+                        pinBottom: true,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                                Radius.elliptical(9999.0, 9999.0)),
+                            color: const Color(0xffffd64d),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  Pinned.fromSize(
-                    bounds: Rect.fromLTWH(8.6, 9.8, 33.3, 28.3),
-                    size: Size(50.8, 50.8),
-                    pinLeft: true,
-                    pinRight: true,
-                    fixedHeight: true,
-                    child:
-                    // Adobe XD layer: 'ic_home_24px' (shape)
-                    SvgPicture.string(
-                      _svg_jtcmlr,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
+                ),
+                Pinned.fromSize(
+                  bounds: Rect.fromLTWH(8.6, 9.8, 33.3, 28.3),
+                  size: Size(50.8, 50.8),
+                  pinLeft: true,
+                  pinRight: true,
+                  fixedHeight: true,
+                  child:
+                      // Adobe XD layer: 'ic_home_24px' (shape)
+                      SvgPicture.string(
+                    _svg_jtcmlr,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(18.0, 1373.3),
-            child: SvgPicture.string(
-              _svg_4g8cc3,
-              allowDrawingOutsideViewBox: true,
-            ),
+        ),
+        Transform.translate(
+          offset: Offset(18.0, 1373.3),
+          child: SvgPicture.string(
+            _svg_4g8cc3,
+            allowDrawingOutsideViewBox: true,
           ),
-        ],
-      );
-    }
-
+        ),
+      ],
+    );
   }
-
+}
 
 const String _svg_hwnc8n =
     '<svg viewBox="8.0 21.0 23.8 4.9" ><path transform="translate(8.0, 21.0)" d="M 2.443168163299561 0 L 21.39618682861328 0 C 22.74551200866699 0 23.83935546875 1.093843698501587 23.83935546875 2.443168163299561 C 23.83935546875 3.792492389678955 22.74551200866699 4.886336326599121 21.39618682861328 4.886336326599121 L 2.443168163299561 4.886336326599121 C 1.093843698501587 4.886336326599121 0 3.792492389678955 0 2.443168163299561 C 0 1.093843698501587 1.093843698501587 0 2.443168163299561 0 Z" fill="#5b5a5a" stroke="#5b5a5a" stroke-width="1" stroke-miterlimit="4" stroke-linecap="butt" /></svg>';

@@ -41,7 +41,7 @@ class ApiProvider {
 
         if (lang != null) options.headers["lang"] = lang;
 
-        options.contentType = 'form-data';
+        options.contentType = Headers.formUrlEncodedContentType; //'form-data';
 
         print('options ${options.contentType}');
         return options;
@@ -50,19 +50,19 @@ class ApiProvider {
       }, onError: (DioError error) async {
         print('error calling dio method');
 
-        // if (error.response.statusCode == 404) {
-        //   print(error.response.data.toString());
-        //   return error.response;
-        // }
+        if (error.response.statusCode == 404) {
+          print(error.response.data.toString());
+          return error.response;
+        }
 
         throw Exception(error.toString());
       }));
       String apiURLPost = _baseUrl + url;
       String apiURLget;
-       if (id != null) {
-         apiURLget = _baseUrl + url + '?user_id=' + id;
-         print(apiURLget);
-       }
+      if (id != null) {
+        apiURLget = _baseUrl + url + '?user_id=' + id;
+        print(apiURLget);
+      }
 
       print(apiURLPost);
 
@@ -73,13 +73,13 @@ class ApiProvider {
           if (queryParameters != null) {
             queryParamsTemp = queryParameters;
             queryParamsTemp["user_id"] = id;
-
           } else {
             queryParamsTemp = Map<String, dynamic>();
             queryParamsTemp["user_id"] = id;
           }
           print("queryParamsTemp $queryParamsTemp");
-          response = await _dio.get(apiURLget, queryParameters: queryParamsTemp);
+          response =
+              await _dio.get(apiURLget, queryParameters: queryParamsTemp);
 
           return response.data;
         case HttpMethod.POST:
@@ -103,17 +103,13 @@ class ApiProvider {
     }
   }
 
-
-
   Future<dynamic> fetchDataSub(
       {@required HttpMethod method,
-        @required String url,
-        Map<String, dynamic> queryParameters,
-
-        Map<String, dynamic> bodyData,
-
-        CancelToken cancelToken,
-        @required  String catId}) async {
+      @required String url,
+      Map<String, dynamic> queryParameters,
+      Map<String, dynamic> bodyData,
+      CancelToken cancelToken,
+      @required String catId}) async {
     try {
       var preferences = await SharedPreferences.getInstance();
       String token = preferences.getString('token');
@@ -145,10 +141,10 @@ class ApiProvider {
 
         throw Exception(error.toString());
       }));
-      String apiURLPost = _baseUrl + url ;
+      String apiURLPost = _baseUrl + url;
       String apiURLget;
       if (id != null) {
-        apiURLget = _baseUrl + url + '?user_id=' + id +'&category_id=' +catId ;
+        apiURLget = _baseUrl + url + '?user_id=' + id + '&category_id=' + catId;
         print(apiURLget);
       }
       Response response;
@@ -187,5 +183,4 @@ class ApiProvider {
       throw FetchDataException(exception.toString());
     }
   }
-
 }

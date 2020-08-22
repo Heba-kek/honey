@@ -3,12 +3,11 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:honey/XD.dart';
-import 'package:honey/expLexx.dart';
+
 import 'package:honey/presentation/page/AppLocalizations.dart';
 import 'package:honey/presentation/page/ExpensivePage.dart';
 import 'package:honey/presentation/page/LocalHelper.dart';
 import 'package:honey/presentation/page/Medicine/AddMedicineScreen.dart';
-import 'package:honey/presentation/page/Medicine/MedicineAppointment.dart';
 import 'package:honey/presentation/page/Revenue/revenuePage.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -46,7 +45,6 @@ class HomeScreen extends StatefulWidget {
         ImageIcon(AssetImage('assets/images/home.png'))),
     new DrawerItem(AppLocalizations().lbEx,
         ImageIcon(AssetImage('assets/images/meet.png'))),
-
     new DrawerItem(AppLocalizations().lbMediName,
         ImageIcon(AssetImage('assets/images/meet.png'))),
     new DrawerItem(AppLocalizations().lbRev,
@@ -57,7 +55,6 @@ class HomeScreen extends StatefulWidget {
         ImageIcon(AssetImage('assets/images/home.png'))),
     new DrawerItem(AppLocalizations().lbExAR,
         ImageIcon(AssetImage('assets/images/notes.png'))),
-
     new DrawerItem(AppLocalizations().lbMediName,
         ImageIcon(AssetImage('assets/images/meet.png'))),
     new DrawerItem(AppLocalizations().lbRevAR,
@@ -146,7 +143,7 @@ class HomeFragment extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
-    one =  XD();
+    one = XD();
     pages = new List<Widget>();
 
     pages = [one];
@@ -172,11 +169,11 @@ class HomeFragment extends State<HomeScreen>
       case 0:
         return new Directionality(
             textDirection:
-            langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-            child:  XD());
+                langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+            child: XD());
       case 3:
 
-      /*  return new Directionality(
+        /*  return new Directionality(
             textDirection:
             langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
             child: FlatButton(
@@ -186,25 +183,21 @@ class HomeFragment extends State<HomeScreen>
                 },
                 child: Text("Med app")));*/
 
-print('rev');
+        print('rev');
 
         return new Directionality(
             textDirection:
-            langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-            child:  revenuePage());
+                langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+            child: revenuePage());
 
       case 1:
         return new Directionality(
             textDirection:
-            langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
             child: expensivePage());
 
       case 2:
-
-
         return AddMedicineScreen();
-
-
 
       default:
         return new Text("Error");
@@ -264,10 +257,7 @@ print('rev');
         ),
         backgroundColor: Colors.white,
       ),
-
-      body:  _getDrawerItemWidget(_selectedDrawerIndex),
-
-
+      body: _getDrawerItemWidget(_selectedDrawerIndex),
     );
   }
 }

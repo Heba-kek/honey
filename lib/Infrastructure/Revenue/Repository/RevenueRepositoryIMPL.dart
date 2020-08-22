@@ -12,11 +12,11 @@ import 'package:honey/Infrastructure/Revenue/Models/RevenueReportModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueSubCategoryReportModel.dart';
 
 class RevenueRepositoryIMPL extends RevenueRepository {
-  final RevenueRemoteDataSource remoteDataSource ;
-  final RevenueLocalDataSource localDataSource ;
-  final NetworkInfo networkInfo ;
-  RevenueRepositoryIMPL(this.remoteDataSource, this.networkInfo,
-      this.localDataSource);
+  final RevenueRemoteDataSource remoteDataSource;
+  final RevenueLocalDataSource localDataSource;
+  final NetworkInfo networkInfo;
+  RevenueRepositoryIMPL(
+      this.remoteDataSource, this.networkInfo, this.localDataSource);
   Future<BasicSuccessModel> addRevenue(Map<String, dynamic> data) async {
     if (await networkInfo.isConnected) {
       BasicSuccessModel model = await remoteDataSource.addRevenue(data);
@@ -32,12 +32,16 @@ class RevenueRepositoryIMPL extends RevenueRepository {
     if (await networkInfo.isConnected) {
       var cachedRevenues = await localDataSource.getCachedAddRevenue();
 
-      for (var cachedRevenue in cachedRevenues) {
-        await remoteDataSource.addRevenue(cachedRevenue);
+      if (cachedRevenues != null) {
+        print("sending all cached revenue to server");
+        for (var cachedRevenue in cachedRevenues) {
+          await remoteDataSource.addRevenue(cachedRevenue);
+        }
+
+        localDataSource.clearCachedbyKey(localDataSource.getRevenuesKey);
       }
 
-      localDataSource.clearCachedbyKey(localDataSource.getRevenuesKey);
-
+      print("Calling remote get revenue");
       RevenueModel model = await remoteDataSource.getRevenues();
       if (model.code == "1") {
         localDataSource.cacheRevenues(model);
@@ -54,28 +58,36 @@ class RevenueRepositoryIMPL extends RevenueRepository {
       var cachedCategories =
           await localDataSource.getCachedAddRevenueCategory();
 
-      for (var cachedCategory in cachedCategories) {
-        await remoteDataSource.addRevenueCategory(cachedCategory);
-      }
+      if (cachedCategories != null) {
+        for (var cachedCategory in cachedCategories) {
+          await remoteDataSource.addRevenueCategory(cachedCategory);
+        }
 
-      localDataSource.clearCachedbyKey(localDataSource.getRevenueCategoriesKey);
+        localDataSource
+            .clearCachedbyKey(localDataSource.getRevenueCategoriesKey);
+      }
 
       //get cached sub categories and send them to server
       var cachedSubCategories = await localDataSource.getCachedAddSubCategory();
 
-      for (var cachedsubCategory in cachedSubCategories) {
-        await remoteDataSource.addSubCategory(cachedsubCategory);
+      if (cachedSubCategories != null) {
+        for (var cachedsubCategory in cachedSubCategories) {
+          await remoteDataSource.addSubCategory(cachedsubCategory);
+        }
+
+        localDataSource.clearCachedbyKey(localDataSource.addSubCategoryKey);
       }
 
-      localDataSource.clearCachedbyKey(localDataSource.addSubCategoryKey);
-
+      print("calling remote get revenue categories");
       RevenueCategoryModel model =
           await remoteDataSource.getRevenueCategories();
       if (model.code == "1") {
         localDataSource.cacheRevenueCategories(model);
+        print("Cached revenue categories successfully");
       }
       return model;
     } else {
+      print("get local revenue category");
       return localDataSource.getRevenueCategories();
     }
   }
