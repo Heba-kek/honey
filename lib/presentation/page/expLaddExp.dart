@@ -23,6 +23,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
 class expLaddExp extends StatefulWidget {
+  final String isexp;
+  expLaddExp(this.isexp);
   @override
   _expLaddExp createState() => new _expLaddExp();
 }
@@ -104,9 +106,8 @@ class _expLaddExp extends State<expLaddExp> {
         child: Stack(
           children: <Widget>[
             icList == null
-                ? Expanded(child: Container())
-                : Expanded(
-                    child: Container(
+                ?  Container()
+                :  Container(
                       child: Scaffold(
                         body: Container(
                           child: Stack(
@@ -180,6 +181,7 @@ class _expLaddExp extends State<expLaddExp> {
                                                               ),
                                                             ),
                                                             new Spacer(),
+                                                            widget.isexp=='1'?
                                                             Text(
                                                               'المصاريف',
                                                               style: TextStyle(
@@ -204,6 +206,31 @@ class _expLaddExp extends State<expLaddExp> {
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
+                                                            ):
+                                                            Text(
+                                                              'الايرادات',
+                                                              style: TextStyle(
+                                                                fontFamily:
+                                                                'Times New Roman',
+                                                                fontSize: 24,
+                                                                color: const Color(
+                                                                    0xff0a0606),
+                                                                shadows: [
+                                                                  Shadow(
+                                                                    color: const Color(
+                                                                        0x29000000),
+                                                                    offset:
+                                                                    Offset(
+                                                                        0,
+                                                                        10),
+                                                                    blurRadius:
+                                                                    6,
+                                                                  )
+                                                                ],
+                                                              ),
+                                                              textAlign:
+                                                              TextAlign
+                                                                  .center,
                                                             ),
                                                             SizedBox(
                                                               width: 63.0,
@@ -939,7 +966,7 @@ class _expLaddExp extends State<expLaddExp> {
                       ),
                       height: MediaQuery.of(context).size.height,
                     ),
-                  )
+
           ],
         ),
       );

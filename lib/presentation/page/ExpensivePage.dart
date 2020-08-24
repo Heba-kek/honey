@@ -155,8 +155,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
           children: <Widget>[
             expList == null
                 ? Container()
-                : Expanded(
-                    child: Container(
+                : Container(
                       width: MediaQuery.of(context).size.width,
                       //  height: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
@@ -502,7 +501,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                       Navigator.of(context).push(
                                         PageRouteBuilder(
                                           pageBuilder: (_, __, ___) =>
-                                              expLaddExp(),
+                                              expLaddExp('1'),
                                         ),
                                       );
                                     },
@@ -664,7 +663,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                               pageBuilder: (_, __, ___) =>
                                                   expensiveSubCatPage(expList[index].category_id,
                                                   expList[index].category_Name,
-                                                  expList[index].icon),
+                                                  expList[index].icon,'1'),
                                             ),
                                           );
                                         },
@@ -752,7 +751,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                         ],
                       ),
                     ),
-                  )
+
           ],
         ),
       );
@@ -761,8 +760,8 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
 
   Widget showDialogwindowDelete(String catid) {
     return AlertDialog(
-      title: Text('Delete Revenue'),
-      content: Text('Are you confirm delete this revenue ?'),
+      title: Text('Delete category'),
+      content: Text('Are you confirm delete this category ?'),
       actions: <Widget>[
         // usually buttons at the bottoReminiderItemDatem of the dialog
         OutlineButton(
@@ -967,8 +966,7 @@ class _MyDialogEdit extends State<MyDialogEdit> {
         //show error with retry
       }
 
-      return Expanded(
-        child: SingleChildScrollView(
+      return SingleChildScrollView(
           child: Container(
             width: 500,
             child: Form(
@@ -1178,8 +1176,8 @@ class _MyDialogEdit extends State<MyDialogEdit> {
               ),
             ),
           ),
-        ),
-      );
+        )
+      ;
     });
   }
 

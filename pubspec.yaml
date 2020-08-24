@@ -43,7 +43,7 @@ dependencies:
   progress_dialog:
   http:
   toast:
-  flutter_svg: ^0.18.1
+  flutter_svg:
 
 
 

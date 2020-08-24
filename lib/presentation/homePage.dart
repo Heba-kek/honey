@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:honey/XD.dart';
 
 import 'package:honey/presentation/page/AppLocalizations.dart';
 import 'package:honey/presentation/page/ExpensivePage.dart';
 import 'package:honey/presentation/page/LocalHelper.dart';
 import 'package:honey/presentation/page/Medicine/AddMedicineScreen.dart';
 import 'package:honey/presentation/page/Revenue/revenuePage.dart';
+import 'package:honey/presentation/page/mainactivity.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -143,7 +143,7 @@ class HomeFragment extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
-    one = XD();
+    one = mainActivity();
     pages = new List<Widget>();
 
     pages = [one];
@@ -170,7 +170,7 @@ class HomeFragment extends State<HomeScreen>
         return new Directionality(
             textDirection:
                 langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-            child: XD());
+            child: mainActivity());
       case 3:
 
         /*  return new Directionality(

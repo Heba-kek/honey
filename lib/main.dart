@@ -63,17 +63,13 @@ class _MyHomePageState extends State<MyHomePage>
     String token = preferences.getString('token');
     if (token != null) {
       //  Navigator.of(context).pushReplacementNamed(HOME_SCREEN);
-      Navigator.of(context).push(
-        PageRouteBuilder(
-          pageBuilder: (_, __, ___) => HomeScreen(),
-        ),
-      );
+
+      Route route = MaterialPageRoute(builder: (context) => HomeScreen());
+      Navigator.pushReplacement(context, route);
     } else {
-      Navigator.of(context).pushReplacement(
-        PageRouteBuilder(
-          pageBuilder: (_, __, ___) => Login(),
-        ),
-      );
+
+      Route route = MaterialPageRoute(builder: (context) => Login());
+      Navigator.pushReplacement(context, route);
     }
   }
 

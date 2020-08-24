@@ -6,16 +6,23 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:honey/Infrastructure/Expensive/DataSources/AuthRemoteDataSource.dart';
 import 'package:honey/Infrastructure/Expensive/GeneralResponse.dart';
+import 'package:honey/Infrastructure/Expensive/Repository/IconRepositoryImpl.dart';
 import 'package:honey/Infrastructure/Revenue/DataSource/RevenueLocalDataSource.dart';
 import 'package:honey/Infrastructure/Revenue/DataSource/RevenueRemoteDataSource.dart';
 import 'package:honey/Infrastructure/Revenue/Repository/RevenueRepositoryIMPL.dart';
+import 'package:honey/application/Auth/CateBloc.dart';
+import 'package:honey/application/Auth/Iconstate.dart';
+import 'package:honey/application/Auth/categoryEvent.dart';
 
 import 'package:honey/application/Revenue/RevenueBloc.dart';
 import 'package:honey/application/Revenue/RevenueEvent.dart';
 import 'package:honey/application/Revenue/RevenueState.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueCategoryEntity.dart';
+import 'package:honey/domain/Auth/Entities/iconEntity.dart';
 import 'package:honey/presentation/page/AppLocalizations.dart';
+import 'package:honey/presentation/page/expLaddExp.dart';
 import 'package:honey/presentation/page/subCategoryExpenPage.dart';
 import 'package:http/http.dart' as http;
 
@@ -141,32 +148,8 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
         child: Stack(
           children: <Widget>[
             expList == null
-                ? Container(
-                    child: Center(
-                    child: Padding(
-                        padding: EdgeInsets.fromLTRB(0, 20, 10, 0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            new RaisedButton(
-                              padding: EdgeInsets.fromLTRB(100, 10, 100, 10),
-                              disabledColor: Colors.yellow,
-                              onPressed: () {
-                                context
-                                    .bloc<RevenueBloc>()
-                                    .add(GetRevenueCategoryEvent());
-                              },
-                              child: new Text(
-                                AppLocalizations().title,
-                                style: TextStyle(
-                                    fontSize: 10, color: Colors.black),
-                              ),
-                            ),
-                          ],
-                        )),
-                  ))
-                : Expanded(
-                    child: Container(
+                ? Container()
+                :  Container(
                       width: MediaQuery.of(context).size.width,
                       //  height: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
@@ -235,6 +218,23 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
                                                 ),
                                               ),
                                               new Spacer(),
+                                          Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                10, 0, 10, 0),child:Text('الايرادات',   style: TextStyle(
+                                            fontFamily: 'Pristina',
+                                            fontSize: 25,
+                                            color: const Color(
+                                                0xff0a0606),
+                                            shadows: [
+                                              Shadow(
+                                                color: const Color(
+                                                    0x29000000),
+                                                offset: Offset(3, 10),
+                                                blurRadius: 6,
+                                              )
+                                            ],
+                                          ),),),
+
                                               SizedBox(
                                                 width: 63.0,
                                                 height: 63.0,
@@ -509,12 +509,12 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
                                       ),
                                     ),
                                     onTap: () {
-                                      /* Navigator.of(context).push(
+                                       Navigator.of(context).push(
                                   PageRouteBuilder(
                                     pageBuilder: (_, __, ___) =>
-                                        expLaddExp(),
+                                        expLaddExp('2'),
                                   ),
-                                );*/
+                                );
                                     },
                                   )
                                 ],
@@ -644,7 +644,7 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
                                                                       });
                                                                 } else if (value ==
                                                                     3) {
-                                                                  /*  showDialog(
+                                                                    showDialog(
                                                                 context:
                                                                 context,
                                                                 builder:
@@ -656,7 +656,7 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
                                                                       this,
                                                                       id,
                                                                       expList[index].icon);
-                                                                });*/
+                                                                });
                                                                 }
                                                               },
                                                             ))
@@ -673,10 +673,12 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
                                             PageRouteBuilder(
                                               pageBuilder: (_, __, ___) =>
                                                   expensiveSubCatPage(
+
                                                       expList[index].categoryId,
                                                       expList[index]
                                                           .categoryName,
-                                                      expList[index].icon),
+                                                      expList[index].icon,
+                                                  '2'),
                                             ),
                                           );
                                         },
@@ -764,7 +766,7 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
                         ],
                       ),
                     ),
-                  )
+
           ],
         ),
       );
@@ -773,8 +775,8 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
 
   Widget showDialogwindowDelete(String catid) {
     return AlertDialog(
-      title: Text('Delete Revenue'),
-      content: Text('Are you confirm delete this revenue ?'),
+      title: Text('Delete category '),
+      content: Text('Are you confirm delete this category ?'),
       actions: <Widget>[
         // usually buttons at the bottoReminiderItemDatem of the dialog
         OutlineButton(
@@ -929,8 +931,8 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
   }
 }
 
-/*class MyDialogEdit extends StatefulWidget {
-  _expensivePage bankA;
+class MyDialogEdit extends StatefulWidget {
+  _revenuePage bankA;
   String catId, catname;
   String id;
   String url;
@@ -979,8 +981,7 @@ class _MyDialogEdit extends State<MyDialogEdit> {
         //show error with retry
       }
 
-      return Expanded(
-        child: SingleChildScrollView(
+      return  SingleChildScrollView(
           child: Container(
             width: 500,
             child: Form(
@@ -1130,36 +1131,7 @@ class _MyDialogEdit extends State<MyDialogEdit> {
                             alignment: Alignment.bottomRight,
                           ),
                           onTap: () {
-                            */ /*  pr.show();
 
-                        post(
-                            'http://honey-bee.life/Financial_Api/addCategoryexpenses',
-                            {
-                              "user_id": id,
-                              "name": _catName
-                                  .text,
-                              "icon":
-                              _imageFilePh,
-                              "sub_cat":
-                              sublist
-                            },
-                            tokene,
-                            'en')
-                            .then(
-                                (response) async {
-                              // jika respon normal
-
-                              setState(() {
-                                _apiCall = false;
-                                //   _response = response.parsed as String;
-                              });
-                            },
-                            // jika respon error
-                            onError: (error) {
-                              _apiCall = false;
-                              _response =
-                                  error.toString();
-                            });*/ /*
 
                             if (!_keyFormDeposit.currentState.validate()) {
                               print("Not Validate Form");
@@ -1190,8 +1162,8 @@ class _MyDialogEdit extends State<MyDialogEdit> {
               ),
             ),
           ),
-        ),
-      );
+        )
+      ;
     });
   }
 
@@ -1204,4 +1176,4 @@ class _MyDialogEdit extends State<MyDialogEdit> {
     );
   }
 
-}*/
+}

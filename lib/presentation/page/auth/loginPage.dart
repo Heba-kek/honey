@@ -115,11 +115,9 @@ class LoginActivity extends State<Login> {
             var preferences = await SharedPreferences.getInstance();
             preferences.setString('token',state.signinResponse.token);
             preferences.setString('id',state.signinResponse.data.id.toString());
-            return  Navigator.of(context).push(
-              PageRouteBuilder(
-                pageBuilder: (_, __, ___) =>  HomeScreen(),
-              ),
-            );
+
+            Route route = MaterialPageRoute(builder: (context) => HomeScreen());
+            Navigator.pushReplacement(context, route);
         }
       }},
       builder: (context, state) {

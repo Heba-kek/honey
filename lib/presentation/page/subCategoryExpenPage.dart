@@ -33,8 +33,8 @@ class expensiveSubCatPage extends StatefulWidget {
   final String catId;
   final String catMName;
   final String icon;
-
-  expensiveSubCatPage(this.catId, this.catMName, this.icon);
+  final String isexp;
+  expensiveSubCatPage(this.catId, this.catMName, this.icon,this.isexp);
 
   @override
   _expensiveSubCatPage createState() => new _expensiveSubCatPage();
@@ -153,8 +153,7 @@ class _expensiveSubCatPage extends State<expensiveSubCatPage>
           child: Stack(
             children: <Widget>[
               expListSub == null
-                  ? Expanded(
-                      child: Container(
+                  ? Container(
                         child: Scaffold(
                           body: Container(
                             child: Stack(
@@ -229,6 +228,7 @@ class _expensiveSubCatPage extends State<expensiveSubCatPage>
                                                                 ),
                                                               ),
                                                               new Spacer(),
+                                                              widget.isexp=='1'?
                                                               Text(
                                                                 'المصاريف',
                                                                 style:
@@ -254,6 +254,32 @@ class _expensiveSubCatPage extends State<expensiveSubCatPage>
                                                                 textAlign:
                                                                     TextAlign
                                                                         .center,
+                                                              ):
+                                                              Text(
+                                                                'الايرادات',
+                                                                style:
+                                                                TextStyle(
+                                                                  fontFamily:
+                                                                  'Times New Roman',
+                                                                  fontSize: 24,
+                                                                  color: const Color(
+                                                                      0xff0a0606),
+                                                                  shadows: [
+                                                                    Shadow(
+                                                                      color: const Color(
+                                                                          0x29000000),
+                                                                      offset:
+                                                                      Offset(
+                                                                          0,
+                                                                          10),
+                                                                      blurRadius:
+                                                                      6,
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                                textAlign:
+                                                                TextAlign
+                                                                    .center,
                                                               ),
                                                               SizedBox(
                                                                 width: 63.0,
@@ -790,10 +816,9 @@ class _expensiveSubCatPage extends State<expensiveSubCatPage>
                           ),
                         ),
                         height: MediaQuery.of(context).size.height,
-                      ),
-                    )
-                  : Expanded(
-                      child: Container(
+                      )
+
+                  :  Container(
                         child: Scaffold(
                           body: Container(
                             child: Stack(
@@ -1430,7 +1455,7 @@ class _expensiveSubCatPage extends State<expensiveSubCatPage>
                         ),
                         height: MediaQuery.of(context).size.height,
                       ),
-                    )
+
             ],
           ),
         );
