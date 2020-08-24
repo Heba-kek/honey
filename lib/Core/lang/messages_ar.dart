@@ -175,7 +175,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الرجاء ادخال اسم البنك"),
         "lnLoanA":
             MessageLookupByLibrary.simpleMessage("الرجاء ادخال قيمة القرض"),
-        "lbAdd": MessageLookupByLibrary.simpleMessage("إضافة"),
         "lbLoan": MessageLookupByLibrary.simpleMessage("قروض"),
         "lbDailyP": MessageLookupByLibrary.simpleMessage("يوميات المشروع"),
         "lbDateE": MessageLookupByLibrary.simpleMessage("يرجى إدخال التاريخ"),
@@ -369,5 +368,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbwhennecessary": MessageLookupByLibrary.simpleMessage("عند اللزوم"),
         "lbNumberofTimes": MessageLookupByLibrary.simpleMessage("عدد المرات"),
         "lbDay": MessageLookupByLibrary.simpleMessage("يوم"),
+        "lbConverter": MessageLookupByLibrary.simpleMessage("تحويل"),
+        "lbFreeLance": MessageLookupByLibrary.simpleMessage("اعمال حرة"),
+        "lbAdd": MessageLookupByLibrary.simpleMessage("إضافة"),
       };
 }

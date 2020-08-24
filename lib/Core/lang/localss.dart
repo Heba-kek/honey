@@ -502,6 +502,18 @@ class AppLocalizations {
   String get lbDay {
     return Intl.message("day", name: "lbDay");
   }
+
+  String get lbConverter {
+    return Intl.message("Converter", name: "lbConverter");
+  }
+
+  String get lbFreeLance {
+    return Intl.message("Freelance", name: "lbFreeLance");
+  }
+
+  String get lbAdd {
+    return Intl.message("Add", name: "lbAdd");
+  }
 //and add all the text you have inside the app that you need to make it in
 
 //arabic and english launguages

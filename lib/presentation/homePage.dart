@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:honey/Core/Helpers/Colors.dart';
 
 import 'package:honey/presentation/page/AppLocalizations.dart';
 import 'package:honey/presentation/page/ExpensivePage.dart';
 import 'package:honey/presentation/page/LocalHelper.dart';
 import 'package:honey/presentation/page/Medicine/AddMedicineScreen.dart';
 import 'package:honey/presentation/page/Revenue/revenuePage.dart';
-import 'package:honey/presentation/page/mainactivity.dart';
+import 'package:honey/presentation/page/MainActivity/mainactivity.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -78,20 +79,11 @@ class HomeFragment extends State<HomeScreen>
   var one;
   PageController pageController;
 
-  onLocaleChange(Locale locale) {
-    setState(() {
-      _specificLocalizationDelegate = new SpecificLocalizationDelegate(locale);
-    });
-  }
-
   List<Widget> pages;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   var drawerOptions = <Widget>[];
 
   Widget currentPage;
-//  StreamSubscription connectivitySubscription;
-
-//  ConnectivityResult _previousResult;
 
   Future navigationPage() async {
     var preferences = await SharedPreferences.getInstance();
@@ -138,12 +130,10 @@ class HomeFragment extends State<HomeScreen>
     }
   }
 
-  // final dateFormat = DateFormat("dd-M-yyyy");
-
   @override
   void initState() {
     super.initState();
-    one = mainActivity();
+    one = MainActivity();
     pages = new List<Widget>();
 
     pages = [one];
@@ -170,7 +160,7 @@ class HomeFragment extends State<HomeScreen>
         return new Directionality(
             textDirection:
                 langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-            child: mainActivity());
+            child: MainActivity());
       case 3:
 
         /*  return new Directionality(
@@ -211,11 +201,10 @@ class HomeFragment extends State<HomeScreen>
 
   void dispose() {
     super.dispose();
-//    connectivitySubscription.cancel();
   }
 
   var hide = true;
-
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -227,11 +216,7 @@ class HomeFragment extends State<HomeScreen>
           children: <Widget>[
             new DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.yellow,
-
-                /*  image: DecorationImage(
-                image: AssetImage("assets/images/alco.jpg"),
-                fit: BoxFit.cover)*/
+                color: CustomColors.mainYellowColor,
               ),
               child: null,
             ),
@@ -241,78 +226,94 @@ class HomeFragment extends State<HomeScreen>
       )),
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          'Honey Bee',
-          style: TextStyle(color: Colors.black),
-          textAlign: TextAlign.center,
+        title: Row(
+          children: [
+            IconButton(
+              icon: Icon(
+                Icons.language,
+                color: Colors.grey[700],
+              ),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: ImageIcon(
+                AssetImage("assets/images/bell.png"),
+                color: Colors.grey[700],
+              ),
+              onPressed: () {},
+            ),
+          ],
         ),
+        elevation: 0,
         leading: IconButton(
           icon: Icon(
             Icons.menu,
-            color: Colors.black,
+            color: Colors.grey[700],
           ),
           onPressed: () {
             _scaffoldKey.currentState.openDrawer();
           },
         ),
-        backgroundColor: Colors.white,
+        actions: [Image.asset("assets/images/honeyBeeLogo.png")],
+        backgroundColor: CustomColors.mainYellowColor,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              "assets/images/personButton.png",
+              height: 40,
+              width: 40,
+            ),
+            title: Text(''),
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              "assets/images/settingButton.png",
+              height: 40,
+              width: 40,
+            ),
+            title: Text(''),
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              "assets/images/homeButton.png",
+              height: 40,
+              width: 40,
+            ),
+            title: Text(''),
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              "assets/images/reportButton.png",
+              height: 40,
+              width: 40,
+            ),
+            title: Text(''),
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              "assets/images/addButton.png",
+              height: 40,
+              width: 40,
+            ),
+            title: Text(''),
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        elevation: 15,
+        backgroundColor: CustomColors.bottomNavigationColor,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: CustomColors.mainYellowColor,
       ),
       body: _getDrawerItemWidget(_selectedDrawerIndex),
     );
   }
-}
 
-Widget build(BuildContext context) {
-  return LayoutBuilder(
-    builder: (BuildContext context, BoxConstraints viewportConstraints) {
-      return SingleChildScrollView(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minHeight: viewportConstraints.maxHeight,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Container(
-                // A fixed-height child.
-                color: const Color(0xff808000), // Yellow
-                height: 120.0,
-              ),
-              Container(
-                // Another fixed-height child.
-                color: const Color(0xff008000), // Green
-                height: 120.0,
-              ),
-            ],
-          ),
-        ),
-      );
-    },
-  );
-}
-
-builder(int index) {
-  return new AnimatedBuilder(
-    animation: controller,
-    builder: (context, child) {
-      double value = 1.0;
-      if (controller.position.haveDimensions) {
-        value = controller.page - index;
-        value = (1 - (value.abs() * .5)).clamp(0.0, 1.0);
-      }
-
-      return new Center(
-        child: new SizedBox(
-          height: Curves.easeOut.transform(value) * 300,
-          width: Curves.easeOut.transform(value) * 250,
-          child: child,
-        ),
-      );
-    },
-    child: new Container(
-      margin: const EdgeInsets.all(8.0),
-      color: index % 2 == 0 ? Colors.blue : Colors.red,
-    ),
-  );
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 }
