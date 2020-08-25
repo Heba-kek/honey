@@ -514,6 +514,15 @@ class AppLocalizations {
   String get lbAdd {
     return Intl.message("Add", name: "lbAdd");
   }
+
+  String get lbAddAppointment {
+    return Intl.message("Add appointment", name: "lbAddAppointment");
+  }
+
+  String get lbAddTask {
+    return Intl.message("Add Task", name: "lbAddTask");
+  }
+
 //and add all the text you have inside the app that you need to make it in
 
 //arabic and english launguages

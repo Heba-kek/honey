@@ -394,5 +394,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbDay": MessageLookupByLibrary.simpleMessage("Day"),
         "lbConverter": MessageLookupByLibrary.simpleMessage("Converter"),
         "lbFreeLance": MessageLookupByLibrary.simpleMessage("Freelance"),
+        "lbAddAppointment":
+            MessageLookupByLibrary.simpleMessage("Add appointment"),
+        "lbAddTask": MessageLookupByLibrary.simpleMessage("Add Task"),
       };
 }

@@ -44,7 +44,7 @@ dependencies:
   http:
   toast:
   flutter_svg:
-
+  table_calendar: ^2.2.3
 
 
 dev_dependencies:

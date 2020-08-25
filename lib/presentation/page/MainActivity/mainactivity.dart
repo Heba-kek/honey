@@ -3,6 +3,7 @@ import 'package:adobe_xd/pinned.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:honey/Core/Helpers/Colors.dart';
 import 'package:honey/Core/Helpers/SizeConfig.dart';
+import 'package:honey/presentation/page/MainActivity/Components/Calendar.dart';
 import 'package:honey/presentation/page/MainActivity/Components/FreeLanceProject.dart';
 import 'package:honey/presentation/page/MainActivity/Components/HoneyBeeTopTitles.dart';
 import 'package:honey/presentation/page/MainActivity/Components/MiddleActiones.dart';
@@ -52,6 +53,7 @@ class _MainActivityState extends State<MainActivity> {
                     ),
                   ),
                   MiddleActions(),
+                  Calendar(),
                 ],
               )),
         ),

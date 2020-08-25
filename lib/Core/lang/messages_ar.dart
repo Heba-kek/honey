@@ -371,5 +371,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbConverter": MessageLookupByLibrary.simpleMessage("تحويل"),
         "lbFreeLance": MessageLookupByLibrary.simpleMessage("اعمال حرة"),
         "lbAdd": MessageLookupByLibrary.simpleMessage("إضافة"),
+        "lbAddAppointment": MessageLookupByLibrary.simpleMessage("إضافة موعد"),
+        "lbAddTask": MessageLookupByLibrary.simpleMessage("انشاء مهمة"),
       };
 }
