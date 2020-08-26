@@ -397,5 +397,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbAddAppointment":
             MessageLookupByLibrary.simpleMessage("Add appointment"),
         "lbAddTask": MessageLookupByLibrary.simpleMessage("Add Task"),
+        "lbHoppiesHealth":
+            MessageLookupByLibrary.simpleMessage("Manage hoppies and health"),
+        "lbSport": MessageLookupByLibrary.simpleMessage("Sport"),
+        "lbMeals": MessageLookupByLibrary.simpleMessage("Meals"),
+        "lbReading": MessageLookupByLibrary.simpleMessage("Reading"),
+        "lbSmoke": MessageLookupByLibrary.simpleMessage("Smoke"),
       };
 }

@@ -6,7 +6,9 @@ import 'package:honey/Core/Helpers/SizeConfig.dart';
 import 'package:honey/presentation/page/MainActivity/Components/Calendar.dart';
 import 'package:honey/presentation/page/MainActivity/Components/FreeLanceProject.dart';
 import 'package:honey/presentation/page/MainActivity/Components/HoneyBeeTopTitles.dart';
+import 'package:honey/presentation/page/MainActivity/Components/LifeStyle.dart';
 import 'package:honey/presentation/page/MainActivity/Components/MiddleActiones.dart';
+import 'package:honey/presentation/page/MainActivity/Components/Reminders.dart';
 import 'package:honey/presentation/page/MainActivity/Components/RevenueExpensesComponent.dart';
 
 class MainActivity extends StatefulWidget {
@@ -54,6 +56,8 @@ class _MainActivityState extends State<MainActivity> {
                   ),
                   MiddleActions(),
                   Calendar(),
+                  Reminders(),
+                  LifeStyleWidget(),
                 ],
               )),
         ),

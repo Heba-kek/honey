@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:honey/presentation/page/AppLocalizations.dart';
+import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/presentation/page/LocalHelper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

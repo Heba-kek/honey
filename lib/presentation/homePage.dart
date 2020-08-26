@@ -3,8 +3,9 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:honey/Core/Helpers/Colors.dart';
-
-import 'package:honey/presentation/page/AppLocalizations.dart';
+import 'package:honey/Core/lang/localss.dart';
+import 'package:honey/presentation/Common/CustomDialog.dart';
+import 'package:honey/presentation/Common/SelectedOptions.dart';
 import 'package:honey/presentation/page/ExpensivePage.dart';
 import 'package:honey/presentation/page/LocalHelper.dart';
 import 'package:honey/presentation/page/Medicine/AddMedicineScreen.dart';
@@ -26,21 +27,6 @@ PageController controller;
 int currentpage = 0;
 
 class HomeScreen extends StatefulWidget {
-  // final TargetService model;
-  SpecificLocalizationDelegate _specificLocalizationDelegate;
-  static String lang1;
-
-// final noteSetvices memryServices;
-  // final MemorySetvices memryServices;
-  Future<Widget> setdrawer() async {
-    var preferences = await SharedPreferences.getInstance();
-
-// Save a value
-    String lang1 = preferences.getString('lang');
-    if (lang1 == 'ar') {
-    } else {}
-  }
-
   final drawerItemEn = [
     new DrawerItem(AppLocalizations().lbHomeEN,
         ImageIcon(AssetImage('assets/images/home.png'))),
@@ -75,6 +61,7 @@ class HomeFragment extends State<HomeScreen>
   int currentTab = 0;
   int _selectedDrawerIndex = 0;
   GlobalKey<FormState> _keyFormDeposit = GlobalKey();
+  CustomPopupMenu _selectedChoices;
 
   var one;
   PageController pageController;
@@ -84,20 +71,22 @@ class HomeFragment extends State<HomeScreen>
   var drawerOptions = <Widget>[];
 
   Widget currentPage;
+  List<CustomPopupMenu> choices = <CustomPopupMenu>[
+    CustomPopupMenu(title: 'Change Language', icon: Icons.language),
+    CustomPopupMenu(title: 'Sign Out', icon: Icons.language),
+  ];
 
   Future navigationPage() async {
     var preferences = await SharedPreferences.getInstance();
 
     langSave = preferences.getString('lang');
+    print("lang saved == $langSave");
     //langSave=lang1;
     if (langSave == 'ar') {
       _specificLocalizationDelegate =
           SpecificLocalizationDelegate(new Locale("ar"));
 
-      AppLocalizations().locale == 'ar';
-      helper.onLocaleChanged(new Locale("ar"));
       AppLocalizations.load(new Locale("ar"));
-      preferences.setString('lang', 'ar');
 
       for (var i = 0; i < widget.drawerItemsAr.length; i++) {
         var d = widget.drawerItemsAr[i];
@@ -112,11 +101,8 @@ class HomeFragment extends State<HomeScreen>
     } else {
       _specificLocalizationDelegate =
           SpecificLocalizationDelegate(new Locale("en"));
-
-      AppLocalizations().locale == 'en';
-      preferences.setString('lang', 'en');
-      //   helper.onLocaleChanged(new Locale("en"));
       AppLocalizations.load(new Locale("en"));
+
       for (var i = 0; i < widget.drawerItemEn.length; i++) {
         var d = widget.drawerItemEn[i];
 
@@ -130,8 +116,35 @@ class HomeFragment extends State<HomeScreen>
     }
   }
 
+  void _select(CustomPopupMenu choice) {
+    setState(() {
+      _selectedChoices = choice;
+      if (choice.title == 'Change Language') {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => CustomDialog(
+            title: AppLocalizations().lbSelectL,
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            buttonText: AppLocalizations().lbDone,
+          ),
+        );
+      } else {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return Directionality(
+                  textDirection:
+                      langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                  child: showDialogwindowDelete());
+            });
+      }
+    });
+  }
+
   @override
   void initState() {
+    navigationPage();
     super.initState();
     one = MainActivity();
     pages = new List<Widget>();
@@ -139,19 +152,6 @@ class HomeFragment extends State<HomeScreen>
     pages = [one];
     currentPage = one;
     pageController = PageController(initialPage: 1, viewportFraction: 0.8);
-
-    // CHECK IF OFFLINE OR ONLINE
-//    connectivitySubscription = Connectivity()
-//        .onConnectivityChanged
-//        .listen((ConnectivityResult connectivityResult) {
-//      if (connectivityResult == ConnectivityResult.none) {
-//      } else if (_previousResult == ConnectivityResult.none) {}
-//
-//      _previousResult = connectivityResult;
-//    });
-//    helper.onLocaleChanged = onLocaleChange;
-//
-    navigationPage();
   }
 
   _getDrawerItemWidget(int pos) {
@@ -228,12 +228,26 @@ class HomeFragment extends State<HomeScreen>
         centerTitle: true,
         title: Row(
           children: [
-            IconButton(
+            PopupMenuButton<CustomPopupMenu>(
+              elevation: 30.2,
               icon: Icon(
                 Icons.language,
-                color: Colors.grey[700],
+                color: Colors.black,
               ),
-              onPressed: () {},
+              initialValue: _selectedChoices,
+              onCanceled: () {
+                print('You have not chossed anything');
+              },
+              tooltip: 'This is tooltip',
+              onSelected: _select,
+              itemBuilder: (BuildContext context) {
+                return choices.map((CustomPopupMenu choice) {
+                  return PopupMenuItem<CustomPopupMenu>(
+                    value: choice,
+                    child: Text(choice.title),
+                  );
+                }).toList();
+              },
             ),
             IconButton(
               icon: ImageIcon(
@@ -315,5 +329,40 @@ class HomeFragment extends State<HomeScreen>
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  Widget showDialogwindowDelete() {
+    return AlertDialog(
+      title: Text(AppLocalizations().lbSign),
+      content: Text(AppLocalizations().lbSignM),
+      actions: <Widget>[
+        // usually buttons at the bottoReminiderItemDatem of the dialog
+        OutlineButton(
+          color: Colors.yellow,
+          focusColor: Colors.yellow,
+          hoverColor: Colors.yellow,
+          highlightColor: Colors.yellow,
+          borderSide: BorderSide(color: Colors.green, width: 1),
+          disabledBorderColor: Colors.yellow,
+          child: Text(AppLocalizations().lbCancel),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        OutlineButton(
+            color: Colors.yellow,
+            focusColor: Colors.yellow,
+            hoverColor: Colors.yellow,
+            highlightColor: Colors.yellow,
+            borderSide: BorderSide(color: Colors.green, width: 1),
+            disabledBorderColor: Colors.yellow,
+            child: new Text(AppLocalizations().lbDone),
+            onPressed: () async {
+              var preferences = await SharedPreferences.getInstance();
+              String token = preferences.getString('token');
+              String userId = preferences.getString('id');
+            }),
+      ],
+    );
   }
 }

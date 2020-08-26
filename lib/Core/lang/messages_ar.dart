@@ -373,5 +373,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbAdd": MessageLookupByLibrary.simpleMessage("إضافة"),
         "lbAddAppointment": MessageLookupByLibrary.simpleMessage("إضافة موعد"),
         "lbAddTask": MessageLookupByLibrary.simpleMessage("انشاء مهمة"),
+        "lbHoppiesHealth":
+            MessageLookupByLibrary.simpleMessage("ادارة الصحة والهوايات"),
+        "lbSport": MessageLookupByLibrary.simpleMessage("رياضة"),
+        "lbMeals": MessageLookupByLibrary.simpleMessage("وجبات"),
+        "lbReading": MessageLookupByLibrary.simpleMessage("قراءة"),
+        "lbSmoke": MessageLookupByLibrary.simpleMessage("تدخين"),
       };
 }

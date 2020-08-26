@@ -2,6 +2,7 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/Domain/Auth/AuthRepository.dart';
 import 'package:honey/Infrastructure/Auth/DataSources/AuthRemoteDataSource.dart';
 import 'package:honey/Infrastructure/Auth/Repository/AuthRepository.dart';
@@ -10,7 +11,6 @@ import 'package:honey/application/Auth/authBloc.dart';
 import 'package:honey/application/Auth/authEvent.dart';
 import 'package:honey/application/Auth/authState.dart';
 import 'package:honey/presentation/homePage.dart';
-import 'package:honey/presentation/page/AppLocalizations.dart';
 import 'package:honey/presentation/page/LocalHelper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -111,15 +111,17 @@ class LoginActivity extends State<Login> {
         if (state is Loaded) {
           print('Success');
           print(state.signinResponse.msg);
-          if(state.signinResponse.code=='1'){
+          if (state.signinResponse.code == '1') {
             var preferences = await SharedPreferences.getInstance();
-            preferences.setString('token',state.signinResponse.token);
-            preferences.setString('id',state.signinResponse.data.id.toString());
+            preferences.setString('token', state.signinResponse.token);
+            preferences.setString(
+                'id', state.signinResponse.data.id.toString());
 
             Route route = MaterialPageRoute(builder: (context) => HomeScreen());
             Navigator.pushReplacement(context, route);
+          }
         }
-      }},
+      },
       builder: (context, state) {
         if (state is Loading) {
           print('progress');
@@ -288,5 +290,4 @@ class LoginActivity extends State<Login> {
       },
     );
   }
-
 }

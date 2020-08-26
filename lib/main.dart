@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/presentation/homePage.dart';
 import 'package:honey/presentation/page/auth/loginPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -61,13 +62,27 @@ class _MyHomePageState extends State<MyHomePage>
   Future navigationPage() async {
     var preferences = await SharedPreferences.getInstance();
     String token = preferences.getString('token');
+    String langSave;
+    SpecificLocalizationDelegate _specificLocalizationDelegate;
+
+    langSave = preferences.getString('lang');
+
+    if (langSave == 'ar') {
+      _specificLocalizationDelegate =
+          SpecificLocalizationDelegate(new Locale("ar"));
+
+      AppLocalizations.load(new Locale("ar"));
+    } else {
+      _specificLocalizationDelegate =
+          SpecificLocalizationDelegate(new Locale("en"));
+      AppLocalizations.load(new Locale("en"));
+    }
     if (token != null) {
       //  Navigator.of(context).pushReplacementNamed(HOME_SCREEN);
 
       Route route = MaterialPageRoute(builder: (context) => HomeScreen());
       Navigator.pushReplacement(context, route);
     } else {
-
       Route route = MaterialPageRoute(builder: (context) => Login());
       Navigator.pushReplacement(context, route);
     }
@@ -90,6 +105,13 @@ class _MyHomePageState extends State<MyHomePage>
     });
 
     startTime();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
   }
 
   @override

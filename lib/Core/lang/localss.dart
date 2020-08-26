@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:honey/Core/lang/messages_all.dart';
@@ -523,6 +524,53 @@ class AppLocalizations {
     return Intl.message("Add Task", name: "lbAddTask");
   }
 
+  String get lbHoppiesHealth {
+    return Intl.message("Manage Hoppies and Health", name: "lbHoppiesHealth");
+  }
+
+  String get lbSport {
+    return Intl.message("Sport", name: "lbSport");
+  }
+
+  String get lbMeals {
+    return Intl.message("Meals", name: "lbMeals");
+  }
+
+  String get lbReading {
+    return Intl.message("Reading", name: "lbReading");
+  }
+
+  String get lbSmoke {
+    return Intl.message("Smoke", name: "lbSmoke");
+  }
+
+  String get lbEx {
+    return Intl.message('Expensev', name: 'lbEx');
+  }
+
+  String get lbMediName {
+    return Intl.message('Medicines Name', name: 'lbMediName');
+  }
+
+  String get lbRev {
+    return Intl.message('Revenue', name: 'lbRev');
+  }
+
+  String get lbSign {
+    return Intl.message('Sign Out', name: 'lbSign');
+  }
+
+  String get lbSignM {
+    return Intl.message('Are you confirm log out ?', name: 'lbSignM');
+  }
+
+  String get lbcreate {
+    return Intl.message('Create New Account', name: 'lbcreate');
+  }
+
+  String get lbWait {
+    return Intl.message('Please wait....', name: 'lbWait');
+  }
 //and add all the text you have inside the app that you need to make it in
 
 //arabic and english launguages
@@ -546,4 +594,43 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   bool shouldReload(AppLocalizationsDelegate old) {
     return false;
   }
+}
+
+class FallbackCupertinoLocalisationsDelegate
+    extends LocalizationsDelegate<CupertinoLocalizations> {
+  const FallbackCupertinoLocalisationsDelegate();
+
+  @override
+  bool isSupported(Locale locale) => ['en', 'ar'].contains(locale.languageCode);
+
+  @override
+  Future<CupertinoLocalizations> load(Locale locale) =>
+      SynchronousFuture<_DefaultCupertinoLocalizations>(
+          _DefaultCupertinoLocalizations(locale));
+
+  @override
+  bool shouldReload(FallbackCupertinoLocalisationsDelegate old) => false;
+}
+
+class _DefaultCupertinoLocalizations extends DefaultCupertinoLocalizations {
+  final Locale locale;
+
+  _DefaultCupertinoLocalizations(this.locale);
+}
+
+class SpecificLocalizationDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
+  final Locale overriddenLocale;
+
+  SpecificLocalizationDelegate(this.overriddenLocale);
+
+  @override
+  bool isSupported(Locale locale) => overriddenLocale != null;
+
+  @override
+  Future<AppLocalizations> load(Locale locale) =>
+      AppLocalizations.load(overriddenLocale);
+
+  @override
+  bool shouldReload(LocalizationsDelegate<AppLocalizations> old) => true;
 }

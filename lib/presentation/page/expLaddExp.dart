@@ -7,6 +7,7 @@ import 'package:adobe_xd/pinned.dart';
 import 'package:adobe_xd/page_link.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:honey/Core/lang/localss.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:honey/Infrastructure/Core/NetworkInfo.dart';
@@ -17,7 +18,6 @@ import 'package:honey/application/Auth/CateBloc.dart';
 import 'package:honey/application/Auth/Iconstate.dart';
 import 'package:honey/application/Auth/categoryEvent.dart';
 import 'package:honey/domain/Auth/Entities/iconEntity.dart';
-import 'package:honey/presentation/page/AppLocalizations.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
@@ -106,60 +106,85 @@ class _expLaddExp extends State<expLaddExp> {
         child: Stack(
           children: <Widget>[
             icList == null
-                ?  Container()
-                :  Container(
-                      child: Scaffold(
-                        body: Container(
-                          child: Stack(
-                            children: <Widget>[
-                              Container(
-                                child: Stack(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 60),
-                                      child: SingleChildScrollView(
-                                        child: Column(
-                                          children: <Widget>[
-                                            Container(
-                                              child: Column(
-                                                children: <Widget>[
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            10, 50, 10, 10),
-                                                    child: Container(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                              .size
-                                                              .width,
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsets.fromLTRB(
-                                                                10, 10, 10, 10),
-                                                        child: Row(
-                                                          children: <Widget>[
-                                                            SvgPicture.string(
-                                                              _svg_6oa7ke,
-                                                              allowDrawingOutsideViewBox:
-                                                                  true,
+                ? Container()
+                : Container(
+                    child: Scaffold(
+                      body: Container(
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              child: Stack(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 0, 0, 60),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        children: <Widget>[
+                                          Container(
+                                            child: Column(
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      10, 50, 10, 10),
+                                                  child: Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              10, 10, 10, 10),
+                                                      child: Row(
+                                                        children: <Widget>[
+                                                          SvgPicture.string(
+                                                            _svg_6oa7ke,
+                                                            allowDrawingOutsideViewBox:
+                                                                true,
+                                                          ),
+                                                          Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(10, 0,
+                                                                    10, 0),
+                                                            child: Center(
+                                                              child: Text(
+                                                                'Honey Bee',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontFamily:
+                                                                      'Pristina',
+                                                                  fontSize: 32,
+                                                                  color: const Color(
+                                                                      0xff0a0606),
+                                                                  shadows: [
+                                                                    Shadow(
+                                                                      color: const Color(
+                                                                          0x29000000),
+                                                                      offset:
+                                                                          Offset(
+                                                                              3,
+                                                                              10),
+                                                                      blurRadius:
+                                                                          6,
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                              ),
                                                             ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .fromLTRB(
-                                                                          10,
-                                                                          0,
-                                                                          10,
-                                                                          0),
-                                                              child: Center(
-                                                                child: Text(
-                                                                  'Honey Bee',
+                                                          ),
+                                                          new Spacer(),
+                                                          widget.isexp == '1'
+                                                              ? Text(
+                                                                  'المصاريف',
                                                                   style:
                                                                       TextStyle(
                                                                     fontFamily:
-                                                                        'Pristina',
+                                                                        'Times New Roman',
                                                                     fontSize:
-                                                                        32,
+                                                                        24,
                                                                     color: const Color(
                                                                         0xff0a0606),
                                                                     shadows: [
@@ -167,7 +192,33 @@ class _expLaddExp extends State<expLaddExp> {
                                                                         color: const Color(
                                                                             0x29000000),
                                                                         offset: Offset(
-                                                                            3,
+                                                                            0,
+                                                                            10),
+                                                                        blurRadius:
+                                                                            6,
+                                                                      )
+                                                                    ],
+                                                                  ),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                )
+                                                              : Text(
+                                                                  'الايرادات',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        'Times New Roman',
+                                                                    fontSize:
+                                                                        24,
+                                                                    color: const Color(
+                                                                        0xff0a0606),
+                                                                    shadows: [
+                                                                      Shadow(
+                                                                        color: const Color(
+                                                                            0x29000000),
+                                                                        offset: Offset(
+                                                                            0,
                                                                             10),
                                                                         blurRadius:
                                                                             6,
@@ -178,214 +229,477 @@ class _expLaddExp extends State<expLaddExp> {
                                                                       TextAlign
                                                                           .center,
                                                                 ),
-                                                              ),
-                                                            ),
-                                                            new Spacer(),
-                                                            widget.isexp=='1'?
-                                                            Text(
-                                                              'المصاريف',
-                                                              style: TextStyle(
-                                                                fontFamily:
-                                                                    'Times New Roman',
-                                                                fontSize: 24,
-                                                                color: const Color(
-                                                                    0xff0a0606),
-                                                                shadows: [
-                                                                  Shadow(
-                                                                    color: const Color(
-                                                                        0x29000000),
-                                                                    offset:
-                                                                        Offset(
-                                                                            0,
-                                                                            10),
-                                                                    blurRadius:
-                                                                        6,
-                                                                  )
-                                                                ],
-                                                              ),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                            ):
-                                                            Text(
-                                                              'الايرادات',
-                                                              style: TextStyle(
-                                                                fontFamily:
-                                                                'Times New Roman',
-                                                                fontSize: 24,
-                                                                color: const Color(
-                                                                    0xff0a0606),
-                                                                shadows: [
-                                                                  Shadow(
-                                                                    color: const Color(
-                                                                        0x29000000),
-                                                                    offset:
-                                                                    Offset(
-                                                                        0,
-                                                                        10),
-                                                                    blurRadius:
-                                                                    6,
-                                                                  )
-                                                                ],
-                                                              ),
-                                                              textAlign:
-                                                              TextAlign
-                                                                  .center,
-                                                            ),
-                                                            SizedBox(
-                                                              width: 63.0,
-                                                              height: 63.0,
-                                                              child: Stack(
-                                                                children: <
-                                                                    Widget>[
-                                                                  Pinned
-                                                                      .fromSize(
-                                                                    bounds: Rect
-                                                                        .fromLTWH(
-                                                                            7.1,
-                                                                            7.2,
-                                                                            48.5,
-                                                                            48.5),
-                                                                    size: Size(
-                                                                        62.8,
-                                                                        62.8),
-                                                                    pinLeft:
-                                                                        true,
-                                                                    pinRight:
-                                                                        true,
-                                                                    pinTop:
-                                                                        true,
-                                                                    pinBottom:
-                                                                        true,
-                                                                    child:
-                                                                        Container(
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        borderRadius: BorderRadius.all(Radius.elliptical(
-                                                                            9999.0,
-                                                                            9999.0)),
-                                                                        border: Border.all(
-                                                                            width:
-                                                                                1.0,
-                                                                            color:
-                                                                                const Color(0xf2386694)),
-                                                                      ),
+                                                          SizedBox(
+                                                            width: 63.0,
+                                                            height: 63.0,
+                                                            child: Stack(
+                                                              children: <
+                                                                  Widget>[
+                                                                Pinned.fromSize(
+                                                                  bounds: Rect
+                                                                      .fromLTWH(
+                                                                          7.1,
+                                                                          7.2,
+                                                                          48.5,
+                                                                          48.5),
+                                                                  size: Size(
+                                                                      62.8,
+                                                                      62.8),
+                                                                  pinLeft: true,
+                                                                  pinRight:
+                                                                      true,
+                                                                  pinTop: true,
+                                                                  pinBottom:
+                                                                      true,
+                                                                  child:
+                                                                      Container(
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius: BorderRadius.all(Radius.elliptical(
+                                                                          9999.0,
+                                                                          9999.0)),
+                                                                      border: Border.all(
+                                                                          width:
+                                                                              1.0,
+                                                                          color:
+                                                                              const Color(0xf2386694)),
                                                                     ),
                                                                   ),
-                                                                  Pinned
-                                                                      .fromSize(
-                                                                    bounds: Rect
-                                                                        .fromLTWH(
-                                                                            22.1,
-                                                                            14.7,
-                                                                            19.0,
-                                                                            33.6),
-                                                                    size: Size(
-                                                                        62.8,
-                                                                        62.8),
-                                                                    pinTop:
+                                                                ),
+                                                                Pinned.fromSize(
+                                                                  bounds: Rect
+                                                                      .fromLTWH(
+                                                                          22.1,
+                                                                          14.7,
+                                                                          19.0,
+                                                                          33.6),
+                                                                  size: Size(
+                                                                      62.8,
+                                                                      62.8),
+                                                                  pinTop: true,
+                                                                  pinBottom:
+                                                                      true,
+                                                                  fixedWidth:
+                                                                      true,
+                                                                  child:
+                                                                      // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                                      SvgPicture
+                                                                          .string(
+                                                                    _svg_pew0t9,
+                                                                    allowDrawingOutsideViewBox:
                                                                         true,
-                                                                    pinBottom:
-                                                                        true,
-                                                                    fixedWidth:
-                                                                        true,
-                                                                    child:
-                                                                        // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                                                                        SvgPicture
-                                                                            .string(
-                                                                      _svg_pew0t9,
-                                                                      allowDrawingOutsideViewBox:
-                                                                          true,
-                                                                      fit: BoxFit
-                                                                          .fill,
-                                                                    ),
+                                                                    fit: BoxFit
+                                                                        .fill,
                                                                   ),
-                                                                ],
-                                                              ),
+                                                                ),
+                                                              ],
                                                             ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15.0),
-                                                        color: const Color(
-                                                            0x09010101),
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                            color: const Color(
-                                                                0x02000000),
-                                                            offset:
-                                                                Offset(0, 3),
-                                                            blurRadius: 6,
                                                           ),
                                                         ],
                                                       ),
                                                     ),
-                                                  )
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15.0),
+                                                      color: const Color(
+                                                          0x09010101),
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color: const Color(
+                                                              0x02000000),
+                                                          offset: Offset(0, 3),
+                                                          blurRadius: 6,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                10, 10, 10, 10),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(15.0),
+                                                color: const Color(0xfff3f3f3),
+                                                border: Border.all(
+                                                    width: 1.0,
+                                                    color: const Color(
+                                                        0xfff3f3f3)),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color:
+                                                        const Color(0x29000000),
+                                                    offset: Offset(0, 3),
+                                                    blurRadius: 6,
+                                                  ),
                                                 ],
                                               ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  10, 10, 10, 10),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.0),
-                                                  color:
-                                                      const Color(0xfff3f3f3),
-                                                  border: Border.all(
-                                                      width: 1.0,
-                                                      color: const Color(
-                                                          0xfff3f3f3)),
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      color: const Color(
-                                                          0x29000000),
-                                                      offset: Offset(0, 3),
-                                                      blurRadius: 6,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              child: Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      10, 10, 10, 10),
+                                                  child: TextField(
+                                                    controller: _catName,
+                                                    cursorColor: Colors.black,
+                                                    //  obscureText: true,
+                                                    style: TextStyle(
+                                                        color: Colors.black),
+                                                    decoration: InputDecoration(
+                                                      filled: true,
+
+                                                      fillColor:
+                                                          Colors.transparent,
+                                                      hintText: "Category name",
+                                                      hintStyle: TextStyle(
+                                                          color: Colors.black),
+                                                      //can also add icon to the end of the textfiled
+                                                      //  suffixIcon: Icon(Icons.remove_red_eye),
                                                     ),
-                                                  ],
+                                                  )),
+                                            ),
+                                          ),
+                                          Stack(
+                                            children: <Widget>[
+                                              Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    10, 10, 10, 10),
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.0),
+                                                    color:
+                                                        const Color(0xfff3f3f3),
+                                                    border: Border.all(
+                                                        width: 1.0,
+                                                        color: const Color(
+                                                            0xfff3f3f3)),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: const Color(
+                                                            0x29000000),
+                                                        offset: Offset(0, 3),
+                                                        blurRadius: 6,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  child: Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              10, 10, 10, 30),
+                                                      child: Column(
+                                                        children: <Widget>[
+                                                          sublist == null
+                                                              ? Visibility(
+                                                                  child:
+                                                                      Text(''),
+                                                                  visible:
+                                                                      false,
+                                                                )
+                                                              : Visibility(
+                                                                  visible: true,
+                                                                  child: Text(
+                                                                      sublist)),
+                                                          TextField(
+                                                            controller:
+                                                                _Subname,
+                                                            cursorColor:
+                                                                Colors.black,
+                                                            //   obscureText: true,
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .black),
+                                                            decoration:
+                                                                InputDecoration(
+                                                              filled: true,
+
+                                                              fillColor: Colors
+                                                                  .transparent,
+                                                              hintText:
+                                                                  "Sub Category name",
+                                                              hintStyle: TextStyle(
+                                                                  color: Colors
+                                                                      .black),
+                                                              //can also add icon to the end of the textfiled
+                                                              //  suffixIcon: Icon(Icons.remove_red_eye),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      )),
                                                 ),
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                child: Padding(
+                                              ),
+                                              GestureDetector(
+                                                child: Center(
+                                                  child: Padding(
                                                     padding:
                                                         EdgeInsets.fromLTRB(
-                                                            10, 10, 10, 10),
-                                                    child: TextField(
-                                                      controller: _catName,
-                                                      cursorColor: Colors.black,
-                                                      //  obscureText: true,
-                                                      style: TextStyle(
-                                                          color: Colors.black),
-                                                      decoration:
-                                                          InputDecoration(
-                                                        filled: true,
-
-                                                        fillColor:
-                                                            Colors.transparent,
-                                                        hintText:
-                                                            "Category name",
-                                                        hintStyle: TextStyle(
-                                                            color:
-                                                                Colors.black),
-                                                        //can also add icon to the end of the textfiled
-                                                        //  suffixIcon: Icon(Icons.remove_red_eye),
+                                                            0, 80, 0, 0),
+                                                    child: SizedBox(
+                                                      width: 45.0,
+                                                      height: 45.0,
+                                                      child: Stack(
+                                                        children: <Widget>[
+                                                          Pinned.fromSize(
+                                                            bounds:
+                                                                Rect.fromLTWH(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    45.0,
+                                                                    45.0),
+                                                            size: Size(
+                                                                45.0, 45.0),
+                                                            pinLeft: true,
+                                                            pinRight: true,
+                                                            pinTop: true,
+                                                            pinBottom: true,
+                                                            child: Stack(
+                                                              children: <
+                                                                  Widget>[
+                                                                Pinned.fromSize(
+                                                                  bounds: Rect
+                                                                      .fromLTWH(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          45.0,
+                                                                          45.0),
+                                                                  size: Size(
+                                                                      45.0,
+                                                                      45.0),
+                                                                  pinLeft: true,
+                                                                  pinRight:
+                                                                      true,
+                                                                  pinTop: true,
+                                                                  pinBottom:
+                                                                      true,
+                                                                  child: Stack(
+                                                                    children: <
+                                                                        Widget>[
+                                                                      Pinned
+                                                                          .fromSize(
+                                                                        bounds: Rect.fromLTWH(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            45.0,
+                                                                            45.0),
+                                                                        size: Size(
+                                                                            45.0,
+                                                                            45.0),
+                                                                        pinLeft:
+                                                                            true,
+                                                                        pinRight:
+                                                                            true,
+                                                                        pinTop:
+                                                                            true,
+                                                                        pinBottom:
+                                                                            true,
+                                                                        child:
+                                                                            Container(
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                                                                            color:
+                                                                                const Color(0xefe4dcdc),
+                                                                            border:
+                                                                                Border.all(width: 1.0, color: const Color(0xff1db3b8)),
+                                                                            boxShadow: [
+                                                                              BoxShadow(
+                                                                                color: const Color(0x29000000),
+                                                                                offset: Offset(0, 10),
+                                                                                blurRadius: 10,
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                Pinned.fromSize(
+                                                                  bounds: Rect
+                                                                      .fromLTWH(
+                                                                          12.3,
+                                                                          21.1,
+                                                                          20.3,
+                                                                          3.4),
+                                                                  size: Size(
+                                                                      45.0,
+                                                                      45.0),
+                                                                  fixedWidth:
+                                                                      true,
+                                                                  fixedHeight:
+                                                                      true,
+                                                                  child:
+                                                                      Container(
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5.0),
+                                                                      color: const Color(
+                                                                          0xf2386694),
+                                                                      border: Border.all(
+                                                                          width:
+                                                                              2.0,
+                                                                          color:
+                                                                              const Color(0xf21966b4)),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Pinned.fromSize(
+                                                                  bounds: Rect
+                                                                      .fromLTWH(
+                                                                          12.3,
+                                                                          21.1,
+                                                                          20.3,
+                                                                          3.4),
+                                                                  size: Size(
+                                                                      45.0,
+                                                                      45.0),
+                                                                  fixedWidth:
+                                                                      true,
+                                                                  fixedHeight:
+                                                                      true,
+                                                                  child: Transform
+                                                                      .rotate(
+                                                                    angle:
+                                                                        1.5708,
+                                                                    child:
+                                                                        Container(
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(5.0),
+                                                                        color: const Color(
+                                                                            0xf2386694),
+                                                                        border: Border.all(
+                                                                            width:
+                                                                                2.0,
+                                                                            color:
+                                                                                const Color(0xf21966b4)),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    )),
-                                              ),
-                                            ),
-                                            Stack(
+                                                    ),
+                                                  ),
+                                                ),
+                                                onTap: () {
+                                                  setState(() {
+                                                    if (sublist == null) {
+                                                      sublist =
+                                                          _Subname.text + ',';
+                                                    } else {
+                                                      sublist = sublist +
+                                                          _Subname.text +
+                                                          ',';
+                                                    }
+                                                    _Subname.clear();
+                                                  });
+                                                },
+                                              )
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                10, 10, 10, 10),
+                                            child: Column(
                                               children: <Widget>[
                                                 Padding(
                                                   padding: EdgeInsets.fromLTRB(
-                                                      10, 10, 10, 10),
+                                                      10, 0, 10, 0),
+                                                  child: Row(
+                                                    children: <Widget>[
+                                                      Text(
+                                                        'Select icon : ',
+                                                        style: TextStyle(
+                                                          fontFamily:
+                                                              'Times New Roman',
+                                                          fontSize: 24,
+                                                          color: const Color(
+                                                              0xff0a0606),
+                                                        ),
+                                                        //textAlign: TextAlign.center,
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      0, 10, 0, 10),
                                                   child: Container(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              10, 30, 10, 0),
+                                                      child: GridView.count(
+                                                          controller: _sc,
+                                                          crossAxisCount: 3,
+                                                          shrinkWrap: true,
+                                                          childAspectRatio: 1.0,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(4.0),
+                                                          mainAxisSpacing: 4.0,
+                                                          crossAxisSpacing: 6.0,
+                                                          children:
+                                                              icList.map((url) {
+                                                            int index = icList
+                                                                .indexOf(url);
+
+                                                            return GestureDetector(
+                                                              onTap: () {
+                                                                setState(() {
+                                                                  _imageFilePh =
+                                                                      icList[index]
+                                                                          .url;
+                                                                });
+                                                              },
+                                                              child: GridTile(
+                                                                  child:
+                                                                      Container(
+                                                                height: 100,
+                                                                child: Column(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .center,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Container(
+                                                                      width: 90,
+                                                                      height:
+                                                                          90,
+                                                                      child: Image
+                                                                          .network(
+                                                                        icList[index]
+                                                                            .url,
+                                                                      ),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              )),
+                                                            );
+                                                          }).toList()),
+                                                    ),
+                                                    height: 500,
                                                     decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -405,246 +719,59 @@ class _expLaddExp extends State<expLaddExp> {
                                                         ),
                                                       ],
                                                     ),
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    child: Padding(
-                                                        padding:
-                                                            EdgeInsets.fromLTRB(
-                                                                10, 10, 10, 30),
-                                                        child: Column(
-                                                          children: <Widget>[
-                                                            sublist == null
-                                                                ? Visibility(
-                                                                    child: Text(
-                                                                        ''),
-                                                                    visible:
-                                                                        false,
-                                                                  )
-                                                                : Visibility(
-                                                                    visible:
-                                                                        true,
-                                                                    child: Text(
-                                                                        sublist)),
-                                                            TextField(
-                                                              controller:
-                                                                  _Subname,
-                                                              cursorColor:
-                                                                  Colors.black,
-                                                              //   obscureText: true,
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .black),
-                                                              decoration:
-                                                                  InputDecoration(
-                                                                filled: true,
-
-                                                                fillColor: Colors
-                                                                    .transparent,
-                                                                hintText:
-                                                                    "Sub Category name",
-                                                                hintStyle: TextStyle(
-                                                                    color: Colors
-                                                                        .black),
-                                                                //can also add icon to the end of the textfiled
-                                                                //  suffixIcon: Icon(Icons.remove_red_eye),
-                                                              ),
-                                                            )
-                                                          ],
-                                                        )),
                                                   ),
-                                                ),
-                                                GestureDetector(
-                                                  child: Center(
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsets.fromLTRB(
-                                                              0, 80, 0, 0),
-                                                      child: SizedBox(
-                                                        width: 45.0,
-                                                        height: 45.0,
-                                                        child: Stack(
-                                                          children: <Widget>[
-                                                            Pinned.fromSize(
-                                                              bounds:
-                                                                  Rect.fromLTWH(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      45.0,
-                                                                      45.0),
-                                                              size: Size(
-                                                                  45.0, 45.0),
-                                                              pinLeft: true,
-                                                              pinRight: true,
-                                                              pinTop: true,
-                                                              pinBottom: true,
-                                                              child: Stack(
-                                                                children: <
-                                                                    Widget>[
-                                                                  Pinned
-                                                                      .fromSize(
-                                                                    bounds: Rect
-                                                                        .fromLTWH(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            45.0,
-                                                                            45.0),
-                                                                    size: Size(
-                                                                        45.0,
-                                                                        45.0),
-                                                                    pinLeft:
-                                                                        true,
-                                                                    pinRight:
-                                                                        true,
-                                                                    pinTop:
-                                                                        true,
-                                                                    pinBottom:
-                                                                        true,
-                                                                    child:
-                                                                        Stack(
-                                                                      children: <
-                                                                          Widget>[
-                                                                        Pinned
-                                                                            .fromSize(
-                                                                          bounds: Rect.fromLTWH(
-                                                                              0.0,
-                                                                              0.0,
-                                                                              45.0,
-                                                                              45.0),
-                                                                          size: Size(
-                                                                              45.0,
-                                                                              45.0),
-                                                                          pinLeft:
-                                                                              true,
-                                                                          pinRight:
-                                                                              true,
-                                                                          pinTop:
-                                                                              true,
-                                                                          pinBottom:
-                                                                              true,
-                                                                          child:
-                                                                              Container(
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                                                                              color: const Color(0xefe4dcdc),
-                                                                              border: Border.all(width: 1.0, color: const Color(0xff1db3b8)),
-                                                                              boxShadow: [
-                                                                                BoxShadow(
-                                                                                  color: const Color(0x29000000),
-                                                                                  offset: Offset(0, 10),
-                                                                                  blurRadius: 10,
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                  Pinned
-                                                                      .fromSize(
-                                                                    bounds: Rect
-                                                                        .fromLTWH(
-                                                                            12.3,
-                                                                            21.1,
-                                                                            20.3,
-                                                                            3.4),
-                                                                    size: Size(
-                                                                        45.0,
-                                                                        45.0),
-                                                                    fixedWidth:
-                                                                        true,
-                                                                    fixedHeight:
-                                                                        true,
-                                                                    child:
-                                                                        Container(
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(5.0),
-                                                                        color: const Color(
-                                                                            0xf2386694),
-                                                                        border: Border.all(
-                                                                            width:
-                                                                                2.0,
-                                                                            color:
-                                                                                const Color(0xf21966b4)),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  Pinned
-                                                                      .fromSize(
-                                                                    bounds: Rect
-                                                                        .fromLTWH(
-                                                                            12.3,
-                                                                            21.1,
-                                                                            20.3,
-                                                                            3.4),
-                                                                    size: Size(
-                                                                        45.0,
-                                                                        45.0),
-                                                                    fixedWidth:
-                                                                        true,
-                                                                    fixedHeight:
-                                                                        true,
-                                                                    child: Transform
-                                                                        .rotate(
-                                                                      angle:
-                                                                          1.5708,
-                                                                      child:
-                                                                          Container(
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(5.0),
-                                                                          color:
-                                                                              const Color(0xf2386694),
-                                                                          border: Border.all(
-                                                                              width: 2.0,
-                                                                              color: const Color(0xf21966b4)),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  onTap: () {
-                                                    setState(() {
-                                                      if (sublist == null) {
-                                                        sublist =
-                                                            _Subname.text + ',';
-                                                      } else {
-                                                        sublist = sublist +
-                                                            _Subname.text +
-                                                            ',';
-                                                      }
-                                                      _Subname.clear();
-                                                    });
-                                                  },
                                                 )
                                               ],
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  10, 10, 10, 10),
-                                              child: Column(
-                                                children: <Widget>[
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            10, 0, 10, 0),
-                                                    child: Row(
-                                                      children: <Widget>[
-                                                        Text(
-                                                          'Select icon : ',
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                10, 20, 10, 30),
+                                            child: Row(
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      20, 0, 20, 0),
+                                                  child: Container(
+                                                    width: 90,
+                                                    height: 90,
+                                                    child: _imageFilePh == null
+                                                        ? Container()
+                                                        : Image.network(
+                                                            _imageFilePh,
+                                                          ),
+                                                  ),
+                                                ),
+                                                new Spacer(),
+                                                GestureDetector(
+                                                  child: Align(
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15.0),
+                                                        color: const Color(
+                                                            0xbfc8c6c6),
+                                                        border: Border.all(
+                                                            width: 2.0,
+                                                            color: const Color(
+                                                                0xccf3f3f3)),
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            color: const Color(
+                                                                0x21000000),
+                                                            offset:
+                                                                Offset(0, 3),
+                                                            blurRadius: 6,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsets.fromLTRB(
+                                                                20, 10, 20, 10),
+                                                        child: Text(
+                                                          'حفظ',
                                                           style: TextStyle(
                                                             fontFamily:
                                                                 'Times New Roman',
@@ -652,321 +779,162 @@ class _expLaddExp extends State<expLaddExp> {
                                                             color: const Color(
                                                                 0xff0a0606),
                                                           ),
-                                                          //textAlign: TextAlign.center,
-                                                        )
-                                                      ],
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        ),
+                                                      ),
                                                     ),
+                                                    alignment:
+                                                        Alignment.bottomRight,
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            0, 10, 0, 10),
-                                                    child: Container(
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsets.fromLTRB(
-                                                                10, 30, 10, 0),
-                                                        child: GridView.count(
-                                                            controller: _sc,
-                                                            crossAxisCount: 3,
-                                                            shrinkWrap: true,
-                                                            childAspectRatio:
-                                                                1.0,
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .all(4.0),
-                                                            mainAxisSpacing:
-                                                                4.0,
-                                                            crossAxisSpacing:
-                                                                6.0,
-                                                            children: icList
-                                                                .map((url) {
-                                                              int index = icList
-                                                                  .indexOf(url);
+                                                  onTap: () {
+                                                    pr.show();
 
-                                                              return GestureDetector(
-                                                                onTap: () {
-                                                                  setState(() {
-                                                                    _imageFilePh =
-                                                                        icList[index]
-                                                                            .url;
-                                                                  });
-                                                                },
-                                                                child: GridTile(
-                                                                    child:
-                                                                        Container(
-                                                                  height: 100,
-                                                                  child: Column(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .center,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: <
-                                                                        Widget>[
-                                                                      Container(
-                                                                        width:
-                                                                            90,
-                                                                        height:
-                                                                            90,
-                                                                        child: Image
-                                                                            .network(
-                                                                          icList[index]
-                                                                              .url,
-                                                                        ),
-                                                                      )
-                                                                    ],
-                                                                  ),
-                                                                )),
-                                                              );
-                                                            }).toList()),
-                                                      ),
-                                                      height: 500,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15.0),
-                                                        color: const Color(
-                                                            0xfff3f3f3),
-                                                        border: Border.all(
-                                                            width: 1.0,
-                                                            color: const Color(
-                                                                0xfff3f3f3)),
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                            color: const Color(
-                                                                0x29000000),
-                                                            offset:
-                                                                Offset(0, 3),
-                                                            blurRadius: 6,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  10, 20, 10, 30),
-                                              child: Row(
-                                                children: <Widget>[
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            20, 0, 20, 0),
-                                                    child: Container(
-                                                      width: 90,
-                                                      height: 90,
-                                                      child:
-                                                          _imageFilePh == null
-                                                              ? Container()
-                                                              : Image.network(
+                                                    post(
+                                                            'http://honey-bee.life/Financial_Api/addCategoryexpenses',
+                                                            {
+                                                              "user_id": id,
+                                                              "name":
+                                                                  _catName.text,
+                                                              "icon":
                                                                   _imageFilePh,
-                                                                ),
-                                                    ),
-                                                  ),
-                                                  new Spacer(),
-                                                  GestureDetector(
-                                                    child: Align(
-                                                      child: Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      15.0),
-                                                          color: const Color(
-                                                              0xbfc8c6c6),
-                                                          border: Border.all(
-                                                              width: 2.0,
-                                                              color: const Color(
-                                                                  0xccf3f3f3)),
-                                                          boxShadow: [
-                                                            BoxShadow(
-                                                              color: const Color(
-                                                                  0x21000000),
-                                                              offset:
-                                                                  Offset(0, 3),
-                                                              blurRadius: 6,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        child: Padding(
-                                                          padding: EdgeInsets
-                                                              .fromLTRB(20, 10,
-                                                                  20, 10),
-                                                          child: Text(
-                                                            'حفظ',
-                                                            style: TextStyle(
-                                                              fontFamily:
-                                                                  'Times New Roman',
-                                                              fontSize: 24,
-                                                              color: const Color(
-                                                                  0xff0a0606),
-                                                            ),
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      alignment:
-                                                          Alignment.bottomRight,
-                                                    ),
-                                                    onTap: () {
-                                                      pr.show();
+                                                              "sub_cat": sublist
+                                                            },
+                                                            tokene,
+                                                            'en')
+                                                        .then((response) async {
+                                                      // jika respon normal
 
-                                                      post(
-                                                              'http://honey-bee.life/Financial_Api/addCategoryexpenses',
-                                                              {
-                                                                "user_id": id,
-                                                                "name": _catName
-                                                                    .text,
-                                                                "icon":
-                                                                    _imageFilePh,
-                                                                "sub_cat":
-                                                                    sublist
-                                                              },
-                                                              tokene,
-                                                              'en')
-                                                          .then(
-                                                              (response) async {
-                                                        // jika respon normal
-
-                                                        setState(() {
-                                                          _apiCall = false;
-                                                          //   _response = response.parsed as String;
-                                                        });
-                                                      },
-                                                              // jika respon error
-                                                              onError: (error) {
+                                                      setState(() {
                                                         _apiCall = false;
-                                                        _response =
-                                                            error.toString();
+                                                        //   _response = response.parsed as String;
                                                       });
                                                     },
-                                                  )
+                                                            // jika respon error
+                                                            onError: (error) {
+                                                      _apiCall = false;
+                                                      _response =
+                                                          error.toString();
+                                                    });
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Container(
+                                      alignment: Alignment.bottomCenter,
+                                      child: SizedBox(
+                                        width: 51.0,
+                                        height: 51.0,
+                                        child: Stack(
+                                          children: <Widget>[
+                                            Pinned.fromSize(
+                                              bounds: Rect.fromLTWH(
+                                                  0.0, 0.0, 50.8, 50.8),
+                                              size: Size(50.8, 50.8),
+                                              pinLeft: true,
+                                              pinRight: true,
+                                              pinTop: true,
+                                              pinBottom: true,
+                                              child: Stack(
+                                                children: <Widget>[
+                                                  Pinned.fromSize(
+                                                    bounds: Rect.fromLTWH(
+                                                        0.0, 0.0, 50.8, 50.8),
+                                                    size: Size(50.8, 50.8),
+                                                    pinLeft: true,
+                                                    pinRight: true,
+                                                    pinTop: true,
+                                                    pinBottom: true,
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius
+                                                                    .elliptical(
+                                                                        9999.0,
+                                                                        9999.0)),
+                                                        color: const Color(
+                                                            0xffffd64d),
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ],
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.bottomCenter,
-                                      child: Container(
-                                        alignment: Alignment.bottomCenter,
-                                        child: SizedBox(
-                                          width: 51.0,
-                                          height: 51.0,
-                                          child: Stack(
-                                            children: <Widget>[
-                                              Pinned.fromSize(
-                                                bounds: Rect.fromLTWH(
-                                                    0.0, 0.0, 50.8, 50.8),
-                                                size: Size(50.8, 50.8),
-                                                pinLeft: true,
-                                                pinRight: true,
-                                                pinTop: true,
-                                                pinBottom: true,
-                                                child: Stack(
-                                                  children: <Widget>[
-                                                    Pinned.fromSize(
-                                                      bounds: Rect.fromLTWH(
-                                                          0.0, 0.0, 50.8, 50.8),
-                                                      size: Size(50.8, 50.8),
-                                                      pinLeft: true,
-                                                      pinRight: true,
-                                                      pinTop: true,
-                                                      pinBottom: true,
-                                                      child: Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius.elliptical(
-                                                                      9999.0,
-                                                                      9999.0)),
-                                                          color: const Color(
-                                                              0xffffd64d),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
+                                            Pinned.fromSize(
+                                              bounds: Rect.fromLTWH(
+                                                  8.6, 9.8, 33.3, 28.3),
+                                              size: Size(50.8, 50.8),
+                                              pinLeft: true,
+                                              pinRight: true,
+                                              fixedHeight: true,
+                                              child:
+                                                  // Adobe XD layer: 'ic_home_24px' (shape)
+                                                  SvgPicture.string(
+                                                _svg_jtcmlr,
+                                                allowDrawingOutsideViewBox:
+                                                    true,
+                                                fit: BoxFit.fill,
                                               ),
-                                              Pinned.fromSize(
-                                                bounds: Rect.fromLTWH(
-                                                    8.6, 9.8, 33.3, 28.3),
-                                                size: Size(50.8, 50.8),
-                                                pinLeft: true,
-                                                pinRight: true,
-                                                fixedHeight: true,
-                                                child:
-                                                    // Adobe XD layer: 'ic_home_24px' (shape)
-                                                    SvgPicture.string(
-                                                  _svg_jtcmlr,
-                                                  allowDrawingOutsideViewBox:
-                                                      true,
-                                                  fit: BoxFit.fill,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        //width: MediaQuery.of(context).size.width,
-                                        height: 60.0,
-                                        decoration: BoxDecoration(
-                                          color: const Color(0x5effd64d),
-                                          border: Border.all(
-                                              width: 1.0,
-                                              color: const Color(0x5ef3f3f3)),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: const Color(0x0f000000),
-                                              offset: Offset(0, 3),
-                                              blurRadius: 6,
                                             ),
                                           ],
                                         ),
                                       ),
+                                      //width: MediaQuery.of(context).size.width,
+                                      height: 60.0,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0x5effd64d),
+                                        border: Border.all(
+                                            width: 1.0,
+                                            color: const Color(0x5ef3f3f3)),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: const Color(0x0f000000),
+                                            offset: Offset(0, 3),
+                                            blurRadius: 6,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ],
-                                ),
-                                width: MediaQuery.of(context).size.width,
-                                height: MediaQuery.of(context).size.height,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: Alignment(0.0, -1.0),
-                                    end: Alignment(0.0, 1.0),
-                                    colors: [
-                                      const Color(0xffffd64d),
-                                      const Color(0xfff3f3f3)
-                                    ],
-                                    stops: [0.0, 1.0],
                                   ),
-                                  border: Border.all(
-                                      width: 1.0,
-                                      color: const Color(0xff707070)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: const Color(0x29000000),
-                                      offset: Offset(0, 10),
-                                      blurRadius: 10,
-                                    ),
-                                  ],
-                                ),
+                                ],
                               ),
-                            ],
-                          ),
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment(0.0, -1.0),
+                                  end: Alignment(0.0, 1.0),
+                                  colors: [
+                                    const Color(0xffffd64d),
+                                    const Color(0xfff3f3f3)
+                                  ],
+                                  stops: [0.0, 1.0],
+                                ),
+                                border: Border.all(
+                                    width: 1.0, color: const Color(0xff707070)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: const Color(0x29000000),
+                                    offset: Offset(0, 10),
+                                    blurRadius: 10,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      height: MediaQuery.of(context).size.height,
                     ),
-
+                    height: MediaQuery.of(context).size.height,
+                  ),
           ],
         ),
       );
