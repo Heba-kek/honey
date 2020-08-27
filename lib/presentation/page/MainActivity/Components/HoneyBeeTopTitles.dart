@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:honey/presentation/Common/HoneyBeeTitle.dart';
 
 class HoneyBeeTopTitles extends StatelessWidget {
   @override
@@ -11,19 +12,15 @@ class HoneyBeeTopTitles extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Honey Bee",
-                  style: TextStyle(fontFamily: "Pristina", fontSize: 32),
-                ),
-              ),
+                  padding: const EdgeInsets.all(8.0),
+                  child: HoneyBeeTitle(
+                    fontSize: 32,
+                  )),
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Honey Bee",
-                  style: TextStyle(fontFamily: "Pristina", fontSize: 16),
-                ),
-              )
+                  padding: const EdgeInsets.all(8.0),
+                  child: HoneyBeeTitle(
+                    fontSize: 16,
+                  )),
             ],
           ),
           Row(

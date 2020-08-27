@@ -6,6 +6,7 @@ import 'package:honey/Core/Helpers/Colors.dart';
 import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/presentation/Common/CustomDialog.dart';
 import 'package:honey/presentation/Common/SelectedOptions.dart';
+import 'package:honey/presentation/page/Bank/BankMainView.dart';
 import 'package:honey/presentation/page/ExpensivePage.dart';
 import 'package:honey/presentation/page/LocalHelper.dart';
 import 'package:honey/presentation/page/Medicine/AddMedicineScreen.dart';
@@ -36,6 +37,8 @@ class HomeScreen extends StatefulWidget {
         ImageIcon(AssetImage('assets/images/meet.png'))),
     new DrawerItem(AppLocalizations().lbRev,
         ImageIcon(AssetImage('assets/images/notes.png'))),
+    new DrawerItem(AppLocalizations().lbBankAEn,
+        ImageIcon(AssetImage('assets/images/notes.png'))),
   ];
   final drawerItemsAr = [
     new DrawerItem(AppLocalizations().lbHomeAR,
@@ -45,6 +48,8 @@ class HomeScreen extends StatefulWidget {
     new DrawerItem(AppLocalizations().lbMediName,
         ImageIcon(AssetImage('assets/images/meet.png'))),
     new DrawerItem(AppLocalizations().lbRevAR,
+        ImageIcon(AssetImage('assets/images/notes.png'))),
+    new DrawerItem(AppLocalizations().lbBankAAr,
         ImageIcon(AssetImage('assets/images/notes.png'))),
   ];
 
@@ -162,17 +167,6 @@ class HomeFragment extends State<HomeScreen>
                 langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
             child: MainActivity());
       case 3:
-
-        /*  return new Directionality(
-            textDirection:
-            langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-            child: FlatButton(
-                onPressed: () {
-                  Navigator.of(context).push((MaterialPageRoute(
-                      builder: (context) => MedicineAppointment())));
-                },
-                child: Text("Med app")));*/
-
         print('rev');
 
         return new Directionality(
@@ -188,6 +182,15 @@ class HomeFragment extends State<HomeScreen>
 
       case 2:
         return AddMedicineScreen();
+
+      case 4:
+        return BankMainView(
+          onPressBack: () {
+            setState(() {
+              _selectedDrawerIndex = 0;
+            });
+          },
+        );
 
       default:
         return new Text("Error");
