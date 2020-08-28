@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="117.687" height="117.687" viewBox="0 0 117.687 117.687">
+  <defs>
+    <filter id="Path_35" x="0" y="0" width="117.687" height="117.687" filterUnits="userSpaceOnUse">
+      <feOffset dy="15" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_55" data-name="Group 55" transform="translate(-94.656 -353.5)">
+    <g transform="matrix(1, 0, 0, 1, 94.66, 353.5)" filter="url(#Path_35)">
+      <path id="Path_35-2" data-name="Path 35" d="M36.344,0A36.344,36.344,0,1,1,0,36.344,36.344,36.344,0,0,1,36.344,0Z" transform="translate(22.5 7.5)" fill="#ffd64d"/>
+    </g>
+    <g id="Ellipse_55" data-name="Ellipse 55" transform="translate(125.414 369.357)" fill="none" stroke="rgba(56,102,148,0.95)" stroke-width="1">
+      <circle cx="28.036" cy="28.036" r="28.036" stroke="none"/>
+      <circle cx="28.036" cy="28.036" r="27.536" fill="none"/>
+    </g>
+    <path id="ic_attach_money_24px" d="M18.138,20.038c-4.9-1.272-6.47-2.588-6.47-4.637,0-2.351,2.178-3.99,5.823-3.99,3.839,0,5.262,1.833,5.392,4.529h4.766a8.6,8.6,0,0,0-6.923-8.217V3h-6.47V7.658c-4.184.906-7.548,3.623-7.548,7.786,0,4.982,4.119,7.462,10.136,8.907,5.392,1.294,6.47,3.192,6.47,5.2,0,1.488-1.057,3.86-5.823,3.86-4.443,0-6.19-1.984-6.427-4.529H6.32c.259,4.723,3.8,7.376,7.936,8.26v4.68h6.47V37.183c4.205-.8,7.548-3.235,7.548-7.656C28.275,23.4,23.034,21.31,18.138,20.038Z" transform="translate(136.347 374.983)" fill="rgba(56,102,148,0.95)"/>
+  </g>
+</svg>

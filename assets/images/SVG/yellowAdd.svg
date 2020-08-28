@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="120" height="120" viewBox="0 0 120 120">
+  <defs>
+    <filter id="Ellipse_54" x="0" y="0" width="120" height="120" filterUnits="userSpaceOnUse">
+      <feOffset dy="15" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle_138" x="22.783" y="38.441" width="73.717" height="33.835" filterUnits="userSpaceOnUse">
+      <feOffset dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_34" x="42.724" y="18.5" width="33.835" height="73.717" filterUnits="userSpaceOnUse">
+      <feOffset dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_58" data-name="Group 58" transform="translate(-1248.5 -1262.5)">
+    <g transform="matrix(1, 0, 0, 1, 1248.5, 1262.5)" filter="url(#Ellipse_54)">
+      <circle id="Ellipse_54-2" data-name="Ellipse 54" cx="37.5" cy="37.5" r="37.5" transform="translate(22.5 7.5)" fill="#ffd64d"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 1248.5, 1262.5)" filter="url(#Rectangle_138)">
+      <g id="Rectangle_138-2" data-name="Rectangle 138" transform="translate(37.78 43.44)" fill="rgba(56,102,148,0.95)" stroke="rgba(56,102,148,0.95)" stroke-width="1">
+        <rect width="43.717" height="3.835" rx="1.917" stroke="none"/>
+        <rect x="0.5" y="0.5" width="42.717" height="2.835" rx="1.417" fill="none"/>
+      </g>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 1248.5, 1262.5)" filter="url(#Path_34)">
+      <g id="Path_34-2" data-name="Path 34" transform="translate(61.56 23.5) rotate(90)" fill="rgba(56,102,148,0.95)">
+        <path d="M1.917,0H41.8a1.917,1.917,0,0,1,0,3.835H1.917A1.917,1.917,0,0,1,1.917,0Z" stroke="none"/>
+        <path d="M 1.917407989501953 0.9999988079071045 C 1.411548614501953 0.9999988079071045 1 1.411548614501953 1 1.91740870475769 C 1 2.423268795013428 1.411548614501953 2.834818840026855 1.917407989501953 2.834818840026855 L 41.79951095581055 2.834818840026855 C 42.30537033081055 2.834818840026855 42.7169189453125 2.423268795013428 42.7169189453125 1.91740870475769 C 42.7169189453125 1.411548614501953 42.30537033081055 0.9999988079071045 41.79951095581055 0.9999988079071045 L 1.917407989501953 0.9999988079071045 M 1.917407989501953 -1.192092895507813e-06 L 41.79951095581055 -1.192092895507813e-06 C 42.85847091674805 -1.192092895507813e-06 43.7169189453125 0.8584487438201904 43.7169189453125 1.91740870475769 C 43.7169189453125 2.97636866569519 42.85847091674805 3.834818601608276 41.79951095581055 3.834818601608276 L 1.917407989501953 3.834818601608276 C 0.8584480285644531 3.834818601608276 0 2.97636866569519 0 1.91740870475769 C 0 0.8584487438201904 0.8584480285644531 -1.192092895507813e-06 1.917407989501953 -1.192092895507813e-06 Z" stroke="none" fill="rgba(56,102,148,0.95)"/>
+      </g>
+    </g>
+  </g>
+</svg>

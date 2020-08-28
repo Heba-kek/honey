@@ -571,6 +571,14 @@ class AppLocalizations {
   String get lbWait {
     return Intl.message('Please wait....', name: 'lbWait');
   }
+
+  String get lbinterest {
+    return Intl.message('Interest', name: 'lbinterest');
+  }
+
+  String get lbFees {
+    return Intl.message('Fees', name: 'lbFees');
+  }
 //and add all the text you have inside the app that you need to make it in
 
 //arabic and english launguages

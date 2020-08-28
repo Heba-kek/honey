@@ -4,8 +4,10 @@ import 'package:honey/Core/Helpers/SizeConfig.dart';
 
 class AddButtonWithWhiteHeader extends StatelessWidget {
   final Function onPress;
+  final bool showAddButoon;
 
-  const AddButtonWithWhiteHeader({Key key, this.onPress}) : super(key: key);
+  const AddButtonWithWhiteHeader({Key key, this.onPress, this.showAddButoon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,21 +26,25 @@ class AddButtonWithWhiteHeader extends StatelessWidget {
             child: Center(
                 child: Align(
               heightFactor: 0.08,
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(width: 2, color: Colors.blue),
-                    shape: BoxShape.circle),
-                child: new FloatingActionButton(
-                  onPressed: onPress,
-                  backgroundColor: Colors.grey[200],
-                  splashColor: Colors.blue,
-                  child: Icon(
-                    Icons.add,
-                    color: Colors.blue[800],
-                    size: 44,
-                  ),
-                ),
-              ),
+              child: !showAddButoon
+                  ? Container(
+                      height: 1,
+                    )
+                  : Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 2, color: Colors.blue),
+                          shape: BoxShape.circle),
+                      child: new FloatingActionButton(
+                        onPressed: onPress,
+                        backgroundColor: Colors.grey[200],
+                        splashColor: Colors.blue,
+                        child: Icon(
+                          Icons.add,
+                          color: Colors.blue[800],
+                          size: 44,
+                        ),
+                      ),
+                    ),
             ))),
       ],
     );

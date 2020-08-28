@@ -70,7 +70,7 @@ flutter:
     - assets/images/path.png
     - assets/images/log_back.png
     - assets/images/
-
+    - assets/images/SVG/
 
   fonts:
      - family: Pristina

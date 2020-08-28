@@ -403,5 +403,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbMeals": MessageLookupByLibrary.simpleMessage("Meals"),
         "lbReading": MessageLookupByLibrary.simpleMessage("Reading"),
         "lbSmoke": MessageLookupByLibrary.simpleMessage("Smoke"),
+        "lbinterest": MessageLookupByLibrary.simpleMessage("Interest"),
       };
 }

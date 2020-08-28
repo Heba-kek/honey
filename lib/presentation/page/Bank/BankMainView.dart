@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:honey/Core/Helpers/Colors.dart';
 import 'package:honey/Core/Helpers/SizeConfig.dart';
 import 'package:honey/Core/lang/localss.dart';
+import 'package:honey/presentation/page/Bank/AddBankMainView.dart';
 import 'package:honey/presentation/page/Bank/Component/AddButtonWithWhiteHeader.dart';
+import 'package:honey/presentation/page/Bank/Component/BankInfoContainer.dart';
 import 'package:honey/presentation/page/Bank/Component/TopHeader.dart';
 import 'package:honey/presentation/page/Bank/Component/TotalAmountsinBanks.dart';
 
@@ -44,11 +47,25 @@ class _BankMainViewState extends State<BankMainView> {
             onPress: widget.onPressBack,
           ),
           AddButtonWithWhiteHeader(
-            onPress: () {},
+            showAddButoon: true,
+            onPress: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => AddBankMainView()));
+            },
           ),
-          TotalAmountInbankWidget(
-            currncies: {"SYP": "250000", "USD": "100"},
-          )
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TotalAmountInbankWidget(
+              currncies: {"SYP": "250000", "USD": "100"},
+            ),
+          ),
+          BankInfoContainer(
+            bankName: "Bemo",
+            feesOnPress: () {},
+            interestOnPress: () {},
+            moneyAmount: "15000 SYP",
+            reportOnPress: () {},
+          ),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:honey/Core/Helpers/SizeConfig.dart';
 import 'package:honey/Core/lang/localss.dart';
 
@@ -17,32 +18,32 @@ class MiddleActions extends StatelessWidget {
             getButton(
                 context,
                 local.lbMedicine,
-                Image.asset(
-                  "assets/images/Medicines.png",
+                SvgPicture.asset(
+                  "assets/images/SVG/medicines.svg",
                   fit: BoxFit.contain,
                 ),
                 () {}),
             getButton(
                 context,
                 local.lbRevEN,
-                Image.asset(
-                  "assets/images/Revenue.png",
+                SvgPicture.asset(
+                  "assets/images/SVG/Revenue.svg",
                   fit: BoxFit.contain,
                 ),
                 () {}),
             getButton(
                 context,
                 local.lbExAR,
-                Image.asset(
-                  "assets/images/Expenses.png",
+                SvgPicture.asset(
+                  "assets/images/SVG/expenses.svg",
                   fit: BoxFit.contain,
                 ),
                 () {}),
             getButton(
                 context,
                 local.lbAdd,
-                Image.asset(
-                  "assets/images/HomeAdd.png",
+                SvgPicture.asset(
+                  "assets/images/SVG/yellowAdd.svg",
                   fit: BoxFit.contain,
                 ),
                 () {})
@@ -51,7 +52,7 @@ class MiddleActions extends StatelessWidget {
   }
 
   Widget getButton(
-      BuildContext context, String title, Image image, Function onPress) {
+      BuildContext context, String title, SvgPicture image, Function onPress) {
     final width = SizeConfig.screenWidth(context) * 0.22;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,

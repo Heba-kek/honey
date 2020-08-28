@@ -379,5 +379,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbMeals": MessageLookupByLibrary.simpleMessage("وجبات"),
         "lbReading": MessageLookupByLibrary.simpleMessage("قراءة"),
         "lbSmoke": MessageLookupByLibrary.simpleMessage("تدخين"),
+        "lbinterest": MessageLookupByLibrary.simpleMessage("فائدة"),
       };
 }
