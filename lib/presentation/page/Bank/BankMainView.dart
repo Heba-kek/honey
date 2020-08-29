@@ -8,6 +8,7 @@ import 'package:honey/presentation/page/Bank/Component/AddButtonWithWhiteHeader.
 import 'package:honey/presentation/page/Bank/Component/BankInfoContainer.dart';
 import 'package:honey/presentation/page/Bank/Component/TopHeader.dart';
 import 'package:honey/presentation/page/Bank/Component/TotalAmountsinBanks.dart';
+import 'package:honey/presentation/page/Bank/ReportMainView.dart';
 
 class BankMainView extends StatefulWidget {
   final Function onPressBack;
@@ -64,7 +65,10 @@ class _BankMainViewState extends State<BankMainView> {
             feesOnPress: () {},
             interestOnPress: () {},
             moneyAmount: "15000 SYP",
-            reportOnPress: () {},
+            reportOnPress: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => BankReportMainView()));
+            },
           ),
         ],
       ),

@@ -579,6 +579,15 @@ class AppLocalizations {
   String get lbFees {
     return Intl.message('Fees', name: 'lbFees');
   }
+
+  String get lbStartOfTheYear {
+    return Intl.message('From the beginning of the year',
+        name: 'lbStartOfTheYear');
+  }
+
+  String get lbShowData {
+    return Intl.message("Show data", name: "lbShowData");
+  }
 //and add all the text you have inside the app that you need to make it in
 
 //arabic and english launguages

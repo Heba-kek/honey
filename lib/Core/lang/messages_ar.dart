@@ -380,5 +380,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbReading": MessageLookupByLibrary.simpleMessage("قراءة"),
         "lbSmoke": MessageLookupByLibrary.simpleMessage("تدخين"),
         "lbinterest": MessageLookupByLibrary.simpleMessage("فائدة"),
+        "lbStartOfTheYear":
+            MessageLookupByLibrary.simpleMessage("منذ بداية السنة"),
+        "lbShowData": MessageLookupByLibrary.simpleMessage("عرض البيانات"),
       };
 }
