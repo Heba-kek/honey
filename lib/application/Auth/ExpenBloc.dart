@@ -28,7 +28,8 @@ class ExpBloc extends Bloc<ExpEvent, ExpState> {
           },
         );
       }
-    } else if (event is ExpensesReportEvent) {
+    }
+    else if (event is ExpensesReportEvent) {
       yield Loading();
 
       try {
@@ -42,7 +43,8 @@ class ExpBloc extends Bloc<ExpEvent, ExpState> {
           },
         );
       }
-    } else if (event is ExpensesCategoryReportEvent) {
+    }
+    else if (event is ExpensesCategoryReportEvent) {
       yield Loading();
 
       try {
@@ -58,7 +60,8 @@ class ExpBloc extends Bloc<ExpEvent, ExpState> {
           },
         );
       }
-    } else if (event is ExpensesSubCategoryReportEvent) {
+    }
+    else if (event is ExpensesSubCategoryReportEvent) {
       yield Loading();
 
       try {

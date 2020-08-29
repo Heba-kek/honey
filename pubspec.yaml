@@ -36,14 +36,17 @@ dependencies:
   dio: ^3.0.9
   data_connection_checker: ^0.3.4
   flutter_material_pickers: ^1.7.1
-  intl: ^0.16.1
+  intl: any
   image_picker: ^0.6.7+4
+  percent_indicator:
   localstorage: ^3.0.2+5
   adobe_xd:
   progress_dialog:
   http:
   toast:
   flutter_svg:
+  datetime_picker_formfield: ^1.0.0
+
   table_calendar: ^2.2.3
   expandable: ^4.1.4
 

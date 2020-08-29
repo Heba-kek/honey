@@ -93,7 +93,7 @@ class RevenueRemoteDataSource extends RevenueDataSource {
   }
 
   Future<RevenueReportModel> revenueReport(Map<String, dynamic> data) async {
-    final response = await _provider.fetchData(
+    final response = await _provider.fetchDataReportMainEx(
         method: HttpMethod.GET, url: APINames.revenueReport, bodyData: data);
 
     return RevenueReportModel.fromJson(response);
@@ -101,7 +101,7 @@ class RevenueRemoteDataSource extends RevenueDataSource {
 
   Future<RevenueCategoryReportModel> revenueCategoryReport(
       Map<String, dynamic> data) async {
-    final response = await _provider.fetchData(
+    final response = await _provider.fetchDataReportMain(
         method: HttpMethod.GET,
         url: APINames.revenueCategoryReport,
         bodyData: data);
@@ -111,7 +111,7 @@ class RevenueRemoteDataSource extends RevenueDataSource {
 
   Future<RevenueSubCategoryReportModel> revenueSubCategoryReport(
       Map<String, dynamic> data) async {
-    final response = await _provider.fetchData(
+    final response = await _provider.fetchDataReportSub(
         method: HttpMethod.GET,
         url: APINames.revenueSubCategoryReport,
         bodyData: data);

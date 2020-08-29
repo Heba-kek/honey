@@ -568,6 +568,215 @@ class AppLocalizations {
     return Intl.message('Create New Account', name: 'lbcreate');
   }
 
+
+
+
+  String get lbAddV {
+    return Intl.message('Add this value', name: 'lbAddV');
+  }
+
+  String get lbDebtPro {
+    return Intl.message('Debt project', name: 'lbDebtPro');
+  }
+
+  String get lbValueD {
+    return Intl.message('is debt for this project', name: 'lbValueD');
+  }
+
+  String get lbAddPro {
+    return Intl.message('Add Project', name: 'lbAddPro');
+  }
+
+  String get lbLoad {
+    return Intl.message('Loading data...', name: 'lbLoad');
+  }
+
+
+  String get lbInsetInsV {
+    return Intl.message('Please Insert installment Value', name: 'lbInsetInsV');
+  }
+
+  String get lbInsetInsD {
+    return Intl.message('Please Insert installment Date', name: 'lbInsetInsD');
+  }
+  String get lbCardName{
+    return Intl.message('Card Name', name: 'lbCardName');
+
+  }
+
+
+  String get lbsignout{
+    return Intl.message('Sign Out', name: 'lbsignout');
+
+  }
+  String get lbsignoutAr{
+    return Intl.message('تسجيل خروج', name: 'lbsignout');
+
+  }
+  String get lbEngWord {
+    return Intl.message('English Word', name: 'lbEngWord');
+  }
+
+
+  String get lbAddMem {
+    return Intl.message('Add Memory', name: 'lbAddMem');
+  }
+
+  String get lbMemName {
+    return Intl.message('Memory Name', name: 'lbMemName');
+  }
+
+  String get lnLoanN {
+    return Intl.message('Please Insert Loan Name', name: 'lnLoanN');
+  }
+
+  String get lnDebtN {
+    return Intl.message('Please Insert Debt Name', name: 'lnDebtN');
+  }
+
+  String get lnLends {
+    return Intl.message('Lends', name: 'lnLends');
+  }
+
+  String get lnBorrows {
+    return Intl.message('Borrows', name: 'lnBorrows');
+  }
+
+  String get lbLoanA {
+    return Intl.message('Please Insert Loan Amount', name: 'lbLoanA');
+  }
+
+  String get lbDebtA {
+    return Intl.message('Please Insert Debt Amount', name: 'lbDebtA');
+  }
+
+  String get lbDebtD {
+    return Intl.message('Please Insert Debt Description', name: 'lbDebtD');
+  }
+
+  String get lbInstMeg {
+    return Intl.message('Are you confirm to insert this data to loan ?',
+        name: 'lbInstMeg');
+  }
+
+  String get lbInsetRemD {
+    return Intl.message('Please Insert Reminder Date', name: 'lbInsetRemD');
+  }
+
+  String get lbRepTar {
+    return Intl.message('Economize Project Report', name: 'lbRepTar');
+  }
+
+  String get lbAddMoreValue {
+    return Intl.message('Add more Value', name: 'lbAddMoreValue');
+  }
+
+
+
+
+
+  String get lbEditTar {
+    return Intl.message('Edit Economize Project', name: 'lbEditTar');
+  }
+
+  String get lbNameTar {
+    return Intl.message('Enter Economize Project Name', name: 'lbNameTar');
+  }
+
+  String get lbGetPay {
+    return Intl.message('Get payment', name: 'lbGetPay');
+  }
+
+
+  String get lbfirstn {
+    return Intl.message('First Name', name: 'lbfirstn');
+  }
+
+  String get lblastname {
+    return Intl.message('Last Name', name: 'lblastname');
+  }
+  String get lbemail {
+    return Intl.message('Email', name: 'lbemail');
+  }
+  String get lbpass {
+    return Intl.message('Password', name: 'lbpass');
+  }
+  String get lbpassC {
+    return Intl.message('Confirm Password', name: 'lbpassC');
+  }
+  String get lbmobile {
+    return Intl.message('MobileNumber', name: 'lbmobile');
+  }
+  String get lbCode {
+    return Intl.message('Code', name: 'lbCode');
+  }
+
+
+  String get lbGTReport {
+    return Intl.message('Get Total Report', name: 'lbGTReport');
+  }
+
+
+
+  String get lbDeleteLoan {
+    return Intl.message('Delete Loan', name: 'lbDeleteLoan');
+  }
+
+  String get lbDeleteDebt {
+    return Intl.message('Delete Debt', name: 'lbDeleteDebt');
+  }
+
+  String get lbDeleteDebtM {
+    return Intl.message('Are you confirm delete this debt ?',
+        name: 'lbDeleteDebtM');
+  }
+
+  String get lbDeleteBank {
+    return Intl.message('Delete Bank', name: 'lbDeleteBank');
+  }
+
+  String get lbSignUp {
+    return Intl.message('Sign Up', name: 'lbSignUp');
+  }
+
+
+  String get lbDeleteBankM {
+    return Intl.message('Are you confirm delete this bank ?',
+        name: 'lbDeleteBankM');
+  }
+
+  String get lbDeleteCard {
+    return Intl.message('Delete Card', name: 'lbDeleteCard');
+  }
+
+  String get lbDeleteCardM {
+    return Intl.message('Are you confirm delete this card ?',
+        name: 'lbDeleteCardM');
+  }
+
+  String get lbDeleteMem{
+    return Intl.message('Delete Memory', name: 'lbDeleteMem');
+  }
+
+  String get lbDeleteMemM {
+    return Intl.message('Are you confirm delete this Memory ?',
+        name: 'lbDeleteMemM');
+  }
+
+  String get lbDeleteTarget {
+    return Intl.message('Delete Economize Project', name: 'lbDeleteTarget');
+  }
+
+  String get lbDateE {
+    return Intl.message('Date Field is Empty', name: 'lbDateE');
+  }
+  String get lbEmpty {
+    return Intl.message('Please insert the empty value', name: 'lbEmpty');
+  }
+  String get lbViewD {
+    return Intl.message('View data from start date', name: 'lbViewD');
+  }
+
   String get lbWait {
     return Intl.message('Please wait....', name: 'lbWait');
   }

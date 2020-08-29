@@ -169,16 +169,16 @@ class HomeFragment extends State<HomeScreen>
       case 3:
         print('rev');
 
-        return new Directionality(
+        return new SingleChildScrollView(child:Directionality(
             textDirection:
-                langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-            child: revenuePage());
+            langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+            child: revenuePage()));
 
       case 1:
-        return new Directionality(
+        return new SingleChildScrollView(child: Directionality(
             textDirection:
-                langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-            child: expensivePage());
+            langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+            child: expensivePage()),);
 
       case 2:
         return AddMedicineScreen();
