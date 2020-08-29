@@ -568,9 +568,6 @@ class AppLocalizations {
     return Intl.message('Create New Account', name: 'lbcreate');
   }
 
-
-
-
   String get lbAddV {
     return Intl.message('Add this value', name: 'lbAddV');
   }
@@ -591,7 +588,6 @@ class AppLocalizations {
     return Intl.message('Loading data...', name: 'lbLoad');
   }
 
-
   String get lbInsetInsV {
     return Intl.message('Please Insert installment Value', name: 'lbInsetInsV');
   }
@@ -599,24 +595,22 @@ class AppLocalizations {
   String get lbInsetInsD {
     return Intl.message('Please Insert installment Date', name: 'lbInsetInsD');
   }
-  String get lbCardName{
+
+  String get lbCardName {
     return Intl.message('Card Name', name: 'lbCardName');
-
   }
 
-
-  String get lbsignout{
+  String get lbsignout {
     return Intl.message('Sign Out', name: 'lbsignout');
-
   }
-  String get lbsignoutAr{
+
+  String get lbsignoutAr {
     return Intl.message('تسجيل خروج', name: 'lbsignout');
-
   }
+
   String get lbEngWord {
     return Intl.message('English Word', name: 'lbEngWord');
   }
-
 
   String get lbAddMem {
     return Intl.message('Add Memory', name: 'lbAddMem');
@@ -671,10 +665,6 @@ class AppLocalizations {
     return Intl.message('Add more Value', name: 'lbAddMoreValue');
   }
 
-
-
-
-
   String get lbEditTar {
     return Intl.message('Edit Economize Project', name: 'lbEditTar');
   }
@@ -687,7 +677,6 @@ class AppLocalizations {
     return Intl.message('Get payment', name: 'lbGetPay');
   }
 
-
   String get lbfirstn {
     return Intl.message('First Name', name: 'lbfirstn');
   }
@@ -695,28 +684,30 @@ class AppLocalizations {
   String get lblastname {
     return Intl.message('Last Name', name: 'lblastname');
   }
+
   String get lbemail {
     return Intl.message('Email', name: 'lbemail');
   }
+
   String get lbpass {
     return Intl.message('Password', name: 'lbpass');
   }
+
   String get lbpassC {
     return Intl.message('Confirm Password', name: 'lbpassC');
   }
+
   String get lbmobile {
     return Intl.message('MobileNumber', name: 'lbmobile');
   }
+
   String get lbCode {
     return Intl.message('Code', name: 'lbCode');
   }
 
-
   String get lbGTReport {
     return Intl.message('Get Total Report', name: 'lbGTReport');
   }
-
-
 
   String get lbDeleteLoan {
     return Intl.message('Delete Loan', name: 'lbDeleteLoan');
@@ -739,7 +730,6 @@ class AppLocalizations {
     return Intl.message('Sign Up', name: 'lbSignUp');
   }
 
-
   String get lbDeleteBankM {
     return Intl.message('Are you confirm delete this bank ?',
         name: 'lbDeleteBankM');
@@ -754,7 +744,7 @@ class AppLocalizations {
         name: 'lbDeleteCardM');
   }
 
-  String get lbDeleteMem{
+  String get lbDeleteMem {
     return Intl.message('Delete Memory', name: 'lbDeleteMem');
   }
 
@@ -770,9 +760,11 @@ class AppLocalizations {
   String get lbDateE {
     return Intl.message('Date Field is Empty', name: 'lbDateE');
   }
+
   String get lbEmpty {
     return Intl.message('Please insert the empty value', name: 'lbEmpty');
   }
+
   String get lbViewD {
     return Intl.message('View data from start date', name: 'lbViewD');
   }
