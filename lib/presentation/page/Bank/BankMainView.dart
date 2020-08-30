@@ -67,7 +67,9 @@ class _BankMainViewState extends State<BankMainView> {
             moneyAmount: "15000 SYP",
             reportOnPress: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => BankReportMainView()));
+                  builder: (context) => BankReportMainView(
+                        bankName: "Bemo",
+                      )));
             },
           ),
         ],

@@ -29,4 +29,6 @@ class APINames {
   static final getIcon = "Financial_Api/GetIcons";
   static final getSubExp = "Financial_Api/SubCategory";
   static final getHome = "Home_Api/home";
+  static final medicineStatus = "Medicine_Api/MedicineStatus";
+  static final medicineDetails = "Medicine_Api/MedicineById";
 }

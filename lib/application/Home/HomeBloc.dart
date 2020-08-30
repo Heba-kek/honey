@@ -25,6 +25,34 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           },
         );
       }
+    } else if (event is GeMedicineStatus) {
+      yield Loading();
+
+      try {
+        final result = await homeRepository.getMedicineStatus(event.toMap());
+        yield Loaded(result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is GETHomeMedicineDetails) {
+      yield Loading();
+
+      try {
+        final result = await homeRepository.getMedicineDetails(event.toMap());
+        yield GETHomeMedicineDetailsLoaded(result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
     }
   }
 }
