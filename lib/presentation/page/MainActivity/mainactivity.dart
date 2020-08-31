@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:honey/Core/Helpers/Colors.dart';
 import 'package:honey/Core/Helpers/SizeConfig.dart';
+import 'package:honey/Domain/Home/HomeRepository.dart';
+import 'package:honey/Infrastructure/Home/Repository/HomeRepositoryIML.dart';
+import 'package:honey/application/Home/bloc.dart';
+import 'package:honey/presentation/Common/ProgressWidget.dart';
 import 'package:honey/presentation/page/MainActivity/Components/Calendar.dart';
 import 'package:honey/presentation/page/MainActivity/Components/FreeLanceProject.dart';
 import 'package:honey/presentation/page/MainActivity/Components/HoneyBeeTopTitles.dart';
@@ -17,8 +22,45 @@ class MainActivity extends StatefulWidget {
 }
 
 class _MainActivityState extends State<MainActivity> {
+  HomeBloc homeBloc;
+
+  @override
+  void initState() {
+    homeBloc = HomeBloc(HomeRepositoryIMPL());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    homeBloc.close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: homeBloc.mapEventToState(GetHomeEvent()),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Center(
+            child: Text(snapshot.error.toString()),
+          );
+        } else {
+          if (snapshot.data is GetHomeLoaded) {
+            return mainWidget();
+          } else if (snapshot.data is Error) {
+            return Center(
+              child: Text(snapshot.data.toString()),
+            );
+          } else {
+            return progressWidget();
+          }
+        }
+      },
+    );
+  }
+
+  Widget mainWidget() {
     return Stack(
       children: <Widget>[
         Container(

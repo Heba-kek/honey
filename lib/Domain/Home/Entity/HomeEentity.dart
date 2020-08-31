@@ -19,7 +19,7 @@ class HomeData {
   });
 
   final List<Medicine> medicine;
-  final EarlierApp earlierApp;
+  final List<EarlierApp> earlierApp;
   final List<Revenue> revenues;
   final List<ScduleWork> scduleWork;
   final List<Icon> icons;
@@ -32,7 +32,8 @@ class HomeData {
                 json["medicine"].map((x) => Medicine.fromJson(x))),
         earlierApp: json["earlier_app"] == null
             ? null
-            : EarlierApp.fromJson(json["earlier_app"]),
+            : List<EarlierApp>.from(
+                json["earlier_app"].map((x) => EarlierApp.fromJson(x))),
         revenues: json["revenues"] == null
             ? null
             : List<Revenue>.from(
@@ -54,7 +55,9 @@ class HomeData {
         "medicine": medicine == null
             ? null
             : List<dynamic>.from(medicine.map((x) => x.toJson())),
-        "earlier_app": earlierApp == null ? null : earlierApp.toJson(),
+        "earlier_app": earlierApp == null
+            ? null
+            : List<dynamic>.from(earlierApp.map((x) => x.toJson())),
         "revenues": revenues == null
             ? null
             : List<dynamic>.from(revenues.map((x) => x.toJson())),
@@ -72,27 +75,21 @@ class HomeData {
 
 class EarlierApp {
   EarlierApp({
-    this.appointement,
-    this.diffrent,
     this.type,
+    this.diff,
   });
 
-  final Medicine appointement;
-  final String diffrent;
   final String type;
+  final String diff;
 
   factory EarlierApp.fromJson(Map<String, dynamic> json) => EarlierApp(
-        appointement: json["appointement"] == null
-            ? null
-            : Medicine.fromJson(json["appointement"]),
-        diffrent: json["diffrent"] == null ? null : json["diffrent"],
         type: json["type"] == null ? null : json["type"],
+        diff: json["diff"] == null ? null : json["diff"],
       );
 
   Map<String, dynamic> toJson() => {
-        "appointement": appointement == null ? null : appointement.toJson(),
-        "diffrent": diffrent == null ? null : diffrent,
         "type": type == null ? null : type,
+        "diff": diff == null ? null : diff,
       };
 }
 
