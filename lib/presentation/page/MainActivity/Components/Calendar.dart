@@ -143,7 +143,7 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
                 //   CalendarFormat.twoWeeks: '',
                 // },
                 calendarStyle: CalendarStyle(
-                  outsideDaysVisible: false,
+                  outsideDaysVisible: true,
                   weekendStyle: TextStyle().copyWith(color: Colors.blue[800]),
                   holidayStyle: TextStyle().copyWith(color: Colors.blue[800]),
                 ),
