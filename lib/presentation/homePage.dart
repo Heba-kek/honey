@@ -178,7 +178,11 @@ class HomeFragment extends State<HomeScreen>
         return new SingleChildScrollView(child: Directionality(
             textDirection:
             langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-            child: expensivePage()),);
+            child: expensivePage( onPressBack: () {
+              setState(() {
+                _selectedDrawerIndex = 0;
+              });
+            },)),);
 
       case 2:
         return AddMedicineScreen();

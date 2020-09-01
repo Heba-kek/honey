@@ -35,12 +35,14 @@ class IconDataM extends Equatable {
 
   final String id;
   final String url;
+   bool select ;
 
 
 
   IconDataM(
       {@required this.id,
         @required this.url,
+        @required this.select,
 
       });
 
@@ -48,6 +50,7 @@ class IconDataM extends Equatable {
   List<Object> get props => [
     this.id,
     this.url,
+    this.select,
 
 
   ];
@@ -55,6 +58,7 @@ class IconDataM extends Equatable {
   factory IconDataM.fromJson(Map<String, dynamic> json) => IconDataM(
     id: json["id"] == null ? null : json["id"],
     url: json["url"] == null ? null : json["url"],
+    select: json["select"] == null ? null : json["select"],
 
 
 
@@ -63,6 +67,7 @@ class IconDataM extends Equatable {
   Map<String, dynamic> toJson() => {
     "id": id == null ? null : id,
     "url": url == null ? null : url,
+    "select": select == null ? null : select,
 
 
 

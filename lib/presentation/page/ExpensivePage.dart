@@ -41,6 +41,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
 class expensivePage extends StatefulWidget {
+  final Function onPressBack;
+
+  const expensivePage({Key key, this.onPressBack}) : super(key: key);
   @override
   _expensivePage createState() => new _expensivePage();
 }
@@ -76,7 +79,9 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+   // WidgetsBinding.instance.removeObserver(this);
+    initState();
+
     super.dispose();
   }
 
@@ -194,11 +199,13 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                               10, 10, 10, 10),
                                           child: Row(
                                             children: <Widget>[
-                                              SvgPicture.string(
-                                                _svg_6oa7ke,
-                                                allowDrawingOutsideViewBox:
-                                                    true,
-                                              ),
+                                             GestureDetector(child:  SvgPicture.string(
+                                               _svg_6oa7ke,
+                                               allowDrawingOutsideViewBox:
+                                               true,
+                                             ),onTap:
+                                               widget.onPressBack
+                                             ),
                                               Padding(
                                                 padding: EdgeInsets.fromLTRB(
                                                     10, 0, 10, 0),
@@ -514,7 +521,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                       Navigator.of(context).push(
                                         PageRouteBuilder(
                                           pageBuilder: (_, __, ___) =>
-                                              expLaddExp('1'),
+                                              expLaddExp('1',context),
                                         ),
                                       );
                                     },

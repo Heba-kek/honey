@@ -528,7 +528,7 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
                                        Navigator.of(context).push(
                                   PageRouteBuilder(
                                     pageBuilder: (_, __, ___) =>
-                                        expLaddExp('2'),
+                                        expLaddExp('2',context),
                                   ),
                                 );
                                     },
