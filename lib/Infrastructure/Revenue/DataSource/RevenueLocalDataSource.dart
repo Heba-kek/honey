@@ -112,7 +112,7 @@ class RevenueLocalDataSource extends RevenueDataSource {
   void clearCachedbyKey(String key) async {
     var preferences = await SharedPreferences.getInstance();
     preferences.setString(
-      addRevenueKey,
+      key,
       json.encode(null),
     );
   }

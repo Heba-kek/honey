@@ -31,4 +31,11 @@ class APINames {
   static final getHome = "Home_Api/home";
   static final medicineStatus = "Medicine_Api/MedicineStatus";
   static final medicineDetails = "Medicine_Api/MedicineById";
+  static final getPaymentData = "Financial_Api/PaymentData";
+  static final getExpensesCategoryForAdd =
+      "Financial_Api/ExpensesCategoryForAdd";
+  static final getRevenueCategoryForAdd = "Financial_Api/RevenueCategoryForAdd";
+  static final getExpensesLoan = "Financial_Api/ExpensesLoan";
+  static final addDebtPaymetn = "Debt_Api/AddPayment";
+  static final addLoanPayment = "Debt_Api/AddLoanPayment";
 }

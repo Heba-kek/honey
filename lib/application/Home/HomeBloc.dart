@@ -53,6 +53,103 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           },
         );
       }
+    } else if (event is GetHomePaymentDataEvent) {
+      yield Loading();
+
+      try {
+        final result = await homeRepository.getPaymentData(event.toMap());
+        yield GETHomePaymentDataLoaded(result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is GetRevenueCategoryForAddEvent) {
+      yield Loading();
+
+      try {
+        final result = await homeRepository.getRevenueCategoryForAdd();
+        yield GetCategoryForAddloaded(result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is GetExpensesCategoryForAddEvent) {
+      yield Loading();
+
+      try {
+        final result = await homeRepository.getExpensesCategoryForAdd();
+        yield GetCategoryForAddloaded(result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is GETRevenueDebtEvent) {
+      yield Loading();
+
+      try {
+        final result = await homeRepository.getRevenueDebt();
+        yield GETDebtloaded(result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is GetExpensesLoanEvent) {
+      yield Loading();
+
+      try {
+        final result = await homeRepository.getRevenueDebt();
+        yield GETDebtloaded(result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is AddPaymentEvent) {
+      yield Loading();
+
+      try {
+        final result = await homeRepository.addPayment(event.toMap());
+        yield Loaded(result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is AddLoanPaymentEvent) {
+      yield Loading();
+      try {
+        final result = await homeRepository.addLoanPayment(event.toMap());
+        yield Loaded(result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
     }
   }
 }
