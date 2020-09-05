@@ -87,14 +87,18 @@ class HomeRemoteDataSource extends HomeDataSource {
 
   Future<BasicSuccessModel> addPayment(Map<String, dynamic> bodyData) async {
     final reponse = await _provider.fetchData(
-        method: HttpMethod.POST, url: APINames.addDebtPaymetn, bodyData: {});
+        method: HttpMethod.POST,
+        url: APINames.addDebtPaymetn,
+        bodyData: bodyData);
     return BasicSuccessModel.fromJson(reponse);
   }
 
   Future<BasicSuccessModel> addLoanPayment(
       Map<String, dynamic> bodyData) async {
     final reponse = await _provider.fetchData(
-        method: HttpMethod.POST, url: APINames.addLoanPayment, bodyData: {});
+        method: HttpMethod.POST,
+        url: APINames.addLoanPayment,
+        bodyData: bodyData);
     return BasicSuccessModel.fromJson(reponse);
   }
 }

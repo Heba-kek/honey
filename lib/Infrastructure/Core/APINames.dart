@@ -38,4 +38,11 @@ class APINames {
   static final getExpensesLoan = "Financial_Api/ExpensesLoan";
   static final addDebtPaymetn = "Debt_Api/AddPayment";
   static final addLoanPayment = "Debt_Api/AddLoanPayment";
+  static final addAccount = "Bank_Account/AddAccount";
+  static final getBanksAccount = "Bank_Account/BankAccounts";
+  static final addCommission = "Bank_Account/AddCommission";
+  static final addDeposit = "Bank_Account/AddDeposit";
+  static final bankAccountReport = "Bank_Account/AccountReport";
+  static final deleteBankAccount = "Bank_Account/DeleteAccount";
+  static final updateBankAccount = "Bank_Account/UpdateAccount";
 }

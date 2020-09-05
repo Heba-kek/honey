@@ -39,7 +39,7 @@ class AddRevenueEvent extends RevenueEvent {
   final int paymentType;
   final int bankAccount;
   final String paymentDate;
-  final String reminderDate;
+  final int reminderDate;
 
   AddRevenueEvent(
       this.totalAmount,
