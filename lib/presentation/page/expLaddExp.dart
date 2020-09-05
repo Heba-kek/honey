@@ -171,32 +171,84 @@ class _expLaddExp extends State<expLaddExp> {
                                                                 .fromLTRB(10, 0,
                                                                     10, 0),
                                                             child: Center(
-                                                              child: Text(
-                                                                'Honey Bee',
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      'Pristina',
-                                                                  fontSize: 32,
-                                                                  color: const Color(
-                                                                      0xff0a0606),
-                                                                  shadows: [
-                                                                    Shadow(
-                                                                      color: const Color(
-                                                                          0x29000000),
-                                                                      offset:
-                                                                          Offset(
-                                                                              3,
-                                                                              10),
-                                                                      blurRadius:
-                                                                          6,
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                              ),
+                                                              child:
+
+
+      widget.isexp == '1'?
+                                                              Column(
+                                                                children: <Widget>[Text(
+                                                                  'Honey Bee',
+                                                                  style: TextStyle(
+                                                                    fontFamily: 'Pristina',
+                                                                    fontSize: 22,
+                                                                    color: const Color(
+                                                                        0xff0a0606),
+                                                                    shadows: [
+                                                                      Shadow(
+                                                                        color: const Color(
+                                                                            0x29000000),
+                                                                        offset: Offset(3, 10),
+                                                                        blurRadius: 6,
+                                                                      )
+                                                                    ],
+                                                                  ),
+                                                                  textAlign: TextAlign.center,
+                                                                ),Padding(padding: EdgeInsets.fromLTRB(0,
+                                                                    3, 0, 3),child: Text(
+                                                                  'Expense Managment',
+                                                                  style: TextStyle(
+                                                                    fontFamily: 'Pristina',
+                                                                    fontSize: 22,
+                                                                    color: const Color(
+                                                                        0xff0a0606),
+                                                                    shadows: [
+                                                                      Shadow(
+                                                                        color: const Color(
+                                                                            0x29000000),
+                                                                        offset: Offset(3, 10),
+                                                                        blurRadius: 6,
+                                                                      )
+                                                                    ],
+                                                                  ),
+                                                                  textAlign: TextAlign.center,
+                                                                ),)],):
+      Column(
+        children: <Widget>[Text(
+          'Honey Bee',
+          style: TextStyle(
+            fontFamily: 'Pristina',
+            fontSize: 22,
+            color: const Color(
+                0xff0a0606),
+            shadows: [
+              Shadow(
+                color: const Color(
+                    0x29000000),
+                offset: Offset(3, 10),
+                blurRadius: 6,
+              )
+            ],
+          ),
+          textAlign: TextAlign.center,
+        ),Padding(padding: EdgeInsets.fromLTRB(0,
+            3, 0, 3),child: Text(
+          'Revenue Managment',
+          style: TextStyle(
+            fontFamily: 'Pristina',
+            fontSize: 22,
+            color: const Color(
+                0xff0a0606),
+            shadows: [
+              Shadow(
+                color: const Color(
+                    0x29000000),
+                offset: Offset(3, 10),
+                blurRadius: 6,
+              )
+            ],
+          ),
+          textAlign: TextAlign.center,
+        ),)],),
                                                             ),
                                                           ),
                                                           new Spacer(),
@@ -208,7 +260,7 @@ class _expLaddExp extends State<expLaddExp> {
                                                                     fontFamily:
                                                                         'Times New Roman',
                                                                     fontSize:
-                                                                        24,
+                                                                        20,
                                                                     color: const Color(
                                                                         0xff0a0606),
                                                                     shadows: [
@@ -234,7 +286,7 @@ class _expLaddExp extends State<expLaddExp> {
                                                                     fontFamily:
                                                                         'Times New Roman',
                                                                     fontSize:
-                                                                        24,
+                                                                        20,
                                                                     color: const Color(
                                                                         0xff0a0606),
                                                                     shadows: [
@@ -961,6 +1013,13 @@ class _expLaddExp extends State<expLaddExp> {
                                                   onTap: () {
                                                     pr.show();
                                                     if(sublisttext==null){
+                                                      if (sublisttext == null) {
+                                                        sublisttext =
+                                                            sublist ;
+                                                      } else {
+                                                        sublisttext = sublisttext +
+                                                            sublist+
+                                                            ',';}
                                                       post(
                                                           'http://honey-bee.life/Financial_Api/addCategoryexpenses',
                                                           {
@@ -969,7 +1028,7 @@ class _expLaddExp extends State<expLaddExp> {
                                                             _catName.text,
                                                             "icon":
                                                             _imageFilePh,
-                                                            "sub_cat": ""
+                                                            "sub_cat": sublisttext
                                                           },
                                                           tokene,
                                                           'en')
@@ -993,6 +1052,12 @@ class _expLaddExp extends State<expLaddExp> {
                                                                 error.toString();
                                                           });
                                                     }else{
+                                                      if (sublisttext == null) {
+                                                        sublisttext =
+                                                            sublist ;
+                                                      } else {
+                                                        sublisttext = sublisttext +
+                                                            sublist;}
                                                       post(
                                                           'http://honey-bee.life/Financial_Api/addCategoryexpenses',
                                                           {

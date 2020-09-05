@@ -173,24 +173,43 @@ class _reportMainCateExpen extends State<reportMainCateExpen>
                                               padding: EdgeInsets.fromLTRB(
                                                   10, 0, 10, 0),
                                               child: Center(
-                                                child: Text(
-                                                  'Honey Bee',
-                                                  style: TextStyle(
-                                                    fontFamily: 'Pristina',
-                                                    fontSize: 28,
-                                                    color:
-                                                        const Color(0xff0a0606),
-                                                    shadows: [
-                                                      Shadow(
-                                                        color: const Color(
-                                                            0x29000000),
-                                                        offset: Offset(3, 10),
-                                                        blurRadius: 6,
-                                                      )
-                                                    ],
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                ),
+                                                child:  Column(
+                                                  children: <Widget>[Text(
+                                                    'Honey Bee',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Pristina',
+                                                      fontSize: 22,
+                                                      color: const Color(
+                                                          0xff0a0606),
+                                                      shadows: [
+                                                        Shadow(
+                                                          color: const Color(
+                                                              0x29000000),
+                                                          offset: Offset(3, 10),
+                                                          blurRadius: 6,
+                                                        )
+                                                      ],
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),Padding(padding: EdgeInsets.fromLTRB(0,
+                                                      3, 0, 3),child: Text(
+                                                    'Expense Managment',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Pristina',
+                                                      fontSize: 22,
+                                                      color: const Color(
+                                                          0xff0a0606),
+                                                      shadows: [
+                                                        Shadow(
+                                                          color: const Color(
+                                                              0x29000000),
+                                                          offset: Offset(3, 10),
+                                                          blurRadius: 6,
+                                                        )
+                                                      ],
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),)],),
                                               ),
                                             ),
                                             new Spacer(),
@@ -198,7 +217,7 @@ class _reportMainCateExpen extends State<reportMainCateExpen>
                                              'Expensev',
                                              style: TextStyle(
                                                fontFamily: 'Times New Roman',
-                                               fontSize: 24,
+                                               fontSize: 20,
                                                color: const Color(0xff0a0606),
                                                shadows: [
                                                  Shadow(

@@ -296,12 +296,18 @@ class HomeFragment extends State<HomeScreen>
             ),
             title: Text(''),
           ),
+
           BottomNavigationBarItem(
-            icon: Image.asset(
+            icon: GestureDetector(onTap: (){
+              setState(() {
+                _selectedDrawerIndex = 0;
+              });
+    },child: Image.asset(
               "assets/images/homeButton.png",
               height: 40,
               width: 40,
-            ),
+            ),)
+            ,
             title: Text(''),
           ),
           BottomNavigationBarItem(

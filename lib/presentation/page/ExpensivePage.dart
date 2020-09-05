@@ -56,6 +56,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
   var preferences;
   String _response = '';
   bool _apiCall = false;
+  BuildContext connew;
   String _svg_kw07ha =
       '<svg viewBox="7.0 2.0 7.0 9.0" ><path  d="M 13.95198822021484 5.329999923706055 C 13.95198822021484 4.599999904632568 13.53486824035645 4 13.02737426757813 4 L 11.86639213562012 4 L 11.86639213562012 2 L 9.085596084594727 2 L 9.085596084594727 4 L 7.924614429473877 4 C 7.41711950302124 4 7 4.599999904632568 7 5.329999923706055 L 7 11 L 13.95198822021484 11 L 13.95198822021484 5.329999923706055 Z" fill="#000000" fill-opacity="0.3" stroke="none" stroke-width="1" stroke-miterlimit="4" stroke-linecap="butt" /></svg>';
   String _svg_xa6yi7 =
@@ -143,6 +144,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
     }, builder: (context, state) {
       if (state is Empty) {
         print('progress');
+        connew= context;
         context.bloc<ExpBloc>().add(ExpenEvent(id));
         return progressWidget();
       } else if (state is Loading) {
@@ -210,7 +212,8 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                 padding: EdgeInsets.fromLTRB(
                                                     10, 0, 10, 0),
                                                 child: Center(
-                                                  child: Text(
+                                                  child: Column(
+                                                    children: <Widget>[Text(
                                                     'Honey Bee',
                                                     style: TextStyle(
                                                       fontFamily: 'Pristina',
@@ -227,7 +230,25 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                       ],
                                                     ),
                                                     textAlign: TextAlign.center,
-                                                  ),
+                                                  ),Padding(padding: EdgeInsets.fromLTRB(0,
+                                                      3, 0, 3),child: Text(
+                                                    'Expense Managment',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Pristina',
+                                                      fontSize: 32,
+                                                      color: const Color(
+                                                          0xff0a0606),
+                                                      shadows: [
+                                                        Shadow(
+                                                          color: const Color(
+                                                              0x29000000),
+                                                          offset: Offset(3, 10),
+                                                          blurRadius: 6,
+                                                        )
+                                                      ],
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),)],),
                                                 ),
                                               ),
                                               new Spacer(),
@@ -570,12 +591,30 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                     padding:
                                                         EdgeInsets.fromLTRB(
                                                             10, 0, 10, 0),
-                                                    child: Row(
+                                                    child:
+                                                    Stack(children: <Widget>[Padding(
+                                                      padding: EdgeInsets
+                                                          .fromLTRB(
+                                                          0, 10, 0, 10),
+                                                      child: Center(child: Text(
+                                                        expList[index]
+                                                            .category_Name
+                                                            .toString(),textAlign: TextAlign.left,
+                                                        style: TextStyle(
+                                                            color: Colors
+                                                                .black,
+                                                            fontSize: 24,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold),
+                                                      ),),
+                                                    ),
+                                                      Row(
                                                       children: <Widget>[
                                                         Padding(
                                                           padding: EdgeInsets
                                                               .fromLTRB(
-                                                                  5, 0, 5, 0),
+                                                              5, 0, 5, 0),
                                                           child: Image.network(
                                                             expList[index]
                                                                 .icon
@@ -584,31 +623,15 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                             width: 50,
                                                           ),
                                                         ),
-                                                        Padding(
-                                                          padding: EdgeInsets
-                                                              .fromLTRB(
-                                                                  10, 0, 10, 0),
-                                                          child: Text(
-                                                            expList[index]
-                                                                .category_Name
-                                                                .toString(),
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 17,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                        ),
+
                                                         new Spacer(),
                                                         Padding(
                                                             padding: EdgeInsets
                                                                 .fromLTRB(
-                                                                    2, 0, 0, 0),
+                                                                2, 0, 0, 0),
                                                             child:
-                                                                PopupMenuButton<
-                                                                    int>(
+                                                            PopupMenuButton<
+                                                                int>(
                                                               itemBuilder:
                                                                   (context) => [
                                                                 PopupMenuItem(
@@ -644,10 +667,10 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                                     2) {
                                                                   showDialog(
                                                                       context:
-                                                                          context,
+                                                                      context,
                                                                       builder:
                                                                           (BuildContext
-                                                                              context) {
+                                                                      context) {
                                                                         return showDialogwindowDelete(
                                                                             expList[index].category_id);
                                                                       });
@@ -655,10 +678,10 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                                     3) {
                                                                   showDialog(
                                                                       context:
-                                                                          context,
+                                                                      context,
                                                                       builder:
                                                                           (BuildContext
-                                                                              context) {
+                                                                      context) {
                                                                         return MyDialogEdit(
                                                                             expList[index].category_id,
                                                                             expList[index].category_Name.toString(),
@@ -670,7 +693,10 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                               },
                                                             ))
                                                       ],
-                                                    ),
+                                                    ),],)
+
+
+
                                                   ),
                                                 ],
                                               ),
@@ -805,7 +831,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
               print(isHidden);
             });
             Navigator.pop(context, true);
-            context.bloc<ExpBloc>().add(ExpenEvent(id));
+            connew.bloc<ExpBloc>().add(ExpenEvent(id));
 
             initState();
           } else {

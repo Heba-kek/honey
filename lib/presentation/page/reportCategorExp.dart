@@ -159,13 +159,13 @@ class _reportCAteExpe extends State<reportCAteExpe>
         reportList = state.expenseReportEnity.data;
         ListTotal = state.expenseReportEnity.total;
         listCureency = state.expenseReportEnity.currency;
-
-        Navigator.of(context).push(
+      return  Navigator.of(context).push(
           PageRouteBuilder(
             pageBuilder: (_, __, ___) =>
                 reportMainCateExpen(dateF,dateT,reportList,ListTotal,listCureency,'1'),
           ),
         );
+
 
 
                //print(expListSub.length);
@@ -210,26 +210,43 @@ class _reportCAteExpe extends State<reportCAteExpe>
                                               padding: EdgeInsets.fromLTRB(
                                                   10, 0, 10, 0),
                                               child: Center(
-                                                child: Text(
-                                                  'Honey Bee',
-                                                  style: TextStyle(
-                                                    fontFamily: 'Pristina',
-                                                    fontSize: 28,
-                                                    color: const Color(
-                                                        0xff0a0606),
-                                                    shadows: [
-                                                      Shadow(
-                                                        color: const Color(
-                                                            0x29000000),
-                                                        offset:
-                                                        Offset(3, 10),
-                                                        blurRadius: 6,
-                                                      )
-                                                    ],
-                                                  ),
-                                                  textAlign:
-                                                  TextAlign.center,
-                                                ),
+                                                child:  Column(
+                                                  children: <Widget>[Text(
+                                                    'Honey Bee',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Pristina',
+                                                      fontSize: 22,
+                                                      color: const Color(
+                                                          0xff0a0606),
+                                                      shadows: [
+                                                        Shadow(
+                                                          color: const Color(
+                                                              0x29000000),
+                                                          offset: Offset(3, 10),
+                                                          blurRadius: 6,
+                                                        )
+                                                      ],
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),Padding(padding: EdgeInsets.fromLTRB(0,
+                                                      3, 0, 3),child: Text(
+                                                    'Expense Managment',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Pristina',
+                                                      fontSize: 22,
+                                                      color: const Color(
+                                                          0xff0a0606),
+                                                      shadows: [
+                                                        Shadow(
+                                                          color: const Color(
+                                                              0x29000000),
+                                                          offset: Offset(3, 10),
+                                                          blurRadius: 6,
+                                                        )
+                                                      ],
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),)],),
                                               ),
                                             ),
                                             new Spacer(),
@@ -238,7 +255,7 @@ class _reportCAteExpe extends State<reportCAteExpe>
                                               style: TextStyle(
                                                 fontFamily:
                                                 'Times New Roman',
-                                                fontSize: 24,
+                                                fontSize: 20,
                                                 color:
                                                 const Color(0xff0a0606),
                                                 shadows: [
@@ -985,8 +1002,9 @@ class _reportCAteExpe extends State<reportCAteExpe>
 
         //context.bloc<ExpSubBloc>().add(ExpenEventSub(id, '1'));
        
-      } else if (state is Loading) {
-        print('progress');
+      } else if
+      (state is Loading) {
+
 
           return Stack(children:<Widget>[
             Container(
@@ -1025,26 +1043,43 @@ class _reportCAteExpe extends State<reportCAteExpe>
                                                       padding: EdgeInsets.fromLTRB(
                                                           10, 0, 10, 0),
                                                       child: Center(
-                                                        child: Text(
-                                                          'Honey Bee',
-                                                          style: TextStyle(
-                                                            fontFamily: 'Pristina',
-                                                            fontSize: 28,
-                                                            color: const Color(
-                                                                0xff0a0606),
-                                                            shadows: [
-                                                              Shadow(
-                                                                color: const Color(
-                                                                    0x29000000),
-                                                                offset:
-                                                                Offset(3, 10),
-                                                                blurRadius: 6,
-                                                              )
-                                                            ],
-                                                          ),
-                                                          textAlign:
-                                                          TextAlign.center,
-                                                        ),
+                                                        child:  Column(
+                                                          children: <Widget>[Text(
+                                                            'Honey Bee',
+                                                            style: TextStyle(
+                                                              fontFamily: 'Pristina',
+                                                              fontSize: 22,
+                                                              color: const Color(
+                                                                  0xff0a0606),
+                                                              shadows: [
+                                                                Shadow(
+                                                                  color: const Color(
+                                                                      0x29000000),
+                                                                  offset: Offset(3, 10),
+                                                                  blurRadius: 6,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            textAlign: TextAlign.center,
+                                                          ),Padding(padding: EdgeInsets.fromLTRB(0,
+                                                              3, 0, 3),child: Text(
+                                                            'Expense Managment',
+                                                            style: TextStyle(
+                                                              fontFamily: 'Pristina',
+                                                              fontSize: 22,
+                                                              color: const Color(
+                                                                  0xff0a0606),
+                                                              shadows: [
+                                                                Shadow(
+                                                                  color: const Color(
+                                                                      0x29000000),
+                                                                  offset: Offset(3, 10),
+                                                                  blurRadius: 6,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            textAlign: TextAlign.center,
+                                                          ),)],),
                                                       ),
                                                     ),
                                                     new Spacer(),
@@ -1053,7 +1088,7 @@ class _reportCAteExpe extends State<reportCAteExpe>
                                                       style: TextStyle(
                                                         fontFamily:
                                                         'Times New Roman',
-                                                        fontSize: 24,
+                                                        fontSize: 20,
                                                         color:
                                                         const Color(0xff0a0606),
                                                         shadows: [
@@ -1848,26 +1883,43 @@ class _reportCAteExpe extends State<reportCAteExpe>
                                                       padding: EdgeInsets.fromLTRB(
                                                           10, 0, 10, 0),
                                                       child: Center(
-                                                        child: Text(
-                                                          'Honey Bee',
-                                                          style: TextStyle(
-                                                            fontFamily: 'Pristina',
-                                                            fontSize: 28,
-                                                            color: const Color(
-                                                                0xff0a0606),
-                                                            shadows: [
-                                                              Shadow(
-                                                                color: const Color(
-                                                                    0x29000000),
-                                                                offset:
-                                                                Offset(3, 10),
-                                                                blurRadius: 6,
-                                                              )
-                                                            ],
-                                                          ),
-                                                          textAlign:
-                                                          TextAlign.center,
-                                                        ),
+                                                        child:  Column(
+                                                          children: <Widget>[Text(
+                                                            'Honey Bee',
+                                                            style: TextStyle(
+                                                              fontFamily: 'Pristina',
+                                                              fontSize: 22,
+                                                              color: const Color(
+                                                                  0xff0a0606),
+                                                              shadows: [
+                                                                Shadow(
+                                                                  color: const Color(
+                                                                      0x29000000),
+                                                                  offset: Offset(3, 10),
+                                                                  blurRadius: 6,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            textAlign: TextAlign.center,
+                                                          ),Padding(padding: EdgeInsets.fromLTRB(0,
+                                                              3, 0, 3),child: Text(
+                                                            'Expense Managment',
+                                                            style: TextStyle(
+                                                              fontFamily: 'Pristina',
+                                                              fontSize: 22,
+                                                              color: const Color(
+                                                                  0xff0a0606),
+                                                              shadows: [
+                                                                Shadow(
+                                                                  color: const Color(
+                                                                      0x29000000),
+                                                                  offset: Offset(3, 10),
+                                                                  blurRadius: 6,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            textAlign: TextAlign.center,
+                                                          ),)],),
                                                       ),
                                                     ),
                                                     new Spacer(),
@@ -1876,7 +1928,7 @@ class _reportCAteExpe extends State<reportCAteExpe>
                                                       style: TextStyle(
                                                         fontFamily:
                                                         'Times New Roman',
-                                                        fontSize: 24,
+                                                        fontSize: 20,
                                                         color:
                                                         const Color(0xff0a0606),
                                                         shadows: [
