@@ -167,24 +167,80 @@ var dateFormat,dateFormatAR;
                                               padding: EdgeInsets.fromLTRB(
                                                   10, 0, 10, 0),
                                               child: Center(
-                                                child: Text(
-                                                  'Honey Bee',
-                                                  style: TextStyle(
-                                                    fontFamily: 'Pristina',
-                                                    fontSize: 32,
-                                                    color:
-                                                        const Color(0xff0a0606),
-                                                    shadows: [
-                                                      Shadow(
-                                                        color: const Color(
-                                                            0x29000000),
-                                                        offset: Offset(3, 10),
-                                                        blurRadius: 6,
-                                                      )
-                                                    ],
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                ),
+                                                child: widget.iexpen=='1'? Column(
+                                                  children: <Widget>[Text(
+                                                    'Honey Bee',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Pristina',
+                                                      fontSize: 22,
+                                                      color: const Color(
+                                                          0xff0a0606),
+                                                      shadows: [
+                                                        Shadow(
+                                                          color: const Color(
+                                                              0x29000000),
+                                                          offset: Offset(3, 10),
+                                                          blurRadius: 6,
+                                                        )
+                                                      ],
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),Padding(padding: EdgeInsets.fromLTRB(0,
+                                                      3, 0, 3),child: Text(
+                                                    'Expense Managment',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Pristina',
+                                                      fontSize: 22,
+                                                      color: const Color(
+                                                          0xff0a0606),
+                                                      shadows: [
+                                                        Shadow(
+                                                          color: const Color(
+                                                              0x29000000),
+                                                          offset: Offset(3, 10),
+                                                          blurRadius: 6,
+                                                        )
+                                                      ],
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),)],):
+                                                Column(
+                                                  children: <Widget>[Text(
+                                                    'Honey Bee',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Pristina',
+                                                      fontSize: 22,
+                                                      color: const Color(
+                                                          0xff0a0606),
+                                                      shadows: [
+                                                        Shadow(
+                                                          color: const Color(
+                                                              0x29000000),
+                                                          offset: Offset(3, 10),
+                                                          blurRadius: 6,
+                                                        )
+                                                      ],
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),Padding(padding: EdgeInsets.fromLTRB(0,
+                                                      3, 0, 3),child: Text(
+                                                    'Revenue Managment',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Pristina',
+                                                      fontSize: 22,
+                                                      color: const Color(
+                                                          0xff0a0606),
+                                                      shadows: [
+                                                        Shadow(
+                                                          color: const Color(
+                                                              0x29000000),
+                                                          offset: Offset(3, 10),
+                                                          blurRadius: 6,
+                                                        )
+                                                      ],
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),)],),
                                               ),
                                             ),
                                             new Spacer(),
@@ -194,7 +250,7 @@ var dateFormat,dateFormatAR;
                                                     style: TextStyle(
                                                       fontFamily:
                                                           'Times New Roman',
-                                                      fontSize: 24,
+                                                      fontSize: 20,
                                                       color: const Color(
                                                           0xff0a0606),
                                                       shadows: [
@@ -213,7 +269,7 @@ var dateFormat,dateFormatAR;
                                                     style: TextStyle(
                                                       fontFamily:
                                                           'Times New Roman',
-                                                      fontSize: 24,
+                                                      fontSize: 20,
                                                       color: const Color(
                                                           0xff0a0606),
                                                       shadows: [
@@ -451,7 +507,9 @@ var dateFormat,dateFormatAR;
                                                                 Text(widget
                                                                     .reportList[
                                                                         index]
-                                                                    .total)
+                                                                    .total+' ('+ widget.listCureency[0]
+                                                                    .name
+                                                                    .toString()+')')
                                                               ],
                                                             )),
                                                         Center(
@@ -462,9 +520,9 @@ var dateFormat,dateFormatAR;
                                                                   EdgeInsets
                                                                       .fromLTRB(
                                                                           0,
-                                                                          50,
+                                                                          10,
                                                                           0,
-                                                                          50),
+                                                                          10),
                                                               child: Center(
                                                                 child:
                                                                     Container(

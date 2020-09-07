@@ -407,5 +407,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbStartOfTheYear": MessageLookupByLibrary.simpleMessage(
             "From the beginning of the year"),
         "lbShowData": MessageLookupByLibrary.simpleMessage("Show data"),
-      };
+        "lbExM": MessageLookupByLibrary.simpleMessage("Expense Managment"),
+        "lbReM": MessageLookupByLibrary.simpleMessage("Revenue Managment"),
+        "lbcatname": MessageLookupByLibrary.simpleMessage("Category name"),
+        "lbSubname": MessageLookupByLibrary.simpleMessage("Sub category name"),
+        "lbse": MessageLookupByLibrary.simpleMessage("Select icon :"),
+        "lbEditCa": MessageLookupByLibrary.simpleMessage("Edit Category"),
+
+
+  };
 }

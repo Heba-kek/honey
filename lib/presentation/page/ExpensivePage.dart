@@ -1,4 +1,5 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:flutter/rendering.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -32,7 +33,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:honey/Infrastructure/Core/NetworkInfo.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' as intl;
 import 'package:progress_dialog/progress_dialog.dart';
 
 import 'package:rxdart/rxdart.dart';
@@ -51,7 +52,10 @@ class expensivePage extends StatefulWidget {
 class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
   List<ExpenData> expList;
   ProgressDialog pr;
- var dateFormat,dateFormatAR;
+  String langSave;
+  SpecificLocalizationDelegate _specificLocalizationDelegate;
+
+  var dateFormat,dateFormatAR;
   String sessionId, id, tokene;
   var preferences;
   String _response = '';
@@ -120,7 +124,28 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
       messageTextStyle: TextStyle(
           color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
     );
-    //  navigationPage();
+      navigationPage();
+  }
+  Future navigationPage() async {
+    var preferences = await SharedPreferences.getInstance();
+
+    langSave = preferences.getString('lang');
+    print("lang saved == $langSave");
+    //langSave=lang1;
+    if (langSave == 'ar') {
+      _specificLocalizationDelegate =
+          SpecificLocalizationDelegate(new Locale("ar"));
+
+      AppLocalizations.load(new Locale("ar"));
+
+
+    } else {
+      _specificLocalizationDelegate =
+          SpecificLocalizationDelegate(new Locale("en"));
+      AppLocalizations.load(new Locale("en"));
+
+
+    }
   }
 
   @override
@@ -199,60 +224,67 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                         child: Padding(
                                           padding: EdgeInsets.fromLTRB(
                                               10, 10, 10, 10),
-                                          child: Row(
+                                          child: Stack(
+
                                             children: <Widget>[
-                                             GestureDetector(child:  SvgPicture.string(
-                                               _svg_6oa7ke,
-                                               allowDrawingOutsideViewBox:
-                                               true,
-                                             ),onTap:
-                                               widget.onPressBack
-                                             ),
-                                              Padding(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    10, 0, 10, 0),
-                                                child: Center(
-                                                  child: Column(
-                                                    children: <Widget>[Text(
-                                                    'Honey Bee',
-                                                    style: TextStyle(
-                                                      fontFamily: 'Pristina',
-                                                      fontSize: 32,
-                                                      color: const Color(
-                                                          0xff0a0606),
-                                                      shadows: [
-                                                        Shadow(
-                                                          color: const Color(
-                                                              0x29000000),
-                                                          offset: Offset(3, 10),
-                                                          blurRadius: 6,
-                                                        )
-                                                      ],
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                  ),Padding(padding: EdgeInsets.fromLTRB(0,
-                                                      3, 0, 3),child: Text(
-                                                    'Expense Managment',
-                                                    style: TextStyle(
-                                                      fontFamily: 'Pristina',
-                                                      fontSize: 32,
-                                                      color: const Color(
-                                                          0xff0a0606),
-                                                      shadows: [
-                                                        Shadow(
-                                                          color: const Color(
-                                                              0x29000000),
-                                                          offset: Offset(3, 10),
-                                                          blurRadius: 6,
-                                                        )
-                                                      ],
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                  ),)],),
-                                                ),
-                                              ),
+
+                                              Directionality(
+                                                  textDirection:
+                                                  langSave == 'ar' ? TextDirection.ltr : TextDirection.ltr,
+                                                  child:Container(width: MediaQuery.of(context).size.width,
+                                                  child:  Row(
+                                                    children: <Widget>[Align(child:  GestureDetector(child:  SvgPicture.string(
+                                                      _svg_6oa7ke,
+                                                      allowDrawingOutsideViewBox:
+                                                      true,
+                                                    ),onTap:
+                                                    widget.onPressBack
+                                                    ),alignment: Alignment.topRight,), Padding(
+                                                      padding: EdgeInsets.fromLTRB(
+                                                          15, 0, 10, 0),
+                                                      child: Center(
+                                                        child: Column(
+                                                          children: <Widget>[Text(
+                                                            'Honey Bee',
+                                                            style: TextStyle(
+                                                              fontFamily: 'Pristina',
+                                                              fontSize: 32,
+                                                              color: const Color(
+                                                                  0xff0a0606),
+                                                              shadows: [
+                                                                Shadow(
+                                                                  color: const Color(
+                                                                      0x29000000),
+                                                                  offset: Offset(3, 10),
+                                                                  blurRadius: 6,
+                                                                )
+                                                              ],
+                                                            ),
+                                                            textAlign: TextAlign.center,
+                                                          ),
+                                                            Padding(
+                                                              padding: EdgeInsets.fromLTRB(0,
+                                                              3, 0, 3),child: Text(
+                                                            AppLocalizations().lbExM,
+                                                            style: TextStyle(
+                                                              fontSize: 18,
+                                                              color: Colors.greyapp,
+
+                                                            ),
+                                                            textAlign: TextAlign.center,
+                                                          ),)],),
+                                                      ),
+                                                    ),],),))
+
+                                             ,
+
                                               new Spacer(),
-                                              SizedBox(
+                                          Directionality(
+                                            textDirection:
+                                            langSave == 'ar' ? TextDirection.rtl : TextDirection.rtl,
+                                            child:
+                                              Container(width: MediaQuery.of(context).size.width,child:
+                                              Row(children: <Widget>[ SizedBox(
                                                 width: 63.0,
                                                 height: 63.0,
                                                 child: Stack(
@@ -267,12 +299,12 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                       pinBottom: true,
                                                       child: Container(
                                                         decoration:
-                                                            BoxDecoration(
+                                                        BoxDecoration(
                                                           borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius.elliptical(
-                                                                      9999.0,
-                                                                      9999.0)),
+                                                          BorderRadius.all(
+                                                              Radius.elliptical(
+                                                                  9999.0,
+                                                                  9999.0)),
                                                           border: Border.all(
                                                               width: 1.0,
                                                               color: const Color(
@@ -291,17 +323,36 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                       pinBottom: true,
                                                       fixedWidth: true,
                                                       child:
-                                                          // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                                                          SvgPicture.string(
+                                                      // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                      SvgPicture.string(
                                                         _svg_pew0t9,
                                                         allowDrawingOutsideViewBox:
-                                                            true,
+                                                        true,
                                                         fit: BoxFit.fill,
                                                       ),
                                                     ),
                                                   ],
                                                 ),
+                                              ),Text(
+                                                AppLocalizations().lbEx,
+                                                style: TextStyle(
+                                                  fontFamily:
+                                                  'Times New Roman',
+                                                  fontSize: 20,
+                                                  color: const Color(
+                                                      0xff0a0606),
+                                                  shadows: [
+                                                    Shadow(
+                                                      color: const Color(
+                                                          0x29000000),
+                                                      offset: Offset(0, 10),
+                                                      blurRadius: 6,
+                                                    )
+                                                  ],
+                                                ),
+                                                textAlign: TextAlign.center,
                                               ),
+                                              ],),))
                                             ],
                                           ),
                                         ),
@@ -332,7 +383,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                       width: MediaQuery.of(context).size.width,
                                       child: Row(
                                         children: <Widget>[
-                                          new Spacer(),
+
                                            GestureDetector(child:
                                            Padding(
                                              padding: EdgeInsets.fromLTRB(
@@ -342,7 +393,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                  padding: EdgeInsets.fromLTRB(
                                                      20, 0, 20, 0),
                                                  child: Text(
-                                                   'Report',
+                                                   AppLocalizations().lbReport,
                                                    style: TextStyle(
                                                      fontFamily:
                                                      'Times New Roman',
@@ -373,8 +424,8 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                              ),
                                            ),onTap: (){
                                              initializeDateFormatting("en_US", null).then((_) {
-                                               dateFormat = new DateFormat.yMd();
-                                               dateFormatAR = new DateFormat.yMd();
+                                               dateFormat = new intl.DateFormat.yMd();
+                                               dateFormatAR = new intl.DateFormat.yMd();
 
                                              });
                                              Navigator.of(context).push(
@@ -550,7 +601,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                 ],
                               ),
                               Container(
-                                height: 500,
+                                height: 400,
                                 child: ListView.builder(
                                   itemCount: expList.length,
                                   // Add one more item for progress indicator
@@ -584,7 +635,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                             ),
                                             child: Padding(
                                               padding: EdgeInsets.fromLTRB(
-                                                  10, 15, 10, 15),
+                                                  10, 5, 10, 5),
                                               child: Column(
                                                 children: <Widget>[
                                                   Padding(
@@ -619,8 +670,8 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                             expList[index]
                                                                 .icon
                                                                 .toString(),
-                                                            height: 50,
-                                                            width: 50,
+                                                            height: 40,
+                                                            width: 40,
                                                           ),
                                                         ),
 
@@ -676,18 +727,28 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                                       });
                                                                 } else if (value ==
                                                                     3) {
+
+
+
                                                                   showDialog(
                                                                       context:
                                                                       context,
                                                                       builder:
                                                                           (BuildContext
                                                                       context) {
-                                                                        return MyDialogEdit(
-                                                                            expList[index].category_id,
-                                                                            expList[index].category_Name.toString(),
-                                                                            this,
-                                                                            id,
-                                                                            expList[index].icon);
+                                                                        return
+                                                                          Directionality(
+                                                                              textDirection:
+                                                                              langSave == 'ar' ? TextDirection.ltr : TextDirection.ltr,
+                                                                              child:  MyDialogEdit(
+                                                                                  expList[index].category_id,
+                                                                                  expList[index].category_Name.toString(),
+                                                                                  this,
+                                                                                  id,
+                                                                                  expList[index].icon,langSave))
+
+
+                                                                      ;
                                                                       });
                                                                 }
                                                               },
@@ -895,8 +956,8 @@ class MyDialogEdit extends StatefulWidget {
   String catId, catname;
   String id;
   String url;
-
-  MyDialogEdit(this.catId, this.catname, this.bankA, this.id, this.url);
+  String langSave;
+  MyDialogEdit(this.catId, this.catname, this.bankA, this.id, this.url,this.langSave);
 
   @override
   _MyDialogEdit createState() => _MyDialogEdit();
@@ -906,6 +967,7 @@ class _MyDialogEdit extends State<MyDialogEdit> {
   List<IconDataM> icList;
   GlobalKey<FormState> _keyFormDeposit = GlobalKey();
   ScrollController _sc = new ScrollController();
+  int indexselect;
 
   final _mainnamecat = new TextEditingController();
 
@@ -949,27 +1011,37 @@ class _MyDialogEdit extends State<MyDialogEdit> {
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.fromLTRB(15, 35, 15, 0),
-                  child: Text('Edit this category'),
+                  child: Text(AppLocalizations().lbEditCa),
                 ),
                 //Commission amount
-                Padding(
-                  padding: EdgeInsets.fromLTRB(15, 35, 15, 0),
-                  child: Material(
-                    color: Colors.white,
-                    child: TextFormField(
-                      controller: _mainnamecat,
-                      decoration: InputDecoration(
-                        filled: true,
-                        hintText: widget.catname,
-                        hintStyle: TextStyle(color: Colors.grey),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                        ), //can also add icon to the end of the textfiled
-                        //  suffixIcon: Icon(Icons.remove_red_eye),
-                      ),
-                    ),
-                  ),
-                ),
+
+
+
+                Directionality(
+                    textDirection:
+                    widget.langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                    child:Container(width: MediaQuery.of(context).size.width,
+                      child:    Padding(
+                        padding: EdgeInsets.fromLTRB(15, 35, 15, 0),
+                        child: Material(
+                          color: Colors.white,
+                          child: TextFormField(
+                            controller: _mainnamecat,
+                            decoration: InputDecoration(
+                              filled: true,
+                              hintText: widget.catname,
+                              hintStyle: TextStyle(color: Colors.grey),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black),
+                              ), //can also add icon to the end of the textfiled
+                              //  suffixIcon: Icon(Icons.remove_red_eye),
+                            ),
+                          ),
+                        ),
+                      ),))
+
+
+              ,
                 Padding(
                   padding: EdgeInsets.fromLTRB(15, 35, 15, 0),
                   child: Padding(
@@ -996,31 +1068,84 @@ class _MyDialogEdit extends State<MyDialogEdit> {
                                       onTap: () {
                                         setState(() {
                                           widget.url = icList[index].url;
+                                          indexselect =
+                                              index;
+                                          for (int j =
+                                          0;
+                                          j <
+                                              icList
+                                                  .length;
+                                          j++) {
+                                            icList[j]
+                                                .select =
+                                            false;
+                                          }
+                                          if (indexselect !=
+                                              index) {
+                                            icList[index]
+                                                .select =
+                                            false;
+                                          } else {
+                                            icList[index]
+                                                .select =
+                                            true;
+                                          }
                                         });
                                       },
                                       child: GridTile(
-                                          child: Container(
-                                        height: 100,
-                                        child: Column(
-                                          crossAxisAlignment:
+                                          child:      icList[index]
+                                              .select ==
+                                              true
+                                              ? Container(
+                                            // height: 100,
+                                            decoration:
+                                            BoxDecoration(
+                                              border:
+                                              Border.all(color: Colors.red, width: 1),
+                                              color:
+                                              Color(0xFFD6D6D6),
+                                            ),
+                                            child:
+                                            Column(
+                                              crossAxisAlignment:
                                               CrossAxisAlignment.center,
-                                          mainAxisAlignment:
+                                              mainAxisAlignment:
                                               MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            Container(
-                                              width: 50,
-                                              height: 50,
-                                              child: Image.network(
-                                                icList[index].url,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      )),
+                                              children: <Widget>[
+                                                Container(
+                                                  width: 50,
+                                                  height: 50,
+                                                  child: Image.network(
+                                                    icList[index].url,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          )
+                                              : Container(
+                                            // height: 100,
+
+                                            child:
+                                            Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Container(
+                                                  width: 50,
+                                                  height: 50,
+                                                  child: Image.network(
+                                                    icList[index].url,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          )),
                                     );
                                   }).toList()),
                             ),
-                            height: 500,
+                            height: 700,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15.0),
                               color: const Color(0xfff3f3f3),
@@ -1077,7 +1202,7 @@ class _MyDialogEdit extends State<MyDialogEdit> {
                             child: Padding(
                               padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                               child: Text(
-                                'Edit',
+                                AppLocalizations().lbEdit,
                                 style: TextStyle(
                                   fontFamily: 'Times New Roman',
                                   fontSize: 24,
