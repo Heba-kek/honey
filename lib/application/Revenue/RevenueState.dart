@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:honey/Domain/BasicSuccessEntity.dart';
+import 'package:honey/Domain/Revenue/Entities/CategoryReportWithoutSub.dart';
 import 'package:honey/Domain/Revenue/Entities/IconsEntity.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueCategoryEntity.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueCategoryReportEntity.dart';
@@ -87,4 +88,13 @@ class RevenueSubCategoryReportLoaded extends RevenueState {
 
   @override
   List<Object> get props => [this.revenueSubCategoryReportEntity];
+}
+
+class RevenueCategoryReportWithoutsubLoaded extends RevenueState {
+  final RevenueReportWithoutSubEntity revenueReportWithoutSubEntity;
+
+  RevenueCategoryReportWithoutsubLoaded({this.revenueReportWithoutSubEntity});
+
+  @override
+  List<Object> get props => [this.revenueReportWithoutSubEntity];
 }

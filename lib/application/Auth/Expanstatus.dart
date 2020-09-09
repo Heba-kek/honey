@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:honey/Domain/Auth/Entities/ExpensesCategoryReportWithouSubEntity.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueCategoryReportEntity.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueReportEntity.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueSubCategoryReportEntity.dart';
@@ -59,4 +60,13 @@ class ExpensesSubCategoryReportLoaded extends ExpState {
 
   @override
   List<Object> get props => [this.expensesSubCategoryReportEntity];
+}
+
+class ExpensesCategoryReportWithoutSubLoaded extends ExpState {
+  final ExpensesReportWithoutSubEntity expensesReportWithoutSubEntity;
+
+  ExpensesCategoryReportWithoutSubLoaded({this.expensesReportWithoutSubEntity});
+
+  @override
+  List<Object> get props => [this.expensesReportWithoutSubEntity];
 }

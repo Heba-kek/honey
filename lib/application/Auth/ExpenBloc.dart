@@ -28,8 +28,7 @@ class ExpBloc extends Bloc<ExpEvent, ExpState> {
           },
         );
       }
-    }
-    else if (event is ExpensesReportEvent) {
+    } else if (event is ExpensesReportEvent) {
       yield Loading();
 
       try {
@@ -43,8 +42,7 @@ class ExpBloc extends Bloc<ExpEvent, ExpState> {
           },
         );
       }
-    }
-    else if (event is ExpensesCategoryReportEvent) {
+    } else if (event is ExpensesCategoryReportEvent) {
       yield Loading();
 
       try {
@@ -60,8 +58,7 @@ class ExpBloc extends Bloc<ExpEvent, ExpState> {
           },
         );
       }
-    }
-    else if (event is ExpensesSubCategoryReportEvent) {
+    } else if (event is ExpensesSubCategoryReportEvent) {
       yield Loading();
 
       try {
@@ -69,6 +66,22 @@ class ExpBloc extends Bloc<ExpEvent, ExpState> {
             await _exRepository.expensesSubCategoryReport(event.toMap());
         yield ExpensesSubCategoryReportLoaded(
             expensesSubCategoryReportEntity: result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is ExpensesCategoryReportWithoutSubEvent) {
+      yield Loading();
+
+      try {
+        final result =
+            await _exRepository.expensesCategoryWithoutSubReport(event.toMap());
+        yield ExpensesCategoryReportWithoutSubLoaded(
+            expensesReportWithoutSubEntity: result);
       } catch (e) {
         yield Error(
           e.toString(),

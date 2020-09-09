@@ -2,6 +2,7 @@ import 'package:honey/Infrastructure/Core/BasicSuccessModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/IconsModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryReportModel.dart';
+import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryReportWithoutSubModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueReportModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueSubCategoryReportModel.dart';
@@ -21,5 +22,7 @@ abstract class RevenueDataSource {
   Future<RevenueCategoryReportModel> revenueCategoryReport(
       Map<String, dynamic> data);
   Future<RevenueSubCategoryReportModel> revenueSubCategoryReport(
+      Map<String, dynamic> data);
+  Future<RevenueCategoryReportWithoutSubModel> revenueCategoryReportWithoutSub(
       Map<String, dynamic> data);
 }

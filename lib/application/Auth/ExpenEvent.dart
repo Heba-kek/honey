@@ -72,3 +72,20 @@ class ExpensesSubCategoryReportEvent extends ExpEvent {
     };
   }
 }
+
+class ExpensesCategoryReportWithoutSubEvent extends ExpEvent {
+  final int category;
+  final String startDate;
+  final String endDate;
+
+  ExpensesCategoryReportWithoutSubEvent(
+      this.category, this.startDate, this.endDate);
+
+  Map<String, dynamic> toMap() {
+    return {
+      "category": this.category,
+      "start_date": this.startDate,
+      "end_date": this.endDate,
+    };
+  }
+}

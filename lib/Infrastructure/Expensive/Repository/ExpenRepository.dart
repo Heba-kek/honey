@@ -3,6 +3,7 @@ import 'package:honey/Infrastructure/Core/CustomException.dart';
 import 'package:honey/Infrastructure/Core/NetworkInfo.dart';
 import 'package:honey/Infrastructure/Expensive/DataSources/AuthRemoteDataSource.dart';
 import 'package:honey/Infrastructure/Expensive/DataSources/ExpensesLocalDataSource.dart';
+import 'package:honey/Infrastructure/Expensive/Model/CategoryReportWithoutSubModel.dart';
 import 'package:honey/Infrastructure/Expensive/Model/ExpenModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryReportModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueReportModel.dart';
@@ -13,7 +14,6 @@ class ExpenRepositoryImpl extends ExpRepository {
   final ExpenRemoteDataSource expensRemoteDataSource;
   final ExpensesLocalDataSource expensesLocalDataSource;
   final NetworkInfo networkInfo;
-
 
   ExpenRepositoryImpl(this.expensRemoteDataSource, this.networkInfo,
       this.expensesLocalDataSource);
@@ -59,6 +59,18 @@ class ExpenRepositoryImpl extends ExpRepository {
     if (await networkInfo.isConnected) {
       RevenueSubCategoryReportModel model =
           await expensRemoteDataSource.expensesSubCategoryReport(data);
+
+      return model;
+    } else {
+      throw ("no intenet connection and this request cannot be cached");
+    }
+  }
+
+  Future<ExpensesCategoryReportWithoutSub> expensesCategoryWithoutSubReport(
+      Map<String, dynamic> data) async {
+    if (await networkInfo.isConnected) {
+      ExpensesCategoryReportWithoutSub model =
+          await expensRemoteDataSource.expensesCategoryWithoutSubReport(data);
 
       return model;
     } else {

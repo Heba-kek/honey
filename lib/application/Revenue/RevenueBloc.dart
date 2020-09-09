@@ -5,7 +5,7 @@ import 'package:honey/Infrastructure/Revenue/Repository/RevenueRepositoryIMPL.da
 import 'package:honey/application/Revenue/bloc.dart';
 
 class RevenueBloc extends Bloc<RevenueEvent, RevenueState> {
-  final RevenueRepository revenueRepository ;
+  final RevenueRepository revenueRepository;
   RevenueBloc(this.revenueRepository);
 
   @override
@@ -178,6 +178,22 @@ class RevenueBloc extends Bloc<RevenueEvent, RevenueState> {
             await revenueRepository.revenueSubCategoryReport(event.toMap());
         yield RevenueSubCategoryReportLoaded(
             revenueSubCategoryReportEntity: result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
+    } else if (event is RevenueCategoryReportWithoutsubEvent) {
+      yield Loading();
+
+      try {
+        final result = await revenueRepository
+            .revenueCategoryReportWithoutSub(event.toMap());
+        yield RevenueCategoryReportWithoutsubLoaded(
+            revenueReportWithoutSubEntity: result);
       } catch (e) {
         yield Error(
           e.toString(),

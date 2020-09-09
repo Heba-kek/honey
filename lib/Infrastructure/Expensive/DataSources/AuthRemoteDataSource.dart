@@ -3,6 +3,7 @@ import 'package:honey/Infrastructure/Core/APINames.dart';
 import 'package:honey/Infrastructure/Core/CustomException.dart';
 import 'package:honey/Infrastructure/Core/Networking.dart';
 import 'package:honey/Infrastructure/Expensive/DataSources/AuthDataSource.dart';
+import 'package:honey/Infrastructure/Expensive/Model/CategoryReportWithoutSubModel.dart';
 
 import 'package:honey/Infrastructure/Expensive/Model/ExpenModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryReportModel.dart';
@@ -49,8 +50,6 @@ class ExpenRemoteDataSource implements ExpenDataSource {
     return RevenueSubCategoryReportModel.fromJson(response);
   }
 
-
-
   @override
   Future<IconsModel> getIconExp(Map<String, dynamic> data) async {
     final response = await _provider.fetchData(
@@ -59,13 +58,25 @@ class ExpenRemoteDataSource implements ExpenDataSource {
     return IconsModel.fromJson(response);
   }
 
-
   @override
-  Future<ExpenSubModel> getSubExp(Map<String, dynamic> data,String catId) async {
+  Future<ExpenSubModel> getSubExp(
+      Map<String, dynamic> data, String catId) async {
     final response = await _provider.fetchDataSub(
-        method: HttpMethod.GET, url: APINames.getSubExp, bodyData: data,catId: catId);
+        method: HttpMethod.GET,
+        url: APINames.getSubExp,
+        bodyData: data,
+        catId: catId);
 
     return ExpenSubModel.fromJson(response);
   }
 
+  Future<ExpensesCategoryReportWithoutSub> expensesCategoryWithoutSubReport(
+      Map<String, dynamic> data) async {
+    final response = await _provider.fetchDataReportSub(
+        method: HttpMethod.GET,
+        url: APINames.expensesCategoryReportWithoutSub,
+        bodyData: data);
+
+    return ExpensesCategoryReportWithoutSub.fromJson(response);
+  }
 }

@@ -220,3 +220,20 @@ class RevenueSubCategoryReportEvent extends RevenueEvent {
     };
   }
 }
+
+class RevenueCategoryReportWithoutsubEvent extends RevenueEvent {
+  final int category;
+  final String startDate;
+  final String endDate;
+
+  RevenueCategoryReportWithoutsubEvent(
+      this.category, this.startDate, this.endDate);
+
+  Map<String, dynamic> toMap() {
+    return {
+      "category": this.category,
+      "start_date": this.startDate,
+      "end_date": this.endDate,
+    };
+  }
+}

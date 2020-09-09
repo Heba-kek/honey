@@ -7,6 +7,7 @@ import 'package:honey/Infrastructure/Revenue/DataSource/RevenueRemoteDataSource.
 import 'package:honey/Infrastructure/Revenue/Models/IconsModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryReportModel.dart';
+import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryReportWithoutSubModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueReportModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueSubCategoryReportModel.dart';
@@ -191,6 +192,18 @@ class RevenueRepositoryIMPL extends RevenueRepository {
     if (await networkInfo.isConnected) {
       RevenueSubCategoryReportModel model =
           await remoteDataSource.revenueSubCategoryReport(data);
+
+      return model;
+    } else {
+      throw ("no intenet connection and this request cannot be cached");
+    }
+  }
+
+  Future<RevenueCategoryReportWithoutSubModel> revenueCategoryReportWithoutSub(
+      Map<String, dynamic> data) async {
+    if (await networkInfo.isConnected) {
+      RevenueCategoryReportWithoutSubModel model =
+          await remoteDataSource.revenueCategoryReportWithoutSub(data);
 
       return model;
     } else {

@@ -6,6 +6,7 @@ import 'package:honey/Infrastructure/Revenue/DataSource/RevenueDataSource.dart';
 import 'package:honey/Infrastructure/Revenue/Models/IconsModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryReportModel.dart';
+import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryReportWithoutSubModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueReportModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueSubCategoryReportModel.dart';
@@ -199,6 +200,12 @@ class RevenueLocalDataSource extends RevenueDataSource {
   }
 
   Future<RevenueSubCategoryReportModel> revenueSubCategoryReport(
+      Map<String, dynamic> data) {
+    throw (ExceptionWithMessageOnly(
+        "Cannot be cached, depends on changed data from server"));
+  }
+
+  Future<RevenueCategoryReportWithoutSubModel> revenueCategoryReportWithoutSub(
       Map<String, dynamic> data) {
     throw (ExceptionWithMessageOnly(
         "Cannot be cached, depends on changed data from server"));

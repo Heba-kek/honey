@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:honey/Infrastructure/Core/CustomException.dart';
 import 'package:honey/Infrastructure/Expensive/DataSources/AuthDataSource.dart';
+import 'package:honey/Infrastructure/Expensive/Model/CategoryReportWithoutSubModel.dart';
 import 'package:honey/Infrastructure/Expensive/Model/ExpenModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryReportModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueReportModel.dart';
@@ -43,6 +44,12 @@ class ExpensesLocalDataSource extends ExpenDataSource {
 
   Future<RevenueSubCategoryReportModel> expensesSubCategoryReport(
       Map<String, dynamic> data) {
+    throw (ExceptionWithMessageOnly(
+        "Cannot be cached, depends on data from server"));
+  }
+
+  Future<ExpensesCategoryReportWithoutSub> expensesCategoryWithoutSubReport(
+      Map<String, dynamic> data) async {
     throw (ExceptionWithMessageOnly(
         "Cannot be cached, depends on data from server"));
   }

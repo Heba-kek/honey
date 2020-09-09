@@ -1,3 +1,4 @@
+import 'package:honey/Infrastructure/Expensive/Model/CategoryReportWithoutSubModel.dart';
 import 'package:honey/Infrastructure/Expensive/Model/ExpenModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryReportModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueReportModel.dart';
@@ -9,5 +10,8 @@ abstract class ExpRepository {
   Future<RevenueCategoryReportModel> expensesCategoryReport(
       Map<String, dynamic> data);
   Future<RevenueSubCategoryReportModel> expensesSubCategoryReport(
+      Map<String, dynamic> data);
+
+  Future<ExpensesCategoryReportWithoutSub> expensesCategoryWithoutSubReport(
       Map<String, dynamic> data);
 }

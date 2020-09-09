@@ -5,6 +5,7 @@ import 'package:honey/Infrastructure/Revenue/DataSource/RevenueDataSource.dart';
 import 'package:honey/Infrastructure/Revenue/Models/IconsModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryReportModel.dart';
+import 'package:honey/Infrastructure/Revenue/Models/RevenueCategoryReportWithoutSubModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueReportModel.dart';
 import 'package:honey/Infrastructure/Revenue/Models/RevenueSubCategoryReportModel.dart';
@@ -117,5 +118,15 @@ class RevenueRemoteDataSource extends RevenueDataSource {
         bodyData: data);
 
     return RevenueSubCategoryReportModel.fromJson(response);
+  }
+
+  Future<RevenueCategoryReportWithoutSubModel> revenueCategoryReportWithoutSub(
+      Map<String, dynamic> data) async {
+    final response = await _provider.fetchDataReportSub(
+        method: HttpMethod.GET,
+        url: APINames.revnueCategoryReportWithoutSub,
+        bodyData: data);
+
+    return RevenueCategoryReportWithoutSubModel.fromJson(response);
   }
 }

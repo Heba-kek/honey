@@ -45,4 +45,8 @@ class APINames {
   static final bankAccountReport = "Bank_Account/AccountReport";
   static final deleteBankAccount = "Bank_Account/DeleteAccount";
   static final updateBankAccount = "Bank_Account/UpdateAccount";
+  static final revnueCategoryReportWithoutSub =
+      "Financial_Api/RevenueCategoryReportWithoutSub";
+  static final expensesCategoryReportWithoutSub =
+      "Financial_Api/ExpensesCategoryReportWithoutSub";
 }
