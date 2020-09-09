@@ -27,7 +27,7 @@ class expLaddExp extends StatefulWidget {
   final String isexp;
   final BuildContext con;
 
-  expLaddExp(this.isexp,this.con);
+  expLaddExp(this.isexp, this.con);
 
   @override
   _expLaddExp createState() => new _expLaddExp();
@@ -40,16 +40,15 @@ class _expLaddExp extends State<expLaddExp> {
   String _response = '';
   bool _apiCall = false;
   int indexselect;
-  bool isselect =false;
+  bool isselect = false;
   ScrollController _sc = new ScrollController();
   String _imageFilePh;
   List<IconDataM> icList;
   String sessionId, id, tokene;
   var preferences;
-  String sublist,sublisttext;
+  String sublist, sublisttext;
   List<String> fgbh;
   List<TextEditingController> _controllers = new List();
-
 
   int itemcou = 1;
 
@@ -61,9 +60,7 @@ class _expLaddExp extends State<expLaddExp> {
       quantities[itemId] = number;
       print(quantities);
     } on FormatException {}
-    sublist=text;
-
-
+    sublist = text;
   }
 
   getValueString() async {
@@ -73,11 +70,33 @@ class _expLaddExp extends State<expLaddExp> {
     tokene = preferences.getString('token');
   }
 
+  Future navigationPage() async {
+    var preferences = await SharedPreferences.getInstance();
+
+    langSave = preferences.getString('lang');
+    print("lang saved == $langSave");
+    //langSave=lang1;
+    if (langSave == 'ar') {
+      _specificLocalizationDelegate =
+          SpecificLocalizationDelegate(new Locale("ar"));
+
+      AppLocalizations.load(new Locale("ar"));
+    } else {
+      _specificLocalizationDelegate =
+          SpecificLocalizationDelegate(new Locale("en"));
+      AppLocalizations.load(new Locale("en"));
+    }
+  }
+
+  String langSave;
+  SpecificLocalizationDelegate _specificLocalizationDelegate;
+
   @override
   void initState() {
+    navigationPage();
+
     getValueString();
     pr = new ProgressDialog(context);
-
     pr.update(
       progress: 50.0,
       message: AppLocalizations().lbWait,
@@ -159,168 +178,319 @@ class _expLaddExp extends State<expLaddExp> {
                                                       padding:
                                                           EdgeInsets.fromLTRB(
                                                               10, 10, 10, 10),
-                                                      child: Row(
-                                                        children: <Widget>[
-                                                          SvgPicture.string(
-                                                            _svg_6oa7ke,
-                                                            allowDrawingOutsideViewBox:
-                                                                true,
-                                                          ),
-                                                          Padding(
-                                                            padding: EdgeInsets
-                                                                .fromLTRB(10, 0,
-                                                                    10, 0),
-                                                            child: Center(
-                                                              child: Text(
-                                                                'Honey Bee',
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      'Pristina',
-                                                                  fontSize: 32,
-                                                                  color: const Color(
-                                                                      0xff0a0606),
-                                                                  shadows: [
-                                                                    Shadow(
-                                                                      color: const Color(
-                                                                          0x29000000),
-                                                                      offset:
-                                                                          Offset(
-                                                                              3,
-                                                                              10),
-                                                                      blurRadius:
-                                                                          6,
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          new Spacer(),
-                                                          widget.isexp == '1'
-                                                              ? Text(
-                                                                  'Expensev',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        'Times New Roman',
-                                                                    fontSize:
-                                                                        24,
-                                                                    color: const Color(
-                                                                        0xff0a0606),
-                                                                    shadows: [
-                                                                      Shadow(
-                                                                        color: const Color(
-                                                                            0x29000000),
-                                                                        offset: Offset(
-                                                                            0,
-                                                                            10),
-                                                                        blurRadius:
-                                                                            6,
-                                                                      )
-                                                                    ],
-                                                                  ),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                )
-                                                              : Text(
-                                                                  'Revenue',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        'Times New Roman',
-                                                                    fontSize:
-                                                                        24,
-                                                                    color: const Color(
-                                                                        0xff0a0606),
-                                                                    shadows: [
-                                                                      Shadow(
-                                                                        color: const Color(
-                                                                            0x29000000),
-                                                                        offset: Offset(
-                                                                            0,
-                                                                            10),
-                                                                        blurRadius:
-                                                                            6,
-                                                                      )
-                                                                    ],
-                                                                  ),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                ),
-                                                          SizedBox(
-                                                            width: 63.0,
-                                                            height: 63.0,
-                                                            child: Stack(
+                                                      child: widget.isexp == '1'
+                                                          ? Stack(
                                                               children: <
                                                                   Widget>[
-                                                                Pinned.fromSize(
-                                                                  bounds: Rect
-                                                                      .fromLTWH(
-                                                                          7.1,
-                                                                          7.2,
-                                                                          48.5,
-                                                                          48.5),
-                                                                  size: Size(
-                                                                      62.8,
-                                                                      62.8),
-                                                                  pinLeft: true,
-                                                                  pinRight:
-                                                                      true,
-                                                                  pinTop: true,
-                                                                  pinBottom:
-                                                                      true,
-                                                                  child:
-                                                                      Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius: BorderRadius.all(Radius.elliptical(
-                                                                          9999.0,
-                                                                          9999.0)),
-                                                                      border: Border.all(
-                                                                          width:
-                                                                              1.0,
-                                                                          color:
-                                                                              const Color(0xf2386694)),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Pinned.fromSize(
-                                                                  bounds: Rect
-                                                                      .fromLTWH(
-                                                                          22.1,
-                                                                          14.7,
-                                                                          19.0,
-                                                                          33.6),
-                                                                  size: Size(
-                                                                      62.8,
-                                                                      62.8),
-                                                                  pinTop: true,
-                                                                  pinBottom:
-                                                                      true,
-                                                                  fixedWidth:
-                                                                      true,
-                                                                  child:
-                                                                      // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                                                                      SvgPicture
-                                                                          .string(
-                                                                    _svg_pew0t9,
-                                                                    allowDrawingOutsideViewBox:
-                                                                        true,
-                                                                    fit: BoxFit
-                                                                        .fill,
-                                                                  ),
-                                                                ),
+                                                                Directionality(
+                                                                    textDirection: langSave ==
+                                                                            'ar'
+                                                                        ? TextDirection
+                                                                            .ltr
+                                                                        : TextDirection
+                                                                            .ltr,
+                                                                    child:
+                                                                        Container(
+                                                                      width: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width,
+                                                                      child:
+                                                                          Row(
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Align(
+                                                                            child: GestureDetector(
+                                                                                child: SvgPicture.string(
+                                                                                  _svg_6oa7ke,
+                                                                                  allowDrawingOutsideViewBox: true,
+                                                                                ),
+                                                                                onTap: () {
+                                                                                  Navigator.of(context).pop();
+                                                                                }),
+                                                                            alignment:
+                                                                                Alignment.topRight,
+                                                                          ),
+                                                                          Padding(
+                                                                            padding: EdgeInsets.fromLTRB(
+                                                                                15,
+                                                                                0,
+                                                                                10,
+                                                                                0),
+                                                                            child:
+                                                                                Center(
+                                                                              child: Column(
+                                                                                children: <Widget>[
+                                                                                  Text(
+                                                                                    'Honey Bee',
+                                                                                    style: TextStyle(
+                                                                                      fontFamily: 'Pristina',
+                                                                                      fontSize: 32,
+                                                                                      color: const Color(0xff0a0606),
+                                                                                      shadows: [
+                                                                                        Shadow(
+                                                                                          color: const Color(0x29000000),
+                                                                                          offset: Offset(3, 10),
+                                                                                          blurRadius: 6,
+                                                                                        )
+                                                                                      ],
+                                                                                    ),
+                                                                                    textAlign: TextAlign.center,
+                                                                                  ),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
+                                                                                    child: Text(
+                                                                                      AppLocalizations().lbExM,
+                                                                                      style: TextStyle(
+                                                                                        fontSize: 18,
+                                                                                        color: Colors.greyapp,
+                                                                                      ),
+                                                                                      textAlign: TextAlign.center,
+                                                                                    ),
+                                                                                  )
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    )),
+                                                                new Spacer(),
+                                                                Directionality(
+                                                                    textDirection: langSave ==
+                                                                            'ar'
+                                                                        ? TextDirection
+                                                                            .rtl
+                                                                        : TextDirection
+                                                                            .rtl,
+                                                                    child:
+                                                                        Container(
+                                                                      width: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width,
+                                                                      child:
+                                                                          Row(
+                                                                        children: <
+                                                                            Widget>[
+                                                                          SizedBox(
+                                                                            width:
+                                                                                63.0,
+                                                                            height:
+                                                                                63.0,
+                                                                            child:
+                                                                                Stack(
+                                                                              children: <Widget>[
+                                                                                Pinned.fromSize(
+                                                                                  bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
+                                                                                  size: Size(62.8, 62.8),
+                                                                                  pinLeft: true,
+                                                                                  pinRight: true,
+                                                                                  pinTop: true,
+                                                                                  pinBottom: true,
+                                                                                  child: Container(
+                                                                                    decoration: BoxDecoration(
+                                                                                      borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                                                                                      border: Border.all(width: 1.0, color: const Color(0xf2386694)),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                                Pinned.fromSize(
+                                                                                  bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
+                                                                                  size: Size(62.8, 62.8),
+                                                                                  pinTop: true,
+                                                                                  pinBottom: true,
+                                                                                  fixedWidth: true,
+                                                                                  child:
+                                                                                      // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                                                      SvgPicture.string(
+                                                                                    _svg_pew0t9,
+                                                                                    allowDrawingOutsideViewBox: true,
+                                                                                    fit: BoxFit.fill,
+                                                                                  ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                          Text(
+                                                                            AppLocalizations().lbEx,
+                                                                            style:
+                                                                                TextStyle(
+                                                                              fontFamily: 'Times New Roman',
+                                                                              fontSize: 20,
+                                                                              color: const Color(0xff0a0606),
+                                                                              shadows: [
+                                                                                Shadow(
+                                                                                  color: const Color(0x29000000),
+                                                                                  offset: Offset(0, 10),
+                                                                                  blurRadius: 6,
+                                                                                )
+                                                                              ],
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ))
+                                                              ],
+                                                            )
+                                                          : Stack(
+                                                              children: <
+                                                                  Widget>[
+                                                                Directionality(
+                                                                    textDirection: langSave ==
+                                                                            'ar'
+                                                                        ? TextDirection
+                                                                            .ltr
+                                                                        : TextDirection
+                                                                            .ltr,
+                                                                    child:
+                                                                        Container(
+                                                                      width: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width,
+                                                                      child:
+                                                                          Row(
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Align(
+                                                                            child: GestureDetector(
+                                                                                child: SvgPicture.string(
+                                                                                  _svg_6oa7ke,
+                                                                                  allowDrawingOutsideViewBox: true,
+                                                                                ),
+                                                                                onTap: () {
+                                                                                  Navigator.of(context).pop();
+                                                                                }),
+                                                                            alignment:
+                                                                                Alignment.topRight,
+                                                                          ),
+                                                                          Padding(
+                                                                            padding: EdgeInsets.fromLTRB(
+                                                                                15,
+                                                                                0,
+                                                                                10,
+                                                                                0),
+                                                                            child:
+                                                                                Center(
+                                                                              child: Column(
+                                                                                children: <Widget>[
+                                                                                  Text(
+                                                                                    'Honey Bee',
+                                                                                    style: TextStyle(
+                                                                                      fontFamily: 'Pristina',
+                                                                                      fontSize: 32,
+                                                                                      color: const Color(0xff0a0606),
+                                                                                      shadows: [
+                                                                                        Shadow(
+                                                                                          color: const Color(0x29000000),
+                                                                                          offset: Offset(3, 10),
+                                                                                          blurRadius: 6,
+                                                                                        )
+                                                                                      ],
+                                                                                    ),
+                                                                                    textAlign: TextAlign.center,
+                                                                                  ),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
+                                                                                    child: Text(
+                                                                                      AppLocalizations().lbReM,
+                                                                                      style: TextStyle(
+                                                                                        fontSize: 18,
+                                                                                        color: Colors.greyapp,
+                                                                                      ),
+                                                                                      textAlign: TextAlign.center,
+                                                                                    ),
+                                                                                  )
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    )),
+                                                                new Spacer(),
+                                                                Directionality(
+                                                                    textDirection: langSave ==
+                                                                            'ar'
+                                                                        ? TextDirection
+                                                                            .rtl
+                                                                        : TextDirection
+                                                                            .rtl,
+                                                                    child:
+                                                                        Container(
+                                                                      width: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width,
+                                                                      child:
+                                                                          Row(
+                                                                        children: <
+                                                                            Widget>[
+                                                                          SizedBox(
+                                                                            width:
+                                                                                63.0,
+                                                                            height:
+                                                                                63.0,
+                                                                            child:
+                                                                                Stack(
+                                                                              children: <Widget>[
+                                                                                Pinned.fromSize(
+                                                                                  bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
+                                                                                  size: Size(62.8, 62.8),
+                                                                                  pinLeft: true,
+                                                                                  pinRight: true,
+                                                                                  pinTop: true,
+                                                                                  pinBottom: true,
+                                                                                  child: Container(
+                                                                                    decoration: BoxDecoration(
+                                                                                      borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                                                                                      border: Border.all(width: 1.0, color: const Color(0xf2386694)),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                                Pinned.fromSize(
+                                                                                  bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
+                                                                                  size: Size(62.8, 62.8),
+                                                                                  pinTop: true,
+                                                                                  pinBottom: true,
+                                                                                  fixedWidth: true,
+                                                                                  child:
+                                                                                      // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                                                      SvgPicture.string(
+                                                                                    _svg_pew0t9,
+                                                                                    allowDrawingOutsideViewBox: true,
+                                                                                    fit: BoxFit.fill,
+                                                                                  ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                          Text(
+                                                                            AppLocalizations().lbRev,
+                                                                            style:
+                                                                                TextStyle(
+                                                                              fontFamily: 'Times New Roman',
+                                                                              fontSize: 20,
+                                                                              color: const Color(0xff0a0606),
+                                                                              shadows: [
+                                                                                Shadow(
+                                                                                  color: const Color(0x29000000),
+                                                                                  offset: Offset(0, 10),
+                                                                                  blurRadius: 6,
+                                                                                )
+                                                                              ],
+                                                                            ),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ))
                                                               ],
                                                             ),
-                                                          ),
-                                                        ],
-                                                      ),
                                                     ),
                                                     decoration: BoxDecoration(
                                                       borderRadius:
@@ -369,24 +539,35 @@ class _expLaddExp extends State<expLaddExp> {
                                               child: Padding(
                                                   padding: EdgeInsets.fromLTRB(
                                                       10, 10, 10, 10),
-                                                  child: TextField(
-                                                    controller: _catName,
-                                                    cursorColor: Colors.black,
-                                                    //  obscureText: true,
-                                                    style: TextStyle(
-                                                        color: Colors.black),
-                                                    decoration: InputDecoration(
-                                                      filled: true,
+                                                  child: Directionality(
+                                                      textDirection: langSave ==
+                                                              'ar'
+                                                          ? TextDirection.rtl
+                                                          : TextDirection.ltr,
+                                                      child: TextField(
+                                                        controller: _catName,
+                                                        cursorColor:
+                                                            Colors.black,
+                                                        //  obscureText: true,
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                        decoration:
+                                                            InputDecoration(
+                                                          filled: true,
 
-                                                      fillColor:
-                                                          Colors.transparent,
-                                                      hintText: "Category name",
-                                                      hintStyle: TextStyle(
-                                                          color: Colors.black),
-                                                      //can also add icon to the end of the textfiled
-                                                      //  suffixIcon: Icon(Icons.remove_red_eye),
-                                                    ),
-                                                  )),
+                                                          fillColor: Colors
+                                                              .transparent,
+                                                          hintText:
+                                                              AppLocalizations()
+                                                                  .lbcatname,
+                                                          hintStyle: TextStyle(
+                                                              color:
+                                                                  Colors.black),
+                                                          //can also add icon to the end of the textfiled
+                                                          //  suffixIcon: Icon(Icons.remove_red_eye),
+                                                        ),
+                                                      ))),
                                             ),
                                           ),
                                           Padding(
@@ -417,7 +598,8 @@ class _expLaddExp extends State<expLaddExp> {
                                                             (BuildContext
                                                                     context,
                                                                 int index) {
-                                                              _controllers.add(new TextEditingController());
+                                                          _controllers.add(
+                                                              new TextEditingController());
                                                           return new Stack(
                                                             children: <Widget>[
                                                               Padding(
@@ -468,26 +650,27 @@ class _expLaddExp extends State<expLaddExp> {
                                                                           child:
                                                                               Column(
                                                                             children: <Widget>[
-                                                                              TextField(
-                                                                               // controller: _Subname,
+                                                                              Directionality(
+                                                                                  textDirection: langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                                                                                  child: TextField(
+                                                                                    // controller: _Subname,
 
-                                                                                onChanged: (text) {
-                                                                                  takeNumber(text, index.toString());
+                                                                                    onChanged: (text) {
+                                                                                      takeNumber(text, index.toString());
+                                                                                    },
+                                                                                    cursorColor: Colors.black,
+                                                                                    //   obscureText: true,
+                                                                                    style: TextStyle(color: Colors.black),
+                                                                                    decoration: InputDecoration(
+                                                                                      filled: true,
 
-                                                                                },
-                                                                                cursorColor: Colors.black,
-                                                                                //   obscureText: true,
-                                                                                style: TextStyle(color: Colors.black),
-                                                                                decoration: InputDecoration(
-                                                                                  filled: true,
-
-                                                                                  fillColor: Colors.transparent,
-                                                                                  hintText: "Sub Category name",
-                                                                                  hintStyle: TextStyle(color: Colors.black),
-                                                                                  //can also add icon to the end of the textfiled
-                                                                                  //  suffixIcon: Icon(Icons.remove_red_eye),
-                                                                                ),
-                                                                              )
+                                                                                      fillColor: Colors.transparent,
+                                                                                      hintText: AppLocalizations().lbSubname,
+                                                                                      hintStyle: TextStyle(color: Colors.black),
+                                                                                      //can also add icon to the end of the textfiled
+                                                                                      //  suffixIcon: Icon(Icons.remove_red_eye),
+                                                                                    ),
+                                                                                  ))
                                                                             ],
                                                                           )),
                                                                 ),
@@ -597,14 +780,12 @@ class _expLaddExp extends State<expLaddExp> {
                                                                           setState(
                                                                               () {
                                                                             itemcou++;
-                                                                            if (sublisttext == null) {
-      sublisttext =
-      sublist + ',';
-      } else {
-      sublisttext = sublisttext +
-      sublist+
-      ',';}
-
+                                                                            if (sublisttext ==
+                                                                                null) {
+                                                                              sublisttext = sublist + ',';
+                                                                            } else {
+                                                                              sublisttext = sublisttext + sublist + ',';
+                                                                            }
                                                                           });
                                                                         },
                                                                       ),
@@ -715,14 +896,12 @@ class _expLaddExp extends State<expLaddExp> {
                                                                               () {
                                                                             itemcou++;
 
-                                                                              if (sublisttext == null) {
-                                                                                sublisttext =
-                                                                                    sublist + ',';
-                                                                } else {
-                                                                                sublisttext = sublisttext +
-                                                                                    sublist+
-                                                                      ',';
-                                                                }
+                                                                            if (sublisttext ==
+                                                                                null) {
+                                                                              sublisttext = sublist + ',';
+                                                                            } else {
+                                                                              sublisttext = sublisttext + sublist + ',';
+                                                                            }
                                                                           });
                                                                         },
                                                                       ),
@@ -746,25 +925,34 @@ class _expLaddExp extends State<expLaddExp> {
                                                 10, 10, 10, 10),
                                             child: Column(
                                               children: <Widget>[
-                                                Padding(
-                                                  padding: EdgeInsets.fromLTRB(
-                                                      10, 0, 10, 0),
-                                                  child: Row(
-                                                    children: <Widget>[
-                                                      Text(
-                                                        'Select icon : ',
-                                                        style: TextStyle(
-                                                          fontFamily:
-                                                              'Times New Roman',
-                                                          fontSize: 24,
-                                                          color: const Color(
-                                                              0xff0a0606),
+                                                Directionality(
+                                                    textDirection:
+                                                        langSave == 'ar'
+                                                            ? TextDirection.rtl
+                                                            : TextDirection.ltr,
+                                                    child: Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsets.fromLTRB(
+                                                                10, 0, 10, 0),
+                                                        child: Text(
+                                                          AppLocalizations()
+                                                              .lbse,
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'Times New Roman',
+                                                            fontSize: 24,
+                                                            color: const Color(
+                                                                0xff0a0606),
+                                                          ),
+                                                          //textAlign: TextAlign.center,
                                                         ),
-                                                        //textAlign: TextAlign.center,
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
+                                                      ),
+                                                    )),
                                                 Padding(
                                                   padding: EdgeInsets.fromLTRB(
                                                       0, 10, 0, 10),
@@ -796,75 +984,85 @@ class _expLaddExp extends State<expLaddExp> {
                                                                   _imageFilePh =
                                                                       icList[index]
                                                                           .url;
-                                                                  indexselect=index;
-                                                                  for(int j=0;j<icList.length;j++){
-                                                                    icList[j].select=false;
+                                                                  indexselect =
+                                                                      index;
+                                                                  for (int j =
+                                                                          0;
+                                                                      j <
+                                                                          icList
+                                                                              .length;
+                                                                      j++) {
+                                                                    icList[j]
+                                                                            .select =
+                                                                        false;
                                                                   }
-                                                                  if(indexselect != index){
-                                                                    icList[index].select=false;
-
-                                                                  }else{
-                                                                    icList[index].select=true;
-
+                                                                  if (indexselect !=
+                                                                      index) {
+                                                                    icList[index]
+                                                                            .select =
+                                                                        false;
+                                                                  } else {
+                                                                    icList[index]
+                                                                            .select =
+                                                                        true;
                                                                   }
                                                                 });
                                                               },
                                                               child: GridTile(
-                                                                  child:
-                                                                   Stack(children: <Widget>[
-                                                                     icList[index].select==true?
-                                                                     Container(
-                                                                       // height: 100,
-                                                                       decoration:
-                                                                       BoxDecoration(
-                                                                         border: Border.all(color: Colors.red,width: 4),color: Colors.grey,),
-                                                                       child: Column(
-                                                                         crossAxisAlignment:
-                                                                         CrossAxisAlignment
-                                                                             .center,
-                                                                         mainAxisAlignment:
-                                                                         MainAxisAlignment
-                                                                             .center,
-                                                                         children: <
-                                                                             Widget>[
-                                                                           Container(
-                                                                             width: 90,
-                                                                             height:
-                                                                             90,
-                                                                             child: Image
-                                                                                 .network(
-                                                                               icList[index]
-                                                                                   .url,
-                                                                             ),
-                                                                           )
-                                                                         ],
-                                                                       ),
-                                                                     ):
-                                                                     Container(
-                                                                       // height: 100,
+                                                                  child: Stack(
+                                                                children: <
+                                                                    Widget>[
+                                                                  icList[index]
+                                                                              .select ==
+                                                                          true
+                                                                      ? Container(
+                                                                          // height: 100,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            border:
+                                                                                Border.all(color: Colors.red, width: 1),
+                                                                            color:
+                                                                            Color(0xFFD6D6D6),
+                                                                          ),
+                                                                          child:
+                                                                              Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.center,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.center,
+                                                                            children: <Widget>[
+                                                                              Container(
+                                                                                width: 90,
+                                                                                height: 90,
+                                                                                child: Image.network(
+                                                                                  icList[index].url,
+                                                                                ),
+                                                                              )
+                                                                            ],
+                                                                          ),
+                                                                        )
+                                                                      : Container(
+                                                                          // height: 100,
 
-                                                                       child: Column(
-                                                                         crossAxisAlignment:
-                                                                         CrossAxisAlignment
-                                                                             .center,
-                                                                         mainAxisAlignment:
-                                                                         MainAxisAlignment
-                                                                             .center,
-                                                                         children: <
-                                                                             Widget>[
-                                                                           Container(
-                                                                             width: 90,
-                                                                             height:
-                                                                             90,
-                                                                             child: Image
-                                                                                 .network(
-                                                                               icList[index]
-                                                                                   .url,
-                                                                             ),
-                                                                           )
-                                                                         ],
-                                                                       ),
-                                                                     ), ],)  ),
+                                                                          child:
+                                                                              Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.center,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.center,
+                                                                            children: <Widget>[
+                                                                              Container(
+                                                                                width: 90,
+                                                                                height: 90,
+                                                                                child: Image.network(
+                                                                                  icList[index].url,
+                                                                                ),
+                                                                              )
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                ],
+                                                              )),
                                                             );
                                                           }).toList()),
                                                     ),
@@ -895,10 +1093,9 @@ class _expLaddExp extends State<expLaddExp> {
                                           ),
                                           Padding(
                                             padding: EdgeInsets.fromLTRB(
-                                                10, 20, 10, 30),
+                                                25, 20, 25, 30),
                                             child: Row(
                                               children: <Widget>[
-
                                                 new Spacer(),
                                                 Padding(
                                                   padding: EdgeInsets.fromLTRB(
@@ -909,8 +1106,8 @@ class _expLaddExp extends State<expLaddExp> {
                                                     child: _imageFilePh == null
                                                         ? Container()
                                                         : Image.network(
-                                                      _imageFilePh,
-                                                    ),
+                                                            _imageFilePh,
+                                                          ),
                                                   ),
                                                 ),
                                                 GestureDetector(
@@ -941,9 +1138,11 @@ class _expLaddExp extends State<expLaddExp> {
                                                             EdgeInsets.fromLTRB(
                                                                 40, 5, 40, 5),
                                                         child: Text(
-                                                          'Save',
+                                                          AppLocalizations()
+                                                              .lbSave,
                                                           style: TextStyle(
-                                                            fontWeight: FontWeight.bold,
+                                                            fontWeight:
+                                                                FontWeight.bold,
                                                             fontFamily:
                                                                 'Times New Roman',
                                                             fontSize: 20,
@@ -960,20 +1159,30 @@ class _expLaddExp extends State<expLaddExp> {
                                                   ),
                                                   onTap: () {
                                                     pr.show();
-                                                    if(sublisttext==null){
+                                                    if (sublisttext == null) {
+                                                      if (sublisttext == null) {
+                                                        sublisttext = sublist;
+                                                      } else {
+                                                        sublisttext =
+                                                            sublisttext +
+                                                                sublist +
+                                                                ',';
+                                                      }
                                                       post(
-                                                          'http://honey-bee.life/Financial_Api/addCategoryexpenses',
-                                                          {
-                                                            "user_id": id,
-                                                            "name":
-                                                            _catName.text,
-                                                            "icon":
-                                                            _imageFilePh,
-                                                            "sub_cat": ""
-                                                          },
-                                                          tokene,
-                                                          'en')
-                                                          .then((response) async {
+                                                              'http://honey-bee.life/Financial_Api/addCategoryexpenses',
+                                                              {
+                                                                "user_id": id,
+                                                                "name": _catName
+                                                                    .text,
+                                                                "icon":
+                                                                    _imageFilePh,
+                                                                "sub_cat":
+                                                                    sublisttext
+                                                              },
+                                                              tokene,
+                                                              'en')
+                                                          .then(
+                                                              (response) async {
                                                         // jika respon normal
 
                                                         setState(() {
@@ -981,31 +1190,46 @@ class _expLaddExp extends State<expLaddExp> {
                                                           //   _response = response.parsed as String;
                                                         });
                                                       },
-                                                          // jika respon error
-                                                          onError: (error) {
-                                                            pr.hide().then((isHidden) {
-                                                              print(isHidden);
-                                                            });
-                                                            Toast.show(error.toString(), context,
-                                                                duration: 4, gravity: Toast.BOTTOM);
-                                                            _apiCall = false;
-                                                            _response =
-                                                                error.toString();
-                                                          });
-                                                    }else{
+                                                              // jika respon error
+                                                              onError: (error) {
+                                                        pr
+                                                            .hide()
+                                                            .then((isHidden) {
+                                                          print(isHidden);
+                                                        });
+                                                        Toast.show(
+                                                            error.toString(),
+                                                            context,
+                                                            duration: 4,
+                                                            gravity:
+                                                                Toast.BOTTOM);
+                                                        _apiCall = false;
+                                                        _response =
+                                                            error.toString();
+                                                      });
+                                                    } else {
+                                                      if (sublisttext == null) {
+                                                        sublisttext = sublist;
+                                                      } else {
+                                                        sublisttext =
+                                                            sublisttext +
+                                                                sublist;
+                                                      }
                                                       post(
-                                                          'http://honey-bee.life/Financial_Api/addCategoryexpenses',
-                                                          {
-                                                            "user_id": id,
-                                                            "name":
-                                                            _catName.text,
-                                                            "icon":
-                                                            _imageFilePh,
-                                                            "sub_cat": sublisttext
-                                                          },
-                                                          tokene,
-                                                          'en')
-                                                          .then((response) async {
+                                                              'http://honey-bee.life/Financial_Api/addCategoryexpenses',
+                                                              {
+                                                                "user_id": id,
+                                                                "name": _catName
+                                                                    .text,
+                                                                "icon":
+                                                                    _imageFilePh,
+                                                                "sub_cat":
+                                                                    sublisttext
+                                                              },
+                                                              tokene,
+                                                              'en')
+                                                          .then(
+                                                              (response) async {
                                                         // jika respon normal
 
                                                         setState(() {
@@ -1013,19 +1237,24 @@ class _expLaddExp extends State<expLaddExp> {
                                                           //   _response = response.parsed as String;
                                                         });
                                                       },
-                                                          // jika respon error
-                                                          onError: (error) {
-                                                            pr.hide().then((isHidden) {
-                                                              print(isHidden);
-                                                            });
-                                                            Toast.show(error.toString(), context,
-                                                                duration: 4, gravity: Toast.BOTTOM);
-                                                            _apiCall = false;
-                                                            _response =
-                                                                error.toString();
-                                                          });
+                                                              // jika respon error
+                                                              onError: (error) {
+                                                        pr
+                                                            .hide()
+                                                            .then((isHidden) {
+                                                          print(isHidden);
+                                                        });
+                                                        Toast.show(
+                                                            error.toString(),
+                                                            context,
+                                                            duration: 4,
+                                                            gravity:
+                                                                Toast.BOTTOM);
+                                                        _apiCall = false;
+                                                        _response =
+                                                            error.toString();
+                                                      });
                                                     }
-
                                                   },
                                                 )
                                               ],

@@ -179,6 +179,10 @@ class AppLocalizations {
     return Intl.message('Edit', name: 'lbEdit');
   }
 
+  String get lbEditCa {
+    return Intl.message('Edit Category', name: 'lbEditCa');
+  }
+
   String get lbBankDetails {
     return Intl.message('Bank Details', name: 'lbBankDetails');
   }
@@ -547,6 +551,12 @@ class AppLocalizations {
   String get lbEx {
     return Intl.message('Expensev', name: 'lbEx');
   }
+  String get lbExM {
+    return Intl.message('Expense Managment', name: 'lbExM');
+  }
+  String get lbReM {
+    return Intl.message('Revenue Managment', name: 'lbReM');
+  }
 
   String get lbMediName {
     return Intl.message('Medicines Name', name: 'lbMediName');
@@ -555,6 +565,19 @@ class AppLocalizations {
   String get lbRev {
     return Intl.message('Revenue', name: 'lbRev');
   }
+
+  String get lbse {
+    return Intl.message('Select icon :', name: 'lbse');
+  }
+
+  String get lbcatname {
+    return Intl.message('Category name', name: 'lbcatname');
+  }
+  String get lbSubname {
+    return Intl.message('Sub  category name', name: 'lbSubname');
+  }
+
+
 
   String get lbSign {
     return Intl.message('Sign Out', name: 'lbSign');

@@ -325,8 +325,8 @@ print(dfvdg);
       String dfvdg=bodyData['start_date'].toString();
       print(dfvdg);
       if (id != null) {
-        apiURLget = _baseUrl + url + '?user_id=' + id+'&sub_category='+bodyData['sub_category']+
-            '&start_date='+bodyData['start_date']+'&end_date='+bodyData['end_date']+'&category='+bodyData['category'];
+        apiURLget = _baseUrl + url + '?user_id=' + id+'&sub_category='+bodyData['sub_category'].toString()+
+            '&start_date='+bodyData['start_date'].toString()+'&end_date='+bodyData['end_date'].toString()+'&category='+bodyData['category'].toString();
         print(apiURLget);
       }
 
