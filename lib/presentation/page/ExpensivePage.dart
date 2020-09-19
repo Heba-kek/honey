@@ -165,6 +165,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
         print(state.ExpResponse.data);
         expList = state.ExpResponse.data.exList;
         print(expList.length);
+        return Text('sssssssssss');
       }
     }, builder: (context, state) {
       if (state is Empty) {
@@ -179,6 +180,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
         print('Error');
         print(state.message);
         //show error with retry
+
       }
 
       return Container(
@@ -268,7 +270,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                             AppLocalizations().lbExM,
                                                             style: TextStyle(
                                                               fontSize: 18,
-                                                              color: Colors.greyapp,
+                                                              color: Colors.grey,
 
                                                             ),
                                                             textAlign: TextAlign.center,
@@ -278,7 +280,6 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
 
                                              ,
 
-                                              new Spacer(),
                                           Directionality(
                                             textDirection:
                                             langSave == 'ar' ? TextDirection.rtl : TextDirection.rtl,
@@ -431,7 +432,14 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                              Navigator.of(context).push(
                                                PageRouteBuilder(
                                                  pageBuilder: (_, __, ___) =>
-                                                 reportCAteExpe(dateFormat,dateFormatAR),
+                                                     Directionality(
+                                                         textDirection: langSave ==
+                                                             'ar'
+                                                             ? TextDirection
+                                                             .rtl
+                                                             : TextDirection
+                                                             .ltr,
+                                                         child: reportCAteExpe(dateFormat,dateFormatAR)),
                                                ),
                                              );
                                            },)
@@ -722,8 +730,15 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                                       builder:
                                                                           (BuildContext
                                                                       context) {
-                                                                        return showDialogwindowDelete(
-                                                                            expList[index].category_id);
+                                                                        return
+                                                                          Directionality(
+                                                                            textDirection:
+                                                                            langSave == 'ar' ? TextDirection.rtl :
+                                                                            TextDirection.ltr,
+                                                                            child:
+
+                                                                            showDialogwindowDelete(
+                                                                            expList[index].category_id));
                                                                       });
                                                                 } else if (value ==
                                                                     3) {
@@ -739,7 +754,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                                         return
                                                                           Directionality(
                                                                               textDirection:
-                                                                              langSave == 'ar' ? TextDirection.ltr : TextDirection.ltr,
+                                                                              langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
                                                                               child:  MyDialogEdit(
                                                                                   expList[index].category_id,
                                                                                   expList[index].category_Name.toString(),
@@ -768,9 +783,20 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                           Navigator.of(context).push(
                                             PageRouteBuilder(
                                               pageBuilder: (_, __, ___) =>
+
+                                                  Directionality(
+                                                    textDirection: langSave ==
+                                                        'ar'
+                                                        ? TextDirection
+                                                        .rtl
+                                                        : TextDirection
+                                                        .ltr,
+                                                    child:
+
                                                   expensiveSubCatPage(expList[index].category_id,
                                                   expList[index].category_Name,
-                                                  expList[index].icon,'1'),
+                                                  expList[index].icon,'1',
+                                                      expList[index].is_Chid)),
                                             ),
                                           );
                                         },
@@ -795,8 +821,8 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
 
   Widget showDialogwindowDelete(String catid) {
     return AlertDialog(
-      title: Text('Delete category'),
-      content: Text('Are you confirm delete this category ?'),
+      title: Text(AppLocalizations().lbDeleteCat),
+      content: Text(AppLocalizations().lbDeleteCatM),
       actions: <Widget>[
         // usually buttons at the bottoReminiderItemDatem of the dialog
         OutlineButton(
@@ -1044,123 +1070,113 @@ class _MyDialogEdit extends State<MyDialogEdit> {
               ,
                 Padding(
                   padding: EdgeInsets.fromLTRB(15, 35, 15, 0),
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: Container(
-                            child: Padding(
-                              padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
-                              child: GridView.count(
-                                  controller: _sc,
-                                  crossAxisCount: 3,
-                                  shrinkWrap: true,
-                                  childAspectRatio: 1.0,
-                                  padding: const EdgeInsets.all(4.0),
-                                  mainAxisSpacing: 4.0,
-                                  crossAxisSpacing: 6.0,
-                                  children: icList.map((url) {
-                                    int index = icList.indexOf(url);
+                  child:Container(
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
+                      child: GridView.count(
+                          controller: _sc,
+                          crossAxisCount: 3,
+                          shrinkWrap: true,
+                          childAspectRatio: 1.0,
+                          padding: const EdgeInsets.all(4.0),
+                          mainAxisSpacing: 4.0,
+                          crossAxisSpacing: 6.0,
+                          children: icList.map((url) {
+                            int index = icList.indexOf(url);
 
-                                    return GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          widget.url = icList[index].url;
-                                          indexselect =
-                                              index;
-                                          for (int j =
-                                          0;
-                                          j <
-                                              icList
-                                                  .length;
-                                          j++) {
-                                            icList[j]
-                                                .select =
-                                            false;
-                                          }
-                                          if (indexselect !=
-                                              index) {
-                                            icList[index]
-                                                .select =
-                                            false;
-                                          } else {
-                                            icList[index]
-                                                .select =
-                                            true;
-                                          }
-                                        });
-                                      },
-                                      child: GridTile(
-                                          child:      icList[index]
-                                              .select ==
-                                              true
-                                              ? Container(
-                                            // height: 100,
-                                            decoration:
-                                            BoxDecoration(
-                                              border:
-                                              Border.all(color: Colors.red, width: 1),
-                                              color:
-                                              Color(0xFFD6D6D6),
-                                            ),
-                                            child:
-                                            Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Container(
-                                                  width: 50,
-                                                  height: 50,
-                                                  child: Image.network(
-                                                    icList[index].url,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          )
-                                              : Container(
-                                            // height: 100,
+                            return GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  widget.url = icList[index].url;
+                                  indexselect =
+                                      index;
+                                  for (int j =
+                                  0;
+                                  j <
+                                      icList
+                                          .length;
+                                  j++) {
+                                    icList[j]
+                                        .select =
+                                    false;
+                                  }
+                                  if (indexselect !=
+                                      index) {
+                                    icList[index]
+                                        .select =
+                                    false;
+                                  } else {
+                                    icList[index]
+                                        .select =
+                                    true;
+                                  }
+                                });
+                              },
+                              child: GridTile(
+                                  child:      icList[index]
+                                      .select ==
+                                      true
+                                      ? Container(
+                                    // height: 100,
+                                    decoration:
+                                    BoxDecoration(
+                                      border:
+                                      Border.all(color: Colors.red, width: 1),
+                                      color:
+                                      Color(0xFFD6D6D6),
+                                    ),
+                                    child:
+                                    Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Container(
+                                          width: 50,
+                                          height: 50,
+                                          child: Image.network(
+                                            icList[index].url,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                      : Container(
+                                    // height: 100,
 
-                                            child:
-                                            Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Container(
-                                                  width: 50,
-                                                  height: 50,
-                                                  child: Image.network(
-                                                    icList[index].url,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          )),
-                                    );
-                                  }).toList()),
-                            ),
-                            height: 700,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15.0),
-                              color: const Color(0xfff3f3f3),
-                              border: Border.all(
-                                  width: 1.0, color: const Color(0xfff3f3f3)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color(0x29000000),
-                                  offset: Offset(0, 3),
-                                  blurRadius: 6,
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
+                                    child:
+                                    Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Container(
+                                          width: 50,
+                                          height: 50,
+                                          child: Image.network(
+                                            icList[index].url,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )),
+                            );
+                          }).toList()),
+                    ),
+                    height: 700,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: const Color(0xfff3f3f3),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xfff3f3f3)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x29000000),
+                          offset: Offset(0, 3),
+                          blurRadius: 6,
+                        ),
                       ],
                     ),
                   ),

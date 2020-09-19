@@ -9,6 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/application/Auth/blocExp.dart';
+import 'package:honey/application/Revenue/RevenueBloc.dart';
+import 'package:honey/application/Revenue/RevenueEvent.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:honey/Infrastructure/Core/NetworkInfo.dart';
@@ -243,7 +245,7 @@ class _expLaddExp extends State<expLaddExp> {
                                                                                       AppLocalizations().lbExM,
                                                                                       style: TextStyle(
                                                                                         fontSize: 18,
-                                                                                        color: Colors.greyapp,
+                                                                                        color: Colors.grey,
                                                                                       ),
                                                                                       textAlign: TextAlign.center,
                                                                                     ),
@@ -255,7 +257,6 @@ class _expLaddExp extends State<expLaddExp> {
                                                                         ],
                                                                       ),
                                                                     )),
-                                                                new Spacer(),
                                                                 Directionality(
                                                                     textDirection: langSave ==
                                                                             'ar'
@@ -399,7 +400,7 @@ class _expLaddExp extends State<expLaddExp> {
                                                                                       AppLocalizations().lbReM,
                                                                                       style: TextStyle(
                                                                                         fontSize: 18,
-                                                                                        color: Colors.greyapp,
+                                                                                        color: Colors.grey,
                                                                                       ),
                                                                                       textAlign: TextAlign.center,
                                                                                     ),
@@ -411,7 +412,6 @@ class _expLaddExp extends State<expLaddExp> {
                                                                         ],
                                                                       ),
                                                                     )),
-                                                                new Spacer(),
                                                                 Directionality(
                                                                     textDirection: langSave ==
                                                                             'ar'
@@ -607,9 +607,9 @@ class _expLaddExp extends State<expLaddExp> {
                                                                     EdgeInsets
                                                                         .fromLTRB(
                                                                             0,
-                                                                            10,
+                                                                            5,
                                                                             0,
-                                                                            10),
+                                                                            5),
                                                                 child:
                                                                     Container(
                                                                   decoration:
@@ -644,9 +644,9 @@ class _expLaddExp extends State<expLaddExp> {
                                                                       Padding(
                                                                           padding: EdgeInsets.fromLTRB(
                                                                               10,
+                                                                              3,
                                                                               10,
-                                                                              10,
-                                                                              30),
+                                                                              5),
                                                                           child:
                                                                               Column(
                                                                             children: <Widget>[
@@ -686,7 +686,7 @@ class _expLaddExp extends State<expLaddExp> {
                                                                               Padding(
                                                                             padding: EdgeInsets.fromLTRB(
                                                                                 0,
-                                                                                80,
+                                                                                50,
                                                                                 0,
                                                                                 0),
                                                                             child:
@@ -1168,45 +1168,88 @@ class _expLaddExp extends State<expLaddExp> {
                                                                 sublist +
                                                                 ',';
                                                       }
+                                                    if(widget.isexp=='1'){
                                                       post(
-                                                              'http://honey-bee.life/Financial_Api/addCategoryexpenses',
-                                                              {
-                                                                "user_id": id,
-                                                                "name": _catName
-                                                                    .text,
-                                                                "icon":
-                                                                    _imageFilePh,
-                                                                "sub_cat":
-                                                                    sublisttext
-                                                              },
-                                                              tokene,
-                                                              'en')
+                                                          'http://honey-bee.life/Financial_Api/addCategoryexpenses',
+                                                          {
+                                                            "user_id": id,
+                                                            "name": _catName
+                                                                .text,
+                                                            "icon":
+                                                            _imageFilePh,
+                                                            "sub_cat":
+                                                            sublisttext==null?"":sublisttext
+                                                          },
+                                                          tokene,
+                                                          'en')
                                                           .then(
                                                               (response) async {
-                                                        // jika respon normal
+                                                            // jika respon normal
 
-                                                        setState(() {
-                                                          _apiCall = false;
-                                                          //   _response = response.parsed as String;
-                                                        });
-                                                      },
-                                                              // jika respon error
-                                                              onError: (error) {
-                                                        pr
-                                                            .hide()
-                                                            .then((isHidden) {
-                                                          print(isHidden);
-                                                        });
-                                                        Toast.show(
-                                                            error.toString(),
-                                                            context,
-                                                            duration: 4,
-                                                            gravity:
+                                                            setState(() {
+                                                              _apiCall = false;
+                                                              //   _response = response.parsed as String;
+                                                            });
+                                                          },
+                                                          // jika respon error
+                                                          onError: (error) {
+                                                            pr
+                                                                .hide()
+                                                                .then((isHidden) {
+                                                              print(isHidden);
+                                                            });
+                                                            Toast.show(
+                                                                error.toString(),
+                                                                context,
+                                                                duration: 4,
+                                                                gravity:
                                                                 Toast.BOTTOM);
-                                                        _apiCall = false;
-                                                        _response =
-                                                            error.toString();
-                                                      });
+                                                            _apiCall = false;
+                                                            _response =
+                                                                error.toString();
+                                                          });
+                                                    }
+                                                    else{
+                                                      post(
+                                                          'http://honey-bee.life/Financial_Api/addCategoryrevenue',
+                                                          {
+                                                            "user_id": id,
+                                                            "name": _catName
+                                                                .text,
+                                                            "icon":
+                                                            _imageFilePh,
+                                                            "sub_cat":
+                                                            sublisttext==null?"":sublisttext
+                                                          },
+                                                          tokene,
+                                                          'en')
+                                                          .then(
+                                                              (response) async {
+                                                            // jika respon normal
+
+                                                            setState(() {
+                                                              _apiCall = false;
+                                                              //   _response = response.parsed as String;
+                                                            });
+                                                          },
+                                                          // jika respon error
+                                                          onError: (error) {
+                                                            pr
+                                                                .hide()
+                                                                .then((isHidden) {
+                                                              print(isHidden);
+                                                            });
+                                                            Toast.show(
+                                                                error.toString(),
+                                                                context,
+                                                                duration: 4,
+                                                                gravity:
+                                                                Toast.BOTTOM);
+                                                            _apiCall = false;
+                                                            _response =
+                                                                error.toString();
+                                                          });
+                                                    }
                                                     } else {
                                                       if (sublisttext == null) {
                                                         sublisttext = sublist;
@@ -1215,45 +1258,88 @@ class _expLaddExp extends State<expLaddExp> {
                                                             sublisttext +
                                                                 sublist;
                                                       }
-                                                      post(
-                                                              'http://honey-bee.life/Financial_Api/addCategoryexpenses',
-                                                              {
-                                                                "user_id": id,
-                                                                "name": _catName
-                                                                    .text,
-                                                                "icon":
-                                                                    _imageFilePh,
-                                                                "sub_cat":
-                                                                    sublisttext
-                                                              },
-                                                              tokene,
-                                                              'en')
-                                                          .then(
-                                                              (response) async {
-                                                        // jika respon normal
+                                                      if(widget.isexp=='1'){
+                                                        post(
+                                                            'http://honey-bee.life/Financial_Api/addCategoryexpenses',
+                                                            {
+                                                              "user_id": id,
+                                                              "name": _catName
+                                                                  .text,
+                                                              "icon":
+                                                              _imageFilePh,
+                                                              "sub_cat":
+                                                              sublisttext==null?"":sublisttext
+                                                            },
+                                                            tokene,
+                                                            'en')
+                                                            .then(
+                                                                (response) async {
+                                                              // jika respon normal
 
-                                                        setState(() {
-                                                          _apiCall = false;
-                                                          //   _response = response.parsed as String;
-                                                        });
-                                                      },
-                                                              // jika respon error
-                                                              onError: (error) {
-                                                        pr
-                                                            .hide()
-                                                            .then((isHidden) {
-                                                          print(isHidden);
-                                                        });
-                                                        Toast.show(
-                                                            error.toString(),
-                                                            context,
-                                                            duration: 4,
-                                                            gravity:
-                                                                Toast.BOTTOM);
-                                                        _apiCall = false;
-                                                        _response =
-                                                            error.toString();
-                                                      });
+                                                              setState(() {
+                                                                _apiCall = false;
+                                                                //   _response = response.parsed as String;
+                                                              });
+                                                            },
+                                                            // jika respon error
+                                                            onError: (error) {
+                                                              pr
+                                                                  .hide()
+                                                                  .then((isHidden) {
+                                                                print(isHidden);
+                                                              });
+                                                              Toast.show(
+                                                                  error.toString(),
+                                                                  context,
+                                                                  duration: 4,
+                                                                  gravity:
+                                                                  Toast.BOTTOM);
+                                                              _apiCall = false;
+                                                              _response =
+                                                                  error.toString();
+                                                            });
+                                                      }
+                                                      else{
+                                                        post(
+                                                            'http://honey-bee.life/Financial_Api/addCategoryrevenue',
+                                                            {
+                                                              "user_id": id,
+                                                              "name": _catName
+                                                                  .text,
+                                                              "icon":
+                                                              _imageFilePh,
+                                                              "sub_cat":
+                                                              sublisttext==null?"":sublisttext
+                                                            },
+                                                            tokene,
+                                                            'en')
+                                                            .then(
+                                                                (response) async {
+                                                              // jika respon normal
+
+                                                              setState(() {
+                                                                _apiCall = false;
+                                                                //   _response = response.parsed as String;
+                                                              });
+                                                            },
+                                                            // jika respon error
+                                                            onError: (error) {
+                                                              pr
+                                                                  .hide()
+                                                                  .then((isHidden) {
+                                                                print(isHidden);
+                                                              });
+                                                              Toast.show(
+                                                                  error.toString(),
+                                                                  context,
+                                                                  duration: 4,
+                                                                  gravity:
+                                                                  Toast.BOTTOM);
+                                                              _apiCall = false;
+                                                              _response =
+                                                                  error.toString();
+                                                            });
+                                                      }
                                                     }
                                                   },
                                                 )
@@ -1419,7 +1505,13 @@ class _expLaddExp extends State<expLaddExp> {
             pr.hide().then((isHidden) {
               print(isHidden);
             });
-            widget.con.bloc<ExpBloc>().add(ExpenEvent(id));
+            if(widget.isexp=='1'){
+              widget.con.bloc<ExpBloc>().add(ExpenEvent(id));
+
+            }else{
+              widget.con.bloc<RevenueBloc>().add(GetRevenueCategoryEvent());
+
+            }
 
             Navigator.pop(context, true);
 
