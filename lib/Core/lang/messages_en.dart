@@ -55,6 +55,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbReportDate": MessageLookupByLibrary.simpleMessage("Report Date"),
         "lbEdit": MessageLookupByLibrary.simpleMessage("Edit"),
         "lbBankDetails": MessageLookupByLibrary.simpleMessage("Bank Details"),
+        "lbDetails": MessageLookupByLibrary.simpleMessage("Details"),
+        "lbExTotal": MessageLookupByLibrary.simpleMessage("Expensev/Total"),
+        "lbDebt": MessageLookupByLibrary.simpleMessage("Debt"),
+        "lbDeleteCat": MessageLookupByLibrary.simpleMessage("Delete Category"),
+        "lbDeleteCatM": MessageLookupByLibrary.simpleMessage("Are you confirm delete this category ?"),
+
         "lbMore": MessageLookupByLibrary.simpleMessage("More"),
         "lbAddEx": MessageLookupByLibrary.simpleMessage("Add Expensive"),
         "lbFrom": MessageLookupByLibrary.simpleMessage("From"),
@@ -413,7 +419,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbSubname": MessageLookupByLibrary.simpleMessage("Sub category name"),
         "lbse": MessageLookupByLibrary.simpleMessage("Select icon :"),
         "lbEditCa": MessageLookupByLibrary.simpleMessage("Edit Category"),
+        "lbSend": MessageLookupByLibrary.simpleMessage("Send"),
 
+        "lbrest": MessageLookupByLibrary.simpleMessage("Rest"),
+        "lbVal": MessageLookupByLibrary.simpleMessage("Valus"),
+        "lbCus": MessageLookupByLibrary.simpleMessage("Customer"),
+        "lbImage": MessageLookupByLibrary.simpleMessage("Image"),
 
   };
 }

@@ -14,7 +14,7 @@ import 'package:honey/Domain/Revenue/Entities/RevenueCategoryReportEntity.dart';
 
 import 'package:honey/Core/lang/localss.dart';
 
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' as intl;
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
@@ -127,12 +127,29 @@ var dateFormat,dateFormatAR;
       messageTextStyle: TextStyle(
           color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
     );
-    //  navigationPage();
+     navigationPage();
   }
+  SpecificLocalizationDelegate _specificLocalizationDelegate;
+  Future navigationPage() async {
+    var preferences = await SharedPreferences.getInstance();
 
+    langSave = preferences.getString('lang');
+    print("lang saved == $langSave");
+    //langSave=lang1;
+    if (langSave == 'ar') {
+      _specificLocalizationDelegate =
+          SpecificLocalizationDelegate(new Locale("ar"));
+
+      AppLocalizations.load(new Locale("ar"));
+    } else {
+      _specificLocalizationDelegate =
+          SpecificLocalizationDelegate(new Locale("en"));
+      AppLocalizations.load(new Locale("en"));
+    }
+  }
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+   return new Scaffold(
         body: Container(
       child: Scaffold(
         body: Container(
@@ -150,196 +167,339 @@ var dateFormat,dateFormatAR;
                               child: Column(
                                 children: <Widget>[
                                   Padding(
-                                    padding:
-                                        EdgeInsets.fromLTRB(10, 50, 10, 10),
+                                    padding: EdgeInsets.fromLTRB(
+                                        10, 50, 10, 10),
                                     child: Container(
-                                      width: MediaQuery.of(context).size.width,
+                                      width:
+                                      MediaQuery.of(context)
+                                          .size
+                                          .width,
                                       child: Padding(
                                         padding:
-                                            EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                        child: Row(
-                                          children: <Widget>[
-                                            SvgPicture.string(
-                                              _svg_6oa7ke,
-                                              allowDrawingOutsideViewBox: true,
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  10, 0, 10, 0),
-                                              child: Center(
-                                                child: widget.iexpen=='1'? Column(
-                                                  children: <Widget>[Text(
-                                                    'Honey Bee',
-                                                    style: TextStyle(
-                                                      fontFamily: 'Pristina',
-                                                      fontSize: 22,
-                                                      color: const Color(
-                                                          0xff0a0606),
-                                                      shadows: [
-                                                        Shadow(
-                                                          color: const Color(
-                                                              0x29000000),
-                                                          offset: Offset(3, 10),
-                                                          blurRadius: 6,
-                                                        )
-                                                      ],
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                  ),Padding(padding: EdgeInsets.fromLTRB(0,
-                                                      3, 0, 3),child: Text(
-                                                    'Expense Managment',
-                                                    style: TextStyle(
-                                                      fontFamily: 'Pristina',
-                                                      fontSize: 22,
-                                                      color: const Color(
-                                                          0xff0a0606),
-                                                      shadows: [
-                                                        Shadow(
-                                                          color: const Color(
-                                                              0x29000000),
-                                                          offset: Offset(3, 10),
-                                                          blurRadius: 6,
-                                                        )
-                                                      ],
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                  ),)],):
-                                                Column(
-                                                  children: <Widget>[Text(
-                                                    'Honey Bee',
-                                                    style: TextStyle(
-                                                      fontFamily: 'Pristina',
-                                                      fontSize: 22,
-                                                      color: const Color(
-                                                          0xff0a0606),
-                                                      shadows: [
-                                                        Shadow(
-                                                          color: const Color(
-                                                              0x29000000),
-                                                          offset: Offset(3, 10),
-                                                          blurRadius: 6,
-                                                        )
-                                                      ],
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                  ),Padding(padding: EdgeInsets.fromLTRB(0,
-                                                      3, 0, 3),child: Text(
-                                                    'Revenue Managment',
-                                                    style: TextStyle(
-                                                      fontFamily: 'Pristina',
-                                                      fontSize: 22,
-                                                      color: const Color(
-                                                          0xff0a0606),
-                                                      shadows: [
-                                                        Shadow(
-                                                          color: const Color(
-                                                              0x29000000),
-                                                          offset: Offset(3, 10),
-                                                          blurRadius: 6,
-                                                        )
-                                                      ],
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                  ),)],),
-                                              ),
-                                            ),
-                                            new Spacer(),
-                                            widget.iexpen == '1'
-                                                ? Text(
-                                                    'Expensev',
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          'Times New Roman',
-                                                      fontSize: 20,
-                                                      color: const Color(
-                                                          0xff0a0606),
-                                                      shadows: [
-                                                        Shadow(
-                                                          color: const Color(
-                                                              0x29000000),
-                                                          offset: Offset(0, 10),
-                                                          blurRadius: 6,
-                                                        )
-                                                      ],
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                  )
-                                                : Text(
-                                                    'Revenue',
-                                                    style: TextStyle(
-                                                      fontFamily:
-                                                          'Times New Roman',
-                                                      fontSize: 20,
-                                                      color: const Color(
-                                                          0xff0a0606),
-                                                      shadows: [
-                                                        Shadow(
-                                                          color: const Color(
-                                                              0x29000000),
-                                                          offset: Offset(0, 10),
-                                                          blurRadius: 6,
-                                                        )
-                                                      ],
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                  ),
-                                            SizedBox(
-                                              width: 63.0,
-                                              height: 63.0,
-                                              child: Stack(
-                                                children: <Widget>[
-                                                  Pinned.fromSize(
-                                                    bounds: Rect.fromLTWH(
-                                                        7.1, 7.2, 48.5, 48.5),
-                                                    size: Size(62.8, 62.8),
-                                                    pinLeft: true,
-                                                    pinRight: true,
-                                                    pinTop: true,
-                                                    pinBottom: true,
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius
-                                                                    .elliptical(
-                                                                        9999.0,
-                                                                        9999.0)),
-                                                        border: Border.all(
-                                                            width: 1.0,
-                                                            color: const Color(
-                                                                0xf2386694)),
+                                        EdgeInsets.fromLTRB(
+                                            10, 10, 10, 10),
+                                        child: widget.iexpen == '1'
+                                            ? Stack(
+                                          children: <
+                                              Widget>[
+                                            Directionality(
+                                                textDirection: langSave ==
+                                                    'ar'
+                                                    ? TextDirection
+                                                    .ltr
+                                                    : TextDirection
+                                                    .ltr,
+                                                child:
+                                                Container(
+                                                  width: MediaQuery.of(
+                                                      context)
+                                                      .size
+                                                      .width,
+                                                  child:
+                                                  Row(
+                                                    children: <
+                                                        Widget>[
+                                                      Align(
+                                                        child: GestureDetector(
+                                                            child: SvgPicture.string(
+                                                              _svg_6oa7ke,
+                                                              allowDrawingOutsideViewBox: true,
+                                                            ),
+                                                            onTap: () {
+                                                              Navigator.of(context).pop();
+                                                            }),
+                                                        alignment:
+                                                        Alignment.topRight,
                                                       ),
-                                                    ),
+                                                      Padding(
+                                                        padding: EdgeInsets.fromLTRB(
+                                                            15,
+                                                            0,
+                                                            10,
+                                                            0),
+                                                        child:
+                                                        Center(
+                                                          child: Column(
+                                                            children: <Widget>[
+                                                              Text(
+                                                                'Honey Bee',
+                                                                style: TextStyle(
+                                                                  fontFamily: 'Pristina',
+                                                                  fontSize: 32,
+                                                                  color: const Color(0xff0a0606),
+                                                                  shadows: [
+                                                                    Shadow(
+                                                                      color: const Color(0x29000000),
+                                                                      offset: Offset(3, 10),
+                                                                      blurRadius: 6,
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                                textAlign: TextAlign.center,
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
+                                                                child: Text(
+                                                                  AppLocalizations().lbExM,
+                                                                  style: TextStyle(
+                                                                    fontSize: 18,
+                                                                    color: Colors.grey,
+                                                                  ),
+                                                                  textAlign: TextAlign.center,
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                  Pinned.fromSize(
-                                                    bounds: Rect.fromLTWH(
-                                                        22.1, 14.7, 19.0, 33.6),
-                                                    size: Size(62.8, 62.8),
-                                                    pinTop: true,
-                                                    pinBottom: true,
-                                                    fixedWidth: true,
-                                                    child:
-                                                        // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                                                        SvgPicture.string(
-                                                      _svg_pew0t9,
-                                                      allowDrawingOutsideViewBox:
-                                                          true,
-                                                      fit: BoxFit.fill,
-                                                    ),
+                                                )),
+                                            Directionality(
+                                                textDirection: langSave ==
+                                                    'ar'
+                                                    ? TextDirection
+                                                    .rtl
+                                                    : TextDirection
+                                                    .rtl,
+                                                child:
+                                                Container(
+                                                  width: MediaQuery.of(
+                                                      context)
+                                                      .size
+                                                      .width,
+                                                  child:
+                                                  Row(
+                                                    children: <
+                                                        Widget>[
+                                                      SizedBox(
+                                                        width:
+                                                        63.0,
+                                                        height:
+                                                        63.0,
+                                                        child:
+                                                        Stack(
+                                                          children: <Widget>[
+                                                            Pinned.fromSize(
+                                                              bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
+                                                              size: Size(62.8, 62.8),
+                                                              pinLeft: true,
+                                                              pinRight: true,
+                                                              pinTop: true,
+                                                              pinBottom: true,
+                                                              child: Container(
+                                                                decoration: BoxDecoration(
+                                                                  borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                                                                  border: Border.all(width: 1.0, color: const Color(0xf2386694)),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Pinned.fromSize(
+                                                              bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
+                                                              size: Size(62.8, 62.8),
+                                                              pinTop: true,
+                                                              pinBottom: true,
+                                                              fixedWidth: true,
+                                                              child:
+                                                              // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                              SvgPicture.string(
+                                                                _svg_pew0t9,
+                                                                allowDrawingOutsideViewBox: true,
+                                                                fit: BoxFit.fill,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        AppLocalizations().lbEx,
+                                                        style:
+                                                        TextStyle(
+                                                          fontFamily: 'Times New Roman',
+                                                          fontSize: 20,
+                                                          color: const Color(0xff0a0606),
+                                                          shadows: [
+                                                            Shadow(
+                                                              color: const Color(0x29000000),
+                                                              offset: Offset(0, 10),
+                                                              blurRadius: 6,
+                                                            )
+                                                          ],
+                                                        ),
+                                                        textAlign:
+                                                        TextAlign.center,
+                                                      ),
+                                                    ],
                                                   ),
-                                                ],
-                                              ),
-                                            ),
+                                                ))
+                                          ],
+                                        )
+                                            : Stack(
+                                          children: <
+                                              Widget>[
+                                            Directionality(
+                                                textDirection: langSave ==
+                                                    'ar'
+                                                    ? TextDirection
+                                                    .ltr
+                                                    : TextDirection
+                                                    .ltr,
+                                                child:
+                                                Container(
+                                                  width: MediaQuery.of(
+                                                      context)
+                                                      .size
+                                                      .width,
+                                                  child:
+                                                  Row(
+                                                    children: <
+                                                        Widget>[
+                                                      Align(
+                                                        child: GestureDetector(
+                                                            child: SvgPicture.string(
+                                                              _svg_6oa7ke,
+                                                              allowDrawingOutsideViewBox: true,
+                                                            ),
+                                                            onTap: () {
+                                                              Navigator.of(context).pop();
+                                                            }),
+                                                        alignment:
+                                                        Alignment.topRight,
+                                                      ),
+                                                      Padding(
+                                                        padding: EdgeInsets.fromLTRB(
+                                                            15,
+                                                            0,
+                                                            10,
+                                                            0),
+                                                        child:
+                                                        Center(
+                                                          child: Column(
+                                                            children: <Widget>[
+                                                              Text(
+                                                                'Honey Bee',
+                                                                style: TextStyle(
+                                                                  fontFamily: 'Pristina',
+                                                                  fontSize: 32,
+                                                                  color: const Color(0xff0a0606),
+                                                                  shadows: [
+                                                                    Shadow(
+                                                                      color: const Color(0x29000000),
+                                                                      offset: Offset(3, 10),
+                                                                      blurRadius: 6,
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                                textAlign: TextAlign.center,
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
+                                                                child: Text(
+                                                                  AppLocalizations().lbReM,
+                                                                  style: TextStyle(
+                                                                    fontSize: 18,
+                                                                    color: Colors.grey,
+                                                                  ),
+                                                                  textAlign: TextAlign.center,
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )),
+                                            Directionality(
+                                                textDirection: langSave ==
+                                                    'ar'
+                                                    ? TextDirection
+                                                    .rtl
+                                                    : TextDirection
+                                                    .rtl,
+                                                child:
+                                                Container(
+                                                  width: MediaQuery.of(
+                                                      context)
+                                                      .size
+                                                      .width,
+                                                  child:
+                                                  Row(
+                                                    children: <
+                                                        Widget>[
+                                                      SizedBox(
+                                                        width:
+                                                        63.0,
+                                                        height:
+                                                        63.0,
+                                                        child:
+                                                        Stack(
+                                                          children: <Widget>[
+                                                            Pinned.fromSize(
+                                                              bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
+                                                              size: Size(62.8, 62.8),
+                                                              pinLeft: true,
+                                                              pinRight: true,
+                                                              pinTop: true,
+                                                              pinBottom: true,
+                                                              child: Container(
+                                                                decoration: BoxDecoration(
+                                                                  borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                                                                  border: Border.all(width: 1.0, color: const Color(0xf2386694)),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Pinned.fromSize(
+                                                              bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
+                                                              size: Size(62.8, 62.8),
+                                                              pinTop: true,
+                                                              pinBottom: true,
+                                                              fixedWidth: true,
+                                                              child:
+                                                              // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                              SvgPicture.string(
+                                                                _svg_pew0t9,
+                                                                allowDrawingOutsideViewBox: true,
+                                                                fit: BoxFit.fill,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        AppLocalizations().lbRev,
+                                                        style:
+                                                        TextStyle(
+                                                          fontFamily: 'Times New Roman',
+                                                          fontSize: 20,
+                                                          color: const Color(0xff0a0606),
+                                                          shadows: [
+                                                            Shadow(
+                                                              color: const Color(0x29000000),
+                                                              offset: Offset(0, 10),
+                                                              blurRadius: 6,
+                                                            )
+                                                          ],
+                                                        ),
+                                                        textAlign:
+                                                        TextAlign.center,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ))
                                           ],
                                         ),
                                       ),
                                       decoration: BoxDecoration(
                                         borderRadius:
-                                            BorderRadius.circular(15.0),
-                                        color: const Color(0x09010101),
+                                        BorderRadius.circular(
+                                            15.0),
+                                        color: const Color(
+                                            0x09010101),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: const Color(0x02000000),
+                                            color: const Color(
+                                                0x02000000),
                                             offset: Offset(0, 3),
                                             blurRadius: 6,
                                           ),
@@ -382,7 +542,7 @@ var dateFormat,dateFormatAR;
                                                     child: Padding(
                                                       padding:
                                                           EdgeInsets.all(5),
-                                                      child: Text('From:' +
+                                                      child: Text(AppLocalizations().lbFrom+':' +
                                                           widget.stateDate
                                                               .toString()),
                                                     )),
@@ -410,7 +570,7 @@ var dateFormat,dateFormatAR;
                                                     child: Padding(
                                                       padding:
                                                           EdgeInsets.all(5),
-                                                      child: Text('To:' +
+                                                      child: Text(AppLocalizations().lbTo+':' +
                                                           widget.endDate),
                                                     ))
                                               ],
@@ -533,7 +693,7 @@ var dateFormat,dateFormatAR;
                                                                                 30,
                                                                                 10),
                                                                             child: Text(
-                                                                                'Details')),
+                                                                                AppLocalizations().lbDetails)),
                                                                         decoration:
                                                                             BoxDecoration(
                                                                           borderRadius:
@@ -555,13 +715,23 @@ var dateFormat,dateFormatAR;
                                                             ),
                                                             onTap: () {
                                                               initializeDateFormatting("en_US", null).then((_) {
-                                                                dateFormat = new DateFormat.yMd();
-                                                                dateFormatAR = new DateFormat.yMd();
+                                                                dateFormat = new intl.DateFormat.yMd();
+                                                                dateFormatAR = new intl.DateFormat.yMd();
 
                                                               });
                                                               Navigator.of(context).push(
                                                                 PageRouteBuilder(
                                                                   pageBuilder: (_, __, ___) =>
+
+
+                                                                      Directionality(
+                                                                        textDirection: langSave ==
+                                                                            'ar'
+                                                                            ? TextDirection
+                                                                            .rtl
+                                                                            : TextDirection
+                                                                            .ltr,
+                                                                        child:
                                                                       reportSubCateExpen(widget.iexpen,
                                                                           widget
                                                                               .reportList[
@@ -570,7 +740,7 @@ var dateFormat,dateFormatAR;
                                                                               .reportList[
                                                                           index]
                                                                               .subCategory,widget.mainId,dateFormat,dateFormatAR),
-                                                                ),
+                                                                )),
                                                               );
 
                                                             },

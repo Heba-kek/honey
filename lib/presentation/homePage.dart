@@ -172,7 +172,11 @@ class HomeFragment extends State<HomeScreen>
         return new SingleChildScrollView(child:Directionality(
             textDirection:
             langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-            child: revenuePage()));
+            child: revenuePage(onPressBack: () {
+              setState(() {
+                _selectedDrawerIndex = 0;
+              });
+            },)));
 
       case 1:
         return new SingleChildScrollView(child: Directionality(

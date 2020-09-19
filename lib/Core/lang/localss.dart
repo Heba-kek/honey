@@ -131,8 +131,15 @@ class AppLocalizations {
     return Intl.message('Save', name: 'lbSave');
   }
 
+  String get lbSend {
+    return Intl.message('Send', name: 'lbSend');
+  }
+
   String get lbSelect {
     return Intl.message('Select', name: 'lbSelect');
+  }
+  String get lbDetails {
+    return Intl.message('Details', name: 'lbDetails');
   }
 
   String get lbReportBank {
@@ -169,6 +176,9 @@ class AppLocalizations {
 
   String get lbCategory {
     return Intl.message('Category', name: 'lbCategory');
+  }
+  String get lbExTotal {
+    return Intl.message('Expensev/Total', name: 'lbExTotal');
   }
 
   String get lbReportDate {
@@ -225,6 +235,10 @@ class AppLocalizations {
 
   String get lbDebtEN {
     return Intl.message('Debts', name: 'lbDebt');
+  }
+
+  String get lbDebt {
+    return Intl.message('Debt', name: 'lbDebt');
   }
 
   String get lbDebtAR {
@@ -415,6 +429,25 @@ class AppLocalizations {
   String get lbTime {
     return Intl.message('Times', name: 'lbTime');
   }
+
+
+  String get lbImage {
+    return Intl.message('Image', name: 'lbImage');
+  }
+  String get lbCus {
+    return Intl.message('Customer', name: 'lbCus');
+  }
+
+  String get lbVal {
+    return Intl.message('Value', name: 'lbVal');
+  }
+
+  String get lbrest {
+    return Intl.message('Rest', name: 'lbrest');
+  }
+
+
+
 
   String get lbRemain {
     return Intl.message('Remain', name: 'lbRemain');
@@ -760,6 +793,14 @@ class AppLocalizations {
 
   String get lbDeleteCard {
     return Intl.message('Delete Card', name: 'lbDeleteCard');
+  }
+
+
+  String get lbDeleteCat {
+    return Intl.message('Delete Category', name: 'lbDeleteCat');
+  }
+  String get lbDeleteCatM {
+    return Intl.message('Are you confirm delete this category ?', name: 'lbDeleteCatM');
   }
 
   String get lbDeleteCardM {

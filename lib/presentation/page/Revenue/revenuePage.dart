@@ -30,7 +30,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:honey/Infrastructure/Core/NetworkInfo.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' as intl;
 
 import 'package:progress_dialog/progress_dialog.dart';
 
@@ -38,6 +38,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
 class revenuePage extends StatefulWidget {
+  final Function onPressBack;
+
+  const revenuePage({Key key, this.onPressBack}) : super(key: key);
   @override
   _revenuePage createState() => new _revenuePage();
 }
@@ -45,6 +48,8 @@ class revenuePage extends StatefulWidget {
 class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
   List<RevenueCategoryData> expList;
   ProgressDialog pr;
+  String langSave;
+  SpecificLocalizationDelegate _specificLocalizationDelegate;
   BuildContext contextt;
   String sessionId, id, tokene;
   var preferences;
@@ -71,7 +76,7 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
       '<svg viewBox="139.2 375.7 19.0 33.6" ><path transform="translate(132.89, 372.68)" d="M 16.53794479370117 17.73024940490723 C 12.30533027648926 16.63014030456543 10.94417953491211 15.49274349212646 10.94417953491211 13.72138404846191 C 10.94417953491211 11.6889820098877 12.82741451263428 10.27189445495605 15.97856712341309 10.27189445495605 C 19.29753494262695 10.27189445495605 20.52816581726074 11.85679340362549 20.64003944396973 14.18752956390381 L 24.76077651977539 14.18752956390381 C 24.63025856018066 10.98043918609619 22.67243957519531 8.034388542175293 18.77544975280762 7.083449363708496 L 18.77544975280762 3 L 13.18168354034424 3 L 13.18168354034424 7.027511119842529 C 9.564384460449219 7.810638427734375 6.655625343322754 10.16001892089844 6.655625343322754 13.7586727142334 C 6.655625343322754 18.06587600708008 10.21698760986328 20.21015167236328 15.419189453125 21.45942497253418 C 20.08065986633301 22.57817840576172 21.01295471191406 24.21901512145996 21.01295471191406 25.95308113098145 C 21.01295471191406 27.23964691162109 20.09930801391602 29.29069519042969 15.97856616973877 29.29069519042969 C 12.13751316070557 29.29069519042969 10.62719821929932 27.57527351379395 10.42209243774414 25.37505531311035 L 6.319998741149902 25.37505531311035 C 6.543749332427979 29.45850944519043 9.601675033569336 31.7519474029541 13.18168354034424 32.51642990112305 L 13.18168354034424 36.56258773803711 L 18.77544975280762 36.56258773803711 L 18.77544975280762 32.55372619628906 C 22.41139793395996 31.86382865905762 25.30150985717773 29.75684547424316 25.30150985717773 25.93443870544434 C 25.30150985717773 20.63900566101074 20.77056121826172 18.83035659790039 16.53794479370117 17.73024940490723 Z" fill="#386694" fill-opacity="0.95" stroke="none" stroke-width="1" stroke-miterlimit="4" stroke-linecap="butt" /></svg>';
   String _svg_jtcmlr =
       '<svg viewBox="1058.7 2163.0 33.3 28.3" ><path transform="translate(1056.72, 2160.0)" d="M 15.31367015838623 31.29155158996582 L 15.31367015838623 21.30629730224609 L 21.97050666809082 21.30629730224609 L 21.97050666809082 31.29155158996582 L 30.29155158996582 31.29155158996582 L 30.29155158996582 17.97788047790527 L 35.2841796875 17.97788047790527 L 18.64208984375 2.999999761581421 L 2 17.97788047790527 L 6.992626667022705 17.97788047790527 L 6.992626667022705 31.29155158996582 L 15.31367015838623 31.29155158996582 Z" fill="#000000" stroke="none" stroke-width="1" stroke-miterlimit="4" stroke-linecap="butt" /></svg>';
-
+BuildContext con;
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
@@ -95,9 +100,31 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
     id = preferences.getString('id');
     tokene = preferences.getString('token');
   }
+  Future navigationPage() async {
+    var preferences = await SharedPreferences.getInstance();
 
+    langSave = preferences.getString('lang');
+    print("lang saved == $langSave");
+    //langSave=lang1;
+    if (langSave == 'ar') {
+      _specificLocalizationDelegate =
+          SpecificLocalizationDelegate(new Locale("ar"));
+
+      AppLocalizations.load(new Locale("ar"));
+
+
+    } else {
+      _specificLocalizationDelegate =
+          SpecificLocalizationDelegate(new Locale("en"));
+      AppLocalizations.load(new Locale("en"));
+
+
+    }
+  }
   @override
   void initState() {
+    navigationPage();
+
     getValueString();
     pr = new ProgressDialog(context);
 
@@ -136,6 +163,7 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
     }, builder: (context, state) {
       if (state is Empty) {
         print('progress');
+        con=context;
         context.bloc<RevenueBloc>().add(GetRevenueCategoryEvent());
         return progressWidget();
       } else if (state is Loading) {
@@ -190,105 +218,134 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
                                         child: Padding(
                                           padding: EdgeInsets.fromLTRB(
                                               10, 10, 10, 10),
-                                          child: Row(
+                                          child: Stack(
+
                                             children: <Widget>[
-                                              SvgPicture.string(
-                                                _svg_6oa7ke,
-                                                allowDrawingOutsideViewBox:
-                                                    true,
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    10, 0, 10, 0),
-                                                child: Center(
-                                                  child: Text(
-                                                    'Honey Bee',
+
+                                              Directionality(
+                                                  textDirection:
+                                                  langSave == 'ar' ? TextDirection.ltr : TextDirection.ltr,
+                                                  child:Container(width: MediaQuery.of(context).size.width,
+                                                    child:  Row(
+                                                      children: <Widget>[Align(child:  GestureDetector(child:  SvgPicture.string(
+                                                        _svg_6oa7ke,
+                                                        allowDrawingOutsideViewBox:
+                                                        true,
+                                                      ),onTap:
+                                                      widget.onPressBack
+                                                      ),alignment: Alignment.topRight,), Padding(
+                                                        padding: EdgeInsets.fromLTRB(
+                                                            15, 0, 10, 0),
+                                                        child: Center(
+                                                          child: Column(
+                                                            children: <Widget>[Text(
+                                                              'Honey Bee',
+                                                              style: TextStyle(
+                                                                fontFamily: 'Pristina',
+                                                                fontSize: 32,
+                                                                color: const Color(
+                                                                    0xff0a0606),
+                                                                shadows: [
+                                                                  Shadow(
+                                                                    color: const Color(
+                                                                        0x29000000),
+                                                                    offset: Offset(3, 10),
+                                                                    blurRadius: 6,
+                                                                  )
+                                                                ],
+                                                              ),
+                                                              textAlign: TextAlign.center,
+                                                            ),
+                                                              Padding(
+                                                                padding: EdgeInsets.fromLTRB(0,
+                                                                    3, 0, 3),child: Text(
+                                                                AppLocalizations().lbReM,
+                                                                style: TextStyle(
+                                                                  fontSize: 18,
+                                                                  color: Colors.grey,
+
+                                                                ),
+                                                                textAlign: TextAlign.center,
+                                                              ),)],),
+                                                        ),
+                                                      ),],),))
+
+                                              ,
+
+                                              Directionality(
+                                                  textDirection:
+                                                  langSave == 'ar' ? TextDirection.rtl : TextDirection.rtl,
+                                                  child:
+                                                  Container(width: MediaQuery.of(context).size.width,child:
+                                                  Row(children: <Widget>[ SizedBox(
+                                                    width: 63.0,
+                                                    height: 63.0,
+                                                    child: Stack(
+                                                      children: <Widget>[
+                                                        Pinned.fromSize(
+                                                          bounds: Rect.fromLTWH(
+                                                              7.1, 7.2, 48.5, 48.5),
+                                                          size: Size(62.8, 62.8),
+                                                          pinLeft: true,
+                                                          pinRight: true,
+                                                          pinTop: true,
+                                                          pinBottom: true,
+                                                          child: Container(
+                                                            decoration:
+                                                            BoxDecoration(
+                                                              borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.elliptical(
+                                                                      9999.0,
+                                                                      9999.0)),
+                                                              border: Border.all(
+                                                                  width: 1.0,
+                                                                  color: const Color(
+                                                                      0xf2386694)),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Pinned.fromSize(
+                                                          bounds: Rect.fromLTWH(
+                                                              22.1,
+                                                              14.7,
+                                                              19.0,
+                                                              33.6),
+                                                          size: Size(62.8, 62.8),
+                                                          pinTop: true,
+                                                          pinBottom: true,
+                                                          fixedWidth: true,
+                                                          child:
+                                                          // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                          SvgPicture.string(
+                                                            _svg_pew0t9,
+                                                            allowDrawingOutsideViewBox:
+                                                            true,
+                                                            fit: BoxFit.fill,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),Text(
+                                                    AppLocalizations().lbRev,
                                                     style: TextStyle(
-                                                      fontFamily: 'Pristina',
-                                                      fontSize: 28,
+                                                      fontFamily:
+                                                      'Times New Roman',
+                                                      fontSize: 20,
                                                       color: const Color(
                                                           0xff0a0606),
                                                       shadows: [
                                                         Shadow(
                                                           color: const Color(
                                                               0x29000000),
-                                                          offset: Offset(3, 10),
+                                                          offset: Offset(0, 10),
                                                           blurRadius: 6,
                                                         )
                                                       ],
                                                     ),
                                                     textAlign: TextAlign.center,
                                                   ),
-                                                ),
-                                              ),
-                                              new Spacer(),
-                                          Padding(
-                                            padding: EdgeInsets.fromLTRB(
-                                                10, 0, 10, 0),child:Text('Revenue',   style: TextStyle(
-                                            fontFamily: 'Pristina',
-                                            fontSize: 25,
-                                            color: const Color(
-                                                0xff0a0606),
-                                            shadows: [
-                                              Shadow(
-                                                color: const Color(
-                                                    0x29000000),
-                                                offset: Offset(3, 10),
-                                                blurRadius: 6,
-                                              )
-                                            ],
-                                          ),),),
-
-                                              SizedBox(
-                                                width: 63.0,
-                                                height: 63.0,
-                                                child: Stack(
-                                                  children: <Widget>[
-                                                    Pinned.fromSize(
-                                                      bounds: Rect.fromLTWH(
-                                                          7.1, 7.2, 48.5, 48.5),
-                                                      size: Size(62.8, 62.8),
-                                                      pinLeft: true,
-                                                      pinRight: true,
-                                                      pinTop: true,
-                                                      pinBottom: true,
-                                                      child: Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius.elliptical(
-                                                                      9999.0,
-                                                                      9999.0)),
-                                                          border: Border.all(
-                                                              width: 1.0,
-                                                              color: const Color(
-                                                                  0xf2386694)),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Pinned.fromSize(
-                                                      bounds: Rect.fromLTWH(
-                                                          22.1,
-                                                          14.7,
-                                                          19.0,
-                                                          33.6),
-                                                      size: Size(62.8, 62.8),
-                                                      pinTop: true,
-                                                      pinBottom: true,
-                                                      fixedWidth: true,
-                                                      child:
-                                                          // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                                                          SvgPicture.string(
-                                                        _svg_pew0t9,
-                                                        allowDrawingOutsideViewBox:
-                                                            true,
-                                                        fit: BoxFit.fill,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
+                                                  ],),))
                                             ],
                                           ),
                                         ),
@@ -319,8 +376,8 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
                                       width: MediaQuery.of(context).size.width,
                                       child: Row(
                                         children: <Widget>[
-                                          new Spacer(),
-                                           GestureDetector(child:Padding(
+                                           GestureDetector(
+                                               child:Padding(
                                              padding: EdgeInsets.fromLTRB(
                                                  10, 10, 10, 10),
                                              child: Container(
@@ -328,7 +385,7 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
                                                  padding: EdgeInsets.fromLTRB(
                                                      20, 0, 20, 0),
                                                  child: Text(
-                                                   'Report',
+                                                   AppLocalizations().lbReport,
                                                    style: TextStyle(
                                                      fontFamily:
                                                      'Times New Roman',
@@ -359,14 +416,22 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
                                              ),
                                            ),onTap:(){
                                              initializeDateFormatting("en_US", null).then((_) {
-                                               dateFormat = new DateFormat.yMd();
-                                               dateFormatAR = new DateFormat.yMd();
+                                               dateFormat = new intl.DateFormat.yMd();
+                                               dateFormatAR = new intl.DateFormat.yMd();
 
                                              });
                                              Navigator.of(context).push(
                                                PageRouteBuilder(
                                                  pageBuilder: (_, __, ___) =>
-                                                     reportRevenueAll(dateFormat,dateFormatAR),
+                                                     Directionality(
+                                                       textDirection: langSave ==
+                                                           'ar'
+                                                           ? TextDirection
+                                                           .rtl
+                                                           : TextDirection
+                                                           .ltr,
+                                                       child:
+                                                     reportRevenueAll(dateFormat,dateFormatAR)),
                                                ),
                                              );
                                            })
@@ -536,7 +601,7 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
                                 ],
                               ),
                               Container(
-                                height: 500,
+                                height: 400,
                                 child: ListView.builder(
                                   itemCount: expList.length,
                                   // Add one more item for progress indicator
@@ -570,114 +635,131 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
                                             ),
                                             child: Padding(
                                               padding: EdgeInsets.fromLTRB(
-                                                  10, 15, 10, 15),
+                                                  10, 5, 10, 5),
                                               child: Column(
                                                 children: <Widget>[
                                                   Padding(
                                                     padding:
                                                         EdgeInsets.fromLTRB(
                                                             10, 0, 10, 0),
-                                                    child: Row(
-                                                      children: <Widget>[
-                                                        Padding(
-                                                          padding: EdgeInsets
-                                                              .fromLTRB(
+                                                    child:    Stack(
+                                                      children: <Widget>[Padding(
+                                                        padding: EdgeInsets
+                                                            .fromLTRB(
+                                                            0, 10, 0, 10),
+                                                        child: Center(child: Text(
+                                                          expList[index]
+                                                              .categoryName
+                                                              .toString(),textAlign: TextAlign.left,
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .black,
+                                                              fontSize: 24,
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .bold),
+                                                        ),),
+                                                      ),
+                                                        Row(
+                                                          children: <Widget>[
+                                                            Padding(
+                                                              padding: EdgeInsets
+                                                                  .fromLTRB(
                                                                   5, 0, 5, 0),
-                                                          child: Image.network(
-                                                            expList[index]
-                                                                .icon
-                                                                .toString(),
-                                                            height: 50,
-                                                            width: 50,
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding: EdgeInsets
-                                                              .fromLTRB(
-                                                                  10, 0, 10, 0),
-                                                          child: Text(
-                                                            expList[index]
-                                                                .categoryName
-                                                                .toString(),
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 17,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                        ),
-                                                        new Spacer(),
-                                                        Padding(
-                                                            padding: EdgeInsets
-                                                                .fromLTRB(
+                                                              child: Image.network(
+                                                                expList[index]
+                                                                    .icon
+                                                                    .toString(),
+                                                                height: 40,
+                                                                width: 40,
+                                                              ),
+                                                            ),
+
+                                                            new Spacer(),
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .fromLTRB(
                                                                     2, 0, 0, 0),
-                                                            child:
+                                                                child:
                                                                 PopupMenuButton<
                                                                     int>(
-                                                              itemBuilder:
-                                                                  (context) => [
-                                                                PopupMenuItem(
-                                                                  value: 3,
-                                                                  child: Row(
-                                                                    children: <
-                                                                        Widget>[
-                                                                      Text(AppLocalizations()
-                                                                          .lbEdit)
-                                                                    ],
-                                                                    //   textDirection: langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-                                                                  ),
-                                                                ),
-                                                                PopupMenuItem(
-                                                                  value: 2,
-                                                                  child: Row(
-                                                                    children: <
-                                                                        Widget>[
-                                                                      Text(AppLocalizations()
-                                                                          .lbDelete)
-                                                                    ],
-                                                                    //   textDirection: langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                              onCanceled: () {
-                                                                print(
-                                                                    "You have canceled the menu.");
-                                                              },
-                                                              onSelected:
-                                                                  (value) async {
-                                                                if (value ==
-                                                                    2) {
-                                                                  showDialog(
-                                                                      context:
+                                                                  itemBuilder:
+                                                                      (context) => [
+                                                                    PopupMenuItem(
+                                                                      value: 3,
+                                                                      child: Row(
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Text(AppLocalizations()
+                                                                              .lbEdit)
+                                                                        ],
+                                                                        //   textDirection: langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                                                                      ),
+                                                                    ),
+                                                                    PopupMenuItem(
+                                                                      value: 2,
+                                                                      child: Row(
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Text(AppLocalizations()
+                                                                              .lbDelete)
+                                                                        ],
+                                                                        //   textDirection: langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                  onCanceled: () {
+                                                                    print(
+                                                                        "You have canceled the menu.");
+                                                                  },
+                                                                  onSelected:
+                                                                      (value) async {
+                                                                    if (value ==
+                                                                        2) {
+                                                                      showDialog(
+                                                                          context:
                                                                           context,
-                                                                      builder:
-                                                                          (BuildContext
-                                                                              context) {
-                                                                        return showDialogwindowDelete(
-                                                                            expList[index].categoryId);
-                                                                      });
-                                                                } else if (value ==
-                                                                    3) {
-                                                                    showDialog(
-                                                                context:
-                                                                context,
-                                                                builder:
-                                                                    (BuildContext
-                                                                context) {
-                                                                  return MyDialogEdit(
-                                                                      expList[index].categoryId,
-                                                                      expList[index].categoryName.toString(),
-                                                                      this,
-                                                                      id,
-                                                                      expList[index].icon);
-                                                                });
-                                                                }
-                                                              },
-                                                            ))
-                                                      ],
-                                                    ),
+                                                                          builder:
+                                                                              (BuildContext
+                                                                          context) {
+                                                                            return
+                                                                              Directionality(
+                                                                                textDirection:
+                                                                                langSave == 'ar' ? TextDirection.rtl :
+                                                                                TextDirection.ltr,
+                                                                                child:showDialogwindowDelete(
+                                                                                expList[index].categoryId));
+                                                                          });
+                                                                    } else if (value ==
+                                                                        3) {
+
+
+
+                                                                      showDialog(
+                                                                          context:
+                                                                          context,
+                                                                          builder:
+                                                                              (BuildContext
+                                                                          context) {
+                                                                            return
+                                                                              Directionality(
+                                                                                  textDirection:
+                                                                                  langSave == 'ar' ? TextDirection.ltr : TextDirection.ltr,
+                                                                                  child:  MyDialogEdit(
+                                                                                      expList[index].categoryId,
+                                                                                      expList[index].categoryName.toString(),
+                                                                                      this,
+                                                                                      id,
+                                                                                      expList[index].icon,langSave))
+
+
+                                                                            ;
+                                                                          });
+                                                                    }
+                                                                  },
+                                                                ))
+                                                          ],
+                                                        ),],),
                                                   ),
                                                 ],
                                               ),
@@ -694,7 +776,7 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
                                                       expList[index]
                                                           .categoryName,
                                                       expList[index].icon,
-                                                  '2'),
+                                                  '2',       expList[index].isChid.toString()),
                                             ),
                                           );
                                         },
@@ -719,8 +801,8 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
 
   Widget showDialogwindowDelete(String catid) {
     return AlertDialog(
-      title: Text('Delete category '),
-      content: Text('Are you confirm delete this category ?'),
+      title: Text(AppLocalizations().lbDeleteCat),
+      content: Text(AppLocalizations().lbDeleteCatM),
       actions: <Widget>[
         // usually buttons at the bottoReminiderItemDatem of the dialog
         OutlineButton(
@@ -816,6 +898,10 @@ class _revenuePage extends State<revenuePage> with WidgetsBindingObserver {
               print(isHidden);
             });
             Navigator.pop(context, true);
+
+
+            con.bloc<RevenueBloc>().add(GetRevenueCategoryEvent());
+
             //   context.bloc<ExpBloc>().add(ExpenEvent(id));
 
             initState();
@@ -880,8 +966,8 @@ class MyDialogEdit extends StatefulWidget {
   String catId, catname;
   String id;
   String url;
-
-  MyDialogEdit(this.catId, this.catname, this.bankA, this.id, this.url);
+  String langSave;
+  MyDialogEdit(this.catId, this.catname, this.bankA, this.id, this.url,this.langSave);
 
   @override
   _MyDialogEdit createState() => _MyDialogEdit();
@@ -891,6 +977,7 @@ class _MyDialogEdit extends State<MyDialogEdit> {
   List<IconDataM> icList;
   GlobalKey<FormState> _keyFormDeposit = GlobalKey();
   ScrollController _sc = new ScrollController();
+  int indexselect;
 
   final _mainnamecat = new TextEditingController();
 
@@ -934,93 +1021,146 @@ class _MyDialogEdit extends State<MyDialogEdit> {
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.fromLTRB(15, 35, 15, 0),
-                  child: Text('Edit this category'),
+                  child: Text(AppLocalizations().lbEditCa),
                 ),
                 //Commission amount
-                Padding(
-                  padding: EdgeInsets.fromLTRB(15, 35, 15, 0),
-                  child: Material(
-                    color: Colors.white,
-                    child: TextFormField(
-                      controller: _mainnamecat,
-                      decoration: InputDecoration(
-                        filled: true,
-                        hintText: widget.catname,
-                        hintStyle: TextStyle(color: Colors.grey),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                        ), //can also add icon to the end of the textfiled
-                        //  suffixIcon: Icon(Icons.remove_red_eye),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(15, 35, 15, 0),
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: Container(
-                            child: Padding(
-                              padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
-                              child: GridView.count(
-                                  controller: _sc,
-                                  crossAxisCount: 3,
-                                  shrinkWrap: true,
-                                  childAspectRatio: 1.0,
-                                  padding: const EdgeInsets.all(4.0),
-                                  mainAxisSpacing: 4.0,
-                                  crossAxisSpacing: 6.0,
-                                  children: icList.map((url) {
-                                    int index = icList.indexOf(url);
 
-                                    return GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          widget.url = icList[index].url;
-                                        });
-                                      },
-                                      child: GridTile(
-                                          child: Container(
-                                        height: 100,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            Container(
-                                              width: 50,
-                                              height: 50,
-                                              child: Image.network(
-                                                icList[index].url,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      )),
-                                    );
-                                  }).toList()),
-                            ),
-                            height: 500,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15.0),
-                              color: const Color(0xfff3f3f3),
-                              border: Border.all(
-                                  width: 1.0, color: const Color(0xfff3f3f3)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color(0x29000000),
-                                  offset: Offset(0, 3),
-                                  blurRadius: 6,
-                                ),
-                              ],
+
+
+                Directionality(
+                    textDirection:
+                    widget.langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                    child:Container(width: MediaQuery.of(context).size.width,
+                      child:    Padding(
+                        padding: EdgeInsets.fromLTRB(15, 35, 15, 0),
+                        child: Material(
+                          color: Colors.white,
+                          child: TextFormField(
+                            controller: _mainnamecat,
+                            decoration: InputDecoration(
+                              filled: true,
+                              hintText: widget.catname,
+                              hintStyle: TextStyle(color: Colors.grey),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black),
+                              ), //can also add icon to the end of the textfiled
+                              //  suffixIcon: Icon(Icons.remove_red_eye),
                             ),
                           ),
-                        )
+                        ),
+                      ),))
+
+
+                ,
+                Padding(
+                  padding: EdgeInsets.fromLTRB(15, 35, 15, 0),
+                  child:Container(
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
+                      child: GridView.count(
+                          controller: _sc,
+                          crossAxisCount: 3,
+                          shrinkWrap: true,
+                          childAspectRatio: 1.0,
+                          padding: const EdgeInsets.all(4.0),
+                          mainAxisSpacing: 4.0,
+                          crossAxisSpacing: 6.0,
+                          children: icList.map((url) {
+                            int index = icList.indexOf(url);
+
+                            return GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  widget.url = icList[index].url;
+                                  indexselect =
+                                      index;
+                                  for (int j =
+                                  0;
+                                  j <
+                                      icList
+                                          .length;
+                                  j++) {
+                                    icList[j]
+                                        .select =
+                                    false;
+                                  }
+                                  if (indexselect !=
+                                      index) {
+                                    icList[index]
+                                        .select =
+                                    false;
+                                  } else {
+                                    icList[index]
+                                        .select =
+                                    true;
+                                  }
+                                });
+                              },
+                              child: GridTile(
+                                  child:      icList[index]
+                                      .select ==
+                                      true
+                                      ? Container(
+                                    // height: 100,
+                                    decoration:
+                                    BoxDecoration(
+                                      border:
+                                      Border.all(color: Colors.red, width: 1),
+                                      color:
+                                      Color(0xFFD6D6D6),
+                                    ),
+                                    child:
+                                    Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Container(
+                                          width: 50,
+                                          height: 50,
+                                          child: Image.network(
+                                            icList[index].url,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                      : Container(
+                                    // height: 100,
+
+                                    child:
+                                    Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Container(
+                                          width: 50,
+                                          height: 50,
+                                          child: Image.network(
+                                            icList[index].url,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )),
+                            );
+                          }).toList()),
+                    ),
+                    height: 700,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: const Color(0xfff3f3f3),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xfff3f3f3)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x29000000),
+                          offset: Offset(0, 3),
+                          blurRadius: 6,
+                        ),
                       ],
                     ),
                   ),
@@ -1038,8 +1178,8 @@ class _MyDialogEdit extends State<MyDialogEdit> {
                           child: widget.url == null
                               ? Container()
                               : Image.network(
-                                  widget.url,
-                                ),
+                            widget.url,
+                          ),
                         ),
                       ),
                       new Spacer(),
@@ -1062,7 +1202,7 @@ class _MyDialogEdit extends State<MyDialogEdit> {
                             child: Padding(
                               padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                               child: Text(
-                                'Edit',
+                                AppLocalizations().lbEdit,
                                 style: TextStyle(
                                   fontFamily: 'Times New Roman',
                                   fontSize: 24,
@@ -1075,6 +1215,37 @@ class _MyDialogEdit extends State<MyDialogEdit> {
                           alignment: Alignment.bottomRight,
                         ),
                         onTap: () {
+                          /*  pr.show();
+
+                        post(
+                            'http://honey-bee.life/Financial_Api/addCategoryexpenses',
+                            {
+                              "user_id": id,
+                              "name": _catName
+                                  .text,
+                              "icon":
+                              _imageFilePh,
+                              "sub_cat":
+                              sublist
+                            },
+                            tokene,
+                            'en')
+                            .then(
+                                (response) async {
+                              // jika respon normal
+
+                              setState(() {
+                                _apiCall = false;
+                                //   _response = response.parsed as String;
+                              });
+                            },
+                            // jika respon error
+                            onError: (error) {
+                              _apiCall = false;
+                              _response =
+                                  error.toString();
+                            });*/
+
                           if (!_keyFormDeposit.currentState.validate()) {
                             print("Not Validate Form");
 
@@ -1091,8 +1262,9 @@ class _MyDialogEdit extends State<MyDialogEdit> {
                           } else {
                             print('19');
 
-                            widget.bankA._buildEditBank(context, widget.id,
-                                _mainnamecat.text, widget.url, widget.catId);
+                            widget.bankA._buildEditBank(
+                                context, widget.id, _mainnamecat.text,
+                                widget.url,widget.catId);
                           }
                         },
                       )
@@ -1103,7 +1275,8 @@ class _MyDialogEdit extends State<MyDialogEdit> {
             ),
           ),
         ),
-      );
+      )
+      ;
     });
   }
 
@@ -1115,4 +1288,5 @@ class _MyDialogEdit extends State<MyDialogEdit> {
       ),
     );
   }
+
 }
