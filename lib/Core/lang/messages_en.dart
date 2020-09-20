@@ -59,8 +59,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbExTotal": MessageLookupByLibrary.simpleMessage("Expensev/Total"),
         "lbDebt": MessageLookupByLibrary.simpleMessage("Debt"),
         "lbDeleteCat": MessageLookupByLibrary.simpleMessage("Delete Category"),
-        "lbDeleteCatM": MessageLookupByLibrary.simpleMessage("Are you confirm delete this category ?"),
-
+        "lbDeleteCatM": MessageLookupByLibrary.simpleMessage(
+            "Are you confirm delete this category ?"),
         "lbMore": MessageLookupByLibrary.simpleMessage("More"),
         "lbAddEx": MessageLookupByLibrary.simpleMessage("Add Expensive"),
         "lbFrom": MessageLookupByLibrary.simpleMessage("From"),
@@ -71,7 +71,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbRevAmount": MessageLookupByLibrary.simpleMessage("Revenue Amount"),
         "lbEditPro": MessageLookupByLibrary.simpleMessage("Edit Project"),
         "lbReportPro": MessageLookupByLibrary.simpleMessage("Report Project"),
-        "lbDebt": MessageLookupByLibrary.simpleMessage("Debts"),
         "lbPayment": MessageLookupByLibrary.simpleMessage("Payment"),
         "lbAddDebt": MessageLookupByLibrary.simpleMessage("Add Debt"),
         "lbPrice": MessageLookupByLibrary.simpleMessage("Price"),
@@ -150,7 +149,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Add more Value"),
         "lbEditRem":
             MessageLookupByLibrary.simpleMessage("Edit this Reminder date?"),
-        "lbAddDebt": MessageLookupByLibrary.simpleMessage("Add new Debt"),
         "lbPayPay": MessageLookupByLibrary.simpleMessage("Pay your Payment"),
         "lbAddDateIns": MessageLookupByLibrary.simpleMessage("Choose Due Date"),
         "lbDeleteDateInst": MessageLookupByLibrary.simpleMessage(
@@ -161,11 +159,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbAdd": MessageLookupByLibrary.simpleMessage("Add"),
         "lbLoan": MessageLookupByLibrary.simpleMessage("Loans"),
         "lbDailyP": MessageLookupByLibrary.simpleMessage("Daily Project"),
-        "lbRev": MessageLookupByLibrary.simpleMessage("Revenue"),
-        "lbEx": MessageLookupByLibrary.simpleMessage("Expensev"),
-        "lbPro": MessageLookupByLibrary.simpleMessage("Projects"),
-        "lbPro": MessageLookupByLibrary.simpleMessage("Projects"),
-        "lbPro": MessageLookupByLibrary.simpleMessage("Projects"),
         "lbGetDe": MessageLookupByLibrary.simpleMessage("Get Debt"),
         "lbDateE": MessageLookupByLibrary.simpleMessage("Date Field is Empty"),
         "lbProName": MessageLookupByLibrary.simpleMessage("Project Name"),
@@ -180,7 +173,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbAddPro": MessageLookupByLibrary.simpleMessage("Add project"),
         "lbRepTar":
             MessageLookupByLibrary.simpleMessage("Economize Project Report"),
-        "lbEco": MessageLookupByLibrary.simpleMessage("Economize Project"),
         "lbStatus": MessageLookupByLibrary.simpleMessage("Status"),
         "lbAddTar":
             MessageLookupByLibrary.simpleMessage("Add Economize Project"),
@@ -207,7 +199,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Insert Bank Name"),
         "lnLoanA":
             MessageLookupByLibrary.simpleMessage("Please Insert Loan Amount"),
-        "lbNote": MessageLookupByLibrary.simpleMessage("Notes"),
         "lbUpIma": MessageLookupByLibrary.simpleMessage("Uploading Image..."),
         "lbUpImaSel": MessageLookupByLibrary.simpleMessage("Select Image"),
         "lbNoteName": MessageLookupByLibrary.simpleMessage("Note Name"),
@@ -279,8 +270,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbBeforTD": MessageLookupByLibrary.simpleMessage("Before Two Days"),
         "lbBeforOH": MessageLookupByLibrary.simpleMessage("Before One Hour"),
         "lbBeforTH": MessageLookupByLibrary.simpleMessage("Before Two Hours"),
-        "lbSelectC":
-            MessageLookupByLibrary.simpleMessage("Select from Calender"),
         "lbPageN": MessageLookupByLibrary.simpleMessage("Page of numbers"),
         "lbSub": MessageLookupByLibrary.simpleMessage("Subject of your"),
         "lbEnterS": MessageLookupByLibrary.simpleMessage(
@@ -420,11 +409,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbse": MessageLookupByLibrary.simpleMessage("Select icon :"),
         "lbEditCa": MessageLookupByLibrary.simpleMessage("Edit Category"),
         "lbSend": MessageLookupByLibrary.simpleMessage("Send"),
-
         "lbrest": MessageLookupByLibrary.simpleMessage("Rest"),
         "lbVal": MessageLookupByLibrary.simpleMessage("Valus"),
         "lbCus": MessageLookupByLibrary.simpleMessage("Customer"),
         "lbImage": MessageLookupByLibrary.simpleMessage("Image"),
-
-  };
+      };
 }

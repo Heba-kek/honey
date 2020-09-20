@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:honey/Infrastructure/Core/CustomException.dart';
@@ -103,16 +100,13 @@ class ApiProvider {
     }
   }
 
-
-
   Future<dynamic> fetchDataReportMainEx(
       {@required HttpMethod method,
-        @required String url,
-        Map<String, dynamic> queryParameters,
-        Map<String, dynamic> bodyData,
-        CancelToken cancelToken}) async {
+      @required String url,
+      Map<String, dynamic> queryParameters,
+      Map<String, dynamic> bodyData,
+      CancelToken cancelToken}) async {
     try {
-
       var preferences = await SharedPreferences.getInstance();
       String token = preferences.getString('token');
       String id = preferences.getString('id');
@@ -146,10 +140,17 @@ class ApiProvider {
       }));
       String apiURLPost = _baseUrl + url;
       String apiURLget;
-      String dfvdg=bodyData['start_date'].toString();
-print(dfvdg);
+      String dfvdg = bodyData['start_date'].toString();
+      print(dfvdg);
       if (id != null) {
-        apiURLget = _baseUrl + url + '?user_id=' + id+'&start_date='+bodyData['start_date']+'&end_date='+bodyData['end_date'];
+        apiURLget = _baseUrl +
+            url +
+            '?user_id=' +
+            id +
+            '&start_date=' +
+            bodyData['start_date'] +
+            '&end_date=' +
+            bodyData['end_date'];
         print(apiURLget);
       }
 
@@ -168,7 +169,7 @@ print(dfvdg);
           }
           print("queryParamsTemp $queryParamsTemp");
           response =
-          await _dio.get(apiURLget, queryParameters: queryParamsTemp);
+              await _dio.get(apiURLget, queryParameters: queryParamsTemp);
 
           return response.data;
         case HttpMethod.POST:
@@ -191,16 +192,14 @@ print(dfvdg);
       throw FetchDataException(exception.toString());
     }
   }
-
 
   Future<dynamic> fetchDataReportMain(
       {@required HttpMethod method,
-        @required String url,
-        Map<String, dynamic> queryParameters,
-        Map<String, dynamic> bodyData,
-        CancelToken cancelToken}) async {
+      @required String url,
+      Map<String, dynamic> queryParameters,
+      Map<String, dynamic> bodyData,
+      CancelToken cancelToken}) async {
     try {
-
       var preferences = await SharedPreferences.getInstance();
       String token = preferences.getString('token');
       String id = preferences.getString('id');
@@ -234,10 +233,19 @@ print(dfvdg);
       }));
       String apiURLPost = _baseUrl + url;
       String apiURLget;
-      String dfvdg=bodyData['start_date'].toString();
+      String dfvdg = bodyData['start_date'].toString();
       print(dfvdg);
       if (id != null) {
-        apiURLget = _baseUrl + url + '?user_id=' + id+'&category='+bodyData['category'].toString()+'&start_date='+bodyData['start_date']+'&end_date='+bodyData['end_date'];
+        apiURLget = _baseUrl +
+            url +
+            '?user_id=' +
+            id +
+            '&category=' +
+            bodyData['category'].toString() +
+            '&start_date=' +
+            bodyData['start_date'] +
+            '&end_date=' +
+            bodyData['end_date'];
         print(apiURLget);
       }
 
@@ -256,7 +264,7 @@ print(dfvdg);
           }
           print("queryParamsTemp $queryParamsTemp");
           response =
-          await _dio.get(apiURLget, queryParameters: queryParamsTemp);
+              await _dio.get(apiURLget, queryParameters: queryParamsTemp);
 
           return response.data;
         case HttpMethod.POST:
@@ -279,16 +287,14 @@ print(dfvdg);
       throw FetchDataException(exception.toString());
     }
   }
-
 
   Future<dynamic> fetchDataReportSub(
       {@required HttpMethod method,
-        @required String url,
-        Map<String, dynamic> queryParameters,
-        Map<String, dynamic> bodyData,
-        CancelToken cancelToken}) async {
+      @required String url,
+      Map<String, dynamic> queryParameters,
+      Map<String, dynamic> bodyData,
+      CancelToken cancelToken}) async {
     try {
-
       var preferences = await SharedPreferences.getInstance();
       String token = preferences.getString('token');
       String id = preferences.getString('id');
@@ -322,11 +328,21 @@ print(dfvdg);
       }));
       String apiURLPost = _baseUrl + url;
       String apiURLget;
-      String dfvdg=bodyData['start_date'].toString();
+      String dfvdg = bodyData['start_date'].toString();
       print(dfvdg);
       if (id != null) {
-        apiURLget = _baseUrl + url + '?user_id=' + id+'&sub_category='+bodyData['sub_category'].toString()+
-            '&start_date='+bodyData['start_date'].toString()+'&end_date='+bodyData['end_date'].toString()+'&category='+bodyData['category'].toString();
+        apiURLget = _baseUrl +
+            url +
+            '?user_id=' +
+            id +
+            '&sub_category=' +
+            bodyData['sub_category'].toString() +
+            '&start_date=' +
+            bodyData['start_date'].toString() +
+            '&end_date=' +
+            bodyData['end_date'].toString() +
+            '&category=' +
+            bodyData['category'].toString();
         print(apiURLget);
       }
 
@@ -345,7 +361,7 @@ print(dfvdg);
           }
           print("queryParamsTemp $queryParamsTemp");
           response =
-          await _dio.get(apiURLget, queryParameters: queryParamsTemp);
+              await _dio.get(apiURLget, queryParameters: queryParamsTemp);
 
           return response.data;
         case HttpMethod.POST:
@@ -368,8 +384,6 @@ print(dfvdg);
       throw FetchDataException(exception.toString());
     }
   }
-
-
 
   Future<dynamic> fetchDataSub(
       {@required HttpMethod method,

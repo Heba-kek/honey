@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:adobe_xd/pinned.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:honey/Core/Helpers/Colors.dart';
+import 'package:honey/Core/Helpers/CustomColors.dart';
 import 'package:honey/Core/Helpers/SizeConfig.dart';
-import 'package:honey/Domain/Home/HomeRepository.dart';
 import 'package:honey/Infrastructure/Home/Repository/HomeRepositoryIML.dart';
 import 'package:honey/application/Home/bloc.dart';
 import 'package:honey/presentation/Common/ProgressWidget.dart';

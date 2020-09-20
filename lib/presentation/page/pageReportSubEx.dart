@@ -1,25 +1,19 @@
-import 'dart:async';
-import 'dart:convert';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:adobe_xd/pinned.dart';
-import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:honey/Core/Helpers/CustomColors.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueSubCategoryReportEntity.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
-import 'package:intl/date_symbol_data_local.dart';
 
 
 import 'package:honey/Core/lang/localss.dart';
 
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
-import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:toast/toast.dart';
 
 class pageReportSubEx extends StatefulWidget {
   final String stateDate;
@@ -891,7 +885,7 @@ class _pageReportSubEx extends State<pageReportSubEx>
     return Container(
       child: Text(label,
           style: TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.praimarydark)),
+              fontWeight: FontWeight.bold, color: CustomColors.praimarydark)),
       width: width,
       height: 56,
       padding: EdgeInsets.fromLTRB(5, 0, 0, 0),

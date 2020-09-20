@@ -1,7 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:honey/Domain/Revenue/RevenueRepository.dart';
-import 'package:honey/Infrastructure/Core/BasicSuccessModel.dart';
-import 'package:honey/Infrastructure/Revenue/Repository/RevenueRepositoryIMPL.dart';
 import 'package:honey/application/Revenue/bloc.dart';
 
 class RevenueBloc extends Bloc<RevenueEvent, RevenueState> {

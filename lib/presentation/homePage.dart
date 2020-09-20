@@ -2,13 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:honey/Core/Helpers/Colors.dart';
+import 'package:honey/Core/Helpers/CustomColors.dart';
 import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/presentation/Common/CustomDialog.dart';
 import 'package:honey/presentation/Common/SelectedOptions.dart';
 import 'package:honey/presentation/page/Bank/BankMainView.dart';
 import 'package:honey/presentation/page/ExpensivePage.dart';
-import 'package:honey/presentation/page/LocalHelper.dart';
 import 'package:honey/presentation/page/Medicine/AddMedicineScreen.dart';
 import 'package:honey/presentation/page/Revenue/revenuePage.dart';
 import 'package:honey/presentation/page/MainActivity/mainactivity.dart';
@@ -169,24 +168,31 @@ class HomeFragment extends State<HomeScreen>
       case 3:
         print('rev');
 
-        return new SingleChildScrollView(child:Directionality(
-            textDirection:
-            langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-            child: revenuePage(onPressBack: () {
-              setState(() {
-                _selectedDrawerIndex = 0;
-              });
-            },)));
+        return new SingleChildScrollView(
+            child: Directionality(
+                textDirection:
+                    langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                child: revenuePage(
+                  onPressBack: () {
+                    setState(() {
+                      _selectedDrawerIndex = 0;
+                    });
+                  },
+                )));
 
       case 1:
-        return new SingleChildScrollView(child: Directionality(
-            textDirection:
-            langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-            child: expensivePage( onPressBack: () {
-              setState(() {
-                _selectedDrawerIndex = 0;
-              });
-            },)),);
+        return new SingleChildScrollView(
+          child: Directionality(
+              textDirection:
+                  langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+              child: expensivePage(
+                onPressBack: () {
+                  setState(() {
+                    _selectedDrawerIndex = 0;
+                  });
+                },
+              )),
+        );
 
       case 2:
         return AddMedicineScreen();
@@ -300,18 +306,19 @@ class HomeFragment extends State<HomeScreen>
             ),
             title: Text(''),
           ),
-
           BottomNavigationBarItem(
-            icon: GestureDetector(onTap: (){
-              setState(() {
-                _selectedDrawerIndex = 0;
-              });
-    },child: Image.asset(
-              "assets/images/homeButton.png",
-              height: 40,
-              width: 40,
-            ),)
-            ,
+            icon: GestureDetector(
+              onTap: () {
+                setState(() {
+                  _selectedDrawerIndex = 0;
+                });
+              },
+              child: Image.asset(
+                "assets/images/homeButton.png",
+                height: 40,
+                width: 40,
+              ),
+            ),
             title: Text(''),
           ),
           BottomNavigationBarItem(

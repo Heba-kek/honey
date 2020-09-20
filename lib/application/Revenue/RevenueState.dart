@@ -8,7 +8,6 @@ import 'package:honey/Domain/Revenue/Entities/RevenueCategoryReportEntity.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueEntity.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueReportEntity.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueSubCategoryReportEntity.dart';
-import 'package:honey/Infrastructure/Revenue/Models/IconsModel.dart';
 
 @immutable
 abstract class RevenueState extends Equatable {

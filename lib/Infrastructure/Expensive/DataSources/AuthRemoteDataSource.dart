@@ -1,6 +1,5 @@
 //call functions from server
 import 'package:honey/Infrastructure/Core/APINames.dart';
-import 'package:honey/Infrastructure/Core/CustomException.dart';
 import 'package:honey/Infrastructure/Core/Networking.dart';
 import 'package:honey/Infrastructure/Expensive/DataSources/AuthDataSource.dart';
 import 'package:honey/Infrastructure/Expensive/Model/CategoryReportWithoutSubModel.dart';
