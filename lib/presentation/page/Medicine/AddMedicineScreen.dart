@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/Domain/Medicine/Entities/Medicine/MedicineEntity.dart';
 import 'package:honey/application/Medicine/bloc.dart';
 import 'package:honey/presentation/Common/ProgressWidget.dart';
+import 'package:honey/presentation/page/Medicine/Pickers.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'dart:io';
@@ -60,7 +60,7 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
   @override
   void initState() {
     super.initState();
-    _medicineBloc = new MedicineBloc();
+    _medicineBloc = new MedicineBloc(Empty());
     initializeDateFormatting();
     dateFormat = new DateFormat('yyyy-MM-dd', "en");
   }
@@ -281,7 +281,7 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
             child: FlatButton(
                 onPressed: () {
                   type != 2 && type != 4 && type != 5 && type != 6
-                      ? showMaterialSelectionPicker(
+                      ? showSelectionPicker(
                           headerColor: Colors.yellow,
                           context: context,
                           title: type == 1 ? "Dose" : "Instruction",
@@ -292,7 +292,7 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
                               ? selectedDose = value
                               : selectedInstruction = value),
                         )
-                      : showMaterialNumberPicker(
+                      : showNumberPicker(
                           context: context,
                           title: type == 2
                               ? "Pick Your dose count"
@@ -459,7 +459,7 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
               ),
               child: FlatButton(
                   onPressed: () {
-                    showMaterialNumberPicker(
+                    showNumberPicker(
                       context: context,
                       title: "Pick Number of days",
                       maxNumber: 200,
@@ -514,7 +514,7 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
               ),
               child: FlatButton(
                   onPressed: () {
-                    showMaterialDatePicker(
+                    showCustomDatePicker(
                       context: context,
                       selectedDate: medicineDate,
                       onChanged: (value) =>
@@ -544,7 +544,7 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
               ),
               child: FlatButton(
                   onPressed: () {
-                    showMaterialTimePicker(
+                    showCustomTimePicker(
                       context: context,
                       selectedTime: medicineTime,
                       onChanged: (value) =>
@@ -673,10 +673,10 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
                         size: 24,
                       ),
                       onPressed: () {
-                        showMaterialDatePicker(
+                        showCustomDatePicker(
                           context: context,
                           selectedDate: medicineDate,
-                          onChanged: (datevalue) => showMaterialTimePicker(
+                          onChanged: (datevalue) => showCustomTimePicker(
                             context: context,
                             selectedTime: medicineTime,
                             onChanged: (timeValue) => setState(() => {

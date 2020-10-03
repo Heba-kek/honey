@@ -7,6 +7,7 @@ import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/presentation/Common/CustomDialog.dart';
 import 'package:honey/presentation/Common/SelectedOptions.dart';
 import 'package:honey/presentation/page/Bank/BankMainView.dart';
+import 'package:honey/presentation/page/Expenses/NewExpenses.dart';
 import 'package:honey/presentation/page/ExpensivePage.dart';
 import 'package:honey/presentation/page/Medicine/AddMedicineScreen.dart';
 import 'package:honey/presentation/page/Revenue/revenuePage.dart';
@@ -181,18 +182,18 @@ class HomeFragment extends State<HomeScreen>
                 )));
 
       case 1:
-        return new SingleChildScrollView(
-          child: Directionality(
-              textDirection:
-                  langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-              child: expensivePage(
-                onPressBack: () {
-                  setState(() {
-                    _selectedDrawerIndex = 0;
-                  });
-                },
-              )),
-        );
+        return Directionality(
+            textDirection:
+                langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+            child: NewExpensesScreen()
+            //  expensivePage(
+            //   onPressBack: () {
+            //     setState(() {
+            //       _selectedDrawerIndex = 0;
+            //     });
+            //   },
+            // ),
+            );
 
       case 2:
         return AddMedicineScreen();

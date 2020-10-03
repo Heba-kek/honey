@@ -7,7 +7,7 @@ import 'package:honey/application/Auth/blocExp.dart';
 class ExpBloc extends Bloc<ExpEvent, ExpState> {
   ExpRepository _exRepository;
 
-  ExpBloc(this._exRepository);
+  ExpBloc(this._exRepository) : super(Empty());
 
   @override
   ExpState get initialState => Empty();

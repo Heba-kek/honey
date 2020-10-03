@@ -4,7 +4,7 @@ import 'package:honey/application/Home/bloc.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepository homeRepository;
-  HomeBloc(this.homeRepository);
+  HomeBloc(this.homeRepository) : super(null);
 
   @override
   HomeState get initialState => Empty();

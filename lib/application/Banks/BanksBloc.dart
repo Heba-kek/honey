@@ -6,6 +6,8 @@ import 'package:honey/application/Banks/bloc.dart';
 class BanksBloc extends Bloc<BanksEvent, BanksState> {
   final BanksRepository banksRepository = BanksRepositoryIMPL();
 
+  BanksBloc(BanksState initialState) : super(initialState);
+
   @override
   BanksState get initialState => Empty();
 

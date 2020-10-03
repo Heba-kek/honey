@@ -395,5 +395,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbStartOfTheYear":
             MessageLookupByLibrary.simpleMessage("منذ بداية السنة"),
         "lbShowData": MessageLookupByLibrary.simpleMessage("عرض البيانات"),
+        "lbShowExpensesCategory":
+            MessageLookupByLibrary.simpleMessage("اختر فئات الصرف الخاصة بك"),
       };
 }

@@ -138,6 +138,7 @@ class AppLocalizations {
   String get lbSelect {
     return Intl.message('Select', name: 'lbSelect');
   }
+
   String get lbDetails {
     return Intl.message('Details', name: 'lbDetails');
   }
@@ -177,6 +178,7 @@ class AppLocalizations {
   String get lbCategory {
     return Intl.message('Category', name: 'lbCategory');
   }
+
   String get lbExTotal {
     return Intl.message('Expensev/Total', name: 'lbExTotal');
   }
@@ -430,10 +432,10 @@ class AppLocalizations {
     return Intl.message('Times', name: 'lbTime');
   }
 
-
   String get lbImage {
     return Intl.message('Image', name: 'lbImage');
   }
+
   String get lbCus {
     return Intl.message('Customer', name: 'lbCus');
   }
@@ -445,9 +447,6 @@ class AppLocalizations {
   String get lbrest {
     return Intl.message('Rest', name: 'lbrest');
   }
-
-
-
 
   String get lbRemain {
     return Intl.message('Remain', name: 'lbRemain');
@@ -584,9 +583,11 @@ class AppLocalizations {
   String get lbEx {
     return Intl.message('Expensev', name: 'lbEx');
   }
+
   String get lbExM {
     return Intl.message('Expense Managment', name: 'lbExM');
   }
+
   String get lbReM {
     return Intl.message('Revenue Managment', name: 'lbReM');
   }
@@ -606,11 +607,10 @@ class AppLocalizations {
   String get lbcatname {
     return Intl.message('Category name', name: 'lbcatname');
   }
+
   String get lbSubname {
     return Intl.message('Sub  category name', name: 'lbSubname');
   }
-
-
 
   String get lbSign {
     return Intl.message('Sign Out', name: 'lbSign');
@@ -795,12 +795,13 @@ class AppLocalizations {
     return Intl.message('Delete Card', name: 'lbDeleteCard');
   }
 
-
   String get lbDeleteCat {
     return Intl.message('Delete Category', name: 'lbDeleteCat');
   }
+
   String get lbDeleteCatM {
-    return Intl.message('Are you confirm delete this category ?', name: 'lbDeleteCatM');
+    return Intl.message('Are you confirm delete this category ?',
+        name: 'lbDeleteCatM');
   }
 
   String get lbDeleteCardM {
@@ -852,6 +853,11 @@ class AppLocalizations {
 
   String get lbShowData {
     return Intl.message("Show data", name: "lbShowData");
+  }
+
+  String get lbchooseExpensesCategory {
+    return Intl.message("Choose Expenses Category",
+        name: "lbShowExpensesCategory");
   }
 //and add all the text you have inside the app that you need to make it in
 

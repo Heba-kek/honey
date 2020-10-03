@@ -4,7 +4,7 @@ import 'package:honey/application/Revenue/bloc.dart';
 
 class RevenueBloc extends Bloc<RevenueEvent, RevenueState> {
   final RevenueRepository revenueRepository;
-  RevenueBloc(this.revenueRepository);
+  RevenueBloc(this.revenueRepository) : super(null);
 
   @override
   RevenueState get initialState => Empty();

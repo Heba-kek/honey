@@ -7,7 +7,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/Infrastructure/Expensive/DataSources/AuthRemoteDataSource.dart';
 import 'package:honey/Infrastructure/Expensive/DataSources/ExpensesLocalDataSource.dart';
@@ -18,26 +17,19 @@ import 'package:honey/application/Auth/CateBloc.dart';
 import 'package:honey/application/Auth/Expanstatus.dart';
 import 'package:honey/application/Auth/ExpenBloc.dart';
 import 'package:honey/application/Auth/ExpenEvent.dart';
-import 'package:honey/application/Auth/Iconstate.dart' as sts;
 import 'package:honey/application/Auth/Iconstate.dart';
 import 'package:honey/application/Auth/categoryEvent.dart';
 import 'package:honey/domain/Auth/Entities/ExpenAntity.dart';
 import 'package:honey/domain/Auth/Entities/iconEntity.dart';
-import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/presentation/page/expLaddExp.dart';
 import 'package:honey/presentation/page/reportCategorExp.dart';
 import 'package:honey/presentation/page/subCategoryExpenPage.dart';
 import 'package:http/http.dart' as http;
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:honey/Infrastructure/Core/NetworkInfo.dart';
 import 'package:intl/date_symbol_data_local.dart';
-
 import 'package:intl/intl.dart' as intl;
 import 'package:progress_dialog/progress_dialog.dart';
-
-import 'package:rxdart/rxdart.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
@@ -55,7 +47,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
   String langSave;
   SpecificLocalizationDelegate _specificLocalizationDelegate;
 
-  var dateFormat,dateFormatAR;
+  var dateFormat, dateFormatAR;
   String sessionId, id, tokene;
   var preferences;
   String _response = '';
@@ -84,7 +76,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-   // WidgetsBinding.instance.removeObserver(this);
+    // WidgetsBinding.instance.removeObserver(this);
     initState();
 
     super.dispose();
@@ -124,8 +116,9 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
       messageTextStyle: TextStyle(
           color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
     );
-      navigationPage();
+    navigationPage();
   }
+
   Future navigationPage() async {
     var preferences = await SharedPreferences.getInstance();
 
@@ -137,14 +130,10 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
           SpecificLocalizationDelegate(new Locale("ar"));
 
       AppLocalizations.load(new Locale("ar"));
-
-
     } else {
       _specificLocalizationDelegate =
           SpecificLocalizationDelegate(new Locale("en"));
       AppLocalizations.load(new Locale("en"));
-
-
     }
   }
 
@@ -170,7 +159,7 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
     }, builder: (context, state) {
       if (state is Empty) {
         print('progress');
-        connew= context;
+        connew = context;
         context.bloc<ExpBloc>().add(ExpenEvent(id));
         return progressWidget();
       } else if (state is Loading) {
@@ -190,361 +179,434 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
             expList == null
                 ? Container()
                 : Container(
-                      width: MediaQuery.of(context).size.width,
-                      //  height: MediaQuery.of(context).size.height,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment(0.0, -1.0),
-                          end: Alignment(0.0, 1.0),
-                          colors: [
-                            const Color(0xffffd64d),
-                            const Color(0xfff3f3f3)
-                          ],
-                          stops: [0.0, 1.0],
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0x29000000),
-                            offset: Offset(0, 10),
-                            blurRadius: 10,
-                          ),
+                    width: MediaQuery.of(context).size.width,
+                    //  height: MediaQuery.of(context).size.height,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment(0.0, -1.0),
+                        end: Alignment(0.0, 1.0),
+                        colors: [
+                          const Color(0xffffd64d),
+                          const Color(0xfff3f3f3)
                         ],
+                        stops: [0.0, 1.0],
                       ),
-                      child: Stack(
-                        children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              Container(
-                                child: Column(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        child: Padding(
-                                          padding: EdgeInsets.fromLTRB(
-                                              10, 10, 10, 10),
-                                          child: Stack(
-
-                                            children: <Widget>[
-
-                                              Directionality(
-                                                  textDirection:
-                                                  langSave == 'ar' ? TextDirection.ltr : TextDirection.ltr,
-                                                  child:Container(width: MediaQuery.of(context).size.width,
-                                                  child:  Row(
-                                                    children: <Widget>[Align(child:  GestureDetector(child:  SvgPicture.string(
-                                                      _svg_6oa7ke,
-                                                      allowDrawingOutsideViewBox:
-                                                      true,
-                                                    ),onTap:
-                                                    widget.onPressBack
-                                                    ),alignment: Alignment.topRight,), Padding(
-                                                      padding: EdgeInsets.fromLTRB(
-                                                          15, 0, 10, 0),
-                                                      child: Center(
-                                                        child: Column(
-                                                          children: <Widget>[Text(
-                                                            'Honey Bee',
-                                                            style: TextStyle(
-                                                              fontFamily: 'Pristina',
-                                                              fontSize: 32,
-                                                              color: const Color(
-                                                                  0xff0a0606),
-                                                              shadows: [
-                                                                Shadow(
-                                                                  color: const Color(
-                                                                      0x29000000),
-                                                                  offset: Offset(3, 10),
-                                                                  blurRadius: 6,
-                                                                )
-                                                              ],
-                                                            ),
-                                                            textAlign: TextAlign.center,
-                                                          ),
-                                                            Padding(
-                                                              padding: EdgeInsets.fromLTRB(0,
-                                                              3, 0, 3),child: Text(
-                                                            AppLocalizations().lbExM,
-                                                            style: TextStyle(
-                                                              fontSize: 18,
-                                                              color: Colors.grey,
-
-                                                            ),
-                                                            textAlign: TextAlign.center,
-                                                          ),)],),
-                                                      ),
-                                                    ),],),))
-
-                                             ,
-
-                                          Directionality(
-                                            textDirection:
-                                            langSave == 'ar' ? TextDirection.rtl : TextDirection.rtl,
-                                            child:
-                                              Container(width: MediaQuery.of(context).size.width,child:
-                                              Row(children: <Widget>[ SizedBox(
-                                                width: 63.0,
-                                                height: 63.0,
-                                                child: Stack(
-                                                  children: <Widget>[
-                                                    Pinned.fromSize(
-                                                      bounds: Rect.fromLTWH(
-                                                          7.1, 7.2, 48.5, 48.5),
-                                                      size: Size(62.8, 62.8),
-                                                      pinLeft: true,
-                                                      pinRight: true,
-                                                      pinTop: true,
-                                                      pinBottom: true,
-                                                      child: Container(
-                                                        decoration:
-                                                        BoxDecoration(
-                                                          borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.elliptical(
-                                                                  9999.0,
-                                                                  9999.0)),
-                                                          border: Border.all(
-                                                              width: 1.0,
-                                                              color: const Color(
-                                                                  0xf2386694)),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Pinned.fromSize(
-                                                      bounds: Rect.fromLTWH(
-                                                          22.1,
-                                                          14.7,
-                                                          19.0,
-                                                          33.6),
-                                                      size: Size(62.8, 62.8),
-                                                      pinTop: true,
-                                                      pinBottom: true,
-                                                      fixedWidth: true,
-                                                      child:
-                                                      // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                                                      SvgPicture.string(
-                                                        _svg_pew0t9,
-                                                        allowDrawingOutsideViewBox:
-                                                        true,
-                                                        fit: BoxFit.fill,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),Text(
-                                                AppLocalizations().lbEx,
-                                                style: TextStyle(
-                                                  fontFamily:
-                                                  'Times New Roman',
-                                                  fontSize: 20,
-                                                  color: const Color(
-                                                      0xff0a0606),
-                                                  shadows: [
-                                                    Shadow(
-                                                      color: const Color(
-                                                          0x29000000),
-                                                      offset: Offset(0, 10),
-                                                      blurRadius: 6,
-                                                    )
-                                                  ],
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                              ],),))
-                                            ],
-                                          ),
-                                        ),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(15.0),
-                                          color: const Color(0x09010101),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: const Color(0x02000000),
-                                              offset: Offset(0, 3),
-                                              blurRadius: 6,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Stack(
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0x29000000),
+                          offset: Offset(0, 10),
+                          blurRadius: 10,
+                        ),
+                      ],
+                    ),
+                    child: Stack(
+                      children: <Widget>[
+                        Column(
+                          children: <Widget>[
+                            Container(
+                              child: Column(
                                 children: <Widget>[
                                   Padding(
                                     padding:
                                         EdgeInsets.fromLTRB(10, 10, 10, 10),
                                     child: Container(
-                                      height: 50,
                                       width: MediaQuery.of(context).size.width,
-                                      child: Row(
-                                        children: <Widget>[
-
-                                           GestureDetector(child:
-                                           Padding(
-                                             padding: EdgeInsets.fromLTRB(
-                                                 10, 10, 10, 10),
-                                             child: Container(
-                                               child: Padding(
-                                                 padding: EdgeInsets.fromLTRB(
-                                                     20, 0, 20, 0),
-                                                 child: Text(
-                                                   AppLocalizations().lbReport,
-                                                   style: TextStyle(
-                                                     fontFamily:
-                                                     'Times New Roman',
-                                                     fontSize: 15,
-                                                     color:
-                                                     const Color(0xff0a0606),
-                                                   ),
-                                                   textAlign: TextAlign.center,
-                                                 ),
-                                               ),
-                                               decoration: BoxDecoration(
-                                                 borderRadius:
-                                                 BorderRadius.circular(15.0),
-                                                 color: const Color(0xbfc8c6c6),
-                                                 border: Border.all(
-                                                     width: 2.0,
-                                                     color: const Color(
-                                                         0xccf3f3f3)),
-                                                 boxShadow: [
-                                                   BoxShadow(
-                                                     color:
-                                                     const Color(0x21000000),
-                                                     offset: Offset(0, 3),
-                                                     blurRadius: 6,
-                                                   ),
-                                                 ],
-                                               ),
-                                             ),
-                                           ),onTap: (){
-                                             initializeDateFormatting("en_US", null).then((_) {
-                                               dateFormat = new intl.DateFormat.yMd();
-                                               dateFormatAR = new intl.DateFormat.yMd();
-
-                                             });
-                                             Navigator.of(context).push(
-                                               PageRouteBuilder(
-                                                 pageBuilder: (_, __, ___) =>
-                                                     Directionality(
-                                                         textDirection: langSave ==
-                                                             'ar'
-                                                             ? TextDirection
-                                                             .rtl
-                                                             : TextDirection
-                                                             .ltr,
-                                                         child: reportCAteExpe(dateFormat,dateFormatAR)),
-                                               ),
-                                             );
-                                           },)
-                                        ],
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                        child: Stack(
+                                          children: <Widget>[
+                                            Directionality(
+                                                textDirection: langSave == 'ar'
+                                                    ? TextDirection.ltr
+                                                    : TextDirection.ltr,
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  child: Row(
+                                                    children: <Widget>[
+                                                      Align(
+                                                        child: GestureDetector(
+                                                            child: SvgPicture
+                                                                .string(
+                                                              _svg_6oa7ke,
+                                                              allowDrawingOutsideViewBox:
+                                                                  true,
+                                                            ),
+                                                            onTap: widget
+                                                                .onPressBack),
+                                                        alignment:
+                                                            Alignment.topRight,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.fromLTRB(
+                                                                15, 0, 10, 0),
+                                                        child: Center(
+                                                          child: Column(
+                                                            children: <Widget>[
+                                                              Text(
+                                                                'Honey Bee',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontFamily:
+                                                                      'Pristina',
+                                                                  fontSize: 32,
+                                                                  color: const Color(
+                                                                      0xff0a0606),
+                                                                  shadows: [
+                                                                    Shadow(
+                                                                      color: const Color(
+                                                                          0x29000000),
+                                                                      offset:
+                                                                          Offset(
+                                                                              3,
+                                                                              10),
+                                                                      blurRadius:
+                                                                          6,
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            0,
+                                                                            3,
+                                                                            0,
+                                                                            3),
+                                                                child: Text(
+                                                                  AppLocalizations()
+                                                                      .lbExM,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontSize:
+                                                                        18,
+                                                                    color: Colors
+                                                                        .grey,
+                                                                  ),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )),
+                                            Directionality(
+                                                textDirection: langSave == 'ar'
+                                                    ? TextDirection.rtl
+                                                    : TextDirection.rtl,
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  child: Row(
+                                                    children: <Widget>[
+                                                      SizedBox(
+                                                        width: 63.0,
+                                                        height: 63.0,
+                                                        child: Stack(
+                                                          children: <Widget>[
+                                                            Pinned.fromSize(
+                                                              bounds:
+                                                                  Rect.fromLTWH(
+                                                                      7.1,
+                                                                      7.2,
+                                                                      48.5,
+                                                                      48.5),
+                                                              size: Size(
+                                                                  62.8, 62.8),
+                                                              pinLeft: true,
+                                                              pinRight: true,
+                                                              pinTop: true,
+                                                              pinBottom: true,
+                                                              child: Container(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius: BorderRadius.all(
+                                                                      Radius.elliptical(
+                                                                          9999.0,
+                                                                          9999.0)),
+                                                                  border: Border.all(
+                                                                      width:
+                                                                          1.0,
+                                                                      color: const Color(
+                                                                          0xf2386694)),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Pinned.fromSize(
+                                                              bounds:
+                                                                  Rect.fromLTWH(
+                                                                      22.1,
+                                                                      14.7,
+                                                                      19.0,
+                                                                      33.6),
+                                                              size: Size(
+                                                                  62.8, 62.8),
+                                                              pinTop: true,
+                                                              pinBottom: true,
+                                                              fixedWidth: true,
+                                                              child:
+                                                                  // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                                  SvgPicture
+                                                                      .string(
+                                                                _svg_pew0t9,
+                                                                allowDrawingOutsideViewBox:
+                                                                    true,
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        AppLocalizations().lbEx,
+                                                        style: TextStyle(
+                                                          fontFamily:
+                                                              'Times New Roman',
+                                                          fontSize: 20,
+                                                          color: const Color(
+                                                              0xff0a0606),
+                                                          shadows: [
+                                                            Shadow(
+                                                              color: const Color(
+                                                                  0x29000000),
+                                                              offset:
+                                                                  Offset(0, 10),
+                                                              blurRadius: 6,
+                                                            )
+                                                          ],
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ))
+                                          ],
+                                        ),
                                       ),
                                       decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(15.0),
-                                        color: const Color(0xfff3f3f3),
-                                        border: Border.all(
-                                            width: 1.0,
-                                            color: const Color(0xfff3f3f3)),
+                                        color: const Color(0x09010101),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: const Color(0x29000000),
+                                            color: const Color(0x02000000),
                                             offset: Offset(0, 3),
                                             blurRadius: 6,
                                           ),
                                         ],
                                       ),
                                     ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Stack(
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                  child: Container(
+                                    height: 50,
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Row(
+                                      children: <Widget>[
+                                        GestureDetector(
+                                          child: Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                10, 10, 10, 10),
+                                            child: Container(
+                                              child: Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    20, 0, 20, 0),
+                                                child: Text(
+                                                  AppLocalizations().lbReport,
+                                                  style: TextStyle(
+                                                    fontFamily:
+                                                        'Times New Roman',
+                                                    fontSize: 15,
+                                                    color:
+                                                        const Color(0xff0a0606),
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(15.0),
+                                                color: const Color(0xbfc8c6c6),
+                                                border: Border.all(
+                                                    width: 2.0,
+                                                    color: const Color(
+                                                        0xccf3f3f3)),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color:
+                                                        const Color(0x21000000),
+                                                    offset: Offset(0, 3),
+                                                    blurRadius: 6,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            initializeDateFormatting(
+                                                    "en_US", null)
+                                                .then((_) {
+                                              dateFormat =
+                                                  new intl.DateFormat.yMd();
+                                              dateFormatAR =
+                                                  new intl.DateFormat.yMd();
+                                            });
+                                            Navigator.of(context).push(
+                                              PageRouteBuilder(
+                                                pageBuilder: (_, __, ___) =>
+                                                    Directionality(
+                                                        textDirection:
+                                                            langSave == 'ar'
+                                                                ? TextDirection
+                                                                    .rtl
+                                                                : TextDirection
+                                                                    .ltr,
+                                                        child: reportCAteExpe(
+                                                            dateFormat,
+                                                            dateFormatAR)),
+                                              ),
+                                            );
+                                          },
+                                        )
+                                      ],
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      color: const Color(0xfff3f3f3),
+                                      border: Border.all(
+                                          width: 1.0,
+                                          color: const Color(0xfff3f3f3)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: const Color(0x29000000),
+                                          offset: Offset(0, 3),
+                                          blurRadius: 6,
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  GestureDetector(
-                                    child: Center(
-                                      child: Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(0, 40, 0, 0),
-                                        child: SizedBox(
-                                          width: 45.0,
-                                          height: 45.0,
-                                          child: Stack(
-                                            children: <Widget>[
-                                              Pinned.fromSize(
-                                                bounds: Rect.fromLTWH(
-                                                    0.0, 0.0, 45.0, 45.0),
-                                                size: Size(45.0, 45.0),
-                                                pinLeft: true,
-                                                pinRight: true,
-                                                pinTop: true,
-                                                pinBottom: true,
-                                                child: Stack(
-                                                  children: <Widget>[
-                                                    Pinned.fromSize(
-                                                      bounds: Rect.fromLTWH(
-                                                          0.0, 0.0, 45.0, 45.0),
-                                                      size: Size(45.0, 45.0),
-                                                      pinLeft: true,
-                                                      pinRight: true,
-                                                      pinTop: true,
-                                                      pinBottom: true,
-                                                      child: Stack(
-                                                        children: <Widget>[
-                                                          Pinned.fromSize(
-                                                            bounds:
-                                                                Rect.fromLTWH(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    45.0,
-                                                                    45.0),
-                                                            size: Size(
-                                                                45.0, 45.0),
-                                                            pinLeft: true,
-                                                            pinRight: true,
-                                                            pinTop: true,
-                                                            pinBottom: true,
-                                                            child: Container(
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                borderRadius: BorderRadius.all(
-                                                                    Radius.elliptical(
-                                                                        9999.0,
-                                                                        9999.0)),
-                                                                color: const Color(
-                                                                    0xefe4dcdc),
-                                                                border: Border.all(
-                                                                    width: 1.0,
-                                                                    color: const Color(
-                                                                        0xff1db3b8)),
-                                                                boxShadow: [
-                                                                  BoxShadow(
-                                                                    color: const Color(
-                                                                        0x29000000),
-                                                                    offset:
-                                                                        Offset(
-                                                                            0,
-                                                                            10),
-                                                                    blurRadius:
-                                                                        10,
-                                                                  ),
-                                                                ],
-                                                              ),
+                                ),
+                                GestureDetector(
+                                  child: Center(
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                                      child: SizedBox(
+                                        width: 45.0,
+                                        height: 45.0,
+                                        child: Stack(
+                                          children: <Widget>[
+                                            Pinned.fromSize(
+                                              bounds: Rect.fromLTWH(
+                                                  0.0, 0.0, 45.0, 45.0),
+                                              size: Size(45.0, 45.0),
+                                              pinLeft: true,
+                                              pinRight: true,
+                                              pinTop: true,
+                                              pinBottom: true,
+                                              child: Stack(
+                                                children: <Widget>[
+                                                  Pinned.fromSize(
+                                                    bounds: Rect.fromLTWH(
+                                                        0.0, 0.0, 45.0, 45.0),
+                                                    size: Size(45.0, 45.0),
+                                                    pinLeft: true,
+                                                    pinRight: true,
+                                                    pinTop: true,
+                                                    pinBottom: true,
+                                                    child: Stack(
+                                                      children: <Widget>[
+                                                        Pinned.fromSize(
+                                                          bounds: Rect.fromLTWH(
+                                                              0.0,
+                                                              0.0,
+                                                              45.0,
+                                                              45.0),
+                                                          size:
+                                                              Size(45.0, 45.0),
+                                                          pinLeft: true,
+                                                          pinRight: true,
+                                                          pinTop: true,
+                                                          pinBottom: true,
+                                                          child: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
+                                                                      .elliptical(
+                                                                          9999.0,
+                                                                          9999.0)),
+                                                              color: const Color(
+                                                                  0xefe4dcdc),
+                                                              border: Border.all(
+                                                                  width: 1.0,
+                                                                  color: const Color(
+                                                                      0xff1db3b8)),
+                                                              boxShadow: [
+                                                                BoxShadow(
+                                                                  color: const Color(
+                                                                      0x29000000),
+                                                                  offset:
+                                                                      Offset(0,
+                                                                          10),
+                                                                  blurRadius:
+                                                                      10,
+                                                                ),
+                                                              ],
                                                             ),
                                                           ),
-                                                        ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Pinned.fromSize(
+                                                    bounds: Rect.fromLTWH(
+                                                        12.3, 21.1, 20.3, 3.4),
+                                                    size: Size(45.0, 45.0),
+                                                    fixedWidth: true,
+                                                    fixedHeight: true,
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5.0),
+                                                        color: const Color(
+                                                            0xf2386694),
+                                                        border: Border.all(
+                                                            width: 2.0,
+                                                            color: const Color(
+                                                                0xf21966b4)),
                                                       ),
                                                     ),
-                                                    Pinned.fromSize(
-                                                      bounds: Rect.fromLTWH(
-                                                          12.3,
-                                                          21.1,
-                                                          20.3,
-                                                          3.4),
-                                                      size: Size(45.0, 45.0),
-                                                      fixedWidth: true,
-                                                      fixedHeight: true,
+                                                  ),
+                                                  Pinned.fromSize(
+                                                    bounds: Rect.fromLTWH(
+                                                        12.3, 21.1, 20.3, 3.4),
+                                                    size: Size(45.0, 45.0),
+                                                    fixedWidth: true,
+                                                    fixedHeight: true,
+                                                    child: Transform.rotate(
+                                                      angle: 1.5708,
                                                       child: Container(
                                                         decoration:
                                                             BoxDecoration(
@@ -561,258 +623,221 @@ class _expensivePage extends State<expensivePage> with WidgetsBindingObserver {
                                                         ),
                                                       ),
                                                     ),
-                                                    Pinned.fromSize(
-                                                      bounds: Rect.fromLTWH(
-                                                          12.3,
-                                                          21.1,
-                                                          20.3,
-                                                          3.4),
-                                                      size: Size(45.0, 45.0),
-                                                      fixedWidth: true,
-                                                      fixedHeight: true,
-                                                      child: Transform.rotate(
-                                                        angle: 1.5708,
-                                                        child: Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5.0),
-                                                            color: const Color(
-                                                                0xf2386694),
-                                                            border: Border.all(
-                                                                width: 2.0,
-                                                                color: const Color(
-                                                                    0xf21966b4)),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                        PageRouteBuilder(
-                                          pageBuilder: (_, __, ___) =>
-                                              expLaddExp('1',context),
-                                        ),
-                                      );
-                                    },
-                                  )
-                                ],
-                              ),
-                              Container(
-                                height: 400,
-                                child: ListView.builder(
-                                  itemCount: expList.length,
-                                  // Add one more item for progress indicator
-                                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return new Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                      child: GestureDetector(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(10, 5, 10, 5),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0),
-                                              color: const Color(0xfff3f3f3),
-                                              border: Border.all(
-                                                  width: 1.0,
-                                                  color:
-                                                      const Color(0xfff3f3f3)),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color:
-                                                      const Color(0x29000000),
-                                                  offset: Offset(0, 3),
-                                                  blurRadius: 6,
-                                                ),
-                                              ],
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  10, 5, 10, 5),
-                                              child: Column(
-                                                children: <Widget>[
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            10, 0, 10, 0),
-                                                    child:
-                                                    Stack(children: <Widget>[Padding(
-                                                      padding: EdgeInsets
-                                                          .fromLTRB(
-                                                          0, 10, 0, 10),
-                                                      child: Center(child: Text(
-                                                        expList[index]
-                                                            .category_Name
-                                                            .toString(),textAlign: TextAlign.left,
-                                                        style: TextStyle(
-                                                            color: Colors
-                                                                .black,
-                                                            fontSize: 24,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .bold),
-                                                      ),),
-                                                    ),
-                                                      Row(
-                                                      children: <Widget>[
-                                                        Padding(
-                                                          padding: EdgeInsets
-                                                              .fromLTRB(
-                                                              5, 0, 5, 0),
-                                                          child: Image.network(
-                                                            expList[index]
-                                                                .icon
-                                                                .toString(),
-                                                            height: 40,
-                                                            width: 40,
-                                                          ),
-                                                        ),
-
-                                                        new Spacer(),
-                                                        Padding(
-                                                            padding: EdgeInsets
-                                                                .fromLTRB(
-                                                                2, 0, 0, 0),
-                                                            child:
-                                                            PopupMenuButton<
-                                                                int>(
-                                                              itemBuilder:
-                                                                  (context) => [
-                                                                PopupMenuItem(
-                                                                  value: 3,
-                                                                  child: Row(
-                                                                    children: <
-                                                                        Widget>[
-                                                                      Text(AppLocalizations()
-                                                                          .lbEdit)
-                                                                    ],
-                                                                    //   textDirection: langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-                                                                  ),
-                                                                ),
-                                                                PopupMenuItem(
-                                                                  value: 2,
-                                                                  child: Row(
-                                                                    children: <
-                                                                        Widget>[
-                                                                      Text(AppLocalizations()
-                                                                          .lbDelete)
-                                                                    ],
-                                                                    //   textDirection: langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                              onCanceled: () {
-                                                                print(
-                                                                    "You have canceled the menu.");
-                                                              },
-                                                              onSelected:
-                                                                  (value) async {
-                                                                if (value ==
-                                                                    2) {
-                                                                  showDialog(
-                                                                      context:
-                                                                      context,
-                                                                      builder:
-                                                                          (BuildContext
-                                                                      context) {
-                                                                        return
-                                                                          Directionality(
-                                                                            textDirection:
-                                                                            langSave == 'ar' ? TextDirection.rtl :
-                                                                            TextDirection.ltr,
-                                                                            child:
-
-                                                                            showDialogwindowDelete(
-                                                                            expList[index].category_id));
-                                                                      });
-                                                                } else if (value ==
-                                                                    3) {
-
-
-
-                                                                  showDialog(
-                                                                      context:
-                                                                      context,
-                                                                      builder:
-                                                                          (BuildContext
-                                                                      context) {
-                                                                        return
-                                                                          Directionality(
-                                                                              textDirection:
-                                                                              langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-                                                                              child:  MyDialogEdit(
-                                                                                  expList[index].category_id,
-                                                                                  expList[index].category_Name.toString(),
-                                                                                  this,
-                                                                                  id,
-                                                                                  expList[index].icon,langSave))
-
-
-                                                                      ;
-                                                                      });
-                                                                }
-                                                              },
-                                                            ))
-                                                      ],
-                                                    ),],)
-
-
-
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                        onTap: (){
-                                          Navigator.of(context).push(
-                                            PageRouteBuilder(
-                                              pageBuilder: (_, __, ___) =>
-
-                                                  Directionality(
-                                                    textDirection: langSave ==
-                                                        'ar'
-                                                        ? TextDirection
-                                                        .rtl
-                                                        : TextDirection
-                                                        .ltr,
-                                                    child:
-
-                                                  expensiveSubCatPage(expList[index].category_id,
-                                                  expList[index].category_Name,
-                                                  expList[index].icon,'1',
-                                                      expList[index].is_Chid)),
-                                            ),
-                                          );
-                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      PageRouteBuilder(
+                                        pageBuilder: (_, __, ___) =>
+                                            expLaddExp('1', context),
                                       ),
                                     );
                                   },
-                                  // controller: _sc,
-                                ),
+                                )
+                              ],
+                            ),
+                            Container(
+                              height: 400,
+                              child: ListView.builder(
+                                itemCount: expList.length,
+                                // Add one more item for progress indicator
+                                padding: EdgeInsets.symmetric(vertical: 8.0),
+                                itemBuilder: (BuildContext context, int index) {
+                                  return new Padding(
+                                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                    child: GestureDetector(
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
+                                            color: const Color(0xfff3f3f3),
+                                            border: Border.all(
+                                                width: 1.0,
+                                                color: const Color(0xfff3f3f3)),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: const Color(0x29000000),
+                                                offset: Offset(0, 3),
+                                                blurRadius: 6,
+                                              ),
+                                            ],
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                10, 5, 10, 5),
+                                            child: Column(
+                                              children: <Widget>[
+                                                Padding(
+                                                    padding:
+                                                        EdgeInsets.fromLTRB(
+                                                            10, 0, 10, 0),
+                                                    child: Stack(
+                                                      children: <Widget>[
+                                                        Padding(
+                                                          padding: EdgeInsets
+                                                              .fromLTRB(
+                                                                  0, 10, 0, 10),
+                                                          child: Center(
+                                                            child: Text(
+                                                              expList[index]
+                                                                  .category_Name
+                                                                  .toString(),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 24,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Row(
+                                                          children: <Widget>[
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .fromLTRB(
+                                                                          5,
+                                                                          0,
+                                                                          5,
+                                                                          0),
+                                                              child:
+                                                                  Image.network(
+                                                                expList[index]
+                                                                    .icon
+                                                                    .toString(),
+                                                                height: 40,
+                                                                width: 40,
+                                                              ),
+                                                            ),
+                                                            new Spacer(),
+                                                            Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            2,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                child:
+                                                                    PopupMenuButton<
+                                                                        int>(
+                                                                  itemBuilder:
+                                                                      (context) =>
+                                                                          [
+                                                                    PopupMenuItem(
+                                                                      value: 3,
+                                                                      child:
+                                                                          Row(
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Text(AppLocalizations()
+                                                                              .lbEdit)
+                                                                        ],
+                                                                        //   textDirection: langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                                                                      ),
+                                                                    ),
+                                                                    PopupMenuItem(
+                                                                      value: 2,
+                                                                      child:
+                                                                          Row(
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Text(AppLocalizations()
+                                                                              .lbDelete)
+                                                                        ],
+                                                                        //   textDirection: langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                  onCanceled:
+                                                                      () {
+                                                                    print(
+                                                                        "You have canceled the menu.");
+                                                                  },
+                                                                  onSelected:
+                                                                      (value) async {
+                                                                    if (value ==
+                                                                        2) {
+                                                                      showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (BuildContext context) {
+                                                                            return Directionality(
+                                                                                textDirection: langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                                                                                child: showDialogwindowDelete(expList[index].category_id));
+                                                                          });
+                                                                    } else if (value ==
+                                                                        3) {
+                                                                      showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (BuildContext context) {
+                                                                            return Directionality(
+                                                                                textDirection: langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                                                                                child: MyDialogEdit(expList[index].category_id, expList[index].category_Name.toString(), this, id, expList[index].icon, langSave));
+                                                                          });
+                                                                    }
+                                                                  },
+                                                                ))
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    )),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                          PageRouteBuilder(
+                                            pageBuilder: (_, __, ___) =>
+                                                Directionality(
+                                                    textDirection:
+                                                        langSave ==
+                                                                'ar'
+                                                            ? TextDirection.rtl
+                                                            : TextDirection.ltr,
+                                                    child: expensiveSubCatPage(
+                                                        expList[index]
+                                                            .category_id,
+                                                        expList[index]
+                                                            .category_Name,
+                                                        expList[index].icon,
+                                                        '1',
+                                                        expList[index]
+                                                            .is_Chid)),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  );
+                                },
+                                // controller: _sc,
                               ),
-                            ],
-                          ),
-
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-
+                  ),
           ],
         ),
       );
@@ -983,7 +1008,8 @@ class MyDialogEdit extends StatefulWidget {
   String id;
   String url;
   String langSave;
-  MyDialogEdit(this.catId, this.catname, this.bankA, this.id, this.url,this.langSave);
+  MyDialogEdit(
+      this.catId, this.catname, this.bankA, this.id, this.url, this.langSave);
 
   @override
   _MyDialogEdit createState() => _MyDialogEdit();
@@ -1041,13 +1067,13 @@ class _MyDialogEdit extends State<MyDialogEdit> {
                 ),
                 //Commission amount
 
-
-
                 Directionality(
-                    textDirection:
-                    widget.langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-                    child:Container(width: MediaQuery.of(context).size.width,
-                      child:    Padding(
+                    textDirection: widget.langSave == 'ar'
+                        ? TextDirection.rtl
+                        : TextDirection.ltr,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Padding(
                         padding: EdgeInsets.fromLTRB(15, 35, 15, 0),
                         child: Material(
                           color: Colors.white,
@@ -1064,13 +1090,11 @@ class _MyDialogEdit extends State<MyDialogEdit> {
                             ),
                           ),
                         ),
-                      ),))
-
-
-              ,
+                      ),
+                    )),
                 Padding(
                   padding: EdgeInsets.fromLTRB(15, 35, 15, 0),
-                  child:Container(
+                  child: Container(
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
                       child: GridView.count(
@@ -1088,80 +1112,61 @@ class _MyDialogEdit extends State<MyDialogEdit> {
                               onTap: () {
                                 setState(() {
                                   widget.url = icList[index].url;
-                                  indexselect =
-                                      index;
-                                  for (int j =
-                                  0;
-                                  j <
-                                      icList
-                                          .length;
-                                  j++) {
-                                    icList[j]
-                                        .select =
-                                    false;
+                                  indexselect = index;
+                                  for (int j = 0; j < icList.length; j++) {
+                                    icList[j].select = false;
                                   }
-                                  if (indexselect !=
-                                      index) {
-                                    icList[index]
-                                        .select =
-                                    false;
+                                  if (indexselect != index) {
+                                    icList[index].select = false;
                                   } else {
-                                    icList[index]
-                                        .select =
-                                    true;
+                                    icList[index].select = true;
                                   }
                                 });
                               },
                               child: GridTile(
-                                  child:      icList[index]
-                                      .select ==
-                                      true
+                                  child: icList[index].select == true
                                       ? Container(
-                                    // height: 100,
-                                    decoration:
-                                    BoxDecoration(
-                                      border:
-                                      Border.all(color: Colors.red, width: 1),
-                                      color:
-                                      Color(0xFFD6D6D6),
-                                    ),
-                                    child:
-                                    Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Container(
-                                          width: 50,
-                                          height: 50,
-                                          child: Image.network(
-                                            icList[index].url,
+                                          // height: 100,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.red, width: 1),
+                                            color: Color(0xFFD6D6D6),
+                                          ),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              Container(
+                                                width: 50,
+                                                height: 50,
+                                                child: Image.network(
+                                                  icList[index].url,
+                                                ),
+                                              )
+                                            ],
                                           ),
                                         )
-                                      ],
-                                    ),
-                                  )
                                       : Container(
-                                    // height: 100,
+                                          // height: 100,
 
-                                    child:
-                                    Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Container(
-                                          width: 50,
-                                          height: 50,
-                                          child: Image.network(
-                                            icList[index].url,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              Container(
+                                                width: 50,
+                                                height: 50,
+                                                child: Image.network(
+                                                  icList[index].url,
+                                                ),
+                                              )
+                                            ],
                                           ),
-                                        )
-                                      ],
-                                    ),
-                                  )),
+                                        )),
                             );
                           }).toList()),
                     ),
@@ -1278,21 +1283,19 @@ class _MyDialogEdit extends State<MyDialogEdit> {
                           } else {
                             print('19');
 
-                              widget.bankA._buildEditBank(
-                                  context, widget.id, _mainnamecat.text,
-                                  widget.url,widget.catId);
-                            }
-                          },
-                        )
-                      ],
-                    ),
+                            widget.bankA._buildEditBank(context, widget.id,
+                                _mainnamecat.text, widget.url, widget.catId);
+                          }
+                        },
+                      )
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        )
-      ;
+        ),
+      );
     });
   }
 
@@ -1304,5 +1307,4 @@ class _MyDialogEdit extends State<MyDialogEdit> {
       ),
     );
   }
-
 }

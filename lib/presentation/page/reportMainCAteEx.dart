@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -8,28 +7,20 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:honey/Infrastructure/Expensive/DataSources/ExpensesLocalDataSource.dart';
-import 'package:honey/Infrastructure/Expensive/Repository/subExpReposiImp.dart';
 import 'package:honey/application/Auth/Expanstatus.dart';
 import 'package:honey/application/Auth/ExpenBloc.dart';
 import 'package:honey/application/Auth/ExpenEvent.dart';
 import 'package:honey/Domain/Revenue/Entities/RevenueCategoryReportEntity.dart';
 import 'package:honey/presentation/page/pageReportMain.dart';
-import 'package:honey/presentation/page/reportMainCateExpen.dart';
-import 'package:intl/date_symbol_data_local.dart';
-
-import 'package:http/http.dart' as http;
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:honey/Infrastructure/Core/NetworkInfo.dart';
 import 'package:honey/Infrastructure/Expensive/DataSources/AuthRemoteDataSource.dart';
-import 'package:honey/Infrastructure/Expensive/GeneralResponse.dart';
 import 'package:honey/Infrastructure/Expensive/Repository/ExpenRepository.dart';
 import 'package:honey/Core/lang/localss.dart';
 
-import 'package:intl/intl.dart' as intl;
 import 'package:progress_dialog/progress_dialog.dart';
 
-import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
@@ -37,8 +28,9 @@ class reportMainCate extends StatefulWidget {
   final String pageNum;
   final String mainId;
   final String mainName;
-final dateFormat,dateFormatAR;
-  reportMainCate(this.pageNum,this.mainId,this.mainName,this.dateFormat,this.dateFormatAR);
+  final dateFormat, dateFormatAR;
+  reportMainCate(this.pageNum, this.mainId, this.mainName, this.dateFormat,
+      this.dateFormatAR);
 
   @override
   _reportMainCate createState() => new _reportMainCate();
@@ -46,14 +38,10 @@ final dateFormat,dateFormatAR;
 
 class _reportMainCate extends State<reportMainCate>
     with WidgetsBindingObserver {
-
-
   List<RevenueCategoryReportData> reportListCate;
 
   List<Total> ListTotalCate;
   List<Currency> listCureencyCate;
-
-
 
   ProgressDialog pr;
   GlobalKey<FormState> _keyFormDeposit = GlobalKey();
@@ -67,7 +55,6 @@ class _reportMainCate extends State<reportMainCate>
   var todate = GlobalKey<FormState>();
 
   String langSave;
- 
 
   String _response = '';
 
@@ -128,7 +115,6 @@ class _reportMainCate extends State<reportMainCate>
 
   @override
   void initState() {
-   
     getValueString();
     pr = new ProgressDialog(context);
 
@@ -143,8 +129,9 @@ class _reportMainCate extends State<reportMainCate>
       messageTextStyle: TextStyle(
           color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600),
     );
-      navigationPage();
+    navigationPage();
   }
+
   SpecificLocalizationDelegate _specificLocalizationDelegate;
   Future navigationPage() async {
     var preferences = await SharedPreferences.getInstance();
@@ -163,6 +150,7 @@ class _reportMainCate extends State<reportMainCate>
       AppLocalizations.load(new Locale("en"));
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -173,9 +161,6 @@ class _reportMainCate extends State<reportMainCate>
                 ExpensesLocalDataSource())),
             child: signinViewReportCate()));
   }
-
-
-
 
   Widget signinViewReportCate() {
     return BlocConsumer<ExpBloc, ExpState>(listener: (context, state) {
@@ -188,30 +173,28 @@ class _reportMainCate extends State<reportMainCate>
 
         Navigator.of(context).push(
           PageRouteBuilder(
-            pageBuilder: (_, __, ___) =>
-
-
-                Directionality(
-                  textDirection: langSave ==
-                      'ar'
-                      ? TextDirection
-                      .rtl
-                      : TextDirection
-                      .ltr,
-                  child:
-                reportMainCPage(dateF,dateT,reportListCate,ListTotalCate,listCureencyCate,widget.pageNum,widget.mainId)),
+            pageBuilder: (_, __, ___) => Directionality(
+                textDirection:
+                    langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                child: reportMainCPage(
+                    dateF,
+                    dateT,
+                    reportListCate,
+                    ListTotalCate,
+                    listCureencyCate,
+                    widget.pageNum,
+                    widget.mainId)),
           ),
         );
 
-
-             //print(expListSub.length);
+        //print(expListSub.length);
       }
     }, builder: (context, state) {
       if (state is Empty) {
         print('progress');
 
-          return   
-              Stack(children:<Widget>[
+        return Stack(
+          children: <Widget>[
             Container(
               child: Scaffold(
                 body: Container(
@@ -236,329 +219,300 @@ class _reportMainCate extends State<reportMainCate>
                                                       10, 50, 10, 10),
                                                   child: Container(
                                                     width:
-                                                    MediaQuery.of(context)
-                                                        .size
-                                                        .width,
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
                                                     child: Padding(
                                                       padding:
-                                                      EdgeInsets.fromLTRB(
-                                                          10, 10, 10, 10),
-                                                      child: widget.pageNum == '1'
-                                                          ? Stack(
-                                                        children: <
-                                                            Widget>[
-                                                          Directionality(
-                                                              textDirection: langSave ==
-                                                                  'ar'
-                                                                  ? TextDirection
-                                                                  .ltr
-                                                                  : TextDirection
-                                                                  .ltr,
-                                                              child:
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width,
-                                                                child:
-                                                                Row(
+                                                          EdgeInsets.fromLTRB(
+                                                              10, 10, 10, 10),
+                                                      child:
+                                                          widget.pageNum == '1'
+                                                              ? Stack(
                                                                   children: <
                                                                       Widget>[
-                                                                    Align(
-                                                                      child: GestureDetector(
-                                                                          child: SvgPicture.string(
-                                                                            _svg_6oa7ke,
-                                                                            allowDrawingOutsideViewBox: true,
-                                                                          ),
-                                                                          onTap: () {
-                                                                            Navigator.of(context).pop();
-                                                                          }),
-                                                                      alignment:
-                                                                      Alignment.topRight,
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsets.fromLTRB(
-                                                                          15,
-                                                                          0,
-                                                                          10,
-                                                                          0),
-                                                                      child:
-                                                                      Center(
-                                                                        child: Column(
-                                                                          children: <Widget>[
-                                                                            Text(
-                                                                              'Honey Bee',
-                                                                              style: TextStyle(
-                                                                                fontFamily: 'Pristina',
-                                                                                fontSize: 32,
-                                                                                color: const Color(0xff0a0606),
-                                                                                shadows: [
-                                                                                  Shadow(
-                                                                                    color: const Color(0x29000000),
-                                                                                    offset: Offset(3, 10),
-                                                                                    blurRadius: 6,
-                                                                                  )
-                                                                                ],
+                                                                    Directionality(
+                                                                        textDirection: langSave ==
+                                                                                'ar'
+                                                                            ? TextDirection
+                                                                                .ltr
+                                                                            : TextDirection
+                                                                                .ltr,
+                                                                        child:
+                                                                            Container(
+                                                                          width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width,
+                                                                          child:
+                                                                              Row(
+                                                                            children: <Widget>[
+                                                                              Align(
+                                                                                child: GestureDetector(
+                                                                                    child: SvgPicture.string(
+                                                                                      _svg_6oa7ke,
+                                                                                      allowDrawingOutsideViewBox: true,
+                                                                                    ),
+                                                                                    onTap: () {
+                                                                                      Navigator.of(context).pop();
+                                                                                    }),
+                                                                                alignment: Alignment.topRight,
                                                                               ),
-                                                                              textAlign: TextAlign.center,
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
-                                                                              child: Text(
-                                                                                AppLocalizations().lbExM,
+                                                                              Padding(
+                                                                                padding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                                                                                child: Center(
+                                                                                  child: Column(
+                                                                                    children: <Widget>[
+                                                                                      Text(
+                                                                                        'Honey Bee',
+                                                                                        style: TextStyle(
+                                                                                          fontFamily: 'Pristina',
+                                                                                          fontSize: 32,
+                                                                                          color: const Color(0xff0a0606),
+                                                                                          shadows: [
+                                                                                            Shadow(
+                                                                                              color: const Color(0x29000000),
+                                                                                              offset: Offset(3, 10),
+                                                                                              blurRadius: 6,
+                                                                                            )
+                                                                                          ],
+                                                                                        ),
+                                                                                        textAlign: TextAlign.center,
+                                                                                      ),
+                                                                                      Padding(
+                                                                                        padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
+                                                                                        child: Text(
+                                                                                          AppLocalizations().lbExM,
+                                                                                          style: TextStyle(
+                                                                                            fontSize: 18,
+                                                                                            color: Colors.grey,
+                                                                                          ),
+                                                                                          textAlign: TextAlign.center,
+                                                                                        ),
+                                                                                      )
+                                                                                    ],
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        )),
+                                                                    Directionality(
+                                                                        textDirection: langSave ==
+                                                                                'ar'
+                                                                            ? TextDirection
+                                                                                .rtl
+                                                                            : TextDirection
+                                                                                .rtl,
+                                                                        child:
+                                                                            Container(
+                                                                          width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width,
+                                                                          child:
+                                                                              Row(
+                                                                            children: <Widget>[
+                                                                              SizedBox(
+                                                                                width: 63.0,
+                                                                                height: 63.0,
+                                                                                child: Stack(
+                                                                                  children: <Widget>[
+                                                                                    Pinned.fromSize(
+                                                                                      bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
+                                                                                      size: Size(62.8, 62.8),
+                                                                                      pinLeft: true,
+                                                                                      pinRight: true,
+                                                                                      pinTop: true,
+                                                                                      pinBottom: true,
+                                                                                      child: Container(
+                                                                                        decoration: BoxDecoration(
+                                                                                          borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                                                                                          border: Border.all(width: 1.0, color: const Color(0xf2386694)),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Pinned.fromSize(
+                                                                                      bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
+                                                                                      size: Size(62.8, 62.8),
+                                                                                      pinTop: true,
+                                                                                      pinBottom: true,
+                                                                                      fixedWidth: true,
+                                                                                      child:
+                                                                                          // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                                                          SvgPicture.string(
+                                                                                        _svg_pew0t9,
+                                                                                        allowDrawingOutsideViewBox: true,
+                                                                                        fit: BoxFit.fill,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              Text(
+                                                                                AppLocalizations().lbEx,
                                                                                 style: TextStyle(
-                                                                                  fontSize: 18,
-                                                                                  color: Colors.grey,
+                                                                                  fontFamily: 'Times New Roman',
+                                                                                  fontSize: 20,
+                                                                                  color: const Color(0xff0a0606),
+                                                                                  shadows: [
+                                                                                    Shadow(
+                                                                                      color: const Color(0x29000000),
+                                                                                      offset: Offset(0, 10),
+                                                                                      blurRadius: 6,
+                                                                                    )
+                                                                                  ],
                                                                                 ),
                                                                                 textAlign: TextAlign.center,
                                                                               ),
-                                                                            )
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
+                                                                            ],
+                                                                          ),
+                                                                        ))
                                                                   ],
-                                                                ),
-                                                              )),
-                                                          Directionality(
-                                                              textDirection: langSave ==
-                                                                  'ar'
-                                                                  ? TextDirection
-                                                                  .rtl
-                                                                  : TextDirection
-                                                                  .rtl,
-                                                              child:
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width,
-                                                                child:
-                                                                Row(
+                                                                )
+                                                              : Stack(
                                                                   children: <
                                                                       Widget>[
-                                                                    SizedBox(
-                                                                      width:
-                                                                      63.0,
-                                                                      height:
-                                                                      63.0,
-                                                                      child:
-                                                                      Stack(
-                                                                        children: <Widget>[
-                                                                          Pinned.fromSize(
-                                                                            bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
-                                                                            size: Size(62.8, 62.8),
-                                                                            pinLeft: true,
-                                                                            pinRight: true,
-                                                                            pinTop: true,
-                                                                            pinBottom: true,
-                                                                            child: Container(
-                                                                              decoration: BoxDecoration(
-                                                                                borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                                                                                border: Border.all(width: 1.0, color: const Color(0xf2386694)),
+                                                                    Directionality(
+                                                                        textDirection: langSave ==
+                                                                                'ar'
+                                                                            ? TextDirection
+                                                                                .ltr
+                                                                            : TextDirection
+                                                                                .ltr,
+                                                                        child:
+                                                                            Container(
+                                                                          width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width,
+                                                                          child:
+                                                                              Row(
+                                                                            children: <Widget>[
+                                                                              Align(
+                                                                                child: GestureDetector(
+                                                                                    child: SvgPicture.string(
+                                                                                      _svg_6oa7ke,
+                                                                                      allowDrawingOutsideViewBox: true,
+                                                                                    ),
+                                                                                    onTap: () {
+                                                                                      Navigator.of(context).pop();
+                                                                                    }),
+                                                                                alignment: Alignment.topRight,
                                                                               ),
-                                                                            ),
-                                                                          ),
-                                                                          Pinned.fromSize(
-                                                                            bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
-                                                                            size: Size(62.8, 62.8),
-                                                                            pinTop: true,
-                                                                            pinBottom: true,
-                                                                            fixedWidth: true,
-                                                                            child:
-                                                                            // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                                                                            SvgPicture.string(
-                                                                              _svg_pew0t9,
-                                                                              allowDrawingOutsideViewBox: true,
-                                                                              fit: BoxFit.fill,
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      AppLocalizations().lbEx,
-                                                                      style:
-                                                                      TextStyle(
-                                                                        fontFamily: 'Times New Roman',
-                                                                        fontSize: 20,
-                                                                        color: const Color(0xff0a0606),
-                                                                        shadows: [
-                                                                          Shadow(
-                                                                            color: const Color(0x29000000),
-                                                                            offset: Offset(0, 10),
-                                                                            blurRadius: 6,
-                                                                          )
-                                                                        ],
-                                                                      ),
-                                                                      textAlign:
-                                                                      TextAlign.center,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ))
-                                                        ],
-                                                      )
-                                                          : Stack(
-                                                        children: <
-                                                            Widget>[
-                                                          Directionality(
-                                                              textDirection: langSave ==
-                                                                  'ar'
-                                                                  ? TextDirection
-                                                                  .ltr
-                                                                  : TextDirection
-                                                                  .ltr,
-                                                              child:
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width,
-                                                                child:
-                                                                Row(
-                                                                  children: <
-                                                                      Widget>[
-                                                                    Align(
-                                                                      child: GestureDetector(
-                                                                          child: SvgPicture.string(
-                                                                            _svg_6oa7ke,
-                                                                            allowDrawingOutsideViewBox: true,
-                                                                          ),
-                                                                          onTap: () {
-                                                                            Navigator.of(context).pop();
-                                                                          }),
-                                                                      alignment:
-                                                                      Alignment.topRight,
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsets.fromLTRB(
-                                                                          15,
-                                                                          0,
-                                                                          10,
-                                                                          0),
-                                                                      child:
-                                                                      Center(
-                                                                        child: Column(
-                                                                          children: <Widget>[
-                                                                            Text(
-                                                                              'Honey Bee',
-                                                                              style: TextStyle(
-                                                                                fontFamily: 'Pristina',
-                                                                                fontSize: 32,
-                                                                                color: const Color(0xff0a0606),
-                                                                                shadows: [
-                                                                                  Shadow(
-                                                                                    color: const Color(0x29000000),
-                                                                                    offset: Offset(3, 10),
-                                                                                    blurRadius: 6,
-                                                                                  )
-                                                                                ],
+                                                                              Padding(
+                                                                                padding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                                                                                child: Center(
+                                                                                  child: Column(
+                                                                                    children: <Widget>[
+                                                                                      Text(
+                                                                                        'Honey Bee',
+                                                                                        style: TextStyle(
+                                                                                          fontFamily: 'Pristina',
+                                                                                          fontSize: 32,
+                                                                                          color: const Color(0xff0a0606),
+                                                                                          shadows: [
+                                                                                            Shadow(
+                                                                                              color: const Color(0x29000000),
+                                                                                              offset: Offset(3, 10),
+                                                                                              blurRadius: 6,
+                                                                                            )
+                                                                                          ],
+                                                                                        ),
+                                                                                        textAlign: TextAlign.center,
+                                                                                      ),
+                                                                                      Padding(
+                                                                                        padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
+                                                                                        child: Text(
+                                                                                          AppLocalizations().lbReM,
+                                                                                          style: TextStyle(
+                                                                                            fontSize: 18,
+                                                                                            color: Colors.grey,
+                                                                                          ),
+                                                                                          textAlign: TextAlign.center,
+                                                                                        ),
+                                                                                      )
+                                                                                    ],
+                                                                                  ),
+                                                                                ),
                                                                               ),
-                                                                              textAlign: TextAlign.center,
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
-                                                                              child: Text(
-                                                                                AppLocalizations().lbReM,
+                                                                            ],
+                                                                          ),
+                                                                        )),
+                                                                    Directionality(
+                                                                        textDirection: langSave ==
+                                                                                'ar'
+                                                                            ? TextDirection
+                                                                                .rtl
+                                                                            : TextDirection
+                                                                                .rtl,
+                                                                        child:
+                                                                            Container(
+                                                                          width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width,
+                                                                          child:
+                                                                              Row(
+                                                                            children: <Widget>[
+                                                                              SizedBox(
+                                                                                width: 63.0,
+                                                                                height: 63.0,
+                                                                                child: Stack(
+                                                                                  children: <Widget>[
+                                                                                    Pinned.fromSize(
+                                                                                      bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
+                                                                                      size: Size(62.8, 62.8),
+                                                                                      pinLeft: true,
+                                                                                      pinRight: true,
+                                                                                      pinTop: true,
+                                                                                      pinBottom: true,
+                                                                                      child: Container(
+                                                                                        decoration: BoxDecoration(
+                                                                                          borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                                                                                          border: Border.all(width: 1.0, color: const Color(0xf2386694)),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Pinned.fromSize(
+                                                                                      bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
+                                                                                      size: Size(62.8, 62.8),
+                                                                                      pinTop: true,
+                                                                                      pinBottom: true,
+                                                                                      fixedWidth: true,
+                                                                                      child:
+                                                                                          // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                                                          SvgPicture.string(
+                                                                                        _svg_pew0t9,
+                                                                                        allowDrawingOutsideViewBox: true,
+                                                                                        fit: BoxFit.fill,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              Text(
+                                                                                AppLocalizations().lbRev,
                                                                                 style: TextStyle(
-                                                                                  fontSize: 18,
-                                                                                  color: Colors.grey,
+                                                                                  fontFamily: 'Times New Roman',
+                                                                                  fontSize: 20,
+                                                                                  color: const Color(0xff0a0606),
+                                                                                  shadows: [
+                                                                                    Shadow(
+                                                                                      color: const Color(0x29000000),
+                                                                                      offset: Offset(0, 10),
+                                                                                      blurRadius: 6,
+                                                                                    )
+                                                                                  ],
                                                                                 ),
                                                                                 textAlign: TextAlign.center,
                                                                               ),
-                                                                            )
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
+                                                                            ],
+                                                                          ),
+                                                                        ))
                                                                   ],
                                                                 ),
-                                                              )),
-                                                          Directionality(
-                                                              textDirection: langSave ==
-                                                                  'ar'
-                                                                  ? TextDirection
-                                                                  .rtl
-                                                                  : TextDirection
-                                                                  .rtl,
-                                                              child:
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width,
-                                                                child:
-                                                                Row(
-                                                                  children: <
-                                                                      Widget>[
-                                                                    SizedBox(
-                                                                      width:
-                                                                      63.0,
-                                                                      height:
-                                                                      63.0,
-                                                                      child:
-                                                                      Stack(
-                                                                        children: <Widget>[
-                                                                          Pinned.fromSize(
-                                                                            bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
-                                                                            size: Size(62.8, 62.8),
-                                                                            pinLeft: true,
-                                                                            pinRight: true,
-                                                                            pinTop: true,
-                                                                            pinBottom: true,
-                                                                            child: Container(
-                                                                              decoration: BoxDecoration(
-                                                                                borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                                                                                border: Border.all(width: 1.0, color: const Color(0xf2386694)),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                          Pinned.fromSize(
-                                                                            bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
-                                                                            size: Size(62.8, 62.8),
-                                                                            pinTop: true,
-                                                                            pinBottom: true,
-                                                                            fixedWidth: true,
-                                                                            child:
-                                                                            // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                                                                            SvgPicture.string(
-                                                                              _svg_pew0t9,
-                                                                              allowDrawingOutsideViewBox: true,
-                                                                              fit: BoxFit.fill,
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      AppLocalizations().lbRev,
-                                                                      style:
-                                                                      TextStyle(
-                                                                        fontFamily: 'Times New Roman',
-                                                                        fontSize: 20,
-                                                                        color: const Color(0xff0a0606),
-                                                                        shadows: [
-                                                                          Shadow(
-                                                                            color: const Color(0x29000000),
-                                                                            offset: Offset(0, 10),
-                                                                            blurRadius: 6,
-                                                                          )
-                                                                        ],
-                                                                      ),
-                                                                      textAlign:
-                                                                      TextAlign.center,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ))
-                                                        ],
-                                                      ),
                                                     ),
                                                     decoration: BoxDecoration(
                                                       borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.0),
+                                                          BorderRadius.circular(
+                                                              15.0),
                                                       color: const Color(
                                                           0x09010101),
                                                       boxShadow: [
@@ -581,14 +535,13 @@ class _reportMainCate extends State<reportMainCate>
                                     Container(
                                       child: Column(
                                         children: <Widget>[
-
-
                                           Padding(
-                                            padding:
-                                            EdgeInsets.fromLTRB(0, 20, 0, 10),
+                                            padding: EdgeInsets.fromLTRB(
+                                                0, 20, 0, 10),
                                             child: Container(
-                                              width:
-                                              MediaQuery.of(context).size.width,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
                                               child: Padding(
                                                 padding: EdgeInsets.fromLTRB(
                                                     10, 10, 10, 10),
@@ -598,58 +551,68 @@ class _reportMainCate extends State<reportMainCate>
                                                       widget.mainName,
                                                       style: TextStyle(
                                                         fontFamily:
-                                                        'Times New Roman',
+                                                            'Times New Roman',
                                                         fontSize: 22,
-                                                        color:
-                                                        const Color(0x7d707070),
+                                                        color: const Color(
+                                                            0x7d707070),
                                                       ),
-                                                      textAlign: TextAlign.center,
+                                                      textAlign:
+                                                          TextAlign.center,
                                                     ),
                                                     new Spacer(),
                                                     Padding(
                                                       child: Container(
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.elliptical(
-                                                                  9999.0,
-                                                                  9999.0)),
+                                                              BorderRadius.all(
+                                                                  Radius.elliptical(
+                                                                      9999.0,
+                                                                      9999.0)),
                                                           color: const Color(
                                                               0x4dffd64d),
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                          EdgeInsets.all(10),
+                                                              EdgeInsets.all(
+                                                                  10),
                                                           child: Stack(
                                                             children: <Widget>[
                                                               SvgPicture.string(
                                                                 _svg_a39r47,
                                                                 allowDrawingOutsideViewBox:
-                                                                true,
-                                                                fit: BoxFit.fill,
+                                                                    true,
+                                                                fit:
+                                                                    BoxFit.fill,
                                                                 height: 45,
                                                               ),
                                                               SvgPicture.string(
                                                                 _svg_voj5n1,
                                                                 allowDrawingOutsideViewBox:
-                                                                true,
-                                                                fit: BoxFit.fill,
+                                                                    true,
+                                                                fit:
+                                                                    BoxFit.fill,
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsets
-                                                                    .fromLTRB(2, 18,
-                                                                    2, 2),
-                                                                child: Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            2,
+                                                                            18,
+                                                                            2,
+                                                                            2),
+                                                                child:
+                                                                    Container(
                                                                   decoration:
-                                                                  BoxDecoration(
+                                                                      BoxDecoration(
                                                                     borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                        3.0),
+                                                                        BorderRadius.circular(
+                                                                            3.0),
                                                                     color: const Color(
                                                                         0x4dffffff),
                                                                     border: Border.all(
-                                                                        width: 1.0,
+                                                                        width:
+                                                                            1.0,
                                                                         color: const Color(
                                                                             0x4dffd64d)),
                                                                   ),
@@ -657,20 +620,25 @@ class _reportMainCate extends State<reportMainCate>
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsets
-                                                                    .fromLTRB(2, 23,
-                                                                    2, 2),
-                                                                child: Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            2,
+                                                                            23,
+                                                                            2,
+                                                                            2),
+                                                                child:
+                                                                    Container(
                                                                   decoration:
-                                                                  BoxDecoration(
+                                                                      BoxDecoration(
                                                                     borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                        3.0),
+                                                                        BorderRadius.circular(
+                                                                            3.0),
                                                                     color: const Color(
                                                                         0x4dffffff),
                                                                     border: Border.all(
-                                                                        width: 1.0,
+                                                                        width:
+                                                                            1.0,
                                                                         color: const Color(
                                                                             0x4dffd64d)),
                                                                   ),
@@ -678,20 +646,25 @@ class _reportMainCate extends State<reportMainCate>
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsets
-                                                                    .fromLTRB(2, 28,
-                                                                    2, 2),
-                                                                child: Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            2,
+                                                                            28,
+                                                                            2,
+                                                                            2),
+                                                                child:
+                                                                    Container(
                                                                   decoration:
-                                                                  BoxDecoration(
+                                                                      BoxDecoration(
                                                                     borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                        3.0),
+                                                                        BorderRadius.circular(
+                                                                            3.0),
                                                                     color: const Color(
                                                                         0x4dffd64d),
                                                                     border: Border.all(
-                                                                        width: 1.0,
+                                                                        width:
+                                                                            1.0,
                                                                         color: const Color(
                                                                             0x4dffd64d)),
                                                                   ),
@@ -699,20 +672,25 @@ class _reportMainCate extends State<reportMainCate>
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsets
-                                                                    .fromLTRB(2, 33,
-                                                                    2, 2),
-                                                                child: Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            2,
+                                                                            33,
+                                                                            2,
+                                                                            2),
+                                                                child:
+                                                                    Container(
                                                                   decoration:
-                                                                  BoxDecoration(
+                                                                      BoxDecoration(
                                                                     borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                        3.0),
+                                                                        BorderRadius.circular(
+                                                                            3.0),
                                                                     color: const Color(
                                                                         0x4dffd64d),
                                                                     border: Border.all(
-                                                                        width: 1.0,
+                                                                        width:
+                                                                            1.0,
                                                                         color: const Color(
                                                                             0x4dffd64d)),
                                                                   ),
@@ -723,8 +701,9 @@ class _reportMainCate extends State<reportMainCate>
                                                           ),
                                                         ),
                                                       ),
-                                                      padding: EdgeInsets.fromLTRB(
-                                                          5, 0, 5, 0),
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              5, 0, 5, 0),
                                                     )
                                                   ],
                                                 ),
@@ -733,10 +712,12 @@ class _reportMainCate extends State<reportMainCate>
                                                 color: const Color(0x4df3f3f3),
                                                 border: Border.all(
                                                     width: 1.0,
-                                                    color: const Color(0x4df3f3f3)),
+                                                    color: const Color(
+                                                        0x4df3f3f3)),
                                                 boxShadow: [
                                                   BoxShadow(
-                                                    color: const Color(0x0c000000),
+                                                    color:
+                                                        const Color(0x0c000000),
                                                     offset: Offset(0, 3),
                                                     blurRadius: 6,
                                                   ),
@@ -749,381 +730,412 @@ class _reportMainCate extends State<reportMainCate>
                                     ),
                                     Container(
                                         child: Wrap(
+                                      children: <Widget>[
+                                        Column(
                                           children: <Widget>[
-                                            Column(
-                                              children: <Widget>[
-                                                Container(
-                                                  child: Column(
+                                            Container(
+                                              child: Column(
+                                                children: <Widget>[
+                                                  Row(
                                                     children: <Widget>[
-                                                      Row(
-                                                        children: <Widget>[
-                                                          Checkbox(
-                                                            value: monVal,
-                                                            onChanged: (bool value) {
-                                                              setState(() {
-                                                                monVal = value;
-                                                              });
-                                                            },
-                                                          ),
-                                                          Padding(
-                                                            padding:
+                                                      Checkbox(
+                                                        value: monVal,
+                                                        onChanged:
+                                                            (bool value) {
+                                                          setState(() {
+                                                            monVal = value;
+                                                          });
+                                                        },
+                                                      ),
+                                                      Padding(
+                                                        padding:
                                                             EdgeInsets.fromLTRB(
                                                                 10, 0, 10, 0),
-                                                            child: Text(
-                                                                AppLocalizations()
-                                                                    .lbViewD),
-                                                          ),
-                                                        ],
+                                                        child: Text(
+                                                            AppLocalizations()
+                                                                .lbViewD),
                                                       ),
-                                                      monVal == true
-                                                          ? Visibility(
-                                                        child: Padding(
-                                                          padding:
-                                                          EdgeInsets.fromLTRB(
-                                                              5, 0, 5, 0),
-                                                          child: Column(
-                                                            children: <Widget>[
-                                                              Text(
-                                                                  AppLocalizations().lbFrom),
-                                                              Form(
-                                                                key: fromdate,
-                                                                child: Center(
-                                                                  child:
-                                                                  DateTimeField(
+                                                    ],
+                                                  ),
+                                                  monVal == true
+                                                      ? Visibility(
+                                                          child: Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(
+                                                                    5, 0, 5, 0),
+                                                            child: Column(
+                                                              children: <
+                                                                  Widget>[
+                                                                Text(AppLocalizations()
+                                                                    .lbFrom),
+                                                                Form(
+                                                                  key: fromdate,
+                                                                  child: Center(
+                                                                    child:
+                                                                        DateTimeField(
 //                          dateOnly: true,
 
-                                                                    format: langSave ==
-                                                                        'en'
-                                                                        ? widget.dateFormat
-                                                                        : widget.dateFormatAR,
-                                                                    validator:
-                                                                        (val) {
-                                                                      if (val !=
-                                                                          null) {
-                                                                        return null;
-                                                                      } else {
-                                                                        return AppLocalizations()
-                                                                            .lbDateE;
-                                                                      }
-                                                                    },
-                                                                    decoration: InputDecoration(
-                                                                        labelText:
+                                                                      format: langSave ==
+                                                                              'en'
+                                                                          ? widget
+                                                                              .dateFormat
+                                                                          : widget
+                                                                              .dateFormatAR,
+                                                                      validator:
+                                                                          (val) {
+                                                                        if (val !=
+                                                                            null) {
+                                                                          return null;
+                                                                        } else {
+                                                                          return AppLocalizations()
+                                                                              .lbDateE;
+                                                                        }
+                                                                      },
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                              labelText: AppLocalizations().lbFDate),
+                                                                      //   initialValue: DateTime.now(), //Add this in your Code.
+                                                                      // initialDate: DateTime(2017),
+                                                                      onSaved:
+                                                                          (value) {
+                                                                        dateF = value
+                                                                            .toString()
+                                                                            .substring(0,
+                                                                                10);
+                                                                        debugPrint(
+                                                                            value.toString());
+                                                                      },
+                                                                      onShowPicker:
+                                                                          (context,
+                                                                              currentValue) {
+                                                                        return showDatePicker(
+                                                                            context:
+                                                                                context,
+                                                                            initialDate:
+                                                                                currentValue ?? DateTime.now(),
+                                                                            firstDate: DateTime(1999),
+                                                                            lastDate: DateTime(2100));
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          visible: false,
+                                                        )
+                                                      : Visibility(
+                                                          child: Column(
+                                                            children: <Widget>[
+                                                              Padding(
+                                                                  padding: EdgeInsets
+                                                                      .fromLTRB(
+                                                                          10,
+                                                                          10,
+                                                                          10,
+                                                                          0),
+                                                                  child: Row(
+                                                                    children: <
+                                                                        Widget>[
+                                                                      Text(
                                                                         AppLocalizations()
-                                                                            .lbFDate),
-                                                                    //   initialValue: DateTime.now(), //Add this in your Code.
-                                                                    // initialDate: DateTime(2017),
-                                                                    onSaved:
-                                                                        (value) {
-
-                                                                      dateF = value
-                                                                          .toString()
-                                                                          .substring(
-                                                                          0,
-                                                                          10);
-                                                                      debugPrint(value
-                                                                          .toString());
-                                                                    },
-                                                                    onShowPicker:
-                                                                        (context,
-                                                                        currentValue) {
-                                                                      return showDatePicker(
-                                                                          context:
-                                                                          context,
-                                                                          initialDate: currentValue ??
-                                                                              DateTime
-                                                                                  .now(),
-                                                                          firstDate:
-                                                                          DateTime(
-                                                                              1999),
-                                                                          lastDate:
-                                                                          DateTime(2100));
-                                                                    },
+                                                                            .lbFrom,
+                                                                        style: TextStyle(
+                                                                            fontWeight:
+                                                                                FontWeight.bold),
+                                                                      )
+                                                                    ],
+                                                                  )),
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            35,
+                                                                            0,
+                                                                            35,
+                                                                            0),
+                                                                child: Form(
+                                                                  key: fromdate,
+                                                                  child: Center(
+                                                                    child:
+                                                                        DateTimeField(
+//                          dateOnly: true,
+                                                                      format: langSave ==
+                                                                              'en'
+                                                                          ? widget
+                                                                              .dateFormat
+                                                                          : widget
+                                                                              .dateFormatAR,
+                                                                      validator:
+                                                                          (val) {
+                                                                        if (val !=
+                                                                            null) {
+                                                                          return null;
+                                                                        } else {
+                                                                          return AppLocalizations()
+                                                                              .lbDateE;
+                                                                        }
+                                                                      },
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                              labelText: AppLocalizations().lbFDate),
+                                                                      //   initialValue: DateTime.now(), //Add this in your Code.
+                                                                      // initialDate: DateTime(2017),
+                                                                      onSaved:
+                                                                          (value) {
+                                                                        dateF = value
+                                                                            .toString()
+                                                                            .substring(0,
+                                                                                10);
+                                                                        debugPrint(
+                                                                            value.toString());
+                                                                        print(
+                                                                            dateF);
+                                                                      },
+                                                                      onShowPicker:
+                                                                          (context,
+                                                                              currentValue) {
+                                                                        return showDatePicker(
+                                                                            context:
+                                                                                context,
+                                                                            initialDate:
+                                                                                currentValue ?? DateTime.now(),
+                                                                            firstDate: DateTime(1999),
+                                                                            lastDate: DateTime(2100));
+                                                                      },
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               )
                                                             ],
                                                           ),
+                                                          visible: true,
                                                         ),
-                                                        visible: false,
-                                                      )
-                                                          : Visibility(
-                                                        child: Column(
-                                                          children: <Widget>[
-                                                            Padding( padding:
-                                                            EdgeInsets.fromLTRB(
-                                                                10, 10, 10, 0),
-                                                                child:Row(
-                                                                  children: <Widget>[
-                                                                    Text(
-                                                                      AppLocalizations().lbFrom,
-                                                                      style: TextStyle(
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                                    )
-                                                                  ],
-                                                                ))
-                                                            ,
-                                                            Padding(
-                                                              padding: EdgeInsets
-                                                                  .fromLTRB(
-                                                                  35, 0, 35, 0),
-                                                              child: Form(
-                                                                key: fromdate,
-                                                                child: Center(
-                                                                  child:
-                                                                  DateTimeField(
-//                          dateOnly: true,
-                                                                    format: langSave ==
-                                                                        'en'
-                                                                        ? widget.dateFormat
-                                                                        : widget.dateFormatAR,
-                                                                    validator:
-                                                                        (val) {
-                                                                      if (val !=
-                                                                          null) {
-                                                                        return null;
-                                                                      } else {
-                                                                        return AppLocalizations()
-                                                                            .lbDateE;
-                                                                      }
-                                                                    },
-                                                                    decoration: InputDecoration(
-                                                                        labelText:
-                                                                        AppLocalizations()
-                                                                            .lbFDate),
-                                                                    //   initialValue: DateTime.now(), //Add this in your Code.
-                                                                    // initialDate: DateTime(2017),
-                                                                    onSaved:
-                                                                        (value) {
-
-                                                                      dateF = value
-                                                                          .toString()
-                                                                          .substring(
-                                                                          0,
-                                                                          10);
-                                                                      debugPrint(value
-                                                                          .toString());
-                                                                      print(dateF);
-
-                                                                    },
-                                                                    onShowPicker:
-                                                                        (context,
-                                                                        currentValue) {
-                                                                      return showDatePicker(
-                                                                          context:
-                                                                          context,
-                                                                          initialDate: currentValue ??
-                                                                              DateTime
-                                                                                  .now(),
-                                                                          firstDate:
-                                                                          DateTime(
-                                                                              1999),
-                                                                          lastDate:
-                                                                          DateTime(2100));
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                        visible: true,
-                                                      ),
-                                                      Padding(
-                                                        padding: EdgeInsets.fromLTRB(
-                                                            5, 10, 5, 0),
-                                                        child:
-                                                        Column(children: <Widget>[ Padding( padding:
+                                                  Padding(
+                                                    padding:
                                                         EdgeInsets.fromLTRB(
-                                                            10, 10, 10, 0),
-                                                            child:Row(
-                                                              children: <Widget>[
+                                                            5, 10, 5, 0),
+                                                    child: Column(
+                                                      children: <Widget>[
+                                                        Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(10,
+                                                                    10, 10, 0),
+                                                            child: Row(
+                                                              children: <
+                                                                  Widget>[
                                                                 Text(
-                                                                  AppLocalizations().lbTo,
+                                                                  AppLocalizations()
+                                                                      .lbTo,
                                                                   style: TextStyle(
                                                                       fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                                          FontWeight
+                                                                              .bold),
                                                                 )
                                                               ],
-                                                            ))
-                                                          ,
-
-                                                          Padding( padding:
-                                                          EdgeInsets.fromLTRB(
-                                                              30, 10, 30, 0),
-                                                              child:Form(
-                                                                key: todate,
-                                                                child: Center(
-                                                                  child: DateTimeField(
+                                                            )),
+                                                        Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(30,
+                                                                    10, 30, 0),
+                                                            child: Form(
+                                                              key: todate,
+                                                              child: Center(
+                                                                child:
+                                                                    DateTimeField(
 //                          dateOnly: true,
-                                                                    format: langSave == 'en'
-                                                                        ? widget.dateFormat
-                                                                        : widget.dateFormatAR,
-                                                                    validator: (val) {
-                                                                      if (val != null) {
-                                                                        return null;
-                                                                      } else {
-                                                                        return AppLocalizations()
-                                                                            .lbDateE;
-                                                                      }
-                                                                    },
-                                                                    decoration: InputDecoration(
-                                                                      labelText:
-                                                                      AppLocalizations()
-                                                                          .lbTodate,
-                                                                    ),
-                                                                    //   initialValue: DateTime.now(), //Add this in your Code.
-                                                                    // initialDate: DateTime(2017),
-                                                                    onSaved: (value) {
-
-                                                                      debugPrint(
-                                                                          value.toString());
-                                                                      dateT = value
-                                                                          .toString()
-                                                                          .substring(0, 10);
-                                                                    },
-                                                                    onShowPicker: (context,
-                                                                        currentValue) {
-                                                                      return showDatePicker(
-                                                                          context: context,
-                                                                          initialDate:
-                                                                          currentValue ??
-                                                                              DateTime
-                                                                                  .now(),
-                                                                          firstDate:
-                                                                          DateTime(1999),
-                                                                          lastDate:
-                                                                          DateTime(2100));
-                                                                    },
+                                                                  format: langSave ==
+                                                                          'en'
+                                                                      ? widget
+                                                                          .dateFormat
+                                                                      : widget
+                                                                          .dateFormatAR,
+                                                                  validator:
+                                                                      (val) {
+                                                                    if (val !=
+                                                                        null) {
+                                                                      return null;
+                                                                    } else {
+                                                                      return AppLocalizations()
+                                                                          .lbDateE;
+                                                                    }
+                                                                  },
+                                                                  decoration:
+                                                                      InputDecoration(
+                                                                    labelText:
+                                                                        AppLocalizations()
+                                                                            .lbTodate,
                                                                   ),
+                                                                  //   initialValue: DateTime.now(), //Add this in your Code.
+                                                                  // initialDate: DateTime(2017),
+                                                                  onSaved:
+                                                                      (value) {
+                                                                    debugPrint(value
+                                                                        .toString());
+                                                                    dateT = value
+                                                                        .toString()
+                                                                        .substring(
+                                                                            0,
+                                                                            10);
+                                                                  },
+                                                                  onShowPicker:
+                                                                      (context,
+                                                                          currentValue) {
+                                                                    return showDatePicker(
+                                                                        context:
+                                                                            context,
+                                                                        initialDate: currentValue ??
+                                                                            DateTime
+                                                                                .now(),
+                                                                        firstDate:
+                                                                            DateTime(
+                                                                                1999),
+                                                                        lastDate:
+                                                                            DateTime(2100));
+                                                                  },
                                                                 ),
-                                                              ))
-
-                                                        ],)
-
-                                                        ,
-                                                      ),
-                                                      GestureDetector(
-                                                        child: Padding(
-                                                          padding: EdgeInsets.fromLTRB(0, 50, 0, 50),child:
-                                                        Center(child: Container(child: Padding(padding:EdgeInsets.fromLTRB(30,10,30,10)
-                                                            ,child:Text(AppLocalizations().lbSend)),decoration:  BoxDecoration(
-                                                          borderRadius:
-                                                          BorderRadius
-                                                              .circular(
-                                                              15.0),
-                                                          color: const Color(
-                                                              0xbfc8c6c6),
-                                                          border: Border.all(
-                                                              width:
-                                                              2.0,
-                                                              color: const Color(
-                                                                  0xccf3f3f3)),
-                                                          boxShadow: [
-                                                            BoxShadow(
-                                                              color: const Color(
-                                                                  0x21000000),
-                                                              offset:
-                                                              Offset(
-                                                                  0,
-                                                                  3),
-                                                              blurRadius:
-                                                              6,
-                                                            ),
-                                                          ],
-                                                        )),),),onTap: (){
-
-                                                        if (monVal == true) {
-                                                          if (todate.currentState
-                                                              .validate()) {
-                                                            //  fromdate.currentState.save();
-                                                            todate.currentState
-                                                                .save();
-                                                            Center(
-                                                                child: Column(
-                                                                  mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                                  children: [
-                                                                    Text(
-                                                                        AppLocalizations()
-                                                                            .lbLoad,
-                                                                        style: Theme.of(
-                                                                            context)
-                                                                            .textTheme
-                                                                            .subtitle),
-                                                                    Padding(
-                                                                      padding:
-                                                                      EdgeInsets.only(
-                                                                          top: 5),
-                                                                    ),
-                                                                    CircularProgressIndicator(
-                                                                      valueColor:
-                                                                      new AlwaysStoppedAnimation<
-                                                                          Color>(
-                                                                          Colors
-                                                                              .white),
-                                                                    )
-                                                                  ],
-                                                                ));
-                                                            //_getRequests();
-
-                                                              context.bloc<ExpBloc>().add(ExpensesCategoryReportEvent
-                                                                (int.parse(widget.mainId),"",dateT));
-
-
-
-
-
-                                                          } else {}
-                                                        }
-                                                        else {
-                                                          if (fromdate.currentState
-                                                              .validate() ||
-                                                              todate.currentState
-                                                                  .validate()) {
-                                                            fromdate.currentState
-                                                                .save();
-                                                            todate.currentState
-                                                                .save();
-                                                            Center(
-                                                                child: Column(
-                                                                  mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                                  children: [
-                                                                    Text(
-                                                                        AppLocalizations()
-                                                                            .lbLoad,
-                                                                        style: Theme.of(
-                                                                            context)
-                                                                            .textTheme
-                                                                            .subtitle),
-                                                                    Padding(
-                                                                      padding:
-                                                                      EdgeInsets.only(
-                                                                          top: 5),
-                                                                    ),
-                                                                  ],
-                                                                ));
-                                                            // _getRequests();
-
-                                                              context.bloc<ExpBloc>().add(ExpensesCategoryReportEvent(int.parse(widget.mainId),dateF,dateT));
-
-
-
-                                                          } else {}
-                                                        }},)
-
-                                                    ],
+                                                              ),
+                                                            ))
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
-                                            )
+                                                  GestureDetector(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              0, 50, 0, 50),
+                                                      child: Center(
+                                                        child: Container(
+                                                            child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            30,
+                                                                            10,
+                                                                            30,
+                                                                            10),
+                                                                child: Text(
+                                                                    AppLocalizations()
+                                                                        .lbSend)),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          15.0),
+                                                              color: const Color(
+                                                                  0xbfc8c6c6),
+                                                              border: Border.all(
+                                                                  width: 2.0,
+                                                                  color: const Color(
+                                                                      0xccf3f3f3)),
+                                                              boxShadow: [
+                                                                BoxShadow(
+                                                                  color: const Color(
+                                                                      0x21000000),
+                                                                  offset:
+                                                                      Offset(
+                                                                          0, 3),
+                                                                  blurRadius: 6,
+                                                                ),
+                                                              ],
+                                                            )),
+                                                      ),
+                                                    ),
+                                                    onTap: () {
+                                                      if (monVal == true) {
+                                                        if (todate.currentState
+                                                            .validate()) {
+                                                          //  fromdate.currentState.save();
+                                                          todate.currentState
+                                                              .save();
+                                                          Center(
+                                                              child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Text(
+                                                                  AppLocalizations()
+                                                                      .lbLoad,
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .subtitle),
+                                                              Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        top: 5),
+                                                              ),
+                                                              CircularProgressIndicator(
+                                                                valueColor:
+                                                                    new AlwaysStoppedAnimation<
+                                                                            Color>(
+                                                                        Colors
+                                                                            .white),
+                                                              )
+                                                            ],
+                                                          ));
+                                                          //_getRequests();
 
-                                            /* GridView.count(
+                                                          context
+                                                              .bloc<ExpBloc>()
+                                                              .add(ExpensesCategoryReportEvent(
+                                                                  int.parse(widget
+                                                                      .mainId),
+                                                                  "",
+                                                                  dateT));
+                                                        } else {}
+                                                      } else {
+                                                        if (fromdate
+                                                                .currentState
+                                                                .validate() ||
+                                                            todate.currentState
+                                                                .validate()) {
+                                                          fromdate.currentState
+                                                              .save();
+                                                          todate.currentState
+                                                              .save();
+                                                          Center(
+                                                              child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Text(
+                                                                  AppLocalizations()
+                                                                      .lbLoad,
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .subtitle),
+                                                              Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        top: 5),
+                                                              ),
+                                                            ],
+                                                          ));
+                                                          // _getRequests();
+
+                                                          context
+                                                              .bloc<ExpBloc>()
+                                                              .add(ExpensesCategoryReportEvent(
+                                                                  int.parse(widget
+                                                                      .mainId),
+                                                                  dateF,
+                                                                  dateT));
+                                                        } else {}
+                                                      }
+                                                    },
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        )
+
+                                        /* GridView.count(
                     physics: ScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
@@ -1138,8 +1150,8 @@ class _reportMainCate extends State<reportMainCate>
                           (index) => ItemCardNote(model.notes[index]),
                     ),
                   )*/
-                                          ],
-                                        ))
+                                      ],
+                                    ))
                                   ],
                                 ),
                               ),
@@ -1154,7 +1166,8 @@ class _reportMainCate extends State<reportMainCate>
                                   child: Stack(
                                     children: <Widget>[
                                       Pinned.fromSize(
-                                        bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
+                                        bounds:
+                                            Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
                                         size: Size(50.8, 50.8),
                                         pinLeft: true,
                                         pinRight: true,
@@ -1172,10 +1185,12 @@ class _reportMainCate extends State<reportMainCate>
                                               pinBottom: true,
                                               child: Container(
                                                 decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.all(
-                                                      Radius.elliptical(
-                                                          9999.0, 9999.0)),
-                                                  color: const Color(0xffffd64d),
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.elliptical(
+                                                              9999.0, 9999.0)),
+                                                  color:
+                                                      const Color(0xffffd64d),
                                                 ),
                                               ),
                                             ),
@@ -1183,14 +1198,15 @@ class _reportMainCate extends State<reportMainCate>
                                         ),
                                       ),
                                       Pinned.fromSize(
-                                        bounds: Rect.fromLTWH(8.6, 9.8, 33.3, 28.3),
+                                        bounds:
+                                            Rect.fromLTWH(8.6, 9.8, 33.3, 28.3),
                                         size: Size(50.8, 50.8),
                                         pinLeft: true,
                                         pinRight: true,
                                         fixedHeight: true,
                                         child:
-                                        // Adobe XD layer: 'ic_home_24px' (shape)
-                                        SvgPicture.string(
+                                            // Adobe XD layer: 'ic_home_24px' (shape)
+                                            SvgPicture.string(
                                           _svg_jtcmlr,
                                           allowDrawingOutsideViewBox: true,
                                           fit: BoxFit.fill,
@@ -1204,7 +1220,8 @@ class _reportMainCate extends State<reportMainCate>
                                 decoration: BoxDecoration(
                                   color: const Color(0x5effd64d),
                                   border: Border.all(
-                                      width: 1.0, color: const Color(0x5ef3f3f3)),
+                                      width: 1.0,
+                                      color: const Color(0x5ef3f3f3)),
                                   boxShadow: [
                                     BoxShadow(
                                       color: const Color(0x0f000000),
@@ -1245,16 +1262,17 @@ class _reportMainCate extends State<reportMainCate>
                 ),
               ),
               height: MediaQuery.of(context).size.height,
-            )],);
+            )
+          ],
+        );
 
         //context.bloc<ExpSubBloc>().add(ExpenEventSub(id, '1'));
 
       } else if (state is Loading) {
         print('progress');
 
-
-          return    
-              Stack(children:<Widget>[
+        return Stack(
+          children: <Widget>[
             Container(
               child: Scaffold(
                 body: Container(
@@ -1279,329 +1297,300 @@ class _reportMainCate extends State<reportMainCate>
                                                       10, 50, 10, 10),
                                                   child: Container(
                                                     width:
-                                                    MediaQuery.of(context)
-                                                        .size
-                                                        .width,
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
                                                     child: Padding(
                                                       padding:
-                                                      EdgeInsets.fromLTRB(
-                                                          10, 10, 10, 10),
-                                                      child: widget.pageNum == '1'
-                                                          ? Stack(
-                                                        children: <
-                                                            Widget>[
-                                                          Directionality(
-                                                              textDirection: langSave ==
-                                                                  'ar'
-                                                                  ? TextDirection
-                                                                  .ltr
-                                                                  : TextDirection
-                                                                  .ltr,
-                                                              child:
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width,
-                                                                child:
-                                                                Row(
+                                                          EdgeInsets.fromLTRB(
+                                                              10, 10, 10, 10),
+                                                      child:
+                                                          widget.pageNum == '1'
+                                                              ? Stack(
                                                                   children: <
                                                                       Widget>[
-                                                                    Align(
-                                                                      child: GestureDetector(
-                                                                          child: SvgPicture.string(
-                                                                            _svg_6oa7ke,
-                                                                            allowDrawingOutsideViewBox: true,
-                                                                          ),
-                                                                          onTap: () {
-                                                                            Navigator.of(context).pop();
-                                                                          }),
-                                                                      alignment:
-                                                                      Alignment.topRight,
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsets.fromLTRB(
-                                                                          15,
-                                                                          0,
-                                                                          10,
-                                                                          0),
-                                                                      child:
-                                                                      Center(
-                                                                        child: Column(
-                                                                          children: <Widget>[
-                                                                            Text(
-                                                                              'Honey Bee',
-                                                                              style: TextStyle(
-                                                                                fontFamily: 'Pristina',
-                                                                                fontSize: 32,
-                                                                                color: const Color(0xff0a0606),
-                                                                                shadows: [
-                                                                                  Shadow(
-                                                                                    color: const Color(0x29000000),
-                                                                                    offset: Offset(3, 10),
-                                                                                    blurRadius: 6,
-                                                                                  )
-                                                                                ],
+                                                                    Directionality(
+                                                                        textDirection: langSave ==
+                                                                                'ar'
+                                                                            ? TextDirection
+                                                                                .ltr
+                                                                            : TextDirection
+                                                                                .ltr,
+                                                                        child:
+                                                                            Container(
+                                                                          width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width,
+                                                                          child:
+                                                                              Row(
+                                                                            children: <Widget>[
+                                                                              Align(
+                                                                                child: GestureDetector(
+                                                                                    child: SvgPicture.string(
+                                                                                      _svg_6oa7ke,
+                                                                                      allowDrawingOutsideViewBox: true,
+                                                                                    ),
+                                                                                    onTap: () {
+                                                                                      Navigator.of(context).pop();
+                                                                                    }),
+                                                                                alignment: Alignment.topRight,
                                                                               ),
-                                                                              textAlign: TextAlign.center,
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
-                                                                              child: Text(
-                                                                                AppLocalizations().lbExM,
+                                                                              Padding(
+                                                                                padding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                                                                                child: Center(
+                                                                                  child: Column(
+                                                                                    children: <Widget>[
+                                                                                      Text(
+                                                                                        'Honey Bee',
+                                                                                        style: TextStyle(
+                                                                                          fontFamily: 'Pristina',
+                                                                                          fontSize: 32,
+                                                                                          color: const Color(0xff0a0606),
+                                                                                          shadows: [
+                                                                                            Shadow(
+                                                                                              color: const Color(0x29000000),
+                                                                                              offset: Offset(3, 10),
+                                                                                              blurRadius: 6,
+                                                                                            )
+                                                                                          ],
+                                                                                        ),
+                                                                                        textAlign: TextAlign.center,
+                                                                                      ),
+                                                                                      Padding(
+                                                                                        padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
+                                                                                        child: Text(
+                                                                                          AppLocalizations().lbExM,
+                                                                                          style: TextStyle(
+                                                                                            fontSize: 18,
+                                                                                            color: Colors.grey,
+                                                                                          ),
+                                                                                          textAlign: TextAlign.center,
+                                                                                        ),
+                                                                                      )
+                                                                                    ],
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        )),
+                                                                    Directionality(
+                                                                        textDirection: langSave ==
+                                                                                'ar'
+                                                                            ? TextDirection
+                                                                                .rtl
+                                                                            : TextDirection
+                                                                                .rtl,
+                                                                        child:
+                                                                            Container(
+                                                                          width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width,
+                                                                          child:
+                                                                              Row(
+                                                                            children: <Widget>[
+                                                                              SizedBox(
+                                                                                width: 63.0,
+                                                                                height: 63.0,
+                                                                                child: Stack(
+                                                                                  children: <Widget>[
+                                                                                    Pinned.fromSize(
+                                                                                      bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
+                                                                                      size: Size(62.8, 62.8),
+                                                                                      pinLeft: true,
+                                                                                      pinRight: true,
+                                                                                      pinTop: true,
+                                                                                      pinBottom: true,
+                                                                                      child: Container(
+                                                                                        decoration: BoxDecoration(
+                                                                                          borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                                                                                          border: Border.all(width: 1.0, color: const Color(0xf2386694)),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Pinned.fromSize(
+                                                                                      bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
+                                                                                      size: Size(62.8, 62.8),
+                                                                                      pinTop: true,
+                                                                                      pinBottom: true,
+                                                                                      fixedWidth: true,
+                                                                                      child:
+                                                                                          // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                                                          SvgPicture.string(
+                                                                                        _svg_pew0t9,
+                                                                                        allowDrawingOutsideViewBox: true,
+                                                                                        fit: BoxFit.fill,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              Text(
+                                                                                AppLocalizations().lbEx,
                                                                                 style: TextStyle(
-                                                                                  fontSize: 18,
-                                                                                  color: Colors.grey,
+                                                                                  fontFamily: 'Times New Roman',
+                                                                                  fontSize: 20,
+                                                                                  color: const Color(0xff0a0606),
+                                                                                  shadows: [
+                                                                                    Shadow(
+                                                                                      color: const Color(0x29000000),
+                                                                                      offset: Offset(0, 10),
+                                                                                      blurRadius: 6,
+                                                                                    )
+                                                                                  ],
                                                                                 ),
                                                                                 textAlign: TextAlign.center,
                                                                               ),
-                                                                            )
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
+                                                                            ],
+                                                                          ),
+                                                                        ))
                                                                   ],
-                                                                ),
-                                                              )),
-                                                          Directionality(
-                                                              textDirection: langSave ==
-                                                                  'ar'
-                                                                  ? TextDirection
-                                                                  .rtl
-                                                                  : TextDirection
-                                                                  .rtl,
-                                                              child:
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width,
-                                                                child:
-                                                                Row(
+                                                                )
+                                                              : Stack(
                                                                   children: <
                                                                       Widget>[
-                                                                    SizedBox(
-                                                                      width:
-                                                                      63.0,
-                                                                      height:
-                                                                      63.0,
-                                                                      child:
-                                                                      Stack(
-                                                                        children: <Widget>[
-                                                                          Pinned.fromSize(
-                                                                            bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
-                                                                            size: Size(62.8, 62.8),
-                                                                            pinLeft: true,
-                                                                            pinRight: true,
-                                                                            pinTop: true,
-                                                                            pinBottom: true,
-                                                                            child: Container(
-                                                                              decoration: BoxDecoration(
-                                                                                borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                                                                                border: Border.all(width: 1.0, color: const Color(0xf2386694)),
+                                                                    Directionality(
+                                                                        textDirection: langSave ==
+                                                                                'ar'
+                                                                            ? TextDirection
+                                                                                .ltr
+                                                                            : TextDirection
+                                                                                .ltr,
+                                                                        child:
+                                                                            Container(
+                                                                          width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width,
+                                                                          child:
+                                                                              Row(
+                                                                            children: <Widget>[
+                                                                              Align(
+                                                                                child: GestureDetector(
+                                                                                    child: SvgPicture.string(
+                                                                                      _svg_6oa7ke,
+                                                                                      allowDrawingOutsideViewBox: true,
+                                                                                    ),
+                                                                                    onTap: () {
+                                                                                      Navigator.of(context).pop();
+                                                                                    }),
+                                                                                alignment: Alignment.topRight,
                                                                               ),
-                                                                            ),
-                                                                          ),
-                                                                          Pinned.fromSize(
-                                                                            bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
-                                                                            size: Size(62.8, 62.8),
-                                                                            pinTop: true,
-                                                                            pinBottom: true,
-                                                                            fixedWidth: true,
-                                                                            child:
-                                                                            // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                                                                            SvgPicture.string(
-                                                                              _svg_pew0t9,
-                                                                              allowDrawingOutsideViewBox: true,
-                                                                              fit: BoxFit.fill,
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      AppLocalizations().lbEx,
-                                                                      style:
-                                                                      TextStyle(
-                                                                        fontFamily: 'Times New Roman',
-                                                                        fontSize: 20,
-                                                                        color: const Color(0xff0a0606),
-                                                                        shadows: [
-                                                                          Shadow(
-                                                                            color: const Color(0x29000000),
-                                                                            offset: Offset(0, 10),
-                                                                            blurRadius: 6,
-                                                                          )
-                                                                        ],
-                                                                      ),
-                                                                      textAlign:
-                                                                      TextAlign.center,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ))
-                                                        ],
-                                                      )
-                                                          : Stack(
-                                                        children: <
-                                                            Widget>[
-                                                          Directionality(
-                                                              textDirection: langSave ==
-                                                                  'ar'
-                                                                  ? TextDirection
-                                                                  .ltr
-                                                                  : TextDirection
-                                                                  .ltr,
-                                                              child:
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width,
-                                                                child:
-                                                                Row(
-                                                                  children: <
-                                                                      Widget>[
-                                                                    Align(
-                                                                      child: GestureDetector(
-                                                                          child: SvgPicture.string(
-                                                                            _svg_6oa7ke,
-                                                                            allowDrawingOutsideViewBox: true,
-                                                                          ),
-                                                                          onTap: () {
-                                                                            Navigator.of(context).pop();
-                                                                          }),
-                                                                      alignment:
-                                                                      Alignment.topRight,
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsets.fromLTRB(
-                                                                          15,
-                                                                          0,
-                                                                          10,
-                                                                          0),
-                                                                      child:
-                                                                      Center(
-                                                                        child: Column(
-                                                                          children: <Widget>[
-                                                                            Text(
-                                                                              'Honey Bee',
-                                                                              style: TextStyle(
-                                                                                fontFamily: 'Pristina',
-                                                                                fontSize: 32,
-                                                                                color: const Color(0xff0a0606),
-                                                                                shadows: [
-                                                                                  Shadow(
-                                                                                    color: const Color(0x29000000),
-                                                                                    offset: Offset(3, 10),
-                                                                                    blurRadius: 6,
-                                                                                  )
-                                                                                ],
+                                                                              Padding(
+                                                                                padding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                                                                                child: Center(
+                                                                                  child: Column(
+                                                                                    children: <Widget>[
+                                                                                      Text(
+                                                                                        'Honey Bee',
+                                                                                        style: TextStyle(
+                                                                                          fontFamily: 'Pristina',
+                                                                                          fontSize: 32,
+                                                                                          color: const Color(0xff0a0606),
+                                                                                          shadows: [
+                                                                                            Shadow(
+                                                                                              color: const Color(0x29000000),
+                                                                                              offset: Offset(3, 10),
+                                                                                              blurRadius: 6,
+                                                                                            )
+                                                                                          ],
+                                                                                        ),
+                                                                                        textAlign: TextAlign.center,
+                                                                                      ),
+                                                                                      Padding(
+                                                                                        padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
+                                                                                        child: Text(
+                                                                                          AppLocalizations().lbReM,
+                                                                                          style: TextStyle(
+                                                                                            fontSize: 18,
+                                                                                            color: Colors.grey,
+                                                                                          ),
+                                                                                          textAlign: TextAlign.center,
+                                                                                        ),
+                                                                                      )
+                                                                                    ],
+                                                                                  ),
+                                                                                ),
                                                                               ),
-                                                                              textAlign: TextAlign.center,
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
-                                                                              child: Text(
-                                                                                AppLocalizations().lbReM,
+                                                                            ],
+                                                                          ),
+                                                                        )),
+                                                                    Directionality(
+                                                                        textDirection: langSave ==
+                                                                                'ar'
+                                                                            ? TextDirection
+                                                                                .rtl
+                                                                            : TextDirection
+                                                                                .rtl,
+                                                                        child:
+                                                                            Container(
+                                                                          width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width,
+                                                                          child:
+                                                                              Row(
+                                                                            children: <Widget>[
+                                                                              SizedBox(
+                                                                                width: 63.0,
+                                                                                height: 63.0,
+                                                                                child: Stack(
+                                                                                  children: <Widget>[
+                                                                                    Pinned.fromSize(
+                                                                                      bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
+                                                                                      size: Size(62.8, 62.8),
+                                                                                      pinLeft: true,
+                                                                                      pinRight: true,
+                                                                                      pinTop: true,
+                                                                                      pinBottom: true,
+                                                                                      child: Container(
+                                                                                        decoration: BoxDecoration(
+                                                                                          borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                                                                                          border: Border.all(width: 1.0, color: const Color(0xf2386694)),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Pinned.fromSize(
+                                                                                      bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
+                                                                                      size: Size(62.8, 62.8),
+                                                                                      pinTop: true,
+                                                                                      pinBottom: true,
+                                                                                      fixedWidth: true,
+                                                                                      child:
+                                                                                          // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                                                          SvgPicture.string(
+                                                                                        _svg_pew0t9,
+                                                                                        allowDrawingOutsideViewBox: true,
+                                                                                        fit: BoxFit.fill,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              Text(
+                                                                                AppLocalizations().lbRev,
                                                                                 style: TextStyle(
-                                                                                  fontSize: 18,
-                                                                                  color: Colors.grey,
+                                                                                  fontFamily: 'Times New Roman',
+                                                                                  fontSize: 20,
+                                                                                  color: const Color(0xff0a0606),
+                                                                                  shadows: [
+                                                                                    Shadow(
+                                                                                      color: const Color(0x29000000),
+                                                                                      offset: Offset(0, 10),
+                                                                                      blurRadius: 6,
+                                                                                    )
+                                                                                  ],
                                                                                 ),
                                                                                 textAlign: TextAlign.center,
                                                                               ),
-                                                                            )
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
+                                                                            ],
+                                                                          ),
+                                                                        ))
                                                                   ],
                                                                 ),
-                                                              )),
-                                                          Directionality(
-                                                              textDirection: langSave ==
-                                                                  'ar'
-                                                                  ? TextDirection
-                                                                  .rtl
-                                                                  : TextDirection
-                                                                  .rtl,
-                                                              child:
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width,
-                                                                child:
-                                                                Row(
-                                                                  children: <
-                                                                      Widget>[
-                                                                    SizedBox(
-                                                                      width:
-                                                                      63.0,
-                                                                      height:
-                                                                      63.0,
-                                                                      child:
-                                                                      Stack(
-                                                                        children: <Widget>[
-                                                                          Pinned.fromSize(
-                                                                            bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
-                                                                            size: Size(62.8, 62.8),
-                                                                            pinLeft: true,
-                                                                            pinRight: true,
-                                                                            pinTop: true,
-                                                                            pinBottom: true,
-                                                                            child: Container(
-                                                                              decoration: BoxDecoration(
-                                                                                borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                                                                                border: Border.all(width: 1.0, color: const Color(0xf2386694)),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                          Pinned.fromSize(
-                                                                            bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
-                                                                            size: Size(62.8, 62.8),
-                                                                            pinTop: true,
-                                                                            pinBottom: true,
-                                                                            fixedWidth: true,
-                                                                            child:
-                                                                            // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                                                                            SvgPicture.string(
-                                                                              _svg_pew0t9,
-                                                                              allowDrawingOutsideViewBox: true,
-                                                                              fit: BoxFit.fill,
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      AppLocalizations().lbRev,
-                                                                      style:
-                                                                      TextStyle(
-                                                                        fontFamily: 'Times New Roman',
-                                                                        fontSize: 20,
-                                                                        color: const Color(0xff0a0606),
-                                                                        shadows: [
-                                                                          Shadow(
-                                                                            color: const Color(0x29000000),
-                                                                            offset: Offset(0, 10),
-                                                                            blurRadius: 6,
-                                                                          )
-                                                                        ],
-                                                                      ),
-                                                                      textAlign:
-                                                                      TextAlign.center,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ))
-                                                        ],
-                                                      ),
                                                     ),
                                                     decoration: BoxDecoration(
                                                       borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.0),
+                                                          BorderRadius.circular(
+                                                              15.0),
                                                       color: const Color(
                                                           0x09010101),
                                                       boxShadow: [
@@ -1625,11 +1614,12 @@ class _reportMainCate extends State<reportMainCate>
                                       child: Column(
                                         children: <Widget>[
                                           Padding(
-                                            padding:
-                                            EdgeInsets.fromLTRB(0, 20, 0, 10),
+                                            padding: EdgeInsets.fromLTRB(
+                                                0, 20, 0, 10),
                                             child: Container(
-                                              width:
-                                              MediaQuery.of(context).size.width,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
                                               child: Padding(
                                                 padding: EdgeInsets.fromLTRB(
                                                     10, 10, 10, 10),
@@ -1639,58 +1629,68 @@ class _reportMainCate extends State<reportMainCate>
                                                       widget.mainName,
                                                       style: TextStyle(
                                                         fontFamily:
-                                                        'Times New Roman',
+                                                            'Times New Roman',
                                                         fontSize: 22,
-                                                        color:
-                                                        const Color(0x7d707070),
+                                                        color: const Color(
+                                                            0x7d707070),
                                                       ),
-                                                      textAlign: TextAlign.center,
+                                                      textAlign:
+                                                          TextAlign.center,
                                                     ),
                                                     new Spacer(),
                                                     Padding(
                                                       child: Container(
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.elliptical(
-                                                                  9999.0,
-                                                                  9999.0)),
+                                                              BorderRadius.all(
+                                                                  Radius.elliptical(
+                                                                      9999.0,
+                                                                      9999.0)),
                                                           color: const Color(
                                                               0x4dffd64d),
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                          EdgeInsets.all(10),
+                                                              EdgeInsets.all(
+                                                                  10),
                                                           child: Stack(
                                                             children: <Widget>[
                                                               SvgPicture.string(
                                                                 _svg_a39r47,
                                                                 allowDrawingOutsideViewBox:
-                                                                true,
-                                                                fit: BoxFit.fill,
+                                                                    true,
+                                                                fit:
+                                                                    BoxFit.fill,
                                                                 height: 45,
                                                               ),
                                                               SvgPicture.string(
                                                                 _svg_voj5n1,
                                                                 allowDrawingOutsideViewBox:
-                                                                true,
-                                                                fit: BoxFit.fill,
+                                                                    true,
+                                                                fit:
+                                                                    BoxFit.fill,
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsets
-                                                                    .fromLTRB(2, 18,
-                                                                    2, 2),
-                                                                child: Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            2,
+                                                                            18,
+                                                                            2,
+                                                                            2),
+                                                                child:
+                                                                    Container(
                                                                   decoration:
-                                                                  BoxDecoration(
+                                                                      BoxDecoration(
                                                                     borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                        3.0),
+                                                                        BorderRadius.circular(
+                                                                            3.0),
                                                                     color: const Color(
                                                                         0x4dffffff),
                                                                     border: Border.all(
-                                                                        width: 1.0,
+                                                                        width:
+                                                                            1.0,
                                                                         color: const Color(
                                                                             0x4dffd64d)),
                                                                   ),
@@ -1698,20 +1698,25 @@ class _reportMainCate extends State<reportMainCate>
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsets
-                                                                    .fromLTRB(2, 23,
-                                                                    2, 2),
-                                                                child: Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            2,
+                                                                            23,
+                                                                            2,
+                                                                            2),
+                                                                child:
+                                                                    Container(
                                                                   decoration:
-                                                                  BoxDecoration(
+                                                                      BoxDecoration(
                                                                     borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                        3.0),
+                                                                        BorderRadius.circular(
+                                                                            3.0),
                                                                     color: const Color(
                                                                         0x4dffffff),
                                                                     border: Border.all(
-                                                                        width: 1.0,
+                                                                        width:
+                                                                            1.0,
                                                                         color: const Color(
                                                                             0x4dffd64d)),
                                                                   ),
@@ -1719,20 +1724,25 @@ class _reportMainCate extends State<reportMainCate>
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsets
-                                                                    .fromLTRB(2, 28,
-                                                                    2, 2),
-                                                                child: Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            2,
+                                                                            28,
+                                                                            2,
+                                                                            2),
+                                                                child:
+                                                                    Container(
                                                                   decoration:
-                                                                  BoxDecoration(
+                                                                      BoxDecoration(
                                                                     borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                        3.0),
+                                                                        BorderRadius.circular(
+                                                                            3.0),
                                                                     color: const Color(
                                                                         0x4dffd64d),
                                                                     border: Border.all(
-                                                                        width: 1.0,
+                                                                        width:
+                                                                            1.0,
                                                                         color: const Color(
                                                                             0x4dffd64d)),
                                                                   ),
@@ -1740,20 +1750,25 @@ class _reportMainCate extends State<reportMainCate>
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsets
-                                                                    .fromLTRB(2, 33,
-                                                                    2, 2),
-                                                                child: Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            2,
+                                                                            33,
+                                                                            2,
+                                                                            2),
+                                                                child:
+                                                                    Container(
                                                                   decoration:
-                                                                  BoxDecoration(
+                                                                      BoxDecoration(
                                                                     borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                        3.0),
+                                                                        BorderRadius.circular(
+                                                                            3.0),
                                                                     color: const Color(
                                                                         0x4dffd64d),
                                                                     border: Border.all(
-                                                                        width: 1.0,
+                                                                        width:
+                                                                            1.0,
                                                                         color: const Color(
                                                                             0x4dffd64d)),
                                                                   ),
@@ -1764,8 +1779,9 @@ class _reportMainCate extends State<reportMainCate>
                                                           ),
                                                         ),
                                                       ),
-                                                      padding: EdgeInsets.fromLTRB(
-                                                          5, 0, 5, 0),
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              5, 0, 5, 0),
                                                     )
                                                   ],
                                                 ),
@@ -1774,10 +1790,12 @@ class _reportMainCate extends State<reportMainCate>
                                                 color: const Color(0x4df3f3f3),
                                                 border: Border.all(
                                                     width: 1.0,
-                                                    color: const Color(0x4df3f3f3)),
+                                                    color: const Color(
+                                                        0x4df3f3f3)),
                                                 boxShadow: [
                                                   BoxShadow(
-                                                    color: const Color(0x0c000000),
+                                                    color:
+                                                        const Color(0x0c000000),
                                                     offset: Offset(0, 3),
                                                     blurRadius: 6,
                                                   ),
@@ -1790,381 +1808,415 @@ class _reportMainCate extends State<reportMainCate>
                                     ),
                                     Container(
                                         child: Wrap(
+                                      children: <Widget>[
+                                        Column(
                                           children: <Widget>[
-                                            Column(
-                                              children: <Widget>[
-                                                Container(
-                                                  child: Column(
+                                            Container(
+                                              child: Column(
+                                                children: <Widget>[
+                                                  Row(
                                                     children: <Widget>[
-                                                      Row(
-                                                        children: <Widget>[
-                                                          Checkbox(
-                                                            value: monVal,
-                                                            onChanged: (bool value) {
-                                                              setState(() {
-                                                                monVal = value;
-                                                              });
-                                                            },
-                                                          ),
-                                                          Padding(
-                                                            padding:
+                                                      Checkbox(
+                                                        value: monVal,
+                                                        onChanged:
+                                                            (bool value) {
+                                                          setState(() {
+                                                            monVal = value;
+                                                          });
+                                                        },
+                                                      ),
+                                                      Padding(
+                                                        padding:
                                                             EdgeInsets.fromLTRB(
                                                                 10, 0, 10, 0),
-                                                            child: Text(
-                                                                AppLocalizations()
-                                                                    .lbViewD),
-                                                          ),
-                                                        ],
+                                                        child: Text(
+                                                            AppLocalizations()
+                                                                .lbViewD),
                                                       ),
-                                                      monVal == true
-                                                          ? Visibility(
-                                                        child: Padding(
-                                                          padding:
-                                                          EdgeInsets.fromLTRB(
-                                                              5, 0, 5, 0),
-                                                          child: Column(
-                                                            children: <Widget>[
-                                                              Text(
-                                                                  AppLocalizations().lbFrom),
-                                                              Form(
-                                                                key: fromdate,
-                                                                child: Center(
-                                                                  child:
-                                                                  DateTimeField(
+                                                    ],
+                                                  ),
+                                                  monVal == true
+                                                      ? Visibility(
+                                                          child: Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(
+                                                                    5, 0, 5, 0),
+                                                            child: Column(
+                                                              children: <
+                                                                  Widget>[
+                                                                Text(AppLocalizations()
+                                                                    .lbFrom),
+                                                                Form(
+                                                                  key: fromdate,
+                                                                  child: Center(
+                                                                    child:
+                                                                        DateTimeField(
 //                          dateOnly: true,
 
-                                                                    format: langSave ==
-                                                                        'en'
-                                                                        ? widget.dateFormat
-                                                                        : widget.dateFormatAR,
-                                                                    validator:
-                                                                        (val) {
-                                                                      if (val !=
-                                                                          null) {
-                                                                        return null;
-                                                                      } else {
-                                                                        return AppLocalizations()
-                                                                            .lbDateE;
-                                                                      }
-                                                                    },
-                                                                    decoration: InputDecoration(
-                                                                        labelText:
+                                                                      format: langSave ==
+                                                                              'en'
+                                                                          ? widget
+                                                                              .dateFormat
+                                                                          : widget
+                                                                              .dateFormatAR,
+                                                                      validator:
+                                                                          (val) {
+                                                                        if (val !=
+                                                                            null) {
+                                                                          return null;
+                                                                        } else {
+                                                                          return AppLocalizations()
+                                                                              .lbDateE;
+                                                                        }
+                                                                      },
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                              labelText: AppLocalizations().lbFDate),
+                                                                      //   initialValue: DateTime.now(), //Add this in your Code.
+                                                                      // initialDate: DateTime(2017),
+                                                                      onSaved:
+                                                                          (value) {
+                                                                        dateF = value
+                                                                            .toString()
+                                                                            .substring(0,
+                                                                                10);
+                                                                        debugPrint(
+                                                                            value.toString());
+                                                                      },
+                                                                      onShowPicker:
+                                                                          (context,
+                                                                              currentValue) {
+                                                                        return showDatePicker(
+                                                                            context:
+                                                                                context,
+                                                                            initialDate:
+                                                                                currentValue ?? DateTime.now(),
+                                                                            firstDate: DateTime(1999),
+                                                                            lastDate: DateTime(2100));
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          visible: false,
+                                                        )
+                                                      : Visibility(
+                                                          child: Column(
+                                                            children: <Widget>[
+                                                              Padding(
+                                                                  padding: EdgeInsets
+                                                                      .fromLTRB(
+                                                                          10,
+                                                                          10,
+                                                                          10,
+                                                                          0),
+                                                                  child: Row(
+                                                                    children: <
+                                                                        Widget>[
+                                                                      Text(
                                                                         AppLocalizations()
-                                                                            .lbFDate),
-                                                                    //   initialValue: DateTime.now(), //Add this in your Code.
-                                                                    // initialDate: DateTime(2017),
-                                                                    onSaved:
-                                                                        (value) {
-
-                                                                      dateF = value
-                                                                          .toString()
-                                                                          .substring(
-                                                                          0,
-                                                                          10);
-                                                                      debugPrint(value
-                                                                          .toString());
-                                                                    },
-                                                                    onShowPicker:
-                                                                        (context,
-                                                                        currentValue) {
-                                                                      return showDatePicker(
-                                                                          context:
-                                                                          context,
-                                                                          initialDate: currentValue ??
-                                                                              DateTime
-                                                                                  .now(),
-                                                                          firstDate:
-                                                                          DateTime(
-                                                                              1999),
-                                                                          lastDate:
-                                                                          DateTime(2100));
-                                                                    },
+                                                                            .lbFrom,
+                                                                        style: TextStyle(
+                                                                            fontWeight:
+                                                                                FontWeight.bold),
+                                                                      )
+                                                                    ],
+                                                                  )),
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            35,
+                                                                            0,
+                                                                            35,
+                                                                            0),
+                                                                child: Form(
+                                                                  key: fromdate,
+                                                                  child: Center(
+                                                                    child:
+                                                                        DateTimeField(
+//                          dateOnly: true,
+                                                                      format: langSave ==
+                                                                              'en'
+                                                                          ? widget
+                                                                              .dateFormat
+                                                                          : widget
+                                                                              .dateFormatAR,
+                                                                      validator:
+                                                                          (val) {
+                                                                        if (val !=
+                                                                            null) {
+                                                                          return null;
+                                                                        } else {
+                                                                          return AppLocalizations()
+                                                                              .lbDateE;
+                                                                        }
+                                                                      },
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                              labelText: AppLocalizations().lbFDate),
+                                                                      //   initialValue: DateTime.now(), //Add this in your Code.
+                                                                      // initialDate: DateTime(2017),
+                                                                      onSaved:
+                                                                          (value) {
+                                                                        dateF = value
+                                                                            .toString()
+                                                                            .substring(0,
+                                                                                10);
+                                                                        debugPrint(
+                                                                            value.toString());
+                                                                        print(
+                                                                            dateF);
+                                                                      },
+                                                                      onShowPicker:
+                                                                          (context,
+                                                                              currentValue) {
+                                                                        return showDatePicker(
+                                                                            context:
+                                                                                context,
+                                                                            initialDate:
+                                                                                currentValue ?? DateTime.now(),
+                                                                            firstDate: DateTime(1999),
+                                                                            lastDate: DateTime(2100));
+                                                                      },
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               )
                                                             ],
                                                           ),
+                                                          visible: true,
                                                         ),
-                                                        visible: false,
-                                                      )
-                                                          : Visibility(
-                                                        child: Column(
-                                                          children: <Widget>[
-                                                            Padding( padding:
-                                                            EdgeInsets.fromLTRB(
-                                                                10, 10, 10, 0),
-                                                                child:Row(
-                                                                  children: <Widget>[
-                                                                    Text(
-                                                                      AppLocalizations().lbFrom,
-                                                                      style: TextStyle(
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                                    )
-                                                                  ],
-                                                                ))
-                                                            ,
-                                                            Padding(
-                                                              padding: EdgeInsets
-                                                                  .fromLTRB(
-                                                                  35, 0, 35, 0),
-                                                              child: Form(
-                                                                key: fromdate,
-                                                                child: Center(
-                                                                  child:
-                                                                  DateTimeField(
-//                          dateOnly: true,
-                                                                    format: langSave ==
-                                                                        'en'
-                                                                        ? widget.dateFormat
-                                                                        : widget.dateFormatAR,
-                                                                    validator:
-                                                                        (val) {
-                                                                      if (val !=
-                                                                          null) {
-                                                                        return null;
-                                                                      } else {
-                                                                        return AppLocalizations()
-                                                                            .lbDateE;
-                                                                      }
-                                                                    },
-                                                                    decoration: InputDecoration(
-                                                                        labelText:
-                                                                        AppLocalizations()
-                                                                            .lbFDate),
-                                                                    //   initialValue: DateTime.now(), //Add this in your Code.
-                                                                    // initialDate: DateTime(2017),
-                                                                    onSaved:
-                                                                        (value) {
-
-                                                                      dateF = value
-                                                                          .toString()
-                                                                          .substring(
-                                                                          0,
-                                                                          10);
-                                                                      debugPrint(value
-                                                                          .toString());
-                                                                      print(dateF);
-
-                                                                    },
-                                                                    onShowPicker:
-                                                                        (context,
-                                                                        currentValue) {
-                                                                      return showDatePicker(
-                                                                          context:
-                                                                          context,
-                                                                          initialDate: currentValue ??
-                                                                              DateTime
-                                                                                  .now(),
-                                                                          firstDate:
-                                                                          DateTime(
-                                                                              1999),
-                                                                          lastDate:
-                                                                          DateTime(2100));
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                        visible: true,
-                                                      ),
-                                                      Padding(
-                                                        padding: EdgeInsets.fromLTRB(
-                                                            5, 10, 5, 0),
-                                                        child:
-                                                        Column(children: <Widget>[ Padding( padding:
+                                                  Padding(
+                                                    padding:
                                                         EdgeInsets.fromLTRB(
-                                                            10, 10, 10, 0),
-                                                            child:Row(
-                                                              children: <Widget>[
+                                                            5, 10, 5, 0),
+                                                    child: Column(
+                                                      children: <Widget>[
+                                                        Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(10,
+                                                                    10, 10, 0),
+                                                            child: Row(
+                                                              children: <
+                                                                  Widget>[
                                                                 Text(
-                                                                  AppLocalizations().lbTo,
+                                                                  AppLocalizations()
+                                                                      .lbTo,
                                                                   style: TextStyle(
                                                                       fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                                          FontWeight
+                                                                              .bold),
                                                                 )
                                                               ],
-                                                            ))
-                                                          ,
-
-                                                          Padding( padding:
-                                                          EdgeInsets.fromLTRB(
-                                                              30, 10, 30, 0),
-                                                              child:Form(
-                                                                key: todate,
-                                                                child: Center(
-                                                                  child: DateTimeField(
+                                                            )),
+                                                        Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(30,
+                                                                    10, 30, 0),
+                                                            child: Form(
+                                                              key: todate,
+                                                              child: Center(
+                                                                child:
+                                                                    DateTimeField(
 //                          dateOnly: true,
-                                                                    format: langSave == 'en'
-                                                                        ? widget.dateFormat
-                                                                        : widget.dateFormatAR,
-                                                                    validator: (val) {
-                                                                      if (val != null) {
-                                                                        return null;
-                                                                      } else {
-                                                                        return AppLocalizations()
-                                                                            .lbDateE;
-                                                                      }
-                                                                    },
-                                                                    decoration: InputDecoration(
-                                                                      labelText:
-                                                                      AppLocalizations()
-                                                                          .lbTodate,
-                                                                    ),
-                                                                    //   initialValue: DateTime.now(), //Add this in your Code.
-                                                                    // initialDate: DateTime(2017),
-                                                                    onSaved: (value) {
-
-                                                                      debugPrint(
-                                                                          value.toString());
-                                                                      dateT = value
-                                                                          .toString()
-                                                                          .substring(0, 10);
-                                                                    },
-                                                                    onShowPicker: (context,
-                                                                        currentValue) {
-                                                                      return showDatePicker(
-                                                                          context: context,
-                                                                          initialDate:
-                                                                          currentValue ??
-                                                                              DateTime
-                                                                                  .now(),
-                                                                          firstDate:
-                                                                          DateTime(1999),
-                                                                          lastDate:
-                                                                          DateTime(2100));
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                              ))
-
-                                                        ],)
-
-                                                        ,
-                                                      ),
-                                                      GestureDetector(
-                                                        child: Padding(
-                                                          padding: EdgeInsets.fromLTRB(0, 50, 0, 50),child:
-                                                        Center(child: Container(child: Padding(padding:EdgeInsets.fromLTRB(30,10,30,10)
-                                                            ,child:Text(AppLocalizations().lbSend)),decoration:  BoxDecoration(
-                                                          borderRadius:
-                                                          BorderRadius
-                                                              .circular(
-                                                              15.0),
-                                                          color: const Color(
-                                                              0xbfc8c6c6),
-                                                          border: Border.all(
-                                                              width:
-                                                              2.0,
-                                                              color: const Color(
-                                                                  0xccf3f3f3)),
-                                                          boxShadow: [
-                                                            BoxShadow(
-                                                              color: const Color(
-                                                                  0x21000000),
-                                                              offset:
-                                                              Offset(
-                                                                  0,
-                                                                  3),
-                                                              blurRadius:
-                                                              6,
-                                                            ),
-                                                          ],
-                                                        )),),),onTap: (){
-
-                                                        if (monVal == true) {
-                                                          if (todate.currentState
-                                                              .validate()) {
-                                                            //  fromdate.currentState.save();
-                                                            todate.currentState
-                                                                .save();
-                                                            Center(
-                                                                child: Column(
-                                                                  mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                                  children: [
-                                                                    Text(
+                                                                  format: langSave ==
+                                                                          'en'
+                                                                      ? widget
+                                                                          .dateFormat
+                                                                      : widget
+                                                                          .dateFormatAR,
+                                                                  validator:
+                                                                      (val) {
+                                                                    if (val !=
+                                                                        null) {
+                                                                      return null;
+                                                                    } else {
+                                                                      return AppLocalizations()
+                                                                          .lbDateE;
+                                                                    }
+                                                                  },
+                                                                  decoration:
+                                                                      InputDecoration(
+                                                                    labelText:
                                                                         AppLocalizations()
-                                                                            .lbLoad,
-                                                                        style: Theme.of(
-                                                                            context)
-                                                                            .textTheme
-                                                                            .subtitle),
-                                                                    Padding(
-                                                                      padding:
-                                                                      EdgeInsets.only(
-                                                                          top: 5),
-                                                                    ),
-                                                                    CircularProgressIndicator(
-                                                                      valueColor:
-                                                                      new AlwaysStoppedAnimation<
-                                                                          Color>(
-                                                                          Colors
-                                                                              .white),
-                                                                    )
-                                                                  ],
-                                                                ));
-                                                            //_getRequests();
-                                                           /* if(widget.pageNum=='1'){
+                                                                            .lbTodate,
+                                                                  ),
+                                                                  //   initialValue: DateTime.now(), //Add this in your Code.
+                                                                  // initialDate: DateTime(2017),
+                                                                  onSaved:
+                                                                      (value) {
+                                                                    debugPrint(value
+                                                                        .toString());
+                                                                    dateT = value
+                                                                        .toString()
+                                                                        .substring(
+                                                                            0,
+                                                                            10);
+                                                                  },
+                                                                  onShowPicker:
+                                                                      (context,
+                                                                          currentValue) {
+                                                                    return showDatePicker(
+                                                                        context:
+                                                                            context,
+                                                                        initialDate: currentValue ??
+                                                                            DateTime
+                                                                                .now(),
+                                                                        firstDate:
+                                                                            DateTime(
+                                                                                1999),
+                                                                        lastDate:
+                                                                            DateTime(2100));
+                                                                  },
+                                                                ),
+                                                              ),
+                                                            ))
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  GestureDetector(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              0, 50, 0, 50),
+                                                      child: Center(
+                                                        child: Container(
+                                                            child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            30,
+                                                                            10,
+                                                                            30,
+                                                                            10),
+                                                                child: Text(
+                                                                    AppLocalizations()
+                                                                        .lbSend)),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          15.0),
+                                                              color: const Color(
+                                                                  0xbfc8c6c6),
+                                                              border: Border.all(
+                                                                  width: 2.0,
+                                                                  color: const Color(
+                                                                      0xccf3f3f3)),
+                                                              boxShadow: [
+                                                                BoxShadow(
+                                                                  color: const Color(
+                                                                      0x21000000),
+                                                                  offset:
+                                                                      Offset(
+                                                                          0, 3),
+                                                                  blurRadius: 6,
+                                                                ),
+                                                              ],
+                                                            )),
+                                                      ),
+                                                    ),
+                                                    onTap: () {
+                                                      if (monVal == true) {
+                                                        if (todate.currentState
+                                                            .validate()) {
+                                                          //  fromdate.currentState.save();
+                                                          todate.currentState
+                                                              .save();
+                                                          Center(
+                                                              child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Text(
+                                                                  AppLocalizations()
+                                                                      .lbLoad,
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .subtitle),
+                                                              Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        top: 5),
+                                                              ),
+                                                              CircularProgressIndicator(
+                                                                valueColor:
+                                                                    new AlwaysStoppedAnimation<
+                                                                            Color>(
+                                                                        Colors
+                                                                            .white),
+                                                              )
+                                                            ],
+                                                          ));
+                                                          //_getRequests();
+                                                          /* if(widget.pageNum=='1'){
                                                               context.bloc<ExpBloc>().add(ExpensesReportEvent(dateF,dateT));
 
                                                             }else{*/
-                                                              context.bloc<ExpBloc>().add(ExpensesCategoryReportEvent(
-                                                                  int.parse(widget.mainId),"",dateT));
-
-
-
-                                                          } else {}
-                                                        }
-                                                        else {
-                                                          if (fromdate.currentState
-                                                              .validate() ||
-                                                              todate.currentState
-                                                                  .validate()) {
-                                                            fromdate.currentState
-                                                                .save();
+                                                          context
+                                                              .bloc<ExpBloc>()
+                                                              .add(ExpensesCategoryReportEvent(
+                                                                  int.parse(widget
+                                                                      .mainId),
+                                                                  "",
+                                                                  dateT));
+                                                        } else {}
+                                                      } else {
+                                                        if (fromdate
+                                                                .currentState
+                                                                .validate() ||
                                                             todate.currentState
-                                                                .save();
-                                                            Center(
-                                                                child: Column(
-                                                                  mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                                  children: [
-                                                                    Text(
-                                                                        AppLocalizations()
-                                                                            .lbLoad,
-                                                                        style: Theme.of(
-                                                                            context)
-                                                                            .textTheme
-                                                                            .subtitle),
-                                                                    Padding(
-                                                                      padding:
-                                                                      EdgeInsets.only(
-                                                                          top: 5),
-                                                                    ),
-                                                                  ],
-                                                                ));
-                                                            // _getRequests();
+                                                                .validate()) {
+                                                          fromdate.currentState
+                                                              .save();
+                                                          todate.currentState
+                                                              .save();
+                                                          Center(
+                                                              child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Text(
+                                                                  AppLocalizations()
+                                                                      .lbLoad,
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .subtitle),
+                                                              Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        top: 5),
+                                                              ),
+                                                            ],
+                                                          ));
+                                                          // _getRequests();
 
-                                                              context.bloc<ExpBloc>().add(ExpensesCategoryReportEvent(int.parse(widget.mainId),dateF,dateT));
+                                                          context
+                                                              .bloc<ExpBloc>()
+                                                              .add(ExpensesCategoryReportEvent(
+                                                                  int.parse(widget
+                                                                      .mainId),
+                                                                  dateF,
+                                                                  dateT));
+                                                        } else {}
+                                                      }
+                                                    },
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        )
 
-
-                                                          } else {}
-                                                        }},)
-
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-
-                                            /* GridView.count(
+                                        /* GridView.count(
                     physics: ScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
@@ -2179,8 +2231,8 @@ class _reportMainCate extends State<reportMainCate>
                           (index) => ItemCardNote(model.notes[index]),
                     ),
                   )*/
-                                          ],
-                                        ))
+                                      ],
+                                    ))
                                   ],
                                 ),
                               ),
@@ -2195,7 +2247,8 @@ class _reportMainCate extends State<reportMainCate>
                                   child: Stack(
                                     children: <Widget>[
                                       Pinned.fromSize(
-                                        bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
+                                        bounds:
+                                            Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
                                         size: Size(50.8, 50.8),
                                         pinLeft: true,
                                         pinRight: true,
@@ -2213,10 +2266,12 @@ class _reportMainCate extends State<reportMainCate>
                                               pinBottom: true,
                                               child: Container(
                                                 decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.all(
-                                                      Radius.elliptical(
-                                                          9999.0, 9999.0)),
-                                                  color: const Color(0xffffd64d),
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.elliptical(
+                                                              9999.0, 9999.0)),
+                                                  color:
+                                                      const Color(0xffffd64d),
                                                 ),
                                               ),
                                             ),
@@ -2224,14 +2279,15 @@ class _reportMainCate extends State<reportMainCate>
                                         ),
                                       ),
                                       Pinned.fromSize(
-                                        bounds: Rect.fromLTWH(8.6, 9.8, 33.3, 28.3),
+                                        bounds:
+                                            Rect.fromLTWH(8.6, 9.8, 33.3, 28.3),
                                         size: Size(50.8, 50.8),
                                         pinLeft: true,
                                         pinRight: true,
                                         fixedHeight: true,
                                         child:
-                                        // Adobe XD layer: 'ic_home_24px' (shape)
-                                        SvgPicture.string(
+                                            // Adobe XD layer: 'ic_home_24px' (shape)
+                                            SvgPicture.string(
                                           _svg_jtcmlr,
                                           allowDrawingOutsideViewBox: true,
                                           fit: BoxFit.fill,
@@ -2245,7 +2301,8 @@ class _reportMainCate extends State<reportMainCate>
                                 decoration: BoxDecoration(
                                   color: const Color(0x5effd64d),
                                   border: Border.all(
-                                      width: 1.0, color: const Color(0x5ef3f3f3)),
+                                      width: 1.0,
+                                      color: const Color(0x5ef3f3f3)),
                                   boxShadow: [
                                     BoxShadow(
                                       color: const Color(0x0f000000),
@@ -2287,23 +2344,16 @@ class _reportMainCate extends State<reportMainCate>
               ),
               height: MediaQuery.of(context).size.height,
             ),
-            progressWidget()],);
-
-
-
+            progressWidget()
+          ],
+        );
       } else if (state is Error) {
         print('Error');
         print(state.message);
-        Toast.show(
-            state.message,
-            context,
-            duration: 4,
-            gravity: Toast.BOTTOM);
+        Toast.show(state.message, context, duration: 4, gravity: Toast.BOTTOM);
 
-
-
-          return   
-              Stack(children:<Widget>[
+        return Stack(
+          children: <Widget>[
             Container(
               child: Scaffold(
                 body: Container(
@@ -2328,330 +2378,300 @@ class _reportMainCate extends State<reportMainCate>
                                                       10, 50, 10, 10),
                                                   child: Container(
                                                     width:
-                                                    MediaQuery.of(context)
-                                                        .size
-                                                        .width,
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
                                                     child: Padding(
                                                       padding:
-                                                      EdgeInsets.fromLTRB(
-                                                          10, 10, 10, 10),
-                                                      child: widget.pageNum == '1'
-                                                          ? Stack(
-                                                        children: <
-                                                            Widget>[
-                                                          Directionality(
-                                                              textDirection: langSave ==
-                                                                  'ar'
-                                                                  ? TextDirection
-                                                                  .ltr
-                                                                  : TextDirection
-                                                                  .ltr,
-                                                              child:
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width,
-                                                                child:
-                                                                Row(
+                                                          EdgeInsets.fromLTRB(
+                                                              10, 10, 10, 10),
+                                                      child:
+                                                          widget.pageNum == '1'
+                                                              ? Stack(
                                                                   children: <
                                                                       Widget>[
-                                                                    Align(
-                                                                      child: GestureDetector(
-                                                                          child: SvgPicture.string(
-                                                                            _svg_6oa7ke,
-                                                                            allowDrawingOutsideViewBox: true,
-                                                                          ),
-                                                                          onTap: () {
-                                                                            Navigator.of(context).pop();
-                                                                          }),
-                                                                      alignment:
-                                                                      Alignment.topRight,
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsets.fromLTRB(
-                                                                          15,
-                                                                          0,
-                                                                          10,
-                                                                          0),
-                                                                      child:
-                                                                      Center(
-                                                                        child: Column(
-                                                                          children: <Widget>[
-                                                                            Text(
-                                                                              'Honey Bee',
-                                                                              style: TextStyle(
-                                                                                fontFamily: 'Pristina',
-                                                                                fontSize: 32,
-                                                                                color: const Color(0xff0a0606),
-                                                                                shadows: [
-                                                                                  Shadow(
-                                                                                    color: const Color(0x29000000),
-                                                                                    offset: Offset(3, 10),
-                                                                                    blurRadius: 6,
-                                                                                  )
-                                                                                ],
+                                                                    Directionality(
+                                                                        textDirection: langSave ==
+                                                                                'ar'
+                                                                            ? TextDirection
+                                                                                .ltr
+                                                                            : TextDirection
+                                                                                .ltr,
+                                                                        child:
+                                                                            Container(
+                                                                          width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width,
+                                                                          child:
+                                                                              Row(
+                                                                            children: <Widget>[
+                                                                              Align(
+                                                                                child: GestureDetector(
+                                                                                    child: SvgPicture.string(
+                                                                                      _svg_6oa7ke,
+                                                                                      allowDrawingOutsideViewBox: true,
+                                                                                    ),
+                                                                                    onTap: () {
+                                                                                      Navigator.of(context).pop();
+                                                                                    }),
+                                                                                alignment: Alignment.topRight,
                                                                               ),
-                                                                              textAlign: TextAlign.center,
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
-                                                                              child: Text(
-                                                                                AppLocalizations().lbExM,
+                                                                              Padding(
+                                                                                padding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                                                                                child: Center(
+                                                                                  child: Column(
+                                                                                    children: <Widget>[
+                                                                                      Text(
+                                                                                        'Honey Bee',
+                                                                                        style: TextStyle(
+                                                                                          fontFamily: 'Pristina',
+                                                                                          fontSize: 32,
+                                                                                          color: const Color(0xff0a0606),
+                                                                                          shadows: [
+                                                                                            Shadow(
+                                                                                              color: const Color(0x29000000),
+                                                                                              offset: Offset(3, 10),
+                                                                                              blurRadius: 6,
+                                                                                            )
+                                                                                          ],
+                                                                                        ),
+                                                                                        textAlign: TextAlign.center,
+                                                                                      ),
+                                                                                      Padding(
+                                                                                        padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
+                                                                                        child: Text(
+                                                                                          AppLocalizations().lbExM,
+                                                                                          style: TextStyle(
+                                                                                            fontSize: 18,
+                                                                                            color: Colors.grey,
+                                                                                          ),
+                                                                                          textAlign: TextAlign.center,
+                                                                                        ),
+                                                                                      )
+                                                                                    ],
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        )),
+                                                                    Directionality(
+                                                                        textDirection: langSave ==
+                                                                                'ar'
+                                                                            ? TextDirection
+                                                                                .rtl
+                                                                            : TextDirection
+                                                                                .rtl,
+                                                                        child:
+                                                                            Container(
+                                                                          width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width,
+                                                                          child:
+                                                                              Row(
+                                                                            children: <Widget>[
+                                                                              SizedBox(
+                                                                                width: 63.0,
+                                                                                height: 63.0,
+                                                                                child: Stack(
+                                                                                  children: <Widget>[
+                                                                                    Pinned.fromSize(
+                                                                                      bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
+                                                                                      size: Size(62.8, 62.8),
+                                                                                      pinLeft: true,
+                                                                                      pinRight: true,
+                                                                                      pinTop: true,
+                                                                                      pinBottom: true,
+                                                                                      child: Container(
+                                                                                        decoration: BoxDecoration(
+                                                                                          borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                                                                                          border: Border.all(width: 1.0, color: const Color(0xf2386694)),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Pinned.fromSize(
+                                                                                      bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
+                                                                                      size: Size(62.8, 62.8),
+                                                                                      pinTop: true,
+                                                                                      pinBottom: true,
+                                                                                      fixedWidth: true,
+                                                                                      child:
+                                                                                          // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                                                          SvgPicture.string(
+                                                                                        _svg_pew0t9,
+                                                                                        allowDrawingOutsideViewBox: true,
+                                                                                        fit: BoxFit.fill,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              Text(
+                                                                                AppLocalizations().lbEx,
                                                                                 style: TextStyle(
-                                                                                  fontSize: 18,
-                                                                                  color: Colors.grey,
+                                                                                  fontFamily: 'Times New Roman',
+                                                                                  fontSize: 20,
+                                                                                  color: const Color(0xff0a0606),
+                                                                                  shadows: [
+                                                                                    Shadow(
+                                                                                      color: const Color(0x29000000),
+                                                                                      offset: Offset(0, 10),
+                                                                                      blurRadius: 6,
+                                                                                    )
+                                                                                  ],
                                                                                 ),
                                                                                 textAlign: TextAlign.center,
                                                                               ),
-                                                                            )
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
+                                                                            ],
+                                                                          ),
+                                                                        ))
                                                                   ],
-                                                                ),
-                                                              )),
-                                                          Directionality(
-                                                              textDirection: langSave ==
-                                                                  'ar'
-                                                                  ? TextDirection
-                                                                  .rtl
-                                                                  : TextDirection
-                                                                  .rtl,
-                                                              child:
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width,
-                                                                child:
-                                                                Row(
+                                                                )
+                                                              : Stack(
                                                                   children: <
                                                                       Widget>[
-                                                                    SizedBox(
-                                                                      width:
-                                                                      63.0,
-                                                                      height:
-                                                                      63.0,
-                                                                      child:
-                                                                      Stack(
-                                                                        children: <Widget>[
-                                                                          Pinned.fromSize(
-                                                                            bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
-                                                                            size: Size(62.8, 62.8),
-                                                                            pinLeft: true,
-                                                                            pinRight: true,
-                                                                            pinTop: true,
-                                                                            pinBottom: true,
-                                                                            child: Container(
-                                                                              decoration: BoxDecoration(
-                                                                                borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                                                                                border: Border.all(width: 1.0, color: const Color(0xf2386694)),
+                                                                    Directionality(
+                                                                        textDirection: langSave ==
+                                                                                'ar'
+                                                                            ? TextDirection
+                                                                                .ltr
+                                                                            : TextDirection
+                                                                                .ltr,
+                                                                        child:
+                                                                            Container(
+                                                                          width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width,
+                                                                          child:
+                                                                              Row(
+                                                                            children: <Widget>[
+                                                                              Align(
+                                                                                child: GestureDetector(
+                                                                                    child: SvgPicture.string(
+                                                                                      _svg_6oa7ke,
+                                                                                      allowDrawingOutsideViewBox: true,
+                                                                                    ),
+                                                                                    onTap: () {
+                                                                                      Navigator.of(context).pop();
+                                                                                    }),
+                                                                                alignment: Alignment.topRight,
                                                                               ),
-                                                                            ),
-                                                                          ),
-                                                                          Pinned.fromSize(
-                                                                            bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
-                                                                            size: Size(62.8, 62.8),
-                                                                            pinTop: true,
-                                                                            pinBottom: true,
-                                                                            fixedWidth: true,
-                                                                            child:
-                                                                            // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                                                                            SvgPicture.string(
-                                                                              _svg_pew0t9,
-                                                                              allowDrawingOutsideViewBox: true,
-                                                                              fit: BoxFit.fill,
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      AppLocalizations().lbEx,
-                                                                      style:
-                                                                      TextStyle(
-                                                                        fontFamily: 'Times New Roman',
-                                                                        fontSize: 20,
-                                                                        color: const Color(0xff0a0606),
-                                                                        shadows: [
-                                                                          Shadow(
-                                                                            color: const Color(0x29000000),
-                                                                            offset: Offset(0, 10),
-                                                                            blurRadius: 6,
-                                                                          )
-                                                                        ],
-                                                                      ),
-                                                                      textAlign:
-                                                                      TextAlign.center,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ))
-                                                        ],
-                                                      )
-                                                          : Stack(
-                                                        children: <
-                                                            Widget>[
-                                                          Directionality(
-                                                              textDirection: langSave ==
-                                                                  'ar'
-                                                                  ? TextDirection
-                                                                  .ltr
-                                                                  : TextDirection
-                                                                  .ltr,
-                                                              child:
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width,
-                                                                child:
-                                                                Row(
-                                                                  children: <
-                                                                      Widget>[
-                                                                    Align(
-                                                                      child: GestureDetector(
-                                                                          child: SvgPicture.string(
-                                                                            _svg_6oa7ke,
-                                                                            allowDrawingOutsideViewBox: true,
-                                                                          ),
-                                                                          onTap: () {
-                                                                            Navigator.of(context).pop();
-                                                                          }),
-                                                                      alignment:
-                                                                      Alignment.topRight,
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsets.fromLTRB(
-                                                                          15,
-                                                                          0,
-                                                                          10,
-                                                                          0),
-                                                                      child:
-                                                                      Center(
-                                                                        child: Column(
-                                                                          children: <Widget>[
-                                                                            Text(
-                                                                              'Honey Bee',
-                                                                              style: TextStyle(
-                                                                                fontFamily: 'Pristina',
-                                                                                fontSize: 32,
-                                                                                color: const Color(0xff0a0606),
-                                                                                shadows: [
-                                                                                  Shadow(
-                                                                                    color: const Color(0x29000000),
-                                                                                    offset: Offset(3, 10),
-                                                                                    blurRadius: 6,
-                                                                                  )
-                                                                                ],
+                                                                              Padding(
+                                                                                padding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                                                                                child: Center(
+                                                                                  child: Column(
+                                                                                    children: <Widget>[
+                                                                                      Text(
+                                                                                        'Honey Bee',
+                                                                                        style: TextStyle(
+                                                                                          fontFamily: 'Pristina',
+                                                                                          fontSize: 32,
+                                                                                          color: const Color(0xff0a0606),
+                                                                                          shadows: [
+                                                                                            Shadow(
+                                                                                              color: const Color(0x29000000),
+                                                                                              offset: Offset(3, 10),
+                                                                                              blurRadius: 6,
+                                                                                            )
+                                                                                          ],
+                                                                                        ),
+                                                                                        textAlign: TextAlign.center,
+                                                                                      ),
+                                                                                      Padding(
+                                                                                        padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
+                                                                                        child: Text(
+                                                                                          AppLocalizations().lbReM,
+                                                                                          style: TextStyle(
+                                                                                            fontSize: 18,
+                                                                                            color: Colors.grey,
+                                                                                          ),
+                                                                                          textAlign: TextAlign.center,
+                                                                                        ),
+                                                                                      )
+                                                                                    ],
+                                                                                  ),
+                                                                                ),
                                                                               ),
-                                                                              textAlign: TextAlign.center,
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
-                                                                              child: Text(
-                                                                                AppLocalizations().lbReM,
+                                                                            ],
+                                                                          ),
+                                                                        )),
+                                                                    Directionality(
+                                                                        textDirection: langSave ==
+                                                                                'ar'
+                                                                            ? TextDirection
+                                                                                .rtl
+                                                                            : TextDirection
+                                                                                .rtl,
+                                                                        child:
+                                                                            Container(
+                                                                          width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width,
+                                                                          child:
+                                                                              Row(
+                                                                            children: <Widget>[
+                                                                              SizedBox(
+                                                                                width: 63.0,
+                                                                                height: 63.0,
+                                                                                child: Stack(
+                                                                                  children: <Widget>[
+                                                                                    Pinned.fromSize(
+                                                                                      bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
+                                                                                      size: Size(62.8, 62.8),
+                                                                                      pinLeft: true,
+                                                                                      pinRight: true,
+                                                                                      pinTop: true,
+                                                                                      pinBottom: true,
+                                                                                      child: Container(
+                                                                                        decoration: BoxDecoration(
+                                                                                          borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                                                                                          border: Border.all(width: 1.0, color: const Color(0xf2386694)),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Pinned.fromSize(
+                                                                                      bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
+                                                                                      size: Size(62.8, 62.8),
+                                                                                      pinTop: true,
+                                                                                      pinBottom: true,
+                                                                                      fixedWidth: true,
+                                                                                      child:
+                                                                                          // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                                                          SvgPicture.string(
+                                                                                        _svg_pew0t9,
+                                                                                        allowDrawingOutsideViewBox: true,
+                                                                                        fit: BoxFit.fill,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              Text(
+                                                                                AppLocalizations().lbRev,
                                                                                 style: TextStyle(
-                                                                                  fontSize: 18,
-                                                                                  color: Colors.grey,
+                                                                                  fontFamily: 'Times New Roman',
+                                                                                  fontSize: 20,
+                                                                                  color: const Color(0xff0a0606),
+                                                                                  shadows: [
+                                                                                    Shadow(
+                                                                                      color: const Color(0x29000000),
+                                                                                      offset: Offset(0, 10),
+                                                                                      blurRadius: 6,
+                                                                                    )
+                                                                                  ],
                                                                                 ),
                                                                                 textAlign: TextAlign.center,
                                                                               ),
-                                                                            )
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
+                                                                            ],
+                                                                          ),
+                                                                        ))
                                                                   ],
                                                                 ),
-                                                              )),
-
-                                                          Directionality(
-                                                              textDirection: langSave ==
-                                                                  'ar'
-                                                                  ? TextDirection
-                                                                  .rtl
-                                                                  : TextDirection
-                                                                  .rtl,
-                                                              child:
-                                                              Container(
-                                                                width: MediaQuery.of(
-                                                                    context)
-                                                                    .size
-                                                                    .width,
-                                                                child:
-                                                                Row(
-                                                                  children: <
-                                                                      Widget>[
-                                                                    SizedBox(
-                                                                      width:
-                                                                      63.0,
-                                                                      height:
-                                                                      63.0,
-                                                                      child:
-                                                                      Stack(
-                                                                        children: <Widget>[
-                                                                          Pinned.fromSize(
-                                                                            bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
-                                                                            size: Size(62.8, 62.8),
-                                                                            pinLeft: true,
-                                                                            pinRight: true,
-                                                                            pinTop: true,
-                                                                            pinBottom: true,
-                                                                            child: Container(
-                                                                              decoration: BoxDecoration(
-                                                                                borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                                                                                border: Border.all(width: 1.0, color: const Color(0xf2386694)),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                          Pinned.fromSize(
-                                                                            bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
-                                                                            size: Size(62.8, 62.8),
-                                                                            pinTop: true,
-                                                                            pinBottom: true,
-                                                                            fixedWidth: true,
-                                                                            child:
-                                                                            // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                                                                            SvgPicture.string(
-                                                                              _svg_pew0t9,
-                                                                              allowDrawingOutsideViewBox: true,
-                                                                              fit: BoxFit.fill,
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      AppLocalizations().lbRev,
-                                                                      style:
-                                                                      TextStyle(
-                                                                        fontFamily: 'Times New Roman',
-                                                                        fontSize: 20,
-                                                                        color: const Color(0xff0a0606),
-                                                                        shadows: [
-                                                                          Shadow(
-                                                                            color: const Color(0x29000000),
-                                                                            offset: Offset(0, 10),
-                                                                            blurRadius: 6,
-                                                                          )
-                                                                        ],
-                                                                      ),
-                                                                      textAlign:
-                                                                      TextAlign.center,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ))
-                                                        ],
-                                                      ),
                                                     ),
                                                     decoration: BoxDecoration(
                                                       borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.0),
+                                                          BorderRadius.circular(
+                                                              15.0),
                                                       color: const Color(
                                                           0x09010101),
                                                       boxShadow: [
@@ -2675,11 +2695,12 @@ class _reportMainCate extends State<reportMainCate>
                                       child: Column(
                                         children: <Widget>[
                                           Padding(
-                                            padding:
-                                            EdgeInsets.fromLTRB(0, 20, 0, 10),
+                                            padding: EdgeInsets.fromLTRB(
+                                                0, 20, 0, 10),
                                             child: Container(
-                                              width:
-                                              MediaQuery.of(context).size.width,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
                                               child: Padding(
                                                 padding: EdgeInsets.fromLTRB(
                                                     10, 10, 10, 10),
@@ -2689,58 +2710,68 @@ class _reportMainCate extends State<reportMainCate>
                                                       widget.mainName,
                                                       style: TextStyle(
                                                         fontFamily:
-                                                        'Times New Roman',
+                                                            'Times New Roman',
                                                         fontSize: 22,
-                                                        color:
-                                                        const Color(0x7d707070),
+                                                        color: const Color(
+                                                            0x7d707070),
                                                       ),
-                                                      textAlign: TextAlign.center,
+                                                      textAlign:
+                                                          TextAlign.center,
                                                     ),
                                                     new Spacer(),
                                                     Padding(
                                                       child: Container(
-                                                        decoration: BoxDecoration(
+                                                        decoration:
+                                                            BoxDecoration(
                                                           borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.elliptical(
-                                                                  9999.0,
-                                                                  9999.0)),
+                                                              BorderRadius.all(
+                                                                  Radius.elliptical(
+                                                                      9999.0,
+                                                                      9999.0)),
                                                           color: const Color(
                                                               0x4dffd64d),
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                          EdgeInsets.all(10),
+                                                              EdgeInsets.all(
+                                                                  10),
                                                           child: Stack(
                                                             children: <Widget>[
                                                               SvgPicture.string(
                                                                 _svg_a39r47,
                                                                 allowDrawingOutsideViewBox:
-                                                                true,
-                                                                fit: BoxFit.fill,
+                                                                    true,
+                                                                fit:
+                                                                    BoxFit.fill,
                                                                 height: 45,
                                                               ),
                                                               SvgPicture.string(
                                                                 _svg_voj5n1,
                                                                 allowDrawingOutsideViewBox:
-                                                                true,
-                                                                fit: BoxFit.fill,
+                                                                    true,
+                                                                fit:
+                                                                    BoxFit.fill,
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsets
-                                                                    .fromLTRB(2, 18,
-                                                                    2, 2),
-                                                                child: Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            2,
+                                                                            18,
+                                                                            2,
+                                                                            2),
+                                                                child:
+                                                                    Container(
                                                                   decoration:
-                                                                  BoxDecoration(
+                                                                      BoxDecoration(
                                                                     borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                        3.0),
+                                                                        BorderRadius.circular(
+                                                                            3.0),
                                                                     color: const Color(
                                                                         0x4dffffff),
                                                                     border: Border.all(
-                                                                        width: 1.0,
+                                                                        width:
+                                                                            1.0,
                                                                         color: const Color(
                                                                             0x4dffd64d)),
                                                                   ),
@@ -2748,20 +2779,25 @@ class _reportMainCate extends State<reportMainCate>
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsets
-                                                                    .fromLTRB(2, 23,
-                                                                    2, 2),
-                                                                child: Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            2,
+                                                                            23,
+                                                                            2,
+                                                                            2),
+                                                                child:
+                                                                    Container(
                                                                   decoration:
-                                                                  BoxDecoration(
+                                                                      BoxDecoration(
                                                                     borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                        3.0),
+                                                                        BorderRadius.circular(
+                                                                            3.0),
                                                                     color: const Color(
                                                                         0x4dffffff),
                                                                     border: Border.all(
-                                                                        width: 1.0,
+                                                                        width:
+                                                                            1.0,
                                                                         color: const Color(
                                                                             0x4dffd64d)),
                                                                   ),
@@ -2769,20 +2805,25 @@ class _reportMainCate extends State<reportMainCate>
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsets
-                                                                    .fromLTRB(2, 28,
-                                                                    2, 2),
-                                                                child: Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            2,
+                                                                            28,
+                                                                            2,
+                                                                            2),
+                                                                child:
+                                                                    Container(
                                                                   decoration:
-                                                                  BoxDecoration(
+                                                                      BoxDecoration(
                                                                     borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                        3.0),
+                                                                        BorderRadius.circular(
+                                                                            3.0),
                                                                     color: const Color(
                                                                         0x4dffd64d),
                                                                     border: Border.all(
-                                                                        width: 1.0,
+                                                                        width:
+                                                                            1.0,
                                                                         color: const Color(
                                                                             0x4dffd64d)),
                                                                   ),
@@ -2790,20 +2831,25 @@ class _reportMainCate extends State<reportMainCate>
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsets
-                                                                    .fromLTRB(2, 33,
-                                                                    2, 2),
-                                                                child: Container(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            2,
+                                                                            33,
+                                                                            2,
+                                                                            2),
+                                                                child:
+                                                                    Container(
                                                                   decoration:
-                                                                  BoxDecoration(
+                                                                      BoxDecoration(
                                                                     borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                        3.0),
+                                                                        BorderRadius.circular(
+                                                                            3.0),
                                                                     color: const Color(
                                                                         0x4dffd64d),
                                                                     border: Border.all(
-                                                                        width: 1.0,
+                                                                        width:
+                                                                            1.0,
                                                                         color: const Color(
                                                                             0x4dffd64d)),
                                                                   ),
@@ -2814,8 +2860,9 @@ class _reportMainCate extends State<reportMainCate>
                                                           ),
                                                         ),
                                                       ),
-                                                      padding: EdgeInsets.fromLTRB(
-                                                          5, 0, 5, 0),
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              5, 0, 5, 0),
                                                     )
                                                   ],
                                                 ),
@@ -2824,10 +2871,12 @@ class _reportMainCate extends State<reportMainCate>
                                                 color: const Color(0x4df3f3f3),
                                                 border: Border.all(
                                                     width: 1.0,
-                                                    color: const Color(0x4df3f3f3)),
+                                                    color: const Color(
+                                                        0x4df3f3f3)),
                                                 boxShadow: [
                                                   BoxShadow(
-                                                    color: const Color(0x0c000000),
+                                                    color:
+                                                        const Color(0x0c000000),
                                                     offset: Offset(0, 3),
                                                     blurRadius: 6,
                                                   ),
@@ -2840,381 +2889,412 @@ class _reportMainCate extends State<reportMainCate>
                                     ),
                                     Container(
                                         child: Wrap(
+                                      children: <Widget>[
+                                        Column(
                                           children: <Widget>[
-                                            Column(
-                                              children: <Widget>[
-                                                Container(
-                                                  child: Column(
+                                            Container(
+                                              child: Column(
+                                                children: <Widget>[
+                                                  Row(
                                                     children: <Widget>[
-                                                      Row(
-                                                        children: <Widget>[
-                                                          Checkbox(
-                                                            value: monVal,
-                                                            onChanged: (bool value) {
-                                                              setState(() {
-                                                                monVal = value;
-                                                              });
-                                                            },
-                                                          ),
-                                                          Padding(
-                                                            padding:
+                                                      Checkbox(
+                                                        value: monVal,
+                                                        onChanged:
+                                                            (bool value) {
+                                                          setState(() {
+                                                            monVal = value;
+                                                          });
+                                                        },
+                                                      ),
+                                                      Padding(
+                                                        padding:
                                                             EdgeInsets.fromLTRB(
                                                                 10, 0, 10, 0),
-                                                            child: Text(
-                                                                AppLocalizations()
-                                                                    .lbViewD),
-                                                          ),
-                                                        ],
+                                                        child: Text(
+                                                            AppLocalizations()
+                                                                .lbViewD),
                                                       ),
-                                                      monVal == true
-                                                          ? Visibility(
-                                                        child: Padding(
-                                                          padding:
-                                                          EdgeInsets.fromLTRB(
-                                                              5, 0, 5, 0),
-                                                          child: Column(
-                                                            children: <Widget>[
-                                                              Text(
-                                                                  AppLocalizations().lbFrom),
-                                                              Form(
-                                                                key: fromdate,
-                                                                child: Center(
-                                                                  child:
-                                                                  DateTimeField(
+                                                    ],
+                                                  ),
+                                                  monVal == true
+                                                      ? Visibility(
+                                                          child: Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(
+                                                                    5, 0, 5, 0),
+                                                            child: Column(
+                                                              children: <
+                                                                  Widget>[
+                                                                Text(AppLocalizations()
+                                                                    .lbFrom),
+                                                                Form(
+                                                                  key: fromdate,
+                                                                  child: Center(
+                                                                    child:
+                                                                        DateTimeField(
 //                          dateOnly: true,
 
-                                                                    format: langSave ==
-                                                                        'en'
-                                                                        ? widget.dateFormat
-                                                                        : widget.dateFormatAR,
-                                                                    validator:
-                                                                        (val) {
-                                                                      if (val !=
-                                                                          null) {
-                                                                        return null;
-                                                                      } else {
-                                                                        return AppLocalizations()
-                                                                            .lbDateE;
-                                                                      }
-                                                                    },
-                                                                    decoration: InputDecoration(
-                                                                        labelText:
+                                                                      format: langSave ==
+                                                                              'en'
+                                                                          ? widget
+                                                                              .dateFormat
+                                                                          : widget
+                                                                              .dateFormatAR,
+                                                                      validator:
+                                                                          (val) {
+                                                                        if (val !=
+                                                                            null) {
+                                                                          return null;
+                                                                        } else {
+                                                                          return AppLocalizations()
+                                                                              .lbDateE;
+                                                                        }
+                                                                      },
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                              labelText: AppLocalizations().lbFDate),
+                                                                      //   initialValue: DateTime.now(), //Add this in your Code.
+                                                                      // initialDate: DateTime(2017),
+                                                                      onSaved:
+                                                                          (value) {
+                                                                        dateF = value
+                                                                            .toString()
+                                                                            .substring(0,
+                                                                                10);
+                                                                        debugPrint(
+                                                                            value.toString());
+                                                                      },
+                                                                      onShowPicker:
+                                                                          (context,
+                                                                              currentValue) {
+                                                                        return showDatePicker(
+                                                                            context:
+                                                                                context,
+                                                                            initialDate:
+                                                                                currentValue ?? DateTime.now(),
+                                                                            firstDate: DateTime(1999),
+                                                                            lastDate: DateTime(2100));
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          visible: false,
+                                                        )
+                                                      : Visibility(
+                                                          child: Column(
+                                                            children: <Widget>[
+                                                              Padding(
+                                                                  padding: EdgeInsets
+                                                                      .fromLTRB(
+                                                                          10,
+                                                                          10,
+                                                                          10,
+                                                                          0),
+                                                                  child: Row(
+                                                                    children: <
+                                                                        Widget>[
+                                                                      Text(
                                                                         AppLocalizations()
-                                                                            .lbFDate),
-                                                                    //   initialValue: DateTime.now(), //Add this in your Code.
-                                                                    // initialDate: DateTime(2017),
-                                                                    onSaved:
-                                                                        (value) {
-
-                                                                      dateF = value
-                                                                          .toString()
-                                                                          .substring(
-                                                                          0,
-                                                                          10);
-                                                                      debugPrint(value
-                                                                          .toString());
-                                                                    },
-                                                                    onShowPicker:
-                                                                        (context,
-                                                                        currentValue) {
-                                                                      return showDatePicker(
-                                                                          context:
-                                                                          context,
-                                                                          initialDate: currentValue ??
-                                                                              DateTime
-                                                                                  .now(),
-                                                                          firstDate:
-                                                                          DateTime(
-                                                                              1999),
-                                                                          lastDate:
-                                                                          DateTime(2100));
-                                                                    },
+                                                                            .lbFrom,
+                                                                        style: TextStyle(
+                                                                            fontWeight:
+                                                                                FontWeight.bold),
+                                                                      )
+                                                                    ],
+                                                                  )),
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            35,
+                                                                            0,
+                                                                            35,
+                                                                            0),
+                                                                child: Form(
+                                                                  key: fromdate,
+                                                                  child: Center(
+                                                                    child:
+                                                                        DateTimeField(
+//                          dateOnly: true,
+                                                                      format: langSave ==
+                                                                              'en'
+                                                                          ? widget
+                                                                              .dateFormat
+                                                                          : widget
+                                                                              .dateFormatAR,
+                                                                      validator:
+                                                                          (val) {
+                                                                        if (val !=
+                                                                            null) {
+                                                                          return null;
+                                                                        } else {
+                                                                          return AppLocalizations()
+                                                                              .lbDateE;
+                                                                        }
+                                                                      },
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                              labelText: AppLocalizations().lbFDate),
+                                                                      //   initialValue: DateTime.now(), //Add this in your Code.
+                                                                      // initialDate: DateTime(2017),
+                                                                      onSaved:
+                                                                          (value) {
+                                                                        dateF = value
+                                                                            .toString()
+                                                                            .substring(0,
+                                                                                10);
+                                                                        debugPrint(
+                                                                            value.toString());
+                                                                        print(
+                                                                            dateF);
+                                                                      },
+                                                                      onShowPicker:
+                                                                          (context,
+                                                                              currentValue) {
+                                                                        return showDatePicker(
+                                                                            context:
+                                                                                context,
+                                                                            initialDate:
+                                                                                currentValue ?? DateTime.now(),
+                                                                            firstDate: DateTime(1999),
+                                                                            lastDate: DateTime(2100));
+                                                                      },
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               )
                                                             ],
                                                           ),
+                                                          visible: true,
                                                         ),
-                                                        visible: false,
-                                                      )
-                                                          : Visibility(
-                                                        child: Column(
-                                                          children: <Widget>[
-                                                            Padding( padding:
-                                                            EdgeInsets.fromLTRB(
-                                                                10, 10, 10, 0),
-                                                                child:Row(
-                                                                  children: <Widget>[
-                                                                    Text(
-                                                                      AppLocalizations().lbFrom,
-                                                                      style: TextStyle(
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                                    )
-                                                                  ],
-                                                                ))
-                                                            ,
-                                                            Padding(
-                                                              padding: EdgeInsets
-                                                                  .fromLTRB(
-                                                                  35, 0, 35, 0),
-                                                              child: Form(
-                                                                key: fromdate,
-                                                                child: Center(
-                                                                  child:
-                                                                  DateTimeField(
-//                          dateOnly: true,
-                                                                    format: langSave ==
-                                                                        'en'
-                                                                        ? widget.dateFormat
-                                                                        : widget.dateFormatAR,
-                                                                    validator:
-                                                                        (val) {
-                                                                      if (val !=
-                                                                          null) {
-                                                                        return null;
-                                                                      } else {
-                                                                        return AppLocalizations()
-                                                                            .lbDateE;
-                                                                      }
-                                                                    },
-                                                                    decoration: InputDecoration(
-                                                                        labelText:
-                                                                        AppLocalizations()
-                                                                            .lbFDate),
-                                                                    //   initialValue: DateTime.now(), //Add this in your Code.
-                                                                    // initialDate: DateTime(2017),
-                                                                    onSaved:
-                                                                        (value) {
-
-                                                                      dateF = value
-                                                                          .toString()
-                                                                          .substring(
-                                                                          0,
-                                                                          10);
-                                                                      debugPrint(value
-                                                                          .toString());
-                                                                      print(dateF);
-
-                                                                    },
-                                                                    onShowPicker:
-                                                                        (context,
-                                                                        currentValue) {
-                                                                      return showDatePicker(
-                                                                          context:
-                                                                          context,
-                                                                          initialDate: currentValue ??
-                                                                              DateTime
-                                                                                  .now(),
-                                                                          firstDate:
-                                                                          DateTime(
-                                                                              1999),
-                                                                          lastDate:
-                                                                          DateTime(2100));
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                        visible: true,
-                                                      ),
-                                                      Padding(
-                                                        padding: EdgeInsets.fromLTRB(
-                                                            5, 10, 5, 0),
-                                                        child:
-                                                        Column(children: <Widget>[ Padding( padding:
+                                                  Padding(
+                                                    padding:
                                                         EdgeInsets.fromLTRB(
-                                                            10, 10, 10, 0),
-                                                            child:Row(
-                                                              children: <Widget>[
+                                                            5, 10, 5, 0),
+                                                    child: Column(
+                                                      children: <Widget>[
+                                                        Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(10,
+                                                                    10, 10, 0),
+                                                            child: Row(
+                                                              children: <
+                                                                  Widget>[
                                                                 Text(
-                                                                  AppLocalizations().lbTo,
+                                                                  AppLocalizations()
+                                                                      .lbTo,
                                                                   style: TextStyle(
                                                                       fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                                          FontWeight
+                                                                              .bold),
                                                                 )
                                                               ],
-                                                            ))
-                                                          ,
-
-                                                          Padding( padding:
-                                                          EdgeInsets.fromLTRB(
-                                                              30, 10, 30, 0),
-                                                              child:Form(
-                                                                key: todate,
-                                                                child: Center(
-                                                                  child: DateTimeField(
+                                                            )),
+                                                        Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(30,
+                                                                    10, 30, 0),
+                                                            child: Form(
+                                                              key: todate,
+                                                              child: Center(
+                                                                child:
+                                                                    DateTimeField(
 //                          dateOnly: true,
-                                                                    format: langSave == 'en'
-                                                                        ? widget.dateFormat
-                                                                        : widget.dateFormatAR,
-                                                                    validator: (val) {
-                                                                      if (val != null) {
-                                                                        return null;
-                                                                      } else {
-                                                                        return AppLocalizations()
-                                                                            .lbDateE;
-                                                                      }
-                                                                    },
-                                                                    decoration: InputDecoration(
-                                                                      labelText:
-                                                                      AppLocalizations()
-                                                                          .lbTodate,
-                                                                    ),
-                                                                    //   initialValue: DateTime.now(), //Add this in your Code.
-                                                                    // initialDate: DateTime(2017),
-                                                                    onSaved: (value) {
-
-                                                                      debugPrint(
-                                                                          value.toString());
-                                                                      dateT = value
-                                                                          .toString()
-                                                                          .substring(0, 10);
-                                                                    },
-                                                                    onShowPicker: (context,
-                                                                        currentValue) {
-                                                                      return showDatePicker(
-                                                                          context: context,
-                                                                          initialDate:
-                                                                          currentValue ??
-                                                                              DateTime
-                                                                                  .now(),
-                                                                          firstDate:
-                                                                          DateTime(1999),
-                                                                          lastDate:
-                                                                          DateTime(2100));
-                                                                    },
+                                                                  format: langSave ==
+                                                                          'en'
+                                                                      ? widget
+                                                                          .dateFormat
+                                                                      : widget
+                                                                          .dateFormatAR,
+                                                                  validator:
+                                                                      (val) {
+                                                                    if (val !=
+                                                                        null) {
+                                                                      return null;
+                                                                    } else {
+                                                                      return AppLocalizations()
+                                                                          .lbDateE;
+                                                                    }
+                                                                  },
+                                                                  decoration:
+                                                                      InputDecoration(
+                                                                    labelText:
+                                                                        AppLocalizations()
+                                                                            .lbTodate,
                                                                   ),
+                                                                  //   initialValue: DateTime.now(), //Add this in your Code.
+                                                                  // initialDate: DateTime(2017),
+                                                                  onSaved:
+                                                                      (value) {
+                                                                    debugPrint(value
+                                                                        .toString());
+                                                                    dateT = value
+                                                                        .toString()
+                                                                        .substring(
+                                                                            0,
+                                                                            10);
+                                                                  },
+                                                                  onShowPicker:
+                                                                      (context,
+                                                                          currentValue) {
+                                                                    return showDatePicker(
+                                                                        context:
+                                                                            context,
+                                                                        initialDate: currentValue ??
+                                                                            DateTime
+                                                                                .now(),
+                                                                        firstDate:
+                                                                            DateTime(
+                                                                                1999),
+                                                                        lastDate:
+                                                                            DateTime(2100));
+                                                                  },
                                                                 ),
-                                                              ))
-
-                                                        ],)
-
-                                                        ,
-                                                      ),
-                                                      GestureDetector(
-                                                        child: Padding(
-                                                          padding: EdgeInsets.fromLTRB(0, 50, 0, 50),child:
-                                                        Center(child: Container(child: Padding(padding:EdgeInsets.fromLTRB(30,10,30,10)
-                                                            ,child:Text(AppLocalizations().lbSend)),decoration:  BoxDecoration(
-                                                          borderRadius:
-                                                          BorderRadius
-                                                              .circular(
-                                                              15.0),
-                                                          color: const Color(
-                                                              0xbfc8c6c6),
-                                                          border: Border.all(
-                                                              width:
-                                                              2.0,
-                                                              color: const Color(
-                                                                  0xccf3f3f3)),
-                                                          boxShadow: [
-                                                            BoxShadow(
-                                                              color: const Color(
-                                                                  0x21000000),
-                                                              offset:
-                                                              Offset(
-                                                                  0,
-                                                                  3),
-                                                              blurRadius:
-                                                              6,
-                                                            ),
-                                                          ],
-                                                        )),),),onTap: (){
-
-                                                        if (monVal == true) {
-                                                          if (todate.currentState
-                                                              .validate()) {
-                                                            //  fromdate.currentState.save();
-                                                            todate.currentState
-                                                                .save();
-                                                            Center(
-                                                                child: Column(
-                                                                  mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                                  children: [
-                                                                    Text(
-                                                                        AppLocalizations()
-                                                                            .lbLoad,
-                                                                        style: Theme.of(
-                                                                            context)
-                                                                            .textTheme
-                                                                            .subtitle),
-                                                                    Padding(
-                                                                      padding:
-                                                                      EdgeInsets.only(
-                                                                          top: 5),
-                                                                    ),
-                                                                    CircularProgressIndicator(
-                                                                      valueColor:
-                                                                      new AlwaysStoppedAnimation<
-                                                                          Color>(
-                                                                          Colors
-                                                                              .white),
-                                                                    )
-                                                                  ],
-                                                                ));
-                                                            //_getRequests();
-
-                                                              context.bloc<ExpBloc>().add(ExpensesCategoryReportEvent(
-                                                                  int.parse(widget.mainId),"",dateT));
-
-
-
-
-
-                                                          } else {}
-                                                        }
-                                                        else {
-                                                          if (fromdate.currentState
-                                                              .validate() ||
-                                                              todate.currentState
-                                                                  .validate()) {
-                                                            fromdate.currentState
-                                                                .save();
-                                                            todate.currentState
-                                                                .save();
-                                                            Center(
-                                                                child: Column(
-                                                                  mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                                  children: [
-                                                                    Text(
-                                                                        AppLocalizations()
-                                                                            .lbLoad,
-                                                                        style: Theme.of(
-                                                                            context)
-                                                                            .textTheme
-                                                                            .subtitle),
-                                                                    Padding(
-                                                                      padding:
-                                                                      EdgeInsets.only(
-                                                                          top: 5),
-                                                                    ),
-                                                                  ],
-                                                                ));
-                                                            // _getRequests();
-
-                                                              context.bloc<ExpBloc>().add(ExpensesCategoryReportEvent(int.parse(widget.mainId),dateF,dateT));
-
-
-
-                                                          } else {}
-                                                        }},)
-
-                                                    ],
+                                                              ),
+                                                            ))
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
-                                            )
+                                                  GestureDetector(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              0, 50, 0, 50),
+                                                      child: Center(
+                                                        child: Container(
+                                                            child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .fromLTRB(
+                                                                            30,
+                                                                            10,
+                                                                            30,
+                                                                            10),
+                                                                child: Text(
+                                                                    AppLocalizations()
+                                                                        .lbSend)),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          15.0),
+                                                              color: const Color(
+                                                                  0xbfc8c6c6),
+                                                              border: Border.all(
+                                                                  width: 2.0,
+                                                                  color: const Color(
+                                                                      0xccf3f3f3)),
+                                                              boxShadow: [
+                                                                BoxShadow(
+                                                                  color: const Color(
+                                                                      0x21000000),
+                                                                  offset:
+                                                                      Offset(
+                                                                          0, 3),
+                                                                  blurRadius: 6,
+                                                                ),
+                                                              ],
+                                                            )),
+                                                      ),
+                                                    ),
+                                                    onTap: () {
+                                                      if (monVal == true) {
+                                                        if (todate.currentState
+                                                            .validate()) {
+                                                          //  fromdate.currentState.save();
+                                                          todate.currentState
+                                                              .save();
+                                                          Center(
+                                                              child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Text(
+                                                                  AppLocalizations()
+                                                                      .lbLoad,
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .subtitle),
+                                                              Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        top: 5),
+                                                              ),
+                                                              CircularProgressIndicator(
+                                                                valueColor:
+                                                                    new AlwaysStoppedAnimation<
+                                                                            Color>(
+                                                                        Colors
+                                                                            .white),
+                                                              )
+                                                            ],
+                                                          ));
+                                                          //_getRequests();
 
-                                            /* GridView.count(
+                                                          context
+                                                              .bloc<ExpBloc>()
+                                                              .add(ExpensesCategoryReportEvent(
+                                                                  int.parse(widget
+                                                                      .mainId),
+                                                                  "",
+                                                                  dateT));
+                                                        } else {}
+                                                      } else {
+                                                        if (fromdate
+                                                                .currentState
+                                                                .validate() ||
+                                                            todate.currentState
+                                                                .validate()) {
+                                                          fromdate.currentState
+                                                              .save();
+                                                          todate.currentState
+                                                              .save();
+                                                          Center(
+                                                              child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Text(
+                                                                  AppLocalizations()
+                                                                      .lbLoad,
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .subtitle),
+                                                              Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        top: 5),
+                                                              ),
+                                                            ],
+                                                          ));
+                                                          // _getRequests();
+
+                                                          context
+                                                              .bloc<ExpBloc>()
+                                                              .add(ExpensesCategoryReportEvent(
+                                                                  int.parse(widget
+                                                                      .mainId),
+                                                                  dateF,
+                                                                  dateT));
+                                                        } else {}
+                                                      }
+                                                    },
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        )
+
+                                        /* GridView.count(
                     physics: ScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
@@ -3229,8 +3309,8 @@ class _reportMainCate extends State<reportMainCate>
                           (index) => ItemCardNote(model.notes[index]),
                     ),
                   )*/
-                                          ],
-                                        ))
+                                      ],
+                                    ))
                                   ],
                                 ),
                               ),
@@ -3245,7 +3325,8 @@ class _reportMainCate extends State<reportMainCate>
                                   child: Stack(
                                     children: <Widget>[
                                       Pinned.fromSize(
-                                        bounds: Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
+                                        bounds:
+                                            Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
                                         size: Size(50.8, 50.8),
                                         pinLeft: true,
                                         pinRight: true,
@@ -3263,10 +3344,12 @@ class _reportMainCate extends State<reportMainCate>
                                               pinBottom: true,
                                               child: Container(
                                                 decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.all(
-                                                      Radius.elliptical(
-                                                          9999.0, 9999.0)),
-                                                  color: const Color(0xffffd64d),
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.elliptical(
+                                                              9999.0, 9999.0)),
+                                                  color:
+                                                      const Color(0xffffd64d),
                                                 ),
                                               ),
                                             ),
@@ -3274,14 +3357,15 @@ class _reportMainCate extends State<reportMainCate>
                                         ),
                                       ),
                                       Pinned.fromSize(
-                                        bounds: Rect.fromLTWH(8.6, 9.8, 33.3, 28.3),
+                                        bounds:
+                                            Rect.fromLTWH(8.6, 9.8, 33.3, 28.3),
                                         size: Size(50.8, 50.8),
                                         pinLeft: true,
                                         pinRight: true,
                                         fixedHeight: true,
                                         child:
-                                        // Adobe XD layer: 'ic_home_24px' (shape)
-                                        SvgPicture.string(
+                                            // Adobe XD layer: 'ic_home_24px' (shape)
+                                            SvgPicture.string(
                                           _svg_jtcmlr,
                                           allowDrawingOutsideViewBox: true,
                                           fit: BoxFit.fill,
@@ -3295,7 +3379,8 @@ class _reportMainCate extends State<reportMainCate>
                                 decoration: BoxDecoration(
                                   color: const Color(0x5effd64d),
                                   border: Border.all(
-                                      width: 1.0, color: const Color(0x5ef3f3f3)),
+                                      width: 1.0,
+                                      color: const Color(0x5ef3f3f3)),
                                   boxShadow: [
                                     BoxShadow(
                                       color: const Color(0x0f000000),
@@ -3336,14 +3421,14 @@ class _reportMainCate extends State<reportMainCate>
                 ),
               ),
               height: MediaQuery.of(context).size.height,
-            )],);
-
+            )
+          ],
+        );
 
         //show error with retry
 
       }
-      return
-          Container(
+      return Container(
         child: Scaffold(
           body: Container(
             child: Stack(
@@ -3366,337 +3451,390 @@ class _reportMainCate extends State<reportMainCate>
                                             padding: EdgeInsets.fromLTRB(
                                                 10, 50, 10, 10),
                                             child: Container(
-                                              width:
-                                              MediaQuery.of(context)
+                                              width: MediaQuery.of(context)
                                                   .size
                                                   .width,
                                               child: Padding(
-                                                padding:
-                                                EdgeInsets.fromLTRB(
+                                                padding: EdgeInsets.fromLTRB(
                                                     10, 10, 10, 10),
                                                 child: widget.pageNum == '1'
                                                     ? Stack(
-                                                  children: <
-                                                      Widget>[
-                                                    Directionality(
-                                                        textDirection: langSave ==
-                                                            'ar'
-                                                            ? TextDirection
-                                                            .ltr
-                                                            : TextDirection
-                                                            .ltr,
-                                                        child:
-                                                        Container(
-                                                          width: MediaQuery.of(
-                                                              context)
-                                                              .size
-                                                              .width,
-                                                          child:
-                                                          Row(
-                                                            children: <
-                                                                Widget>[
-                                                              Align(
-                                                                child: GestureDetector(
-                                                                    child: SvgPicture.string(
-                                                                      _svg_6oa7ke,
-                                                                      allowDrawingOutsideViewBox: true,
+                                                        children: <Widget>[
+                                                          Directionality(
+                                                              textDirection: langSave ==
+                                                                      'ar'
+                                                                  ? TextDirection
+                                                                      .ltr
+                                                                  : TextDirection
+                                                                      .ltr,
+                                                              child: Container(
+                                                                width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                                child: Row(
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Align(
+                                                                      child: GestureDetector(
+                                                                          child: SvgPicture.string(
+                                                                            _svg_6oa7ke,
+                                                                            allowDrawingOutsideViewBox:
+                                                                                true,
+                                                                          ),
+                                                                          onTap: () {
+                                                                            Navigator.of(context).pop();
+                                                                          }),
+                                                                      alignment:
+                                                                          Alignment
+                                                                              .topRight,
                                                                     ),
-                                                                    onTap: () {
-                                                                      Navigator.of(context).pop();
-                                                                    }),
-                                                                alignment:
-                                                                Alignment.topRight,
-                                                              ),
-                                                              Padding(
-                                                                padding: EdgeInsets.fromLTRB(
-                                                                    15,
-                                                                    0,
-                                                                    10,
-                                                                    0),
-                                                                child:
-                                                                Center(
-                                                                  child: Column(
-                                                                    children: <Widget>[
-                                                                      Text(
-                                                                        'Honey Bee',
-                                                                        style: TextStyle(
-                                                                          fontFamily: 'Pristina',
-                                                                          fontSize: 32,
-                                                                          color: const Color(0xff0a0606),
-                                                                          shadows: [
-                                                                            Shadow(
-                                                                              color: const Color(0x29000000),
-                                                                              offset: Offset(3, 10),
-                                                                              blurRadius: 6,
+                                                                    Padding(
+                                                                      padding: EdgeInsets
+                                                                          .fromLTRB(
+                                                                              15,
+                                                                              0,
+                                                                              10,
+                                                                              0),
+                                                                      child:
+                                                                          Center(
+                                                                        child:
+                                                                            Column(
+                                                                          children: <
+                                                                              Widget>[
+                                                                            Text(
+                                                                              'Honey Bee',
+                                                                              style: TextStyle(
+                                                                                fontFamily: 'Pristina',
+                                                                                fontSize: 32,
+                                                                                color: const Color(0xff0a0606),
+                                                                                shadows: [
+                                                                                  Shadow(
+                                                                                    color: const Color(0x29000000),
+                                                                                    offset: Offset(3, 10),
+                                                                                    blurRadius: 6,
+                                                                                  )
+                                                                                ],
+                                                                              ),
+                                                                              textAlign: TextAlign.center,
+                                                                            ),
+                                                                            Padding(
+                                                                              padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
+                                                                              child: Text(
+                                                                                AppLocalizations().lbExM,
+                                                                                style: TextStyle(
+                                                                                  fontSize: 18,
+                                                                                  color: Colors.grey,
+                                                                                ),
+                                                                                textAlign: TextAlign.center,
+                                                                              ),
                                                                             )
                                                                           ],
                                                                         ),
-                                                                        textAlign: TextAlign.center,
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
-                                                                        child: Text(
-                                                                          AppLocalizations().lbExM,
-                                                                          style: TextStyle(
-                                                                            fontSize: 18,
-                                                                            color: Colors.grey,
-                                                                          ),
-                                                                          textAlign: TextAlign.center,
-                                                                        ),
-                                                                      )
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        )),
-                                                    Directionality(
-                                                        textDirection: langSave ==
-                                                            'ar'
-                                                            ? TextDirection
-                                                            .rtl
-                                                            : TextDirection
-                                                            .rtl,
-                                                        child:
-                                                        Container(
-                                                          width: MediaQuery.of(
-                                                              context)
-                                                              .size
-                                                              .width,
-                                                          child:
-                                                          Row(
-                                                            children: <
-                                                                Widget>[
-                                                              SizedBox(
-                                                                width:
-                                                                63.0,
-                                                                height:
-                                                                63.0,
-                                                                child:
-                                                                Stack(
-                                                                  children: <Widget>[
-                                                                    Pinned.fromSize(
-                                                                      bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
-                                                                      size: Size(62.8, 62.8),
-                                                                      pinLeft: true,
-                                                                      pinRight: true,
-                                                                      pinTop: true,
-                                                                      pinBottom: true,
-                                                                      child: Container(
-                                                                        decoration: BoxDecoration(
-                                                                          borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                                                                          border: Border.all(width: 1.0, color: const Color(0xf2386694)),
-                                                                        ),
                                                                       ),
                                                                     ),
-                                                                    Pinned.fromSize(
-                                                                      bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
-                                                                      size: Size(62.8, 62.8),
-                                                                      pinTop: true,
-                                                                      pinBottom: true,
-                                                                      fixedWidth: true,
+                                                                  ],
+                                                                ),
+                                                              )),
+                                                          Directionality(
+                                                              textDirection: langSave ==
+                                                                      'ar'
+                                                                  ? TextDirection
+                                                                      .rtl
+                                                                  : TextDirection
+                                                                      .rtl,
+                                                              child: Container(
+                                                                width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                                child: Row(
+                                                                  children: <
+                                                                      Widget>[
+                                                                    SizedBox(
+                                                                      width:
+                                                                          63.0,
+                                                                      height:
+                                                                          63.0,
                                                                       child:
-                                                                      // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                                                                      SvgPicture.string(
-                                                                        _svg_pew0t9,
-                                                                        allowDrawingOutsideViewBox: true,
-                                                                        fit: BoxFit.fill,
+                                                                          Stack(
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Pinned
+                                                                              .fromSize(
+                                                                            bounds: Rect.fromLTWH(
+                                                                                7.1,
+                                                                                7.2,
+                                                                                48.5,
+                                                                                48.5),
+                                                                            size:
+                                                                                Size(62.8, 62.8),
+                                                                            pinLeft:
+                                                                                true,
+                                                                            pinRight:
+                                                                                true,
+                                                                            pinTop:
+                                                                                true,
+                                                                            pinBottom:
+                                                                                true,
+                                                                            child:
+                                                                                Container(
+                                                                              decoration: BoxDecoration(
+                                                                                borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                                                                                border: Border.all(width: 1.0, color: const Color(0xf2386694)),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          Pinned
+                                                                              .fromSize(
+                                                                            bounds: Rect.fromLTWH(
+                                                                                22.1,
+                                                                                14.7,
+                                                                                19.0,
+                                                                                33.6),
+                                                                            size:
+                                                                                Size(62.8, 62.8),
+                                                                            pinTop:
+                                                                                true,
+                                                                            pinBottom:
+                                                                                true,
+                                                                            fixedWidth:
+                                                                                true,
+                                                                            child:
+                                                                                // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                                                SvgPicture.string(
+                                                                              _svg_pew0t9,
+                                                                              allowDrawingOutsideViewBox: true,
+                                                                              fit: BoxFit.fill,
+                                                                            ),
+                                                                          ),
+                                                                        ],
                                                                       ),
+                                                                    ),
+                                                                    Text(
+                                                                      AppLocalizations()
+                                                                          .lbEx,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontFamily:
+                                                                            'Times New Roman',
+                                                                        fontSize:
+                                                                            20,
+                                                                        color: const Color(
+                                                                            0xff0a0606),
+                                                                        shadows: [
+                                                                          Shadow(
+                                                                            color:
+                                                                                const Color(0x29000000),
+                                                                            offset:
+                                                                                Offset(0, 10),
+                                                                            blurRadius:
+                                                                                6,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
                                                                     ),
                                                                   ],
                                                                 ),
-                                                              ),
-                                                              Text(
-                                                                AppLocalizations().lbEx,
-                                                                style:
-                                                                TextStyle(
-                                                                  fontFamily: 'Times New Roman',
-                                                                  fontSize: 20,
-                                                                  color: const Color(0xff0a0606),
-                                                                  shadows: [
-                                                                    Shadow(
-                                                                      color: const Color(0x29000000),
-                                                                      offset: Offset(0, 10),
-                                                                      blurRadius: 6,
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                                textAlign:
-                                                                TextAlign.center,
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ))
-                                                  ],
-                                                )
+                                                              ))
+                                                        ],
+                                                      )
                                                     : Stack(
-                                                  children: <
-                                                      Widget>[
-                                                    Directionality(
-                                                        textDirection: langSave ==
-                                                            'ar'
-                                                            ? TextDirection
-                                                            .ltr
-                                                            : TextDirection
-                                                            .ltr,
-                                                        child:
-                                                        Container(
-                                                          width: MediaQuery.of(
-                                                              context)
-                                                              .size
-                                                              .width,
-                                                          child:
-                                                          Row(
-                                                            children: <
-                                                                Widget>[
-                                                              Align(
-                                                                child: GestureDetector(
-                                                                    child: SvgPicture.string(
-                                                                      _svg_6oa7ke,
-                                                                      allowDrawingOutsideViewBox: true,
+                                                        children: <Widget>[
+                                                          Directionality(
+                                                              textDirection: langSave ==
+                                                                      'ar'
+                                                                  ? TextDirection
+                                                                      .ltr
+                                                                  : TextDirection
+                                                                      .ltr,
+                                                              child: Container(
+                                                                width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                                child: Row(
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Align(
+                                                                      child: GestureDetector(
+                                                                          child: SvgPicture.string(
+                                                                            _svg_6oa7ke,
+                                                                            allowDrawingOutsideViewBox:
+                                                                                true,
+                                                                          ),
+                                                                          onTap: () {
+                                                                            Navigator.of(context).pop();
+                                                                          }),
+                                                                      alignment:
+                                                                          Alignment
+                                                                              .topRight,
                                                                     ),
-                                                                    onTap: () {
-                                                                      Navigator.of(context).pop();
-                                                                    }),
-                                                                alignment:
-                                                                Alignment.topRight,
-                                                              ),
-                                                              Padding(
-                                                                padding: EdgeInsets.fromLTRB(
-                                                                    15,
-                                                                    0,
-                                                                    10,
-                                                                    0),
-                                                                child:
-                                                                Center(
-                                                                  child: Column(
-                                                                    children: <Widget>[
-                                                                      Text(
-                                                                        'Honey Bee',
-                                                                        style: TextStyle(
-                                                                          fontFamily: 'Pristina',
-                                                                          fontSize: 32,
-                                                                          color: const Color(0xff0a0606),
-                                                                          shadows: [
-                                                                            Shadow(
-                                                                              color: const Color(0x29000000),
-                                                                              offset: Offset(3, 10),
-                                                                              blurRadius: 6,
+                                                                    Padding(
+                                                                      padding: EdgeInsets
+                                                                          .fromLTRB(
+                                                                              15,
+                                                                              0,
+                                                                              10,
+                                                                              0),
+                                                                      child:
+                                                                          Center(
+                                                                        child:
+                                                                            Column(
+                                                                          children: <
+                                                                              Widget>[
+                                                                            Text(
+                                                                              'Honey Bee',
+                                                                              style: TextStyle(
+                                                                                fontFamily: 'Pristina',
+                                                                                fontSize: 32,
+                                                                                color: const Color(0xff0a0606),
+                                                                                shadows: [
+                                                                                  Shadow(
+                                                                                    color: const Color(0x29000000),
+                                                                                    offset: Offset(3, 10),
+                                                                                    blurRadius: 6,
+                                                                                  )
+                                                                                ],
+                                                                              ),
+                                                                              textAlign: TextAlign.center,
+                                                                            ),
+                                                                            Padding(
+                                                                              padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
+                                                                              child: Text(
+                                                                                AppLocalizations().lbReM,
+                                                                                style: TextStyle(
+                                                                                  fontSize: 18,
+                                                                                  color: Colors.grey,
+                                                                                ),
+                                                                                textAlign: TextAlign.center,
+                                                                              ),
                                                                             )
                                                                           ],
                                                                         ),
-                                                                        textAlign: TextAlign.center,
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: EdgeInsets.fromLTRB(0, 3, 0, 3),
-                                                                        child: Text(
-                                                                          AppLocalizations().lbReM,
-                                                                          style: TextStyle(
-                                                                            fontSize: 18,
-                                                                            color: Colors.grey,
-                                                                          ),
-                                                                          textAlign: TextAlign.center,
-                                                                        ),
-                                                                      )
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        )),
-
-                                                    Directionality(
-                                                        textDirection: langSave ==
-                                                            'ar'
-                                                            ? TextDirection
-                                                            .rtl
-                                                            : TextDirection
-                                                            .rtl,
-                                                        child:
-                                                        Container(
-                                                          width: MediaQuery.of(
-                                                              context)
-                                                              .size
-                                                              .width,
-                                                          child:
-                                                          Row(
-                                                            children: <
-                                                                Widget>[
-                                                              SizedBox(
-                                                                width:
-                                                                63.0,
-                                                                height:
-                                                                63.0,
-                                                                child:
-                                                                Stack(
-                                                                  children: <Widget>[
-                                                                    Pinned.fromSize(
-                                                                      bounds: Rect.fromLTWH(7.1, 7.2, 48.5, 48.5),
-                                                                      size: Size(62.8, 62.8),
-                                                                      pinLeft: true,
-                                                                      pinRight: true,
-                                                                      pinTop: true,
-                                                                      pinBottom: true,
-                                                                      child: Container(
-                                                                        decoration: BoxDecoration(
-                                                                          borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                                                                          border: Border.all(width: 1.0, color: const Color(0xf2386694)),
-                                                                        ),
                                                                       ),
                                                                     ),
-                                                                    Pinned.fromSize(
-                                                                      bounds: Rect.fromLTWH(22.1, 14.7, 19.0, 33.6),
-                                                                      size: Size(62.8, 62.8),
-                                                                      pinTop: true,
-                                                                      pinBottom: true,
-                                                                      fixedWidth: true,
+                                                                  ],
+                                                                ),
+                                                              )),
+                                                          Directionality(
+                                                              textDirection: langSave ==
+                                                                      'ar'
+                                                                  ? TextDirection
+                                                                      .rtl
+                                                                  : TextDirection
+                                                                      .rtl,
+                                                              child: Container(
+                                                                width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                                child: Row(
+                                                                  children: <
+                                                                      Widget>[
+                                                                    SizedBox(
+                                                                      width:
+                                                                          63.0,
+                                                                      height:
+                                                                          63.0,
                                                                       child:
-                                                                      // Adobe XD layer: 'ic_attach_money_24px' (shape)
-                                                                      SvgPicture.string(
-                                                                        _svg_pew0t9,
-                                                                        allowDrawingOutsideViewBox: true,
-                                                                        fit: BoxFit.fill,
+                                                                          Stack(
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Pinned
+                                                                              .fromSize(
+                                                                            bounds: Rect.fromLTWH(
+                                                                                7.1,
+                                                                                7.2,
+                                                                                48.5,
+                                                                                48.5),
+                                                                            size:
+                                                                                Size(62.8, 62.8),
+                                                                            pinLeft:
+                                                                                true,
+                                                                            pinRight:
+                                                                                true,
+                                                                            pinTop:
+                                                                                true,
+                                                                            pinBottom:
+                                                                                true,
+                                                                            child:
+                                                                                Container(
+                                                                              decoration: BoxDecoration(
+                                                                                borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                                                                                border: Border.all(width: 1.0, color: const Color(0xf2386694)),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          Pinned
+                                                                              .fromSize(
+                                                                            bounds: Rect.fromLTWH(
+                                                                                22.1,
+                                                                                14.7,
+                                                                                19.0,
+                                                                                33.6),
+                                                                            size:
+                                                                                Size(62.8, 62.8),
+                                                                            pinTop:
+                                                                                true,
+                                                                            pinBottom:
+                                                                                true,
+                                                                            fixedWidth:
+                                                                                true,
+                                                                            child:
+                                                                                // Adobe XD layer: 'ic_attach_money_24px' (shape)
+                                                                                SvgPicture.string(
+                                                                              _svg_pew0t9,
+                                                                              allowDrawingOutsideViewBox: true,
+                                                                              fit: BoxFit.fill,
+                                                                            ),
+                                                                          ),
+                                                                        ],
                                                                       ),
+                                                                    ),
+                                                                    Text(
+                                                                      AppLocalizations()
+                                                                          .lbRev,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontFamily:
+                                                                            'Times New Roman',
+                                                                        fontSize:
+                                                                            20,
+                                                                        color: const Color(
+                                                                            0xff0a0606),
+                                                                        shadows: [
+                                                                          Shadow(
+                                                                            color:
+                                                                                const Color(0x29000000),
+                                                                            offset:
+                                                                                Offset(0, 10),
+                                                                            blurRadius:
+                                                                                6,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
                                                                     ),
                                                                   ],
                                                                 ),
-                                                              ),
-                                                              Text(
-                                                                AppLocalizations().lbRev,
-                                                                style:
-                                                                TextStyle(
-                                                                  fontFamily: 'Times New Roman',
-                                                                  fontSize: 20,
-                                                                  color: const Color(0xff0a0606),
-                                                                  shadows: [
-                                                                    Shadow(
-                                                                      color: const Color(0x29000000),
-                                                                      offset: Offset(0, 10),
-                                                                      blurRadius: 6,
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                                textAlign:
-                                                                TextAlign.center,
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ))
-                                                  ],
-                                                ),
+                                                              ))
+                                                        ],
+                                                      ),
                                               ),
                                               decoration: BoxDecoration(
                                                 borderRadius:
-                                                BorderRadius.circular(
-                                                    15.0),
-                                                color: const Color(
-                                                    0x09010101),
+                                                    BorderRadius.circular(15.0),
+                                                color: const Color(0x09010101),
                                                 boxShadow: [
                                                   BoxShadow(
-                                                    color: const Color(
-                                                        0x02000000),
+                                                    color:
+                                                        const Color(0x02000000),
                                                     offset: Offset(0, 3),
                                                     blurRadius: 6,
                                                   ),
@@ -3710,16 +3848,15 @@ class _reportMainCate extends State<reportMainCate>
                                   ],
                                 ),
                               ),
-                              
                               Container(
                                 child: Column(
                                   children: <Widget>[
                                     Padding(
                                       padding:
-                                      EdgeInsets.fromLTRB(0, 20, 0, 10),
+                                          EdgeInsets.fromLTRB(0, 20, 0, 10),
                                       child: Container(
                                         width:
-                                        MediaQuery.of(context).size.width,
+                                            MediaQuery.of(context).size.width,
                                         child: Padding(
                                           padding: EdgeInsets.fromLTRB(
                                               10, 10, 10, 10),
@@ -3728,11 +3865,10 @@ class _reportMainCate extends State<reportMainCate>
                                               Text(
                                                 widget.mainName,
                                                 style: TextStyle(
-                                                  fontFamily:
-                                                  'Times New Roman',
+                                                  fontFamily: 'Times New Roman',
                                                   fontSize: 22,
                                                   color:
-                                                  const Color(0x7d707070),
+                                                      const Color(0x7d707070),
                                                 ),
                                                 textAlign: TextAlign.center,
                                               ),
@@ -3741,42 +3877,41 @@ class _reportMainCate extends State<reportMainCate>
                                                 child: Container(
                                                   decoration: BoxDecoration(
                                                     borderRadius:
-                                                    BorderRadius.all(
-                                                        Radius.elliptical(
-                                                            9999.0,
-                                                            9999.0)),
-                                                    color: const Color(
-                                                        0x4dffd64d),
+                                                        BorderRadius.all(
+                                                            Radius.elliptical(
+                                                                9999.0,
+                                                                9999.0)),
+                                                    color:
+                                                        const Color(0x4dffd64d),
                                                   ),
                                                   child: Padding(
-                                                    padding:
-                                                    EdgeInsets.all(10),
+                                                    padding: EdgeInsets.all(10),
                                                     child: Stack(
                                                       children: <Widget>[
                                                         SvgPicture.string(
                                                           _svg_a39r47,
                                                           allowDrawingOutsideViewBox:
-                                                          true,
+                                                              true,
                                                           fit: BoxFit.fill,
                                                           height: 45,
                                                         ),
                                                         SvgPicture.string(
                                                           _svg_voj5n1,
                                                           allowDrawingOutsideViewBox:
-                                                          true,
+                                                              true,
                                                           fit: BoxFit.fill,
                                                         ),
                                                         Padding(
                                                           padding: EdgeInsets
-                                                              .fromLTRB(2, 18,
-                                                              2, 2),
+                                                              .fromLTRB(
+                                                                  2, 18, 2, 2),
                                                           child: Container(
                                                             decoration:
-                                                            BoxDecoration(
+                                                                BoxDecoration(
                                                               borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                  3.0),
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          3.0),
                                                               color: const Color(
                                                                   0x4dffffff),
                                                               border: Border.all(
@@ -3789,15 +3924,15 @@ class _reportMainCate extends State<reportMainCate>
                                                         ),
                                                         Padding(
                                                           padding: EdgeInsets
-                                                              .fromLTRB(2, 23,
-                                                              2, 2),
+                                                              .fromLTRB(
+                                                                  2, 23, 2, 2),
                                                           child: Container(
                                                             decoration:
-                                                            BoxDecoration(
+                                                                BoxDecoration(
                                                               borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                  3.0),
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          3.0),
                                                               color: const Color(
                                                                   0x4dffffff),
                                                               border: Border.all(
@@ -3810,15 +3945,15 @@ class _reportMainCate extends State<reportMainCate>
                                                         ),
                                                         Padding(
                                                           padding: EdgeInsets
-                                                              .fromLTRB(2, 28,
-                                                              2, 2),
+                                                              .fromLTRB(
+                                                                  2, 28, 2, 2),
                                                           child: Container(
                                                             decoration:
-                                                            BoxDecoration(
+                                                                BoxDecoration(
                                                               borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                  3.0),
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          3.0),
                                                               color: const Color(
                                                                   0x4dffd64d),
                                                               border: Border.all(
@@ -3831,15 +3966,15 @@ class _reportMainCate extends State<reportMainCate>
                                                         ),
                                                         Padding(
                                                           padding: EdgeInsets
-                                                              .fromLTRB(2, 33,
-                                                              2, 2),
+                                                              .fromLTRB(
+                                                                  2, 33, 2, 2),
                                                           child: Container(
                                                             decoration:
-                                                            BoxDecoration(
+                                                                BoxDecoration(
                                                               borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                  3.0),
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          3.0),
                                                               color: const Color(
                                                                   0x4dffd64d),
                                                               border: Border.all(
@@ -3880,381 +4015,396 @@ class _reportMainCate extends State<reportMainCate>
                               ),
                               Container(
                                   child: Wrap(
+                                children: <Widget>[
+                                  Column(
                                     children: <Widget>[
-                                      Column(
-                                        children: <Widget>[
-                                          Container(
-                                            child: Column(
+                                      Container(
+                                        child: Column(
+                                          children: <Widget>[
+                                            Row(
                                               children: <Widget>[
-                                                Row(
-                                                  children: <Widget>[
-                                                    Checkbox(
-                                                      value: monVal,
-                                                      onChanged: (bool value) {
-                                                        setState(() {
-                                                          monVal = value;
-                                                        });
-                                                      },
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                      EdgeInsets.fromLTRB(
-                                                          10, 0, 10, 0),
-                                                      child: Text(
-                                                          AppLocalizations()
-                                                              .lbViewD),
-                                                    ),
-                                                  ],
+                                                Checkbox(
+                                                  value: monVal,
+                                                  onChanged: (bool value) {
+                                                    setState(() {
+                                                      monVal = value;
+                                                    });
+                                                  },
                                                 ),
-                                                monVal == true
-                                                    ? Visibility(
-                                                  child: Padding(
-                                                    padding:
-                                                    EdgeInsets.fromLTRB(
-                                                        5, 0, 5, 0),
-                                                    child: Column(
-                                                      children: <Widget>[
-                                                        Text(
-                                                            AppLocalizations().lbFrom),
-                                                        Form(
-                                                          key: fromdate,
-                                                          child: Center(
-                                                            child:
-                                                            DateTimeField(
+                                                Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      10, 0, 10, 0),
+                                                  child: Text(AppLocalizations()
+                                                      .lbViewD),
+                                                ),
+                                              ],
+                                            ),
+                                            monVal == true
+                                                ? Visibility(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              5, 0, 5, 0),
+                                                      child: Column(
+                                                        children: <Widget>[
+                                                          Text(
+                                                              AppLocalizations()
+                                                                  .lbFrom),
+                                                          Form(
+                                                            key: fromdate,
+                                                            child: Center(
+                                                              child:
+                                                                  DateTimeField(
 //                          dateOnly: true,
 
-                                                              format: langSave ==
-                                                                  'en'
-                                                                  ? widget.dateFormat
-                                                                  : widget.dateFormatAR,
-                                                              validator:
-                                                                  (val) {
-                                                                if (val !=
-                                                                    null) {
-                                                                  return null;
-                                                                } else {
-                                                                  return AppLocalizations()
-                                                                      .lbDateE;
-                                                                }
-                                                              },
-                                                              decoration: InputDecoration(
-                                                                  labelText:
+                                                                format: langSave ==
+                                                                        'en'
+                                                                    ? widget
+                                                                        .dateFormat
+                                                                    : widget
+                                                                        .dateFormatAR,
+                                                                validator:
+                                                                    (val) {
+                                                                  if (val !=
+                                                                      null) {
+                                                                    return null;
+                                                                  } else {
+                                                                    return AppLocalizations()
+                                                                        .lbDateE;
+                                                                  }
+                                                                },
+                                                                decoration: InputDecoration(
+                                                                    labelText:
+                                                                        AppLocalizations()
+                                                                            .lbFDate),
+                                                                //   initialValue: DateTime.now(), //Add this in your Code.
+                                                                // initialDate: DateTime(2017),
+                                                                onSaved:
+                                                                    (value) {
+                                                                  dateF = value
+                                                                      .toString()
+                                                                      .substring(
+                                                                          0,
+                                                                          10);
+                                                                  debugPrint(value
+                                                                      .toString());
+                                                                },
+                                                                onShowPicker:
+                                                                    (context,
+                                                                        currentValue) {
+                                                                  return showDatePicker(
+                                                                      context:
+                                                                          context,
+                                                                      initialDate: currentValue ??
+                                                                          DateTime
+                                                                              .now(),
+                                                                      firstDate:
+                                                                          DateTime(
+                                                                              1999),
+                                                                      lastDate:
+                                                                          DateTime(
+                                                                              2100));
+                                                                },
+                                                              ),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    visible: false,
+                                                  )
+                                                : Visibility(
+                                                    child: Column(
+                                                      children: <Widget>[
+                                                        Padding(
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(10,
+                                                                    10, 10, 0),
+                                                            child: Row(
+                                                              children: <
+                                                                  Widget>[
+                                                                Text(
                                                                   AppLocalizations()
-                                                                      .lbFDate),
-                                                              //   initialValue: DateTime.now(), //Add this in your Code.
-                                                              // initialDate: DateTime(2017),
-                                                              onSaved:
-                                                                  (value) {
-
-                                                                dateF = value
-                                                                    .toString()
-                                                                    .substring(
-                                                                    0,
-                                                                    10);
-                                                                debugPrint(value
-                                                                    .toString());
-                                                              },
-                                                              onShowPicker:
-                                                                  (context,
-                                                                  currentValue) {
-                                                                return showDatePicker(
-                                                                    context:
-                                                                    context,
-                                                                    initialDate: currentValue ??
-                                                                        DateTime
-                                                                            .now(),
-                                                                    firstDate:
-                                                                    DateTime(
-                                                                        1999),
-                                                                    lastDate:
-                                                                    DateTime(2100));
-                                                              },
+                                                                      .lbFrom,
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold),
+                                                                )
+                                                              ],
+                                                            )),
+                                                        Padding(
+                                                          padding: EdgeInsets
+                                                              .fromLTRB(
+                                                                  35, 0, 35, 0),
+                                                          child: Form(
+                                                            key: fromdate,
+                                                            child: Center(
+                                                              child:
+                                                                  DateTimeField(
+//                          dateOnly: true,
+                                                                format: langSave ==
+                                                                        'en'
+                                                                    ? widget
+                                                                        .dateFormat
+                                                                    : widget
+                                                                        .dateFormatAR,
+                                                                validator:
+                                                                    (val) {
+                                                                  if (val !=
+                                                                      null) {
+                                                                    return null;
+                                                                  } else {
+                                                                    return AppLocalizations()
+                                                                        .lbDateE;
+                                                                  }
+                                                                },
+                                                                decoration: InputDecoration(
+                                                                    labelText:
+                                                                        AppLocalizations()
+                                                                            .lbFDate),
+                                                                //   initialValue: DateTime.now(), //Add this in your Code.
+                                                                // initialDate: DateTime(2017),
+                                                                onSaved:
+                                                                    (value) {
+                                                                  dateF = value
+                                                                      .toString()
+                                                                      .substring(
+                                                                          0,
+                                                                          10);
+                                                                  debugPrint(value
+                                                                      .toString());
+                                                                  print(dateF);
+                                                                },
+                                                                onShowPicker:
+                                                                    (context,
+                                                                        currentValue) {
+                                                                  return showDatePicker(
+                                                                      context:
+                                                                          context,
+                                                                      initialDate: currentValue ??
+                                                                          DateTime
+                                                                              .now(),
+                                                                      firstDate:
+                                                                          DateTime(
+                                                                              1999),
+                                                                      lastDate:
+                                                                          DateTime(
+                                                                              2100));
+                                                                },
+                                                              ),
                                                             ),
                                                           ),
                                                         )
                                                       ],
                                                     ),
+                                                    visible: true,
                                                   ),
-                                                  visible: false,
-                                                )
-                                                    : Visibility(
-                                                  child: Column(
-                                                    children: <Widget>[
-                                                      Padding( padding:
-                                                      EdgeInsets.fromLTRB(
-                                                          10, 10, 10, 0),
-                                                          child:Row(
-                                                            children: <Widget>[
-                                                              Text(
-                                                                AppLocalizations().lbFrom,
-                                                                style: TextStyle(
-                                                                    fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                              )
-                                                            ],
-                                                          ))
-                                                      ,
-                                                      Padding(
-                                                        padding: EdgeInsets
-                                                            .fromLTRB(
-                                                            35, 0, 35, 0),
-                                                        child: Form(
-                                                          key: fromdate,
-                                                          child: Center(
-                                                            child:
-                                                            DateTimeField(
-//                          dateOnly: true,
-                                                              format: langSave ==
-                                                                  'en'
-                                                                  ? widget.dateFormat
-                                                                  : widget.dateFormatAR,
-                                                              validator:
-                                                                  (val) {
-                                                                if (val !=
-                                                                    null) {
-                                                                  return null;
-                                                                } else {
-                                                                  return AppLocalizations()
-                                                                      .lbDateE;
-                                                                }
-                                                              },
-                                                              decoration: InputDecoration(
-                                                                  labelText:
-                                                                  AppLocalizations()
-                                                                      .lbFDate),
-                                                              //   initialValue: DateTime.now(), //Add this in your Code.
-                                                              // initialDate: DateTime(2017),
-                                                              onSaved:
-                                                                  (value) {
-
-                                                                dateF = value
-                                                                    .toString()
-                                                                    .substring(
-                                                                    0,
-                                                                    10);
-                                                                debugPrint(value
-                                                                    .toString());
-                                                                print(dateF);
-
-                                                              },
-                                                              onShowPicker:
-                                                                  (context,
-                                                                  currentValue) {
-                                                                return showDatePicker(
-                                                                    context:
-                                                                    context,
-                                                                    initialDate: currentValue ??
-                                                                        DateTime
-                                                                            .now(),
-                                                                    firstDate:
-                                                                    DateTime(
-                                                                        1999),
-                                                                    lastDate:
-                                                                    DateTime(2100));
-                                                              },
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                  visible: true,
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.fromLTRB(
-                                                      5, 10, 5, 0),
-                                                  child:
-                                                  Column(children: <Widget>[ Padding( padding:
-                                                  EdgeInsets.fromLTRB(
-                                                      10, 10, 10, 0),
-                                                      child:Row(
+                                            Padding(
+                                              padding: EdgeInsets.fromLTRB(
+                                                  5, 10, 5, 0),
+                                              child: Column(
+                                                children: <Widget>[
+                                                  Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              10, 10, 10, 0),
+                                                      child: Row(
                                                         children: <Widget>[
                                                           Text(
-                                                            AppLocalizations().lbTo,
+                                                            AppLocalizations()
+                                                                .lbTo,
                                                             style: TextStyle(
                                                                 fontWeight:
-                                                                FontWeight
-                                                                    .bold),
+                                                                    FontWeight
+                                                                        .bold),
                                                           )
                                                         ],
-                                                      ))
-                                                    ,
-
-                                                    Padding( padding:
-                                                    EdgeInsets.fromLTRB(
-                                                        30, 10, 30, 0),
-                                                        child:Form(
-                                                          key: todate,
-                                                          child: Center(
-                                                            child: DateTimeField(
+                                                      )),
+                                                  Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              30, 10, 30, 0),
+                                                      child: Form(
+                                                        key: todate,
+                                                        child: Center(
+                                                          child: DateTimeField(
 //                          dateOnly: true,
-                                                              format: langSave == 'en'
-                                                                  ? widget.dateFormat
-                                                                  : widget.dateFormatAR,
-                                                              validator: (val) {
-                                                                if (val != null) {
-                                                                  return null;
-                                                                } else {
-                                                                  return AppLocalizations()
-                                                                      .lbDateE;
-                                                                }
-                                                              },
-                                                              decoration: InputDecoration(
-                                                                labelText:
-                                                                AppLocalizations()
-                                                                    .lbTodate,
-                                                              ),
-                                                              //   initialValue: DateTime.now(), //Add this in your Code.
-                                                              // initialDate: DateTime(2017),
-                                                              onSaved: (value) {
-
-                                                                debugPrint(
-                                                                    value.toString());
-                                                                dateT = value
-                                                                    .toString()
-                                                                    .substring(0, 10);
-                                                              },
-                                                              onShowPicker: (context,
-                                                                  currentValue) {
-                                                                return showDatePicker(
-                                                                    context: context,
-                                                                    initialDate:
-                                                                    currentValue ??
-                                                                        DateTime
-                                                                            .now(),
-                                                                    firstDate:
-                                                                    DateTime(1999),
-                                                                    lastDate:
-                                                                    DateTime(2100));
-                                                              },
+                                                            format: langSave ==
+                                                                    'en'
+                                                                ? widget
+                                                                    .dateFormat
+                                                                : widget
+                                                                    .dateFormatAR,
+                                                            validator: (val) {
+                                                              if (val != null) {
+                                                                return null;
+                                                              } else {
+                                                                return AppLocalizations()
+                                                                    .lbDateE;
+                                                              }
+                                                            },
+                                                            decoration:
+                                                                InputDecoration(
+                                                              labelText:
+                                                                  AppLocalizations()
+                                                                      .lbTodate,
                                                             ),
+                                                            //   initialValue: DateTime.now(), //Add this in your Code.
+                                                            // initialDate: DateTime(2017),
+                                                            onSaved: (value) {
+                                                              debugPrint(value
+                                                                  .toString());
+                                                              dateT = value
+                                                                  .toString()
+                                                                  .substring(
+                                                                      0, 10);
+                                                            },
+                                                            onShowPicker: (context,
+                                                                currentValue) {
+                                                              return showDatePicker(
+                                                                  context:
+                                                                      context,
+                                                                  initialDate:
+                                                                      currentValue ??
+                                                                          DateTime
+                                                                              .now(),
+                                                                  firstDate:
+                                                                      DateTime(
+                                                                          1999),
+                                                                  lastDate:
+                                                                      DateTime(
+                                                                          2100));
+                                                            },
                                                           ),
-                                                        ))
-
-                                                  ],)
-
-                                                  ,
-                                                ),
-                                                GestureDetector(
-                                                  child: Padding(
-                                                    padding: EdgeInsets.fromLTRB(0, 50, 0, 50),child:
-                                                  Center(child: Container(child: Padding(padding:EdgeInsets.fromLTRB(30,10,30,10)
-                                                      ,child:Text(AppLocalizations().lbSend)),decoration:  BoxDecoration(
-                                                    borderRadius:
-                                                    BorderRadius
-                                                        .circular(
-                                                        15.0),
-                                                    color: const Color(
-                                                        0xbfc8c6c6),
-                                                    border: Border.all(
-                                                        width:
-                                                        2.0,
-                                                        color: const Color(
-                                                            0xccf3f3f3)),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: const Color(
-                                                            0x21000000),
-                                                        offset:
-                                                        Offset(
-                                                            0,
-                                                            3),
-                                                        blurRadius:
-                                                        6,
-                                                      ),
-                                                    ],
-                                                  )),),),onTap: (){
-
-                                                  if (monVal == true) {
-                                                    if (todate.currentState
-                                                        .validate()) {
-                                                      //  fromdate.currentState.save();
-                                                      todate.currentState
-                                                          .save();
-                                                      Center(
-                                                          child: Column(
-                                                            mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                            children: [
-                                                              Text(
-                                                                  AppLocalizations()
-                                                                      .lbLoad,
-                                                                  style: Theme.of(
-                                                                      context)
-                                                                      .textTheme
-                                                                      .subtitle),
-                                                              Padding(
-                                                                padding:
-                                                                EdgeInsets.only(
-                                                                    top: 5),
-                                                              ),
-                                                              CircularProgressIndicator(
-                                                                valueColor:
-                                                                new AlwaysStoppedAnimation<
-                                                                    Color>(
-                                                                    Colors
-                                                                        .white),
-                                                              )
-                                                            ],
-                                                          ));
-                                                      //_getRequests();
-
-                                                      context.bloc<ExpBloc>().add(ExpensesCategoryReportEvent(
-                                                          int.parse(widget.mainId),"",dateT));
-
-
-
-
-
-                                                    } else {}
-                                                  }
-                                                  else {
-                                                    if (fromdate.currentState
-                                                        .validate() ||
-                                                        todate.currentState
-                                                            .validate()) {
-                                                      fromdate.currentState
-                                                          .save();
-                                                      todate.currentState
-                                                          .save();
-                                                      Center(
-                                                          child: Column(
-                                                            mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                            children: [
-                                                              Text(
-                                                                  AppLocalizations()
-                                                                      .lbLoad,
-                                                                  style: Theme.of(
-                                                                      context)
-                                                                      .textTheme
-                                                                      .subtitle),
-                                                              Padding(
-                                                                padding:
-                                                                EdgeInsets.only(
-                                                                    top: 5),
-                                                              ),
-                                                            ],
-                                                          ));
-                                                      // _getRequests();
-
-                                                      context.bloc<ExpBloc>().add(ExpensesCategoryReportEvent(int.parse(widget.mainId),dateF,dateT));
-
-
-
-                                                    } else {}
-                                                  }},)
-
-                                              ],
+                                                        ),
+                                                      ))
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      )
+                                            GestureDetector(
+                                              child: Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    0, 50, 0, 50),
+                                                child: Center(
+                                                  child: Container(
+                                                      child: Padding(
+                                                          padding: EdgeInsets
+                                                              .fromLTRB(30, 10,
+                                                                  30, 10),
+                                                          child: Text(
+                                                              AppLocalizations()
+                                                                  .lbSend)),
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15.0),
+                                                        color: const Color(
+                                                            0xbfc8c6c6),
+                                                        border: Border.all(
+                                                            width: 2.0,
+                                                            color: const Color(
+                                                                0xccf3f3f3)),
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            color: const Color(
+                                                                0x21000000),
+                                                            offset:
+                                                                Offset(0, 3),
+                                                            blurRadius: 6,
+                                                          ),
+                                                        ],
+                                                      )),
+                                                ),
+                                              ),
+                                              onTap: () {
+                                                if (monVal == true) {
+                                                  if (todate.currentState
+                                                      .validate()) {
+                                                    //  fromdate.currentState.save();
+                                                    todate.currentState.save();
+                                                    Center(
+                                                        child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                            AppLocalizations()
+                                                                .lbLoad,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .subtitle),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  top: 5),
+                                                        ),
+                                                        CircularProgressIndicator(
+                                                          valueColor:
+                                                              new AlwaysStoppedAnimation<
+                                                                      Color>(
+                                                                  Colors.white),
+                                                        )
+                                                      ],
+                                                    ));
+                                                    //_getRequests();
 
-                                      /* GridView.count(
+                                                    context.bloc<ExpBloc>().add(
+                                                        ExpensesCategoryReportEvent(
+                                                            int.parse(
+                                                                widget.mainId),
+                                                            "",
+                                                            dateT));
+                                                  } else {}
+                                                } else {
+                                                  if (fromdate.currentState
+                                                          .validate() ||
+                                                      todate.currentState
+                                                          .validate()) {
+                                                    fromdate.currentState
+                                                        .save();
+                                                    todate.currentState.save();
+                                                    Center(
+                                                        child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                            AppLocalizations()
+                                                                .lbLoad,
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .subtitle),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  top: 5),
+                                                        ),
+                                                      ],
+                                                    ));
+                                                    // _getRequests();
+
+                                                    context.bloc<ExpBloc>().add(
+                                                        ExpensesCategoryReportEvent(
+                                                            int.parse(
+                                                                widget.mainId),
+                                                            dateF,
+                                                            dateT));
+                                                  } else {}
+                                                }
+                                              },
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  )
+
+                                  /* GridView.count(
                     physics: ScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
@@ -4269,8 +4419,8 @@ class _reportMainCate extends State<reportMainCate>
                           (index) => ItemCardNote(model.notes[index]),
                     ),
                   )*/
-                                    ],
-                                  ))
+                                ],
+                              ))
                             ],
                           ),
                         ),
@@ -4294,8 +4444,8 @@ class _reportMainCate extends State<reportMainCate>
                                   child: Stack(
                                     children: <Widget>[
                                       Pinned.fromSize(
-                                        bounds: Rect.fromLTWH(
-                                            0.0, 0.0, 50.8, 50.8),
+                                        bounds:
+                                            Rect.fromLTWH(0.0, 0.0, 50.8, 50.8),
                                         size: Size(50.8, 50.8),
                                         pinLeft: true,
                                         pinRight: true,
@@ -4320,8 +4470,8 @@ class _reportMainCate extends State<reportMainCate>
                                   pinRight: true,
                                   fixedHeight: true,
                                   child:
-                                  // Adobe XD layer: 'ic_home_24px' (shape)
-                                  SvgPicture.string(
+                                      // Adobe XD layer: 'ic_home_24px' (shape)
+                                      SvgPicture.string(
                                     _svg_jtcmlr,
                                     allowDrawingOutsideViewBox: true,
                                     fit: BoxFit.fill,
@@ -4360,8 +4510,8 @@ class _reportMainCate extends State<reportMainCate>
                       ],
                       stops: [0.0, 1.0],
                     ),
-                    border: Border.all(
-                        width: 1.0, color: const Color(0xff707070)),
+                    border:
+                        Border.all(width: 1.0, color: const Color(0xff707070)),
                     boxShadow: [
                       BoxShadow(
                         color: const Color(0x29000000),
@@ -4377,11 +4527,8 @@ class _reportMainCate extends State<reportMainCate>
         ),
         height: MediaQuery.of(context).size.height,
       );
-
     });
   }
-
-
 
   Widget progressWidget() {
     // jika masih proses kirim API
@@ -4391,6 +4538,4 @@ class _reportMainCate extends State<reportMainCate>
       ),
     );
   }
-
-
 }

@@ -14,6 +14,8 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
       MedicineLocalDataSource(),
       NetworkInfoImpl(new DataConnectionChecker()));
 
+  MedicineBloc(MedicineState initialState) : super(initialState);
+
   @override
   MedicineState get initialState => Empty();
 

@@ -5,15 +5,13 @@ import 'package:honey/application/Auth/subExpenEvent.dart';
 import 'package:honey/application/Auth/subExpenState.dart';
 import 'package:honey/domain/Auth/subExpenRepository.dart';
 
-
-
 class ExpSubBloc extends Bloc<ExpEventSub, ExpStateSub> {
   expSubRepository _exRepositorySub;
 
-  ExpSubBloc(this._exRepositorySub);
+  ExpSubBloc(this._exRepositorySub) : super(null);
 
   @override
-  ExpStateSub get initialState => Empty();
+  ExpStateSub get _initialState => Empty();
 
   @override
   Stream<ExpStateSub> mapEventToState(ExpEventSub event) async* {
@@ -26,7 +24,7 @@ class ExpSubBloc extends Bloc<ExpEventSub, ExpStateSub> {
       } catch (e) {
         yield Error(
           e.toString(),
-              () {
+          () {
             this.add(event);
           },
         );
