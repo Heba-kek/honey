@@ -2243,7 +2243,7 @@ var dateFormat,dateFormatAR;
     return await http.post(Uri.encodeFull(url), body: body, headers: {
       "Accept": "application/x-www-form-urlencoded",
       "lang": lang,
-      "Authorization": "Bearer " + token
+      "Auth": "Bearer " + token
     }).then((http.Response response) async {
       final int statusCode = response.statusCode;
       print("status code ${response.statusCode}");

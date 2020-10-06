@@ -11,13 +11,11 @@ class Reminders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(0.0),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.all(
-            Radius.circular(SizeConfig.borderRadius),
-          ),
+
         ),
         child: ExpandableNotifier(
           // <-- Provides ExpandableController to its children
@@ -35,9 +33,7 @@ class Reminders extends StatelessWidget {
                           height: 44,
                           decoration: BoxDecoration(
                             color: Colors.grey[200],
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(SizeConfig.borderRadius),
-                            ),
+
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -59,8 +55,10 @@ class Reminders extends StatelessWidget {
                             ),
                           )),
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Center(child: Text(reminders[0])),
+                        padding: const EdgeInsets.all(5.0),
+                        child: Row(children: <Widget>[Padding(padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                        child: Image.asset('assets/images/remdrug.png'),),Text(local.lbMedicineap),new Spacer(),
+                        Text(local.lbrem)]),
                       ),
                       ExpandableButton(
                         // <-- Collapses when tapped on
@@ -70,11 +68,9 @@ class Reminders extends StatelessWidget {
                             height: 44,
                             decoration: BoxDecoration(
                               color: Colors.grey[200],
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(SizeConfig.borderRadius),
-                              ),
+
                             ),
-                            child: Icon(Icons.arrow_drop_down),
+                            child: Icon(Icons.keyboard_arrow_down),
                           ),
                         ),
                       ),

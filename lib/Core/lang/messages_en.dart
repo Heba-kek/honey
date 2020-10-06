@@ -173,6 +173,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbAddPro": MessageLookupByLibrary.simpleMessage("Add project"),
         "lbRepTar":
             MessageLookupByLibrary.simpleMessage("Economize Project Report"),
+    "lbPer": MessageLookupByLibrary.simpleMessage("Personal"),
+
+    "lbEco": MessageLookupByLibrary.simpleMessage("Economize Project"),
         "lbStatus": MessageLookupByLibrary.simpleMessage("Status"),
         "lbAddTar":
             MessageLookupByLibrary.simpleMessage("Add Economize Project"),
@@ -199,6 +202,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Insert Bank Name"),
         "lnLoanA":
             MessageLookupByLibrary.simpleMessage("Please Insert Loan Amount"),
+        "lbNote": MessageLookupByLibrary.simpleMessage("Notes"),
         "lbUpIma": MessageLookupByLibrary.simpleMessage("Uploading Image..."),
         "lbUpImaSel": MessageLookupByLibrary.simpleMessage("Select Image"),
         "lbNoteName": MessageLookupByLibrary.simpleMessage("Note Name"),
@@ -270,6 +274,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbBeforTD": MessageLookupByLibrary.simpleMessage("Before Two Days"),
         "lbBeforOH": MessageLookupByLibrary.simpleMessage("Before One Hour"),
         "lbBeforTH": MessageLookupByLibrary.simpleMessage("Before Two Hours"),
+        "lbSelectC":
+            MessageLookupByLibrary.simpleMessage("Select from Calender"),
         "lbPageN": MessageLookupByLibrary.simpleMessage("Page of numbers"),
         "lbSub": MessageLookupByLibrary.simpleMessage("Subject of your"),
         "lbEnterS": MessageLookupByLibrary.simpleMessage(
@@ -378,6 +384,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbmedicine": MessageLookupByLibrary.simpleMessage("Medicines date"),
         "lbPatient": MessageLookupByLibrary.simpleMessage("Patient Name"),
         "lbMedicine": MessageLookupByLibrary.simpleMessage("Medicine Name"),
+        "lbMedicineap": MessageLookupByLibrary.simpleMessage("Medicine Appointment"),
+        "lbPro": MessageLookupByLibrary.simpleMessage("Projects"),
+        "lbCashre": MessageLookupByLibrary.simpleMessage("Cash Report"),
+        "lbrem": MessageLookupByLibrary.simpleMessage("Remainng 45 mins"),
+
         "lbMedicineShape":
             MessageLookupByLibrary.simpleMessage("Medicine Shape"),
         "lbdose": MessageLookupByLibrary.simpleMessage("Dose"),

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class HoneyBeeTitle extends StatelessWidget {
   final double fontSize;
@@ -8,7 +9,7 @@ class HoneyBeeTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       "Honey Bee",
-      style: TextStyle(fontFamily: "Pristina", fontSize: fontSize),
+      style: TextStyle(fontFamily: "Pristina", fontSize: fontSize,color: Colors.black),
     );
   }
 }

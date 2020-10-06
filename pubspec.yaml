@@ -31,7 +31,7 @@ dependencies:
   flutter_cupertino_localizations: ^1.0.1
   shared_preferences: ^0.5.10
   equatable: ^1.2.0
-  flutter_bloc: ^6.0.5
+  flutter_bloc:
   dartz: ^0.9.1
   dio: ^3.0.9
   data_connection_checker: ^0.3.4
@@ -44,7 +44,6 @@ dependencies:
   horizontal_data_table: ^1.0.6+2
   http: ^0.12.2
   toast: ^0.1.5
-  flutter_svg: ^0.18.0
   datetime_picker_formfield: ^1.0.0
   table_calendar: ^2.2.3
   expandable: ^4.1.4
@@ -73,7 +72,23 @@ flutter:
     - assets/images/log_back.png
     - assets/images/
     - assets/images/SVG/
-
+    - assets/images/expenew.png
+    - assets/images/revnew.png
+    - assets/images/tranew.png
+    - assets/images/addblue.png
+    - assets/images/exblue.png
+    - assets/images/drug.png
+    - assets/images/revblue.jpg
+    - assets/images/remdrug.png
+    - assets/images/pro.png
+    - assets/images/group.png
+    - assets/images/rehome.png
+    - assets/images/newpro.png
+    - assets/images/newfav.png
+    - assets/images/newset.png
+    - assets/images/newhome.png
+    - assets/images/newde.png
+    - assets/images/SVG/dollar.svg
   fonts:
      - family: Pristina
        fonts:

@@ -37,8 +37,8 @@ class ApiProvider {
         if (token != null) options.headers["Auth"] = "Bearer " + token;
 
         if (lang != null) options.headers["lang"] = lang;
-
-        options.contentType = Headers.formUrlEncodedContentType; //'form-data';
+        options.headers["Content_Type"] = "application/x-www-form-urlencoded";
+        // options.contentType = Headers.formUrlEncodedContentType; //'form-data';
 
         print('options ${options.contentType}');
         return options;
