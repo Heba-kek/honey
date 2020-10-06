@@ -6,10 +6,10 @@ class HoneyBeeTopTitles extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+     //   mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
                   padding: const EdgeInsets.all(8.0),

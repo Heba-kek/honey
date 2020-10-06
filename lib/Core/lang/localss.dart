@@ -50,6 +50,9 @@ class AppLocalizations {
   String get lbAddMore {
     return Intl.message('Add more Dates Reminders', name: 'lbAddMore');
   }
+  String get lbPer {
+    return Intl.message('Personal', name: 'lbPer');
+  }
 
   String get lblphone {
     return Intl.message('Phone', name: 'lblphone');
@@ -266,6 +269,9 @@ class AppLocalizations {
   String get lbReminderDate {
     return Intl.message('Reminder Date', name: 'lbReminderDate');
   }
+  String get lbrem {
+    return Intl.message('Remainng 45 mins', name: 'lbrem');
+  }
 
   String get lbEditDate {
     return Intl.message('Edit this Reminder date?', name: 'lbEditDate');
@@ -356,6 +362,10 @@ class AppLocalizations {
     return Intl.message('Revenue', name: 'lbRev');
   }
 
+  String get lbMedicineap {
+    return Intl.message('Medicine Appointment', name: 'lbMedicineap');
+  }
+
   String get lbExAR {
     return Intl.message('مصاريف', name: 'lbEx');
   }
@@ -373,6 +383,12 @@ class AppLocalizations {
   }
 
   String get lbProEn {
+    return Intl.message('Projects', name: 'lbProEn');
+  }
+  String get lbProMa {
+    return Intl.message('Projects Managment', name: 'lbProMa');
+  }
+  String get lbPro {
     return Intl.message('Projects', name: 'lbPro');
   }
 
@@ -385,7 +401,7 @@ class AppLocalizations {
   }
 
   String get lbProAR {
-    return Intl.message('مشاريع', name: 'lbPro');
+    return Intl.message('مشاريع', name: 'lbProAR');
   }
 
   String get lbRepoAR {
@@ -414,6 +430,10 @@ class AppLocalizations {
 
   String get lbCash {
     return Intl.message('Cash', name: 'lbCash');
+  }
+
+  String get lbCashre {
+    return Intl.message('Cash Report', name: 'lbCashre');
   }
 
   String get lbToday {

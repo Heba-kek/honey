@@ -4,6 +4,7 @@ import 'package:honey/Core/Helpers/CustomColors.dart';
 import 'package:honey/Core/Helpers/SizeConfig.dart';
 import 'package:honey/Core/lang/localss.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Calendar extends StatefulWidget {
@@ -26,9 +27,34 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
     DateTime(2019, 4, 21): ['Easter Sunday'],
     DateTime(2019, 4, 22): ['Easter Monday'],
   };
+  SpecificLocalizationDelegate _specificLocalizationDelegate;
+  String langSave;
+  Future navigationPage() async {
+    var preferences = await SharedPreferences.getInstance();
+
+    langSave = preferences.getString('lang');
+    print("lang saved == $langSave");
+    //langSave=lang1;
+    if (langSave == 'ar') {
+      _specificLocalizationDelegate =
+          SpecificLocalizationDelegate(new Locale("ar"));
+
+      AppLocalizations.load(new Locale("ar"));
+
+
+    } else {
+      _specificLocalizationDelegate =
+          SpecificLocalizationDelegate(new Locale("en"));
+      AppLocalizations.load(new Locale("en"));
+
+
+    }
+  }
 
   @override
   void initState() {
+    navigationPage();
+
     initializeDateFormatting();
     _calendarController = CalendarController();
     final _selectedDay = DateTime.now();
@@ -107,16 +133,13 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8.0, 24, 8, 24),
+      padding: const EdgeInsets.fromLTRB(0.0, 10, 0, 10),
       child: Container(
-        decoration: BoxDecoration(
-            borderRadius:
-                BorderRadius.all(Radius.circular(SizeConfig.borderRadius)),
-            color: Colors.white),
+color:Colors.white,
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -125,13 +148,23 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
                 ],
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+              child: Divider(color: CustomColors.mainYellowColor,height: 1,),
+            ),
+
             Container(
               // margin: EdgeInsets.all(20.0),
               color: Colors.white,
               //   height: MediaQuery.of(context).size.height,
-              child: TableCalendar(
+              child: Directionality(
+                textDirection:
+                langSave == 'ar' ? TextDirection.ltr : TextDirection.ltr,
+                child:  TableCalendar(
                 calendarController: _calendarController,
                 events: _events,
+
+                  //holidays: _holidays,
                 holidays: _holidays,
                 initialCalendarFormat: CalendarFormat.month,
                 formatAnimation: FormatAnimation.slide,
@@ -244,7 +277,7 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
                 },
                 onVisibleDaysChanged: _onVisibleDaysChanged,
                 onCalendarCreated: _onCalendarCreated,
-              ),
+              )),
             ),
           ],
         ),
@@ -284,23 +317,16 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
   Widget getTopButtons(String title, Function onPress) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.white, width: 2),
-        color: Colors.grey[350],
+        border: Border.all(color: CustomColors.mainYellowColor, width: 2),
+color: Colors.white,
         borderRadius:
             BorderRadius.all(Radius.circular(SizeConfig.borderRadius)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 3,
-            blurRadius: 7,
-            offset: Offset(0, 3), // changes position of shadow
-          ),
-        ],
+
       ),
-      child: FlatButton(
+      child: Padding(padding: EdgeInsets.fromLTRB(25, 0, 25, 0),child: FlatButton(
         onPressed: onPress,
         child: Text(title),
-      ),
+      ),),
     );
   }
 

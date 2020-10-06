@@ -13,59 +13,36 @@ class MiddleActions extends StatelessWidget {
         width: SizeConfig.screenWidth(context),
         color: Colors.white,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            getButton(
-                context,
-                local.lbMedicine,
-                SvgPicture.asset(
-                  "assets/images/SVG/medicines.svg",
-                  fit: BoxFit.contain,
-                ),
-                () {}),
-            getButton(
-                context,
-                local.lbRevEN,
-                SvgPicture.asset(
-                  "assets/images/SVG/Revenue.svg",
-                  fit: BoxFit.contain,
-                ),
-                () {}),
-            getButton(
-                context,
-                local.lbExAR,
-                SvgPicture.asset(
-                  "assets/images/SVG/expenses.svg",
-                  fit: BoxFit.contain,
-                ),
-                () {}),
-            getButton(
-                context,
-                local.lbAdd,
-                SvgPicture.asset(
-                  "assets/images/SVG/yellowAdd.svg",
-                  fit: BoxFit.contain,
-                ),
-                () {})
+            Padding(padding: EdgeInsets.all(5),child:      Column(children: <Widget>[Image.asset(
+              "assets/images/addblue.png",
+            ),Text(local.lbAdd)],),),
+
+            Padding(padding: EdgeInsets.all(5),child:      Column(children: <Widget>[Image.asset(
+              "assets/images/exblue.png",
+            ),Text(local.lbExAR)],),),
+
+
+    Padding(padding: EdgeInsets.all(5),child:   Column(children: <Widget>[Image.asset(
+    "assets/images/revblue.jpg",
+    ),Text(local.lbRev)],)),
+      Padding(padding: EdgeInsets.all(5),child:      Column(children: <Widget>[Image.asset(
+        "assets/images/drug.png",
+      ),Text(local.lbMedicineap,)],
+        crossAxisAlignment: CrossAxisAlignment.center,mainAxisAlignment: MainAxisAlignment.center,),)
+
+
+
+
+
+
+            ,
+
           ],
         ));
   }
 
-  Widget getButton(
-      BuildContext context, String title, SvgPicture image, Function onPress) {
-    final width = SizeConfig.screenWidth(context) * 0.22;
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        GestureDetector(
-          child: Container(height: width, width: width, child: image),
-          onTap: onPress,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 12.0),
-          child: Text(title),
-        )
-      ],
-    );
-  }
+
 }

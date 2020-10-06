@@ -34,11 +34,11 @@ class ApiProvider {
         // Do something before request is sent
 
         print("token + $token");
-        if (token != null) options.headers["Authorization"] = "Bearer " + token;
+        if (token != null) options.headers["Auth"] = "Bearer " + token;
 
         if (lang != null) options.headers["lang"] = lang;
-
-        options.contentType = Headers.formUrlEncodedContentType; //'form-data';
+        options.headers["Content_Type"] = "application/x-www-form-urlencoded";
+       // options.contentType = Headers.formUrlEncodedContentType; //'form-data';
 
         print('options ${options.contentType}');
         return options;
@@ -118,7 +118,7 @@ class ApiProvider {
         // Do something before request is sent
 
         print("token + $token");
-        if (token != null) options.headers["Authorization"] = "Bearer " + token;
+        if (token != null) options.headers["Auth"] = "Bearer " + token;
 
         if (lang != null) options.headers["lang"] = lang;
 
@@ -211,7 +211,7 @@ class ApiProvider {
         // Do something before request is sent
 
         print("token + $token");
-        if (token != null) options.headers["Authorization"] = "Bearer " + token;
+        if (token != null) options.headers["Auth"] = "Bearer " + token;
 
         if (lang != null) options.headers["lang"] = lang;
 
@@ -306,7 +306,7 @@ class ApiProvider {
         // Do something before request is sent
 
         print("token + $token");
-        if (token != null) options.headers["Authorization"] = "Bearer " + token;
+        if (token != null) options.headers["Auth"] = "Bearer " + token;
 
         if (lang != null) options.headers["lang"] = lang;
 
@@ -403,7 +403,7 @@ class ApiProvider {
           .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
         // Do something before request is sent
 
-        if (token != null) options.headers["Authorization"] = "Bearer " + token;
+        if (token != null) options.headers["Auth"] = "Bearer " + token;
 
         if (lang != null) options.headers["lang"] = lang;
 
