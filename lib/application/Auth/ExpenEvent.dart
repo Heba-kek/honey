@@ -8,19 +8,13 @@ abstract class ExpEvent extends Equatable {
 }
 
 class ExpenEvent extends ExpEvent {
-  final String userid;
-
-  ExpenEvent(
-    this.userid,
-  );
+  ExpenEvent();
 
   @override
-  List<Object> get props => [userid];
+  List<Object> get props => [];
 
   Map<String, dynamic> toMap() {
-    return {
-      'user_id': userid,
-    };
+    return {};
   }
 }
 

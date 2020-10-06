@@ -17,8 +17,8 @@ class ExpenRemoteDataSource implements ExpenDataSource {
   @override
   Future<ExpenModel> getExpenList(Map<String, dynamic> data) async {
     final response = await _provider.fetchData(
-        method: HttpMethod.GET, url: APINames.getExpenListCate, bodyData: data);
-
+        method: HttpMethod.GET, url: APINames.getExpenListCate, bodyData: {});
+    print(response);
     return ExpenModel.fromJson(response);
   }
 

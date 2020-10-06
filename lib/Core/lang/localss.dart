@@ -859,6 +859,10 @@ class AppLocalizations {
     return Intl.message("Choose Expenses Category",
         name: "lbShowExpensesCategory");
   }
+
+  String get lbPercentage {
+    return Intl.message("Percentage", name: "lbPercentage");
+  }
 //and add all the text you have inside the app that you need to make it in
 
 //arabic and english launguages

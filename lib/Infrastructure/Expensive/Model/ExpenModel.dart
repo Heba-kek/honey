@@ -2,21 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:honey/domain/Auth/Entities/ExpenAntity.dart';
 
 class ExpenModel extends ExpenEntity {
-  ExpenModel({code, @required exeModel data}) : super(code: code, data: data);
+  ExpenModel({code, data}) : super(code, data);
 
-  factory ExpenModel.fromJson(Map<String, dynamic> json) {
-    return ExpenModel(
-        code: json['code'] != null ? json['code'] : "",
-        data:
-            json['data'] != null ? new exeModel.fromJson(json['data']) : null);
-  }
+  factory ExpenModel.fromJson(Map<String, dynamic> json) => ExpenModel(
+        code: json["code"] == null ? null : json["code"],
+        data: json["data"] == null
+            ? null
+            : List<ExpenData>.from(
+                json["data"].map((x) => ExpenData.fromJson(x))),
+      );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['code'] = this.code;
-    if (this.data != null) {
-      data['data'] = this.data;
-    }
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "code": code == null ? null : code,
+        "data": data == null
+            ? null
+            : List<dynamic>.from(data.map((x) => x.toJson())),
+      };
 }

@@ -1022,7 +1022,7 @@ class _expLaddExp extends State<expLaddExp> {
                                                                             border:
                                                                                 Border.all(color: Colors.red, width: 1),
                                                                             color:
-                                                                            Color(0xFFD6D6D6),
+                                                                                Color(0xFFD6D6D6),
                                                                           ),
                                                                           child:
                                                                               Column(
@@ -1168,88 +1168,97 @@ class _expLaddExp extends State<expLaddExp> {
                                                                 sublist +
                                                                 ',';
                                                       }
-                                                    if(widget.isexp=='1'){
-                                                      post(
-                                                          'http://honey-bee.life/Financial_Api/addCategoryexpenses',
-                                                          {
-                                                            "user_id": id,
-                                                            "name": _catName
-                                                                .text,
-                                                            "icon":
-                                                            _imageFilePh,
-                                                            "sub_cat":
-                                                            sublisttext==null?"":sublisttext
-                                                          },
-                                                          tokene,
-                                                          'en')
-                                                          .then(
-                                                              (response) async {
-                                                            // jika respon normal
+                                                      if (widget.isexp == '1') {
+                                                        post(
+                                                                'http://honey-bee.life/Financial_Api/addCategoryexpenses',
+                                                                {
+                                                                  "user_id": id,
+                                                                  "name":
+                                                                      _catName
+                                                                          .text,
+                                                                  "icon":
+                                                                      _imageFilePh,
+                                                                  "sub_cat":
+                                                                      sublisttext ==
+                                                                              null
+                                                                          ? ""
+                                                                          : sublisttext
+                                                                },
+                                                                tokene,
+                                                                'en')
+                                                            .then(
+                                                                (response) async {
+                                                          // jika respon normal
 
-                                                            setState(() {
-                                                              _apiCall = false;
-                                                              //   _response = response.parsed as String;
-                                                            });
-                                                          },
-                                                          // jika respon error
-                                                          onError: (error) {
-                                                            pr
-                                                                .hide()
-                                                                .then((isHidden) {
-                                                              print(isHidden);
-                                                            });
-                                                            Toast.show(
-                                                                error.toString(),
-                                                                context,
-                                                                duration: 4,
-                                                                gravity:
-                                                                Toast.BOTTOM);
+                                                          setState(() {
                                                             _apiCall = false;
-                                                            _response =
-                                                                error.toString();
+                                                            //   _response = response.parsed as String;
                                                           });
-                                                    }
-                                                    else{
-                                                      post(
-                                                          'http://honey-bee.life/Financial_Api/addCategoryrevenue',
-                                                          {
-                                                            "user_id": id,
-                                                            "name": _catName
-                                                                .text,
-                                                            "icon":
-                                                            _imageFilePh,
-                                                            "sub_cat":
-                                                            sublisttext==null?"":sublisttext
-                                                          },
-                                                          tokene,
-                                                          'en')
-                                                          .then(
-                                                              (response) async {
-                                                            // jika respon normal
+                                                        },
+                                                                // jika respon error
+                                                                onError:
+                                                                    (error) {
+                                                          pr
+                                                              .hide()
+                                                              .then((isHidden) {
+                                                            print(isHidden);
+                                                          });
+                                                          Toast.show(
+                                                              error.toString(),
+                                                              context,
+                                                              duration: 4,
+                                                              gravity:
+                                                                  Toast.BOTTOM);
+                                                          _apiCall = false;
+                                                          _response =
+                                                              error.toString();
+                                                        });
+                                                      } else {
+                                                        post(
+                                                                'http://honey-bee.life/Financial_Api/addCategoryrevenue',
+                                                                {
+                                                                  "user_id": id,
+                                                                  "name":
+                                                                      _catName
+                                                                          .text,
+                                                                  "icon":
+                                                                      _imageFilePh,
+                                                                  "sub_cat":
+                                                                      sublisttext ==
+                                                                              null
+                                                                          ? ""
+                                                                          : sublisttext
+                                                                },
+                                                                tokene,
+                                                                'en')
+                                                            .then(
+                                                                (response) async {
+                                                          // jika respon normal
 
-                                                            setState(() {
-                                                              _apiCall = false;
-                                                              //   _response = response.parsed as String;
-                                                            });
-                                                          },
-                                                          // jika respon error
-                                                          onError: (error) {
-                                                            pr
-                                                                .hide()
-                                                                .then((isHidden) {
-                                                              print(isHidden);
-                                                            });
-                                                            Toast.show(
-                                                                error.toString(),
-                                                                context,
-                                                                duration: 4,
-                                                                gravity:
-                                                                Toast.BOTTOM);
+                                                          setState(() {
                                                             _apiCall = false;
-                                                            _response =
-                                                                error.toString();
+                                                            //   _response = response.parsed as String;
                                                           });
-                                                    }
+                                                        },
+                                                                // jika respon error
+                                                                onError:
+                                                                    (error) {
+                                                          pr
+                                                              .hide()
+                                                              .then((isHidden) {
+                                                            print(isHidden);
+                                                          });
+                                                          Toast.show(
+                                                              error.toString(),
+                                                              context,
+                                                              duration: 4,
+                                                              gravity:
+                                                                  Toast.BOTTOM);
+                                                          _apiCall = false;
+                                                          _response =
+                                                              error.toString();
+                                                        });
+                                                      }
                                                     } else {
                                                       if (sublisttext == null) {
                                                         sublisttext = sublist;
@@ -1258,87 +1267,96 @@ class _expLaddExp extends State<expLaddExp> {
                                                             sublisttext +
                                                                 sublist;
                                                       }
-                                                      if(widget.isexp=='1'){
+                                                      if (widget.isexp == '1') {
                                                         post(
-                                                            'http://honey-bee.life/Financial_Api/addCategoryexpenses',
-                                                            {
-                                                              "user_id": id,
-                                                              "name": _catName
-                                                                  .text,
-                                                              "icon":
-                                                              _imageFilePh,
-                                                              "sub_cat":
-                                                              sublisttext==null?"":sublisttext
-                                                            },
-                                                            tokene,
-                                                            'en')
+                                                                'http://honey-bee.life/Financial_Api/addCategoryexpenses',
+                                                                {
+                                                                  "user_id": id,
+                                                                  "name":
+                                                                      _catName
+                                                                          .text,
+                                                                  "icon":
+                                                                      _imageFilePh,
+                                                                  "sub_cat":
+                                                                      sublisttext ==
+                                                                              null
+                                                                          ? ""
+                                                                          : sublisttext
+                                                                },
+                                                                tokene,
+                                                                'en')
                                                             .then(
                                                                 (response) async {
-                                                              // jika respon normal
+                                                          // jika respon normal
 
-                                                              setState(() {
-                                                                _apiCall = false;
-                                                                //   _response = response.parsed as String;
-                                                              });
-                                                            },
-                                                            // jika respon error
-                                                            onError: (error) {
-                                                              pr
-                                                                  .hide()
-                                                                  .then((isHidden) {
-                                                                print(isHidden);
-                                                              });
-                                                              Toast.show(
-                                                                  error.toString(),
-                                                                  context,
-                                                                  duration: 4,
-                                                                  gravity:
+                                                          setState(() {
+                                                            _apiCall = false;
+                                                            //   _response = response.parsed as String;
+                                                          });
+                                                        },
+                                                                // jika respon error
+                                                                onError:
+                                                                    (error) {
+                                                          pr
+                                                              .hide()
+                                                              .then((isHidden) {
+                                                            print(isHidden);
+                                                          });
+                                                          Toast.show(
+                                                              error.toString(),
+                                                              context,
+                                                              duration: 4,
+                                                              gravity:
                                                                   Toast.BOTTOM);
-                                                              _apiCall = false;
-                                                              _response =
-                                                                  error.toString();
-                                                            });
-                                                      }
-                                                      else{
+                                                          _apiCall = false;
+                                                          _response =
+                                                              error.toString();
+                                                        });
+                                                      } else {
                                                         post(
-                                                            'http://honey-bee.life/Financial_Api/addCategoryrevenue',
-                                                            {
-                                                              "user_id": id,
-                                                              "name": _catName
-                                                                  .text,
-                                                              "icon":
-                                                              _imageFilePh,
-                                                              "sub_cat":
-                                                              sublisttext==null?"":sublisttext
-                                                            },
-                                                            tokene,
-                                                            'en')
+                                                                'http://honey-bee.life/Financial_Api/addCategoryrevenue',
+                                                                {
+                                                                  "user_id": id,
+                                                                  "name":
+                                                                      _catName
+                                                                          .text,
+                                                                  "icon":
+                                                                      _imageFilePh,
+                                                                  "sub_cat":
+                                                                      sublisttext ==
+                                                                              null
+                                                                          ? ""
+                                                                          : sublisttext
+                                                                },
+                                                                tokene,
+                                                                'en')
                                                             .then(
                                                                 (response) async {
-                                                              // jika respon normal
+                                                          // jika respon normal
 
-                                                              setState(() {
-                                                                _apiCall = false;
-                                                                //   _response = response.parsed as String;
-                                                              });
-                                                            },
-                                                            // jika respon error
-                                                            onError: (error) {
-                                                              pr
-                                                                  .hide()
-                                                                  .then((isHidden) {
-                                                                print(isHidden);
-                                                              });
-                                                              Toast.show(
-                                                                  error.toString(),
-                                                                  context,
-                                                                  duration: 4,
-                                                                  gravity:
+                                                          setState(() {
+                                                            _apiCall = false;
+                                                            //   _response = response.parsed as String;
+                                                          });
+                                                        },
+                                                                // jika respon error
+                                                                onError:
+                                                                    (error) {
+                                                          pr
+                                                              .hide()
+                                                              .then((isHidden) {
+                                                            print(isHidden);
+                                                          });
+                                                          Toast.show(
+                                                              error.toString(),
+                                                              context,
+                                                              duration: 4,
+                                                              gravity:
                                                                   Toast.BOTTOM);
-                                                              _apiCall = false;
-                                                              _response =
-                                                                  error.toString();
-                                                            });
+                                                          _apiCall = false;
+                                                          _response =
+                                                              error.toString();
+                                                        });
                                                       }
                                                     }
                                                   },
@@ -1505,12 +1523,10 @@ class _expLaddExp extends State<expLaddExp> {
             pr.hide().then((isHidden) {
               print(isHidden);
             });
-            if(widget.isexp=='1'){
-              widget.con.bloc<ExpBloc>().add(ExpenEvent(id));
-
-            }else{
+            if (widget.isexp == '1') {
+              widget.con.bloc<ExpBloc>().add(ExpenEvent());
+            } else {
               widget.con.bloc<RevenueBloc>().add(GetRevenueCategoryEvent());
-
             }
 
             Navigator.pop(context, true);

@@ -33,8 +33,8 @@ class ApiProvider {
           .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
         // Do something before request is sent
 
-        print("token + $token");
-        if (token != null) options.headers["Authorization"] = "Bearer " + token;
+        print("token $token");
+        if (token != null) options.headers["Auth"] = "Bearer " + token;
 
         if (lang != null) options.headers["lang"] = lang;
 
@@ -43,6 +43,8 @@ class ApiProvider {
         print('options ${options.contentType}');
         return options;
       }, onResponse: (Response response) {
+        print(response);
+        print("Response");
         return response; // continue
       }, onError: (DioError error) async {
         print('error calling dio method');
@@ -55,11 +57,6 @@ class ApiProvider {
         throw Exception(error.toString());
       }));
       String apiURLPost = _baseUrl + url;
-      String apiURLget;
-      if (id != null) {
-        apiURLget = _baseUrl + url + '?user_id=' + id;
-        print(apiURLget);
-      }
 
       print(apiURLPost);
 
@@ -74,9 +71,10 @@ class ApiProvider {
             queryParamsTemp = Map<String, dynamic>();
             queryParamsTemp["user_id"] = id;
           }
+          print("user_id $id");
           print("queryParamsTemp $queryParamsTemp");
           response =
-              await _dio.get(apiURLget, queryParameters: queryParamsTemp);
+              await _dio.get(apiURLPost, queryParameters: queryParamsTemp);
 
           return response.data;
         case HttpMethod.POST:
@@ -118,7 +116,7 @@ class ApiProvider {
         // Do something before request is sent
 
         print("token + $token");
-        if (token != null) options.headers["Authorization"] = "Bearer " + token;
+        if (token != null) options.headers["Auth"] = "Bearer " + token;
 
         if (lang != null) options.headers["lang"] = lang;
 
@@ -211,7 +209,7 @@ class ApiProvider {
         // Do something before request is sent
 
         print("token + $token");
-        if (token != null) options.headers["Authorization"] = "Bearer " + token;
+        if (token != null) options.headers["Auth"] = "Bearer " + token;
 
         if (lang != null) options.headers["lang"] = lang;
 
@@ -306,7 +304,7 @@ class ApiProvider {
         // Do something before request is sent
 
         print("token + $token");
-        if (token != null) options.headers["Authorization"] = "Bearer " + token;
+        if (token != null) options.headers["Auth"] = "Bearer " + token;
 
         if (lang != null) options.headers["lang"] = lang;
 
@@ -403,7 +401,7 @@ class ApiProvider {
           .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
         // Do something before request is sent
 
-        if (token != null) options.headers["Authorization"] = "Bearer " + token;
+        if (token != null) options.headers["Auth"] = "Bearer " + token;
 
         if (lang != null) options.headers["lang"] = lang;
 

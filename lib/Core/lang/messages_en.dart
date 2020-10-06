@@ -415,5 +415,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbImage": MessageLookupByLibrary.simpleMessage("Image"),
         "lbShowExpensesCategory":
             MessageLookupByLibrary.simpleMessage("Choose expenses category"),
+        "lbPercentage": MessageLookupByLibrary.simpleMessage("Percentage"),
       };
 }

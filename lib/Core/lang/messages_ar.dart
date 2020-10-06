@@ -397,5 +397,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbShowData": MessageLookupByLibrary.simpleMessage("عرض البيانات"),
         "lbShowExpensesCategory":
             MessageLookupByLibrary.simpleMessage("اختر فئات الصرف الخاصة بك"),
+        "lbPercentage": MessageLookupByLibrary.simpleMessage("النسبة"),
       };
 }
