@@ -50,6 +50,7 @@ class AppLocalizations {
   String get lbAddMore {
     return Intl.message('Add more Dates Reminders', name: 'lbAddMore');
   }
+
   String get lbPer {
     return Intl.message('Personal', name: 'lbPer');
   }
@@ -269,6 +270,7 @@ class AppLocalizations {
   String get lbReminderDate {
     return Intl.message('Reminder Date', name: 'lbReminderDate');
   }
+
   String get lbrem {
     return Intl.message('Remainng 45 mins', name: 'lbrem');
   }
@@ -385,9 +387,11 @@ class AppLocalizations {
   String get lbProEn {
     return Intl.message('Projects', name: 'lbProEn');
   }
+
   String get lbProMa {
     return Intl.message('Projects Managment', name: 'lbProMa');
   }
+
   String get lbPro {
     return Intl.message('Projects', name: 'lbPro');
   }
@@ -883,6 +887,23 @@ class AppLocalizations {
   String get lbPercentage {
     return Intl.message("Percentage", name: "lbPercentage");
   }
+
+  String get lbWallets {
+    return Intl.message("Wallets", name: "lbWallets");
+  }
+
+  String get lbCurrentBalance {
+    return Intl.message("Current Balance", name: "lbCurrentBalance");
+  }
+
+  String get lbHideWallet {
+    return Intl.message("Hide Wallet", name: "lbHideWallet");
+  }
+
+  String get lbHideWalletDescription {
+    return Intl.message("Hide Wallet Desc", name: "lbHideWalletDescription");
+  }
+
 //and add all the text you have inside the app that you need to make it in
 
 //arabic and english launguages

@@ -34,9 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbDelete": MessageLookupByLibrary.simpleMessage("حذف"),
         "lbUs": MessageLookupByLibrary.simpleMessage("دولار"),
         "lbSP": MessageLookupByLibrary.simpleMessage("الليرة السورية"),
-      "lbPer": MessageLookupByLibrary.simpleMessage("شخصي"),
-
-      "lbEU": MessageLookupByLibrary.simpleMessage("يورو"),
+        "lbPer": MessageLookupByLibrary.simpleMessage("شخصي"),
+        "lbEU": MessageLookupByLibrary.simpleMessage("يورو"),
         "lbWithdrawal": MessageLookupByLibrary.simpleMessage("سحب"),
         "lbTransfer": MessageLookupByLibrary.simpleMessage("تحويل"),
         "lbBcharge": MessageLookupByLibrary.simpleMessage("رسوم البنك"),
@@ -92,8 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbPrice": MessageLookupByLibrary.simpleMessage("السعر"),
         "lbDueDate": MessageLookupByLibrary.simpleMessage("تاريخ الاستحقاق"),
         "lbReminderDate": MessageLookupByLibrary.simpleMessage("التنبيهات"),
-    "lbrem": MessageLookupByLibrary.simpleMessage("باقي 45 دقيقة"),
-
+        "lbrem": MessageLookupByLibrary.simpleMessage("باقي 45 دقيقة"),
         "lbEditDate":
             MessageLookupByLibrary.simpleMessage("هل تريد تعديل تاريخ ؟ "),
         "lbDeleteDate":
@@ -118,12 +116,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbNote": MessageLookupByLibrary.simpleMessage("ملاحظات"),
         "lbMemory": MessageLookupByLibrary.simpleMessage("مذكرات"),
         "lbEx": MessageLookupByLibrary.simpleMessage("مصاريف"),
-      "lbMedicineap": MessageLookupByLibrary.simpleMessage("موعد الدواء"),
-    "lbPro": MessageLookupByLibrary.simpleMessage("أعمال"),
-    "lbProMa": MessageLookupByLibrary.simpleMessage("ادارة مجموعة الأعمال"),
-    "lbCashre": MessageLookupByLibrary.simpleMessage("تقرير السيولة النقدية"),
-
-      "lbEco": MessageLookupByLibrary.simpleMessage("مخططات توفير"),
+        "lbMedicineap": MessageLookupByLibrary.simpleMessage("موعد الدواء"),
+        "lbPro": MessageLookupByLibrary.simpleMessage("أعمال"),
+        "lbProMa": MessageLookupByLibrary.simpleMessage("ادارة مجموعة الأعمال"),
+        "lbCashre":
+            MessageLookupByLibrary.simpleMessage("تقرير السيولة النقدية"),
+        "lbEco": MessageLookupByLibrary.simpleMessage("مخططات توفير"),
         "lbRev": MessageLookupByLibrary.simpleMessage("إيرادات"),
         "lbBud": MessageLookupByLibrary.simpleMessage("ميزانية"),
         "lbProAr": MessageLookupByLibrary.simpleMessage("مشاريع"),
@@ -407,5 +405,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbShowExpensesCategory":
             MessageLookupByLibrary.simpleMessage("اختر فئات الصرف الخاصة بك"),
         "lbPercentage": MessageLookupByLibrary.simpleMessage("النسبة"),
+        "lbWallets": MessageLookupByLibrary.simpleMessage("محفظات"),
+        "lbCurrentBalance":
+            MessageLookupByLibrary.simpleMessage("الرصيد الحالي"),
+        "lbHideWallet": MessageLookupByLibrary.simpleMessage("إخفاء المحفظة"),
+        "lbHideWalletDescription": MessageLookupByLibrary.simpleMessage(
+            "في حال تفعيل إخفاء المحفظة لن تستطيع انشاء اي معاملات على هذه المحفظة"),
       };
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:honey/Core/Router/Router.dart' as honeyRoute;
 import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/presentation/homePage.dart';
 import 'package:honey/presentation/page/auth/loginPage.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      onGenerateRoute: honeyRoute.Router.generateRoute,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,

@@ -173,9 +173,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbAddPro": MessageLookupByLibrary.simpleMessage("Add project"),
         "lbRepTar":
             MessageLookupByLibrary.simpleMessage("Economize Project Report"),
-    "lbPer": MessageLookupByLibrary.simpleMessage("Personal"),
-
-    "lbEco": MessageLookupByLibrary.simpleMessage("Economize Project"),
+        "lbPer": MessageLookupByLibrary.simpleMessage("Personal"),
+        "lbEco": MessageLookupByLibrary.simpleMessage("Economize Project"),
         "lbStatus": MessageLookupByLibrary.simpleMessage("Status"),
         "lbAddTar":
             MessageLookupByLibrary.simpleMessage("Add Economize Project"),
@@ -384,11 +383,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbmedicine": MessageLookupByLibrary.simpleMessage("Medicines date"),
         "lbPatient": MessageLookupByLibrary.simpleMessage("Patient Name"),
         "lbMedicine": MessageLookupByLibrary.simpleMessage("Medicine Name"),
-        "lbMedicineap": MessageLookupByLibrary.simpleMessage("Medicine Appointment"),
+        "lbMedicineap":
+            MessageLookupByLibrary.simpleMessage("Medicine Appointment"),
         "lbPro": MessageLookupByLibrary.simpleMessage("Projects"),
         "lbCashre": MessageLookupByLibrary.simpleMessage("Cash Report"),
         "lbrem": MessageLookupByLibrary.simpleMessage("Remainng 45 mins"),
-
         "lbMedicineShape":
             MessageLookupByLibrary.simpleMessage("Medicine Shape"),
         "lbdose": MessageLookupByLibrary.simpleMessage("Dose"),
@@ -427,5 +426,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbShowExpensesCategory":
             MessageLookupByLibrary.simpleMessage("Choose expenses category"),
         "lbPercentage": MessageLookupByLibrary.simpleMessage("Percentage"),
+        "lbWallets": MessageLookupByLibrary.simpleMessage("Wallets"),
+        "lbCurrentBalance":
+            MessageLookupByLibrary.simpleMessage("Current Balance"),
+        "lbHideWallet": MessageLookupByLibrary.simpleMessage("Hide Wallet"),
+        "lbHideWalletDescription": MessageLookupByLibrary.simpleMessage(
+            "In case you have enabled hide wallet, you will not be able to create any operation within this wallet"),
       };
 }
