@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:honey/Core/Helpers/CustomColors.dart';
+import 'package:honey/presentation/page/Wallets/Components/WalletHelper.dart';
 
 class WalletCategoryName extends StatelessWidget {
   final String imagePath;
@@ -24,12 +25,11 @@ class WalletCategoryName extends StatelessWidget {
             padding: EdgeInsets.all(8),
             child: Image.network(imagePath),
           ),
-          Expanded(
-            child: AutoSizeText(
-              title,
-              maxFontSize: 16,
-              minFontSize: 10,
-            ),
+          WalletHelper.getAutoSizeTextWith(
+            title: title,
+            maxFontSize: 20,
+            minFontSize: 10,
+            maxLines: 1,
           ),
         ],
       ),

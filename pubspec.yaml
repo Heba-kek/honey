@@ -48,6 +48,7 @@ dependencies:
   table_calendar: ^2.2.3
   expandable: ^4.1.4
   auto_size_text: ^2.1.0
+  flutter_svg: ^0.18.0
 
 
 dev_dependencies:

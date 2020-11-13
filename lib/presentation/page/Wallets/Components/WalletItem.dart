@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:honey/Core/Helpers/CustomColors.dart';
+import 'package:honey/presentation/page/Wallets/Components/WalletHelper.dart';
 
 class WalletItem extends StatelessWidget {
   final String imagePath;
@@ -29,26 +31,26 @@ class WalletItem extends StatelessWidget {
             child: Image.network(imagePath),
           ),
           Expanded(
-              child: AutoSizeText(
-            title,
-            maxFontSize: 12,
-            minFontSize: 10,
-            maxLines: 1,
-          )),
+            child: WalletHelper.getAutoSizeTextWith(title: title),
+          ),
           Expanded(
-              child: AutoSizeText(
-            value,
-            maxFontSize: 12,
-            minFontSize: 10,
-            maxLines: 1,
-          )),
+            child: WalletHelper.getAutoSizeTextWith(title: value),
+          ),
           Expanded(
-              child: AutoSizeText(
-            unit,
-            maxFontSize: 12,
-            minFontSize: 10,
-            maxLines: 1,
-          )),
+            child: WalletHelper.getAutoSizeTextWith(title: unit),
+          ),
+          Padding(
+            padding:
+                EdgeInsetsDirectional.only(top: 14.0, bottom: 14.0, end: 8),
+            child: Container(
+              width: 1,
+              color: CustomColors.mainYellowColor,
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+            child: SvgPicture.asset(WalletHelper.svgPath + "ic_trash.svg"),
+          ),
         ],
       ),
     );

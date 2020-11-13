@@ -2,13 +2,16 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:honey/Core/Helpers/CustomColors.dart';
 import 'package:honey/Core/lang/localss.dart';
+import 'package:honey/presentation/page/Wallets/Components/WalletHelper.dart';
 
 class WaleetCurrentBalance extends StatelessWidget {
   final AppLocalizations local = AppLocalizations();
   final TextEditingController currentBalancecontroller;
+  final String title;
   final String unit;
 
-  WaleetCurrentBalance({Key key, this.currentBalancecontroller, this.unit})
+  WaleetCurrentBalance(
+      {Key key, this.currentBalancecontroller, this.unit, this.title})
       : super(key: key);
 
   @override
@@ -24,30 +27,39 @@ class WaleetCurrentBalance extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: AutoSizeText(
-              local.lbCurrentBalance,
-              maxLines: 1,
-              maxFontSize: 16,
+            child: WalletHelper.getAutoSizeTextWith(
+              title: this.title,
+              maxFontSize: 20,
               minFontSize: 10,
+              maxLines: 1,
             ),
           ),
-          Container(
-            width: 1,
-            height: 55,
-            color: Colors.black,
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.all(12.0),
+          //   child: Container(
+          //     width: 1,
+          //     color: Colors.black,
+          //   ),
+          // ),
           Expanded(
               child: TextField(
             keyboardType: TextInputType.number,
             controller: currentBalancecontroller,
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                disabledBorder: InputBorder.none),
+            cursorColor: Colors.black,
           )),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: AutoSizeText(
-              unit,
-              maxLines: 1,
-              maxFontSize: 16,
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8, 24, 8),
+            child: WalletHelper.getAutoSizeTextWith(
+              title: unit,
+              maxFontSize: 20,
               minFontSize: 10,
+              maxLines: 1,
             ),
           ),
         ],

@@ -22,7 +22,10 @@ class WalletCustomButton extends StatelessWidget {
           color: Colors.white,
           boxShadow: [UIHelper.getShadow()]),
       child: FlatButton(
-        child: Text(buttonTitle),
+        child: Text(
+          buttonTitle,
+          style: TextStyle(fontSize: 24),
+        ),
         onPressed: onPress,
       ),
     );

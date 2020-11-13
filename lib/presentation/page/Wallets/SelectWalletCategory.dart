@@ -32,12 +32,27 @@ class _SelectWalletCategoryState extends State<SelectWalletCategory> {
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.of(context)
-                            .pushNamed(RouteNames.createCasheWallet);
+                        Navigator.of(context).pushNamed(
+                            RouteNames.createCasheWallet,
+                            arguments: false);
                       },
                       child: WalletCategoryListItem(
-                        title: "test",
+                        title: "Cash",
                         imagePath: "assets/images/meals.png",
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 18.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushNamed(
+                              RouteNames.createCasheWallet,
+                              arguments: true);
+                        },
+                        child: WalletCategoryListItem(
+                          title: "Bank Account",
+                          imagePath: "assets/images/meals.png",
+                        ),
                       ),
                     )
                   ],

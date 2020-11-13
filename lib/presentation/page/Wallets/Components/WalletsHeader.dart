@@ -20,16 +20,11 @@ class WalletsHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset(
-              "assets/images/homeButton.png",
+            padding: const EdgeInsetsDirectional.fromSTEB(16, 6, 16, 6),
+            child: SvgPicture.asset(
+              "assets/images/SVG/walletIcon.svg",
               fit: BoxFit.fill,
             ),
-            //  SvgPicture.string(
-            //   "",
-            //   allowDrawingOutsideViewBox: true,
-            //   fit: BoxFit.fill,
-            // ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -46,7 +41,7 @@ class WalletsHeader extends StatelessWidget {
           Flexible(fit: FlexFit.tight, child: SizedBox()),
           if (showAdd)
             Padding(
-              padding: const EdgeInsetsDirectional.only(end: 16),
+              padding: const EdgeInsetsDirectional.only(end: 24),
               child: IconButton(
                   icon: Icon(
                     Icons.add,

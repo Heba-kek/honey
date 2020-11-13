@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:honey/Core/Helpers/CustomColors.dart';
 
 class BottomHomeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
+      height: 70,
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border(
@@ -23,8 +24,8 @@ class BottomHomeButton extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pop();
           },
-          child: Image.asset(
-            "assets/images/homeButton.png",
+          child: SvgPicture.asset(
+            "assets/images/SVG/ic_home.svg",
             fit: BoxFit.fill,
           ),
         ),

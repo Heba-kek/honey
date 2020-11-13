@@ -16,7 +16,11 @@ class Router {
       case RouteNames.selectWalletCategory:
         return MaterialPageRoute(builder: (_) => SelectWalletCategory());
       case RouteNames.createCasheWallet:
-        return MaterialPageRoute(builder: (_) => CreateCashWallet());
+        bool isBank = settings.arguments as bool;
+        return MaterialPageRoute(
+            builder: (_) => CreateCashWallet(
+                  isBank: isBank,
+                ));
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

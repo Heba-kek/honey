@@ -9,7 +9,12 @@ import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/Walle
 import 'package:honey/presentation/page/Wallets/Components/WalletsHeader.dart';
 import 'package:honey/presentation/page/Wallets/Components/bottomHomeButton.dart';
 
+///cash and bank wallets
 class CreateCashWallet extends StatefulWidget {
+  final bool isBank;
+
+  const CreateCashWallet({Key key, this.isBank = false}) : super(key: key);
+
   @override
   _CreateCashWalletState createState() => _CreateCashWalletState();
 }
@@ -36,12 +41,22 @@ class _CreateCashWalletState extends State<CreateCashWallet> {
                   child: Padding(
                 padding: EdgeInsets.all(24),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    WalletCategoryName(
-                      imagePath: "",
-                      title: local.lbCash,
+                    Center(
+                      child: WalletCategoryName(
+                        imagePath: "",
+                        title: local.lbCash,
+                      ),
                     ),
+                    if (widget.isBank)
+                      WaleetCurrentBalance(
+                        title: local.lbBankName,
+                        currentBalancecontroller: currentCashController,
+                        unit: "",
+                      ),
                     WaleetCurrentBalance(
+                      title: local.lbCurrentBalance,
                       currentBalancecontroller: currentCashController,
                       unit: "Sp",
                     ),
