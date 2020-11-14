@@ -645,7 +645,7 @@ class AppLocalizations {
   }
 
   String get lbcreate {
-    return Intl.message('Create New Account', name: 'lbcreate');
+    return Intl.message('Create', name: 'lbcreate');
   }
 
   String get lbAddV {
@@ -902,6 +902,27 @@ class AppLocalizations {
 
   String get lbHideWalletDescription {
     return Intl.message("Hide Wallet Desc", name: "lbHideWalletDescription");
+  }
+
+  String get lbPayDate {
+    return Intl.message("Pay day from each month", name: "lbPayDate");
+  }
+
+  String get lbReminderPayDate {
+    return Intl.message("Reminder day from each month",
+        name: "lbReminderPayDate");
+  }
+
+  String get lbProjectName {
+    return Intl.message('Project Name', name: 'lbProjectName');
+  }
+
+  String get lbProjectValue {
+    return Intl.message('Project value', name: 'lbProjectValue');
+  }
+
+  String get lbProjectStartValue {
+    return Intl.message('Project start value', name: 'lbProjectStartValue');
   }
 
 //and add all the text you have inside the app that you need to make it in

@@ -31,51 +31,54 @@ class _CreateCashWalletState extends State<CreateCashWallet> {
         bottom: false,
         child: Scaffold(
           backgroundColor: Colors.white,
-          body: Column(
-            children: [
-              WalletsHeader(
-                onPressAdd: () {},
-                showAdd: false,
-              ),
-              Expanded(
-                  child: Padding(
-                padding: EdgeInsets.all(24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: WalletCategoryName(
-                        imagePath: "",
-                        title: local.lbCash,
-                      ),
-                    ),
-                    if (widget.isBank)
-                      WaleetCurrentBalance(
-                        title: local.lbBankName,
-                        currentBalancecontroller: currentCashController,
-                        unit: "",
-                      ),
-                    WaleetCurrentBalance(
-                      title: local.lbCurrentBalance,
-                      currentBalancecontroller: currentCashController,
-                      unit: "Sp",
-                    ),
-                    WalletDatePicker(),
-                    HideWallet(
-                      onChangedSwitch: (bool) {},
-                      switchValue: false,
-                    ),
-                    Expanded(
-                      child: Container(),
-                    ),
-                    WalletCustomButton(
-                      buttonTitle: "Create",
-                      onPress: () {},
-                    ),
-                  ],
+          body: GestureDetector(
+            onTap: () => FocusScope.of(context).unfocus(),
+            child: Column(
+              children: [
+                WalletsHeader(
+                  onPressAdd: () {},
+                  showAdd: false,
                 ),
-              ))
-            ],
+                Expanded(
+                    child: Padding(
+                  padding: EdgeInsets.all(24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: WalletCategoryName(
+                          imagePath: "",
+                          title: local.lbCash,
+                        ),
+                      ),
+                      if (widget.isBank)
+                        WaleetCurrentBalance(
+                          title: local.lbBankName,
+                          currentBalancecontroller: currentCashController,
+                          unit: "",
+                        ),
+                      WaleetCurrentBalance(
+                        title: local.lbCurrentBalance,
+                        currentBalancecontroller: currentCashController,
+                        unit: "Sp",
+                      ),
+                      WalletDatePicker(),
+                      HideWallet(
+                        onChangedSwitch: (bool) {},
+                        switchValue: false,
+                      ),
+                      Expanded(
+                        child: Container(),
+                      ),
+                      WalletCustomButton(
+                        buttonTitle: "Create",
+                        onPress: () {},
+                      ),
+                    ],
+                  ),
+                ))
+              ],
+            ),
           ),
           bottomNavigationBar: BottomHomeButton(),
         ),

@@ -365,7 +365,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbSignUp": MessageLookupByLibrary.simpleMessage("انشاء حساب"),
         "lbAddMed": MessageLookupByLibrary.simpleMessage("إضافة دواء"),
         "lbMediName": MessageLookupByLibrary.simpleMessage("اسم الدواء"),
-        "lbcreate": MessageLookupByLibrary.simpleMessage("انشاء حساب جديد"),
+        "lbcreate": MessageLookupByLibrary.simpleMessage("انشاء"),
         "lbsignout": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
         "lbSign": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
         "lbSignM": MessageLookupByLibrary.simpleMessage(
@@ -411,5 +411,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbHideWallet": MessageLookupByLibrary.simpleMessage("إخفاء المحفظة"),
         "lbHideWalletDescription": MessageLookupByLibrary.simpleMessage(
             "في حال تفعيل إخفاء المحفظة لن تستطيع انشاء اي معاملات على هذه المحفظة"),
+        "lbPayDate":
+            MessageLookupByLibrary.simpleMessage("موعد التسديد من كل شهر"),
+        "lbReminderPayDate":
+            MessageLookupByLibrary.simpleMessage("موعد التذكير من كل شهر"),
+        "lbProjectName": MessageLookupByLibrary.simpleMessage("اسم المشروع"),
+        "lbProjectValue": MessageLookupByLibrary.simpleMessage("قيمة المشروع"),
+        "lbProjectStartValue":
+            MessageLookupByLibrary.simpleMessage("الرصيد الابتدائي"),
       };
 }

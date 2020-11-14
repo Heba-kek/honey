@@ -13,9 +13,7 @@ import 'package:honey/presentation/page/Bank/BankMainView.dart';
 import 'package:honey/presentation/page/Medicine/AddMedicineScreen.dart';
 import 'package:honey/presentation/page/Revenue/revenuePage.dart';
 import 'package:honey/presentation/page/MainActivity/mainactivity.dart';
-import 'package:honey/presentation/page/Wallets/Wallets.dart';
 import 'package:honey/presentation/page/Wallets/WalletsMainScreen.dart';
-import 'package:honey/presentation/page/Wallets/wallets-2.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 

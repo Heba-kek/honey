@@ -5,9 +5,15 @@ import 'package:honey/Core/Helpers/CustomColors.dart';
 import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/presentation/page/Wallets/Components/WalletHelper.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 class WalletDatePicker extends StatelessWidget {
   final AppLocalizations local = AppLocalizations();
+  final bool showYellowDivider;
+
+  WalletDatePicker({Key key, this.showYellowDivider = true}) : super(key: key) {
+    initializeDateFormatting();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +23,12 @@ class WalletDatePicker extends StatelessWidget {
           height: 80,
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
-            border: Border(
-                bottom:
-                    BorderSide(color: CustomColors.mainYellowColor, width: 2)),
+            border: showYellowDivider
+                ? Border(
+                    bottom: BorderSide(
+                        color: CustomColors.mainYellowColor, width: 2),
+                  )
+                : null,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

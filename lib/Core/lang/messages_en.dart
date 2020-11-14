@@ -379,7 +379,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbpassC": MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "lbmobile": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "lbCode": MessageLookupByLibrary.simpleMessage("Code"),
-        "lbcreate": MessageLookupByLibrary.simpleMessage("Create New Account"),
+        "lbcreate": MessageLookupByLibrary.simpleMessage("Create"),
         "lbmedicine": MessageLookupByLibrary.simpleMessage("Medicines date"),
         "lbPatient": MessageLookupByLibrary.simpleMessage("Patient Name"),
         "lbMedicine": MessageLookupByLibrary.simpleMessage("Medicine Name"),
@@ -432,5 +432,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbHideWallet": MessageLookupByLibrary.simpleMessage("Hide Wallet"),
         "lbHideWalletDescription": MessageLookupByLibrary.simpleMessage(
             "In case you have enabled hide wallet, you will not be able to create any operation within this wallet"),
+        "lbPayDate":
+            MessageLookupByLibrary.simpleMessage("Pay date from each month"),
+        "lbReminderPayDate": MessageLookupByLibrary.simpleMessage(
+            "Reminde date from each month"),
+        "lbProjectName": MessageLookupByLibrary.simpleMessage("Project name"),
+        "lbProjectValue": MessageLookupByLibrary.simpleMessage("Project value"),
+        "lbProjectStartValue":
+            MessageLookupByLibrary.simpleMessage("Project start value"),
       };
 }
