@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:honey/Core/Helpers/CustomColors.dart';
 import 'package:honey/presentation/page/Helper/UIHelper.dart';
 
@@ -25,7 +26,7 @@ class WalletCategoryListItem extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset(imagePath),
+            child: SvgPicture.network(imagePath),
           ),
           Text(title),
         ],

@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:honey/Core/Router/Router.dart' as honeyRoute;
 import 'package:honey/Core/lang/localss.dart';
+import 'package:honey/application/Wallets/bloc.dart';
 import 'package:honey/presentation/homePage.dart';
 import 'package:honey/presentation/page/auth/loginPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,7 +29,11 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MultiBlocProvider(providers: [
+        BlocProvider<WalletsBloc>(
+          create: (context) => WalletsBloc(),
+        ),
+      ], child: MyHomePage(title: 'Flutter Demo Home Page')),
     );
   }
 }

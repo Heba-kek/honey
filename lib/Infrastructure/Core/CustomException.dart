@@ -1,3 +1,5 @@
+import 'package:honey/Core/lang/localss.dart';
+
 class CustomException implements Exception {
   final _message;
   final _prefix;
@@ -11,6 +13,11 @@ class CustomException implements Exception {
 
 class ExceptionWithMessageOnly extends CustomException {
   ExceptionWithMessageOnly([String message]) : super(message, "");
+}
+
+class NoInternetConnectionException extends CustomException {
+  NoInternetConnectionException([String message])
+      : super(message, "No internet connection");
 }
 
 class FetchDataException extends CustomException {

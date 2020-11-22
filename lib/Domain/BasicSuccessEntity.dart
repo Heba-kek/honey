@@ -4,6 +4,6 @@ class BasicSuccessEntity {
     this.msg,
   );
 
-  final int code;
+  final dynamic code;
   final String msg;
 }

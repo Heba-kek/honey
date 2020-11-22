@@ -49,4 +49,11 @@ class APINames {
       "Financial_Api/RevenueCategoryReportWithoutSub";
   static final expensesCategoryReportWithoutSub =
       "Financial_Api/ExpensesCategoryReportWithoutSub";
+
+  //wallets
+  static final getWalletType = "Wallet_Api/WalletType";
+  static final getWallets = "Wallet_Api/Wallet";
+  static final getWalletDetails = "Wallet_Api/WalletDetails";
+  static final addWallet = "Wallet_Api/AddWallet";
+  static final updateWallet = "Wallet_Api/UpdateWallet";
 }

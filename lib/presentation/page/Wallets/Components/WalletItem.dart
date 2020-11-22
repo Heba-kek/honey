@@ -25,18 +25,24 @@ class WalletItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.all(8),
+            padding: EdgeInsets.all(12),
             height: 50,
             width: 50,
-            child: Image.network(imagePath),
+            child: SvgPicture.network(imagePath),
           ),
           Expanded(
-            child: WalletHelper.getAutoSizeTextWith(title: title),
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: WalletHelper.getAutoSizeTextWith(title: title),
+            ),
           ),
           Expanded(
+            flex: 2,
             child: WalletHelper.getAutoSizeTextWith(title: value),
           ),
           Expanded(
+            flex: 1,
             child: WalletHelper.getAutoSizeTextWith(title: unit),
           ),
           Padding(

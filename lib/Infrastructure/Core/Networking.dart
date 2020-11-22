@@ -41,6 +41,7 @@ class ApiProvider {
         // options.contentType = Headers.formUrlEncodedContentType; //'form-data';
 
         print('options ${options.contentType}');
+
         return options;
       }, onResponse: (Response response) {
         print(response);
@@ -49,7 +50,7 @@ class ApiProvider {
       }, onError: (DioError error) async {
         print('error calling dio method');
 
-        if (error.response.statusCode == 404) {
+        if (error.response?.statusCode == 404) {
           print(error.response.data.toString());
           return error.response;
         }

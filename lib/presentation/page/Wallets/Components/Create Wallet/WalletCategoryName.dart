@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:honey/Core/Helpers/CustomColors.dart';
 import 'package:honey/presentation/page/Wallets/Components/WalletHelper.dart';
 
@@ -23,7 +24,7 @@ class WalletCategoryName extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.all(8),
-            child: Image.network(imagePath),
+            child: SvgPicture.network(imagePath),
           ),
           WalletHelper.getAutoSizeTextWith(
             title: title,
