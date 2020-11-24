@@ -67,15 +67,15 @@ class AddWalletEvent extends WalletsEvent {
   final String isHidden;
 
   AddWalletEvent(
-      {this.balance,
-      this.date,
-      this.time,
-      this.name,
-      this.paymentDate,
-      this.reminderDate,
-      this.projectValue,
-      this.walletType,
-      this.isHidden});
+      {this.balance = "",
+      this.date = "",
+      this.time = "",
+      this.name = "",
+      this.paymentDate = "",
+      this.reminderDate = "",
+      this.projectValue = "",
+      this.walletType = "",
+      this.isHidden = ""});
 
   @override
   List<Object> get props => [

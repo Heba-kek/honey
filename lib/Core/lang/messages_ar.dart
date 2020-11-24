@@ -419,5 +419,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbProjectValue": MessageLookupByLibrary.simpleMessage("قيمة المشروع"),
         "lbProjectStartValue":
             MessageLookupByLibrary.simpleMessage("الرصيد الابتدائي"),
+        "lbFeildsAreRequired":
+            MessageLookupByLibrary.simpleMessage("جميع الحقول مطلوبة"),
       };
 }

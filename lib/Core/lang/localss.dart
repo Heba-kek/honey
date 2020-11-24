@@ -925,6 +925,10 @@ class AppLocalizations {
     return Intl.message('Project start value', name: 'lbProjectStartValue');
   }
 
+  String get lbFeildsAreRequired {
+    return Intl.message('All fields are required', name: 'lbFeildsAreRequired');
+  }
+
 //and add all the text you have inside the app that you need to make it in
 
 //arabic and english launguages

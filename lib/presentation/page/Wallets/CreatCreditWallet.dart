@@ -5,6 +5,7 @@ import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletTypeEntity.dart';
 import 'package:honey/application/Wallets/bloc.dart';
 import 'package:honey/presentation/Common/ProgressWidget.dart';
+import 'package:honey/presentation/page/Helper/UIHelper.dart';
 import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/HideWallet.dart';
 import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/WalletCategoryName.dart';
 import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/WalletCurrentBalance.dart';
@@ -74,7 +75,9 @@ class _CreateCreditWalletState extends State<CreateCreditWallet> {
                   );
                 } else if (state is Loaded) {
                   if (state.basicSuccessEntity.code.toString() == "1") {
-                    Navigator.of(context).pop();
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      Navigator.of(context).pop();
+                    });
                   } else {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       Scaffold.of(context).showSnackBar(SnackBar(
@@ -119,10 +122,7 @@ class _CreateCreditWalletState extends State<CreateCreditWallet> {
                       Center(
                         child: WalletCategoryName(
                           imagePath: widget.walletTypeData.icon,
-                          title:
-                              widget.screenType == CreateCreditType.PrePaidCard
-                                  ? local.lbCardName
-                                  : local.lbPro,
+                          title: widget.walletTypeData.name,
                         ),
                       ),
                       WaleetCurrentBalance(
@@ -173,17 +173,44 @@ class _CreateCreditWalletState extends State<CreateCreditWallet> {
                       WalletCustomButton(
                         buttonTitle: "Create",
                         onPress: () {
-                          walletsBloc.add(AddWalletEvent(
-                            reminderDate: remindeDay.toString(),
-                            paymentDate: payDay.toString(),
-                            balance: currentCashController.text,
-                            name: credNameController.text,
-                            isHidden: hideWallet ? "1" : "0",
-                            walletType: widget.walletTypeData.id,
-                            date:
-                                DateFormat('dd/MM/yyyy').format(DateTime.now()),
-                            time: DateFormat.jm().format(DateTime.now()),
-                          ));
+                          if (widget.screenType ==
+                              CreateCreditType.CreditCard) {
+                            if (credNameController.text.isEmpty ||
+                                currentCashController.text.isEmpty ||
+                                remindeDay == null ||
+                                payDay == null) {
+                              UIHelper.showHelperToast(
+                                  local.lbFeildsAreRequired);
+                            } else {
+                              walletsBloc.add(AddWalletEvent(
+                                reminderDate: remindeDay.toString(),
+                                paymentDate: payDay.toString(),
+                                balance: currentCashController.text,
+                                name: credNameController.text,
+                                isHidden: hideWallet ? "1" : "0",
+                                walletType: widget.walletTypeData.id,
+                                date: DateFormat('dd/MM/yyyy')
+                                    .format(DateTime.now()),
+                                time: DateFormat.jm().format(DateTime.now()),
+                              ));
+                            }
+                          } else {
+                            if (credNameController.text.isEmpty ||
+                                currentCashController.text.isEmpty) {
+                              UIHelper.showHelperToast(
+                                  local.lbFeildsAreRequired);
+                            } else {
+                              walletsBloc.add(AddWalletEvent(
+                                balance: currentCashController.text,
+                                name: credNameController.text,
+                                isHidden: hideWallet ? "1" : "0",
+                                walletType: widget.walletTypeData.id,
+                                date: DateFormat('dd/MM/yyyy')
+                                    .format(DateTime.now()),
+                                time: DateFormat.jm().format(DateTime.now()),
+                              ));
+                            }
+                          }
                         },
                       ),
                     ],

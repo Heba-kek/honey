@@ -43,7 +43,7 @@ class WalletRemoteDataSource extends WalletsDataSource {
 
   Future<BasicSuccessModel> updateWallet(Map<String, dynamic> data) async {
     final response = await _provider.fetchData(
-        method: HttpMethod.POST, url: APINames.addWallet, bodyData: data);
+        method: HttpMethod.POST, url: APINames.updateWallet, bodyData: data);
 
     return BasicSuccessModel.fromJson(response);
   }

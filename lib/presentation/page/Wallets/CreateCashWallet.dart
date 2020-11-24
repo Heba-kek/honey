@@ -6,6 +6,7 @@ import 'package:honey/Domain/Wallets/Entities/WalletTypeEntity.dart';
 import 'package:honey/application/Wallets/WalletsBloc.dart';
 import 'package:honey/application/Wallets/bloc.dart';
 import 'package:honey/presentation/Common/ProgressWidget.dart';
+import 'package:honey/presentation/page/Helper/UIHelper.dart';
 import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/HideWallet.dart';
 import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/WalletCategoryName.dart';
 import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/WalletCurrentBalance.dart';
@@ -58,19 +59,19 @@ class _CreateCashWalletState extends State<CreateCashWallet> {
           child: Scaffold(
             backgroundColor: Colors.white,
             body: BlocConsumer<WalletsBloc, WalletState>(
-              builder: (context, state) {
+              builder: (context1, state) {
                 if (state is Error) {
                   return Center(
                     child: Text(state.message),
                   );
                 } else if (state is Loaded) {
                   if (state.basicSuccessEntity.code.toString() == "1") {
-                    Navigator.of(context).pop();
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      Navigator.of(context).pop();
+                    });
                   } else {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Scaffold.of(context).showSnackBar(SnackBar(
-                        content: Text(state.basicSuccessEntity.msg),
-                      ));
+                      UIHelper.showHelperToast(state.basicSuccessEntity.msg);
                     });
                   }
                   walletsBloc.add(InitialEvent());
@@ -135,14 +136,21 @@ class _CreateCashWalletState extends State<CreateCashWallet> {
                 WalletCustomButton(
                   buttonTitle: "Create",
                   onPress: () {
-                    walletsBloc.add(AddWalletEvent(
-                      balance: currentCashController.text,
-                      name: bankNameController.text,
-                      isHidden: hideWallet ? "1" : "0",
-                      walletType: widget.walletTypeData.id,
-                      date: DateFormat('dd/MM/yyyy').format(DateTime.now()),
-                      time: DateFormat.jm().format(DateTime.now()),
-                    ));
+                    if ((bankNameController.text.isEmpty && widget.isBank) ||
+                        currentCashController.text.isEmpty) {
+                      UIHelper.showHelperToast(local.lbFeildsAreRequired);
+                    } else {
+                      walletsBloc.add(AddWalletEvent(
+                          balance: currentCashController.text,
+                          name: bankNameController.text,
+                          isHidden: hideWallet ? "1" : "0",
+                          walletType: widget.walletTypeData.id,
+                          date: DateFormat('dd/MM/yyyy').format(DateTime.now()),
+                          time: DateFormat.jm().format(DateTime.now()),
+                          paymentDate: "",
+                          projectValue: "",
+                          reminderDate: ""));
+                    }
                   },
                 ),
               ],

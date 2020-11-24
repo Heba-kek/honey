@@ -440,5 +440,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbProjectValue": MessageLookupByLibrary.simpleMessage("Project value"),
         "lbProjectStartValue":
             MessageLookupByLibrary.simpleMessage("Project start value"),
+        "lbFeildsAreRequired":
+            MessageLookupByLibrary.simpleMessage("All fields are required"),
       };
 }

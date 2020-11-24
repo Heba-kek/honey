@@ -37,7 +37,8 @@ class ApiProvider {
         if (token != null) options.headers["Auth"] = "Bearer " + token;
 
         if (lang != null) options.headers["lang"] = lang;
-        options.headers["Content_Type"] = "application/x-www-form-urlencoded";
+
+        // options.headers["Content_Type"] = "application/x-www-form-urlencoded";
         // options.contentType = Headers.formUrlEncodedContentType; //'form-data';
 
         print('options ${options.contentType}');
@@ -87,11 +88,13 @@ class ApiProvider {
             tempData = Map<String, dynamic>();
             tempData["user_id"] = id;
           }
-          print(tempData != null ? "tempData $tempData" : "bodyData $bodyData");
+          print(tempData);
 
-          response = await _dio.post(apiURLPost,
-              data: tempData != null ? tempData : bodyData);
+          FormData tempData1 = FormData.fromMap(tempData);
+          print(tempData1.fields.toString());
 
+          response = await _dio.post(apiURLPost, data: tempData1);
+          print("Response $response");
           return response.data;
       }
     } catch (exception) {
