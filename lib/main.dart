@@ -8,6 +8,7 @@ import 'package:honey/application/Wallets/bloc.dart';
 import 'package:honey/presentation/homePage.dart';
 import 'package:honey/presentation/page/auth/loginPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,11 +30,14 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MultiBlocProvider(providers: [
-        BlocProvider<WalletsBloc>(
-          create: (context) => WalletsBloc(),
-        ),
-      ], child: MyHomePage(title: 'Flutter Demo Home Page')),
+      home: Directionality(
+        textDirection: TextDirection.rtl,
+        child: MultiBlocProvider(providers: [
+          BlocProvider<WalletsBloc>(
+            create: (context) => WalletsBloc(),
+          ),
+        ], child: MyHomePage(title: 'Flutter Demo Home Page')),
+      ),
     );
   }
 }

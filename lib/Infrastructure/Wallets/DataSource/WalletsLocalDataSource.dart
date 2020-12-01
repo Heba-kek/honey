@@ -27,4 +27,8 @@ class WalletLocalDataSource extends WalletsDataSource {
   Future<BasicSuccessModel> updateWallet(Map<String, dynamic> data) {
     throw UnimplementedError();
   }
+
+  Future<BasicSuccessModel> deleteWallet(Map<String, dynamic> data) {
+    throw UnimplementedError();
+  }
 }

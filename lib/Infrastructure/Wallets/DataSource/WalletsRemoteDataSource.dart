@@ -47,4 +47,13 @@ class WalletRemoteDataSource extends WalletsDataSource {
 
     return BasicSuccessModel.fromJson(response);
   }
+
+  Future<BasicSuccessModel> deleteWallet(Map<String, dynamic> data) async {
+    final response = await _provider.fetchData(
+        method: HttpMethod.GET,
+        url: APINames.deleteWallet,
+        queryParameters: data);
+
+    return BasicSuccessModel.fromJson(response);
+  }
 }

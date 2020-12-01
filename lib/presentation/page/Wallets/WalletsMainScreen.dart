@@ -18,7 +18,7 @@ class WalletsMainScreen extends StatefulWidget {
 
 class _WalletsMainScreenState extends State<WalletsMainScreen> {
   WalletsBloc walletsBloc;
-
+  WalletsEntity tempEntity;
   @override
   void initState() {
     walletsBloc = WalletsBloc();
@@ -40,30 +40,38 @@ class _WalletsMainScreenState extends State<WalletsMainScreen> {
         child: SafeArea(
           top: true,
           bottom: false,
-          child: Scaffold(
-            backgroundColor: Colors.white,
-            body: BlocConsumer<WalletsBloc, WalletState>(
-              builder: (context, state) {
-                print("state: $state");
-                if (state is Empty) {
-                  walletsBloc.add(GetWalletsEvent());
-                } else if (state is Error) {
-                  return Center(
-                    child: Text(state.message),
-                  );
-                } else if (state is GetWalletsLoaded) {
-                  WalletsEntity tempEntity = state.walletsEntity;
-                  if (tempEntity.code == "1") {
-                    return getBody(tempEntity.data);
-                  } else {
-                    return Text(tempEntity.msg);
+          child: Directionality(
+            textDirection:
+                Localizations.localeOf(context).toString().contains("ar")
+                    ? TextDirection.ltr
+                    : TextDirection.rtl,
+            child: Scaffold(
+              backgroundColor: Colors.white,
+              body: BlocConsumer<WalletsBloc, WalletState>(
+                builder: (context, state) {
+                  print("state: $state");
+                  if (state is Empty) {
+                    walletsBloc.add(GetWalletsEvent());
+                  } else if (state is Error) {
+                    return Center(
+                      child: Text(state.message),
+                    );
+                  } else if (state is GetWalletsLoaded) {
+                    tempEntity = state.walletsEntity;
+                    if (tempEntity.code == "1") {
+                      return getBody(tempEntity.data);
+                    } else {
+                      return Text(tempEntity.msg);
+                    }
+                  } else if (state is Loaded) {
+                    walletsBloc.add(GetWalletsEvent());
                   }
-                }
-                return progressWidget();
-              },
-              listener: (context, state) {},
+                  return progressWidget();
+                },
+                listener: (context, state) {},
+              ),
+              bottomNavigationBar: BottomHomeButton(),
             ),
-            bottomNavigationBar: BottomHomeButton(),
           ),
         ),
       ),
@@ -75,7 +83,11 @@ class _WalletsMainScreenState extends State<WalletsMainScreen> {
       children: [
         WalletsHeader(
           onPressAdd: () {
-            Navigator.of(context).pushNamed(RouteNames.selectWalletCategory);
+            Navigator.of(context)
+                .pushNamed(RouteNames.selectWalletCategory)
+                .then((value) {
+              walletsBloc.add(GetWalletsEvent());
+            });
           },
           showAdd: true,
         ),
@@ -93,6 +105,9 @@ class _WalletsMainScreenState extends State<WalletsMainScreen> {
                     title: element.name,
                     value: element.balance,
                     unit: "SP",
+                    onPressDelete: () {
+                      walletsBloc.add(DeleteWalletEvent(walletID: element.id));
+                    },
                   ),
                 );
               },

@@ -14,6 +14,7 @@ import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/Walle
 import 'package:honey/presentation/page/Wallets/Components/WalletsHeader.dart';
 import 'package:honey/presentation/page/Wallets/Components/bottomHomeButton.dart';
 import 'package:intl/intl.dart';
+import 'dart:ui' as ui;
 
 ///cash and bank wallets
 class CreateSavingProjectWallet extends StatefulWidget {
@@ -50,43 +51,51 @@ class _CreateSavingProjectWalletState extends State<CreateSavingProjectWallet> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: CustomColors.mainYellowColor,
-      child: SafeArea(
-        top: true,
-        bottom: false,
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          body: BlocProvider(
-            create: (context) => walletsBloc,
-            child: BlocConsumer<WalletsBloc, WalletState>(
-              builder: (context, state) {
-                if (state is Error) {
-                  return Center(
-                    child: Text(state.message),
-                  );
-                } else if (state is Loaded) {
-                  if (state.basicSuccessEntity.code.toString() == "1") {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Navigator.of(context).pop();
-                    });
-                  } else {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Scaffold.of(context).showSnackBar(SnackBar(
-                        content: Text(state.basicSuccessEntity.msg),
-                      ));
-                    });
+    return Directionality(
+      textDirection: Localizations.localeOf(context).toString().contains("ar")
+          ? ui.TextDirection.ltr
+          : ui.TextDirection.rtl,
+      child: Container(
+        color: CustomColors.mainYellowColor,
+        child: SafeArea(
+          top: true,
+          bottom: false,
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            body: BlocProvider(
+              create: (context) => walletsBloc,
+              child: BlocConsumer<WalletsBloc, WalletState>(
+                builder: (context, state) {
+                  if (state is Error) {
+                    return Center(
+                      child: Text(state.message),
+                    );
+                  } else if (state is Loaded) {
+                    if (state.basicSuccessEntity.code.toString() == "1") {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        int count = 0;
+                        Navigator.popUntil(context, (route) {
+                          return count++ == 2;
+                        });
+                      });
+                    } else {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text(state.basicSuccessEntity.msg),
+                        ));
+                      });
+                    }
+                    walletsBloc.add(InitialEvent());
+                  } else if (state is Loading) {
+                    return progressWidget();
                   }
-                  walletsBloc.add(InitialEvent());
-                } else if (state is Loading) {
-                  return progressWidget();
-                }
-                return getBody();
-              },
-              listener: (context, state) {},
+                  return getBody();
+                },
+                listener: (context, state) {},
+              ),
             ),
+            bottomNavigationBar: BottomHomeButton(),
           ),
-          bottomNavigationBar: BottomHomeButton(),
         ),
       ),
     );
@@ -114,12 +123,13 @@ class _CreateSavingProjectWalletState extends State<CreateSavingProjectWallet> {
                       Center(
                         child: WalletCategoryName(
                           imagePath: widget.walletTypeData.icon,
-                          title: local.lbPro + " Saving",
+                          title: local.lbPro + " " + local.lbSave,
                         ),
                       ),
                       WaleetCurrentBalance(
                         title: local.lbProjectName,
                         currentBalancecontroller: projectNameController,
+                        keyboardType: TextInputType.text,
                         unit: "",
                       ),
                       WaleetCurrentBalance(

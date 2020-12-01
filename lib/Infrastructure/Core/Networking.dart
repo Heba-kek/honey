@@ -38,8 +38,8 @@ class ApiProvider {
 
         if (lang != null) options.headers["lang"] = lang;
 
-        // options.headers["Content_Type"] = "application/x-www-form-urlencoded";
-        // options.contentType = Headers.formUrlEncodedContentType; //'form-data';
+        options.headers["Content_Type"] = "application/x-www-form-urlencoded";
+        //options.contentType = Headers.formUrlEncodedContentType; //'form-data';
 
         print('options ${options.contentType}');
 
@@ -90,7 +90,8 @@ class ApiProvider {
           }
           print(tempData);
 
-          FormData tempData1 = FormData.fromMap(tempData);
+          FormData tempData1 =
+              FormData.fromMap(tempData != null ? tempData : bodyData);
           print(tempData1.fields.toString());
 
           response = await _dio.post(apiURLPost, data: tempData1);

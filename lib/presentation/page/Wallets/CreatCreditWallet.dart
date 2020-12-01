@@ -15,6 +15,7 @@ import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/Walle
 import 'package:honey/presentation/page/Wallets/Components/WalletsHeader.dart';
 import 'package:honey/presentation/page/Wallets/Components/bottomHomeButton.dart';
 import 'package:intl/intl.dart';
+import 'dart:ui' as ui;
 
 enum CreateCreditType { PrePaidCard, CreditCard, ProjectBox }
 
@@ -58,42 +59,51 @@ class _CreateCreditWalletState extends State<CreateCreditWallet> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => walletsBloc,
-      child: Container(
-        color: CustomColors.mainYellowColor,
-        child: SafeArea(
-          top: true,
-          bottom: false,
-          child: Scaffold(
-            backgroundColor: Colors.white,
-            body: BlocConsumer<WalletsBloc, WalletState>(
-              builder: (context, state) {
-                if (state is Error) {
-                  return Center(
-                    child: Text(state.message),
-                  );
-                } else if (state is Loaded) {
-                  if (state.basicSuccessEntity.code.toString() == "1") {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Navigator.of(context).pop();
-                    });
-                  } else {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Scaffold.of(context).showSnackBar(SnackBar(
-                        content: Text(state.basicSuccessEntity.msg),
-                      ));
-                    });
+    return Directionality(
+      textDirection: Localizations.localeOf(context).toString().contains("ar")
+          ? ui.TextDirection.ltr
+          : ui.TextDirection.rtl,
+      child: BlocProvider(
+        create: (context) => walletsBloc,
+        child: Container(
+          color: CustomColors.mainYellowColor,
+          child: SafeArea(
+            top: true,
+            bottom: false,
+            child: Scaffold(
+              resizeToAvoidBottomInset: false,
+              backgroundColor: Colors.white,
+              body: BlocConsumer<WalletsBloc, WalletState>(
+                builder: (context, state) {
+                  if (state is Error) {
+                    return Center(
+                      child: Text(state.message),
+                    );
+                  } else if (state is Loaded) {
+                    if (state.basicSuccessEntity.code.toString() == "1") {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        int count = 0;
+                        Navigator.popUntil(context, (route) {
+                          return count++ == 2;
+                        });
+                      });
+                    } else {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text(state.basicSuccessEntity.msg),
+                        ));
+                      });
+                    }
+                    walletsBloc.add(InitialEvent());
+                  } else if (state is Loading) {
+                    return progressWidget();
                   }
-                  walletsBloc.add(InitialEvent());
-                } else if (state is Loading) {
-                  return progressWidget();
-                }
-                return getBody();
-              },
-              listener: (context, state) {},
+                  return getBody();
+                },
+                listener: (context, state) {},
+              ),
+              bottomNavigationBar: BottomHomeButton(),
             ),
-            bottomNavigationBar: BottomHomeButton(),
           ),
         ),
       ),
@@ -128,6 +138,7 @@ class _CreateCreditWalletState extends State<CreateCreditWallet> {
                       WaleetCurrentBalance(
                         title: local.lbCardName,
                         currentBalancecontroller: credNameController,
+                        keyboardType: TextInputType.text,
                         unit: "",
                       ),
                       WaleetCurrentBalance(
@@ -171,7 +182,7 @@ class _CreateCreditWalletState extends State<CreateCreditWallet> {
                         child: Container(),
                       ),
                       WalletCustomButton(
-                        buttonTitle: "Create",
+                        buttonTitle: local.lbcreate,
                         onPress: () {
                           if (widget.screenType ==
                               CreateCreditType.CreditCard) {

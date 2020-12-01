@@ -9,8 +9,15 @@ class WalletItem extends StatelessWidget {
   final String title;
   final String value;
   final String unit;
+  final Function onPressDelete;
 
-  const WalletItem({Key key, this.imagePath, this.title, this.value, this.unit})
+  const WalletItem(
+      {Key key,
+      this.imagePath,
+      this.title,
+      this.value,
+      this.unit,
+      this.onPressDelete})
       : super(key: key);
 
   @override
@@ -53,9 +60,12 @@ class WalletItem extends StatelessWidget {
               color: CustomColors.mainYellowColor,
             ),
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-            child: SvgPicture.asset(WalletHelper.svgPath + "ic_trash.svg"),
+          InkWell(
+            onTap: onPressDelete,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+              child: SvgPicture.asset(WalletHelper.svgPath + "ic_trash.svg"),
+            ),
           ),
         ],
       ),

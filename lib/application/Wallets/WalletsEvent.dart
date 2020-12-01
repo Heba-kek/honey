@@ -51,6 +51,20 @@ class GetWalletDetailsEvent extends WalletsEvent {
   }
 }
 
+class DeleteWalletEvent extends WalletsEvent {
+  final String walletID;
+
+  DeleteWalletEvent({this.walletID});
+  @override
+  List<Object> get props => [this.walletID];
+
+  Map<String, dynamic> toMap() {
+    return {
+      "id": walletID,
+    };
+  }
+}
+
 class AddWalletEvent extends WalletsEvent {
   final String balance;
   final String date;

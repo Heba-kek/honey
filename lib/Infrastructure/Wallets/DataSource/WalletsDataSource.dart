@@ -9,4 +9,5 @@ abstract class WalletsDataSource {
   Future<WalletDetailsModel> getWalletDetails(Map<String, dynamic> data);
   Future<BasicSuccessModel> addWallet(Map<String, dynamic> data);
   Future<BasicSuccessModel> updateWallet(Map<String, dynamic> data);
+  Future<BasicSuccessModel> deleteWallet(Map<String, dynamic> data);
 }

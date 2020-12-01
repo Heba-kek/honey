@@ -81,6 +81,20 @@ class WalletsBloc extends Bloc<WalletsEvent, WalletState> {
           },
         );
       }
+    } else if (event is DeleteWalletEvent) {
+      yield Loading();
+
+      try {
+        final result = await walletsRepository.deleteWallet(event.toMap());
+        yield Loaded(basicSuccessEntity: result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
     } else {
       yield initialState;
     }

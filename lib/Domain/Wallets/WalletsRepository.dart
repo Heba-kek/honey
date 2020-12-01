@@ -9,4 +9,5 @@ abstract class WalletsRepository {
   Future<WalletDetailsEntity> getWalletDetails(Map<String, dynamic> data);
   Future<BasicSuccessEntity> addWallet(Map<String, dynamic> data);
   Future<BasicSuccessEntity> updateWallet(Map<String, dynamic> data);
+  Future<BasicSuccessEntity> deleteWallet(Map<String, dynamic> data);
 }

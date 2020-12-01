@@ -43,6 +43,8 @@ class WalletNumberPicker extends StatelessWidget {
                 selectedNumber: selectedValue,
                 onChanged: onSelectedValue,
                 headerColor: CustomColors.mainYellowColor,
+                cancelText: locale.lbCancel,
+                confirmText: locale.lbSubmit,
               );
             },
             child: Container(

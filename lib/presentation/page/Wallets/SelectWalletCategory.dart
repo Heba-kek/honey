@@ -32,36 +32,41 @@ class _SelectWalletCategoryState extends State<SelectWalletCategory> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => walletsBloc,
-      child: Container(
-        color: CustomColors.mainYellowColor,
-        child: SafeArea(
-          top: true,
-          bottom: false,
-          child: Scaffold(
-            backgroundColor: Colors.white,
-            body: BlocConsumer<WalletsBloc, WalletState>(
-              builder: (context, state) {
-                if (state is Empty) {
-                  walletsBloc.add(GetWalletTypesEvent());
-                } else if (state is Error) {
-                  return Center(
-                    child: Text(state.message),
-                  );
-                } else if (state is GetWalletTypeLoaded) {
-                  WalletTypeEntity entity = state.walletTypeEntity;
-                  if (entity.code == "1") {
-                    return getBody(entity.data);
-                  } else {
-                    return Text(entity.msg);
+    return Directionality(
+      textDirection: Localizations.localeOf(context).toString().contains("ar")
+          ? TextDirection.ltr
+          : TextDirection.rtl,
+      child: BlocProvider(
+        create: (context) => walletsBloc,
+        child: Container(
+          color: CustomColors.mainYellowColor,
+          child: SafeArea(
+            top: true,
+            bottom: false,
+            child: Scaffold(
+              backgroundColor: Colors.white,
+              body: BlocConsumer<WalletsBloc, WalletState>(
+                builder: (context, state) {
+                  if (state is Empty) {
+                    walletsBloc.add(GetWalletTypesEvent());
+                  } else if (state is Error) {
+                    return Center(
+                      child: Text(state.message),
+                    );
+                  } else if (state is GetWalletTypeLoaded) {
+                    WalletTypeEntity entity = state.walletTypeEntity;
+                    if (entity.code == "1") {
+                      return getBody(entity.data);
+                    } else {
+                      return Text(entity.msg);
+                    }
                   }
-                }
-                return progressWidget();
-              },
-              listener: (context, state) {},
+                  return progressWidget();
+                },
+                listener: (context, state) {},
+              ),
+              bottomNavigationBar: BottomHomeButton(),
             ),
-            bottomNavigationBar: BottomHomeButton(),
           ),
         ),
       ),

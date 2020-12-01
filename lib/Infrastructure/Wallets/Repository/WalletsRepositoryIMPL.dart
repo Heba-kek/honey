@@ -68,4 +68,14 @@ class WalletRepositoryIMPL extends WalletsRepository {
       throw NoInternetConnectionException();
     }
   }
+
+  Future<BasicSuccessEntity> deleteWallet(Map<String, dynamic> data) async {
+    if (await networkInfo.isConnected) {
+      BasicSuccessEntity model = await remoteDataSource.deleteWallet(data);
+
+      return model;
+    } else {
+      throw NoInternetConnectionException();
+    }
+  }
 }

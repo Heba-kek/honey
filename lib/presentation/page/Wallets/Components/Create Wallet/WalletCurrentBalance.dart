@@ -9,10 +9,15 @@ class WaleetCurrentBalance extends StatelessWidget {
   final TextEditingController currentBalancecontroller;
   final String title;
   final String unit;
+  final TextInputType keyboardType;
 
-  WaleetCurrentBalance(
-      {Key key, this.currentBalancecontroller, this.unit, this.title})
-      : super(key: key);
+  WaleetCurrentBalance({
+    Key key,
+    this.currentBalancecontroller,
+    this.unit,
+    this.title,
+    this.keyboardType = TextInputType.number,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +48,7 @@ class WaleetCurrentBalance extends StatelessWidget {
           // ),
           Expanded(
               child: TextField(
-            keyboardType: TextInputType.number,
+            keyboardType: keyboardType,
             controller: currentBalancecontroller,
             decoration: InputDecoration(
                 border: InputBorder.none,
