@@ -2,8 +2,8 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:honey/Core/PreferenceUtils.dart';
 import 'package:honey/Core/lang/localss.dart';
-import 'package:honey/Domain/Auth/AuthRepository.dart';
 import 'package:honey/Infrastructure/Auth/DataSources/AuthRemoteDataSource.dart';
 import 'package:honey/Infrastructure/Auth/Repository/AuthRepository.dart';
 import 'package:honey/Infrastructure/Core/NetworkInfo.dart';
@@ -13,7 +13,6 @@ import 'package:honey/application/Auth/authState.dart';
 import 'package:honey/presentation/homePage.dart';
 import 'package:honey/presentation/page/LocalHelper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -25,7 +24,6 @@ class LoginActivity extends State<Login> {
   var _temp;
   final _username = TextEditingController();
   final _password = TextEditingController();
-  SpecificLocalizationDelegate _specificLocalizationDelegate;
 
   String _response = '';
   bool _apiCall = false;
@@ -42,7 +40,6 @@ class LoginActivity extends State<Login> {
   @override
   void initState() {
     super.initState();
-    helper.onLocaleChanged = onLocaleChange;
     navigationPage();
   }
 
@@ -52,48 +49,21 @@ class LoginActivity extends State<Login> {
 // Save a value
     String langSave = preferences.getString('lang');
     if (langSave == 'ar') {
-      _specificLocalizationDelegate =
-          SpecificLocalizationDelegate(new Locale("ar"));
-
       // ignore: unnecessary_statements
       AppLocalizations().locale == 'ar';
       helper.onLocaleChanged(new Locale("ar"));
-      AppLocalizations.load(new Locale("ar"));
       preferences.setString('lang', 'ar');
     } else {
-      _specificLocalizationDelegate =
-          SpecificLocalizationDelegate(new Locale("en"));
-
       // ignore: unnecessary_statements
       AppLocalizations().locale == 'en';
       preferences.setString('lang', 'en');
       helper.onLocaleChanged(new Locale("en"));
-      AppLocalizations.load(new Locale("en"));
     }
-  }
-
-  onLocaleChange(Locale locale) {
-    setState(() {
-      _specificLocalizationDelegate = new SpecificLocalizationDelegate(locale);
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      debugShowMaterialGrid: false,
-      title: 'Flutter Demo',
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        new FallbackCupertinoLocalisationsDelegate(),
-        _specificLocalizationDelegate
-      ],
-      supportedLocales: [Locale('en'), Locale('ar')],
-      locale: _specificLocalizationDelegate.overriddenLocale,
-      home: _setWidget(),
-    );
+    return _setWidget();
   }
 
   Widget _setWidget() {
@@ -116,6 +86,7 @@ class LoginActivity extends State<Login> {
             preferences.setString('token', state.signinResponse.token);
             preferences.setString(
                 'id', state.signinResponse.data.id.toString());
+            PreferenceUtils().setuser(state.signinResponse);
 
             Route route = MaterialPageRoute(builder: (context) => HomeScreen());
             Navigator.pushReplacement(context, route);

@@ -13,14 +13,12 @@ class RegistreActivity extends State<register> {
   bool isChecked = false;
   final _username = TextEditingController();
   final _password = TextEditingController();
-  SpecificLocalizationDelegate _specificLocalizationDelegate;
 
   @override
   Future initState() {
     // TODO: implement initState
 
     super.initState();
-    helper.onLocaleChanged = onLocaleChange;
     navigationPage();
 
 //AppLocalizations.load(Locale('ar'));
@@ -37,52 +35,18 @@ class RegistreActivity extends State<register> {
 // Save a value
     String langSave = preferences.getString('lang');
     if (langSave == 'ar') {
-      _specificLocalizationDelegate =
-          SpecificLocalizationDelegate(new Locale("ar"));
-
-      AppLocalizations().locale == 'ar';
       helper.onLocaleChanged(new Locale("ar"));
-      AppLocalizations.load(new Locale("ar"));
       preferences.setString('lang', 'ar');
     } else {
-      _specificLocalizationDelegate =
-          SpecificLocalizationDelegate(new Locale("en"));
-
-      AppLocalizations().locale == 'en';
       preferences.setString('lang', 'en');
       helper.onLocaleChanged(new Locale("en"));
-      AppLocalizations.load(new Locale("en"));
     }
-  }
-
-  onLocaleChange(Locale locale) {
-    setState(() {
-      _specificLocalizationDelegate = new SpecificLocalizationDelegate(locale);
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      debugShowMaterialGrid: false,
-      title: 'Flutter Demo',
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-
-        GlobalWidgetsLocalizations.delegate,
-
-        new FallbackCupertinoLocalisationsDelegate(),
-
-        //app-specific localization
-
-        _specificLocalizationDelegate
-      ],
-      supportedLocales: [Locale('en'), Locale('ar')],
-      locale: _specificLocalizationDelegate.overriddenLocale,
-      home: _setWidget(),
-    );
+    return _setWidget();
   }
 
   Widget _setWidget() {

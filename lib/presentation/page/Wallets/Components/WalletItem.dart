@@ -26,7 +26,7 @@ class WalletItem extends StatelessWidget {
       height: 60,
       decoration: BoxDecoration(
         border: Border(
-            bottom: BorderSide(color: CustomColors.mainYellowColor, width: 2)),
+            bottom: BorderSide(color: CustomColors.mainYellowColor, width: 1)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,

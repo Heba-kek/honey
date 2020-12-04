@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:honey/Core/Helpers/CustomColors.dart';
 import 'package:honey/Core/Router/Router.dart';
+import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletTypeEntity.dart';
 import 'package:honey/application/Wallets/bloc.dart';
 import 'package:honey/presentation/Common/ProgressWidget.dart';
@@ -17,7 +18,7 @@ class SelectWalletCategory extends StatefulWidget {
 
 class _SelectWalletCategoryState extends State<SelectWalletCategory> {
   WalletsBloc walletsBloc;
-
+  final AppLocalizations local = AppLocalizations();
   @override
   void initState() {
     walletsBloc = WalletsBloc();
@@ -33,9 +34,9 @@ class _SelectWalletCategoryState extends State<SelectWalletCategory> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: Localizations.localeOf(context).toString().contains("ar")
-          ? TextDirection.ltr
-          : TextDirection.rtl,
+      textDirection: local.locale.toString().contains("ar")
+          ? TextDirection.rtl
+          : TextDirection.ltr,
       child: BlocProvider(
         create: (context) => walletsBloc,
         child: Container(
@@ -81,62 +82,64 @@ class _SelectWalletCategoryState extends State<SelectWalletCategory> {
           showAdd: false,
         ),
         Expanded(
-          child: ListView.builder(
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              WalletTypeData element = data[index];
-              return InkWell(
-                onTap: () {
-                  if (element.id == "1") {
-                    Navigator.of(context).pushNamed(
-                      RouteNames.createCasheWallet,
-                      arguments: {"isBank": false, "WalletTypeData": element},
-                    );
-                  } else if (element.id == "2") {
-                    Navigator.of(context).pushNamed(
-                      RouteNames.createCasheWallet,
-                      arguments: {"isBank": true, "WalletTypeData": element},
-                    );
-                  } else if (element.id == "3") {
-                    Navigator.of(context).pushNamed(
-                      RouteNames.creatCreditWallet,
-                      arguments: {
-                        "type": CreateCreditType.CreditCard,
-                        "WalletTypeData": element
-                      },
-                    );
-                  } else if (element.id == "4") {
-                    Navigator.of(context).pushNamed(
-                      RouteNames.creatCreditWallet,
-                      arguments: {
-                        "type": CreateCreditType.PrePaidCard,
-                        "WalletTypeData": element
-                      },
-                    );
-                  } else if (element.id == "5") {
-                    Navigator.of(context).pushNamed(
-                      RouteNames.creatCreditWallet,
-                      arguments: {
-                        "type": CreateCreditType.ProjectBox,
-                        "WalletTypeData": element
-                      },
-                    );
-                  } else if (element.id == "6") {
-                    Navigator.of(context).pushNamed(
-                        RouteNames.savingProjectWallet,
-                        arguments: {"WalletTypeData": element});
-                  }
-                },
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  child: WalletCategoryListItem(
-                    title: element.name,
-                    imagePath: element.icon,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+            child: ListView.builder(
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                WalletTypeData element = data[index];
+                return InkWell(
+                  onTap: () {
+                    if (element.id == "1") {
+                      Navigator.of(context).pushNamed(
+                        RouteNames.createCasheWallet,
+                        arguments: {"isBank": false, "WalletTypeData": element},
+                      );
+                    } else if (element.id == "2") {
+                      Navigator.of(context).pushNamed(
+                        RouteNames.createCasheWallet,
+                        arguments: {"isBank": true, "WalletTypeData": element},
+                      );
+                    } else if (element.id == "3") {
+                      Navigator.of(context).pushNamed(
+                        RouteNames.creatCreditWallet,
+                        arguments: {
+                          "type": CreateCreditType.CreditCard,
+                          "WalletTypeData": element
+                        },
+                      );
+                    } else if (element.id == "4") {
+                      Navigator.of(context).pushNamed(
+                        RouteNames.creatCreditWallet,
+                        arguments: {
+                          "type": CreateCreditType.PrePaidCard,
+                          "WalletTypeData": element
+                        },
+                      );
+                    } else if (element.id == "5") {
+                      Navigator.of(context).pushNamed(
+                        RouteNames.creatCreditWallet,
+                        arguments: {
+                          "type": CreateCreditType.ProjectBox,
+                          "WalletTypeData": element
+                        },
+                      );
+                    } else if (element.id == "6") {
+                      Navigator.of(context).pushNamed(
+                          RouteNames.savingProjectWallet,
+                          arguments: {"WalletTypeData": element});
+                    }
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 24),
+                    child: WalletCategoryListItem(
+                      title: element.name,
+                      imagePath: element.icon,
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ],

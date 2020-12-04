@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:honey/Core/Helpers/CustomColors.dart';
+import 'package:honey/Core/PreferenceUtils.dart';
 import 'package:honey/Core/Router/Router.dart';
+import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletsEntity.dart';
 import 'package:honey/application/Wallets/WalletsBloc.dart';
 import 'package:honey/application/Wallets/bloc.dart';
@@ -10,6 +12,7 @@ import 'package:honey/presentation/page/Wallets/Components/WalletItem.dart';
 import 'package:honey/presentation/page/Wallets/Components/WalletsHeader.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:honey/presentation/page/Wallets/Components/bottomHomeButton.dart';
+import 'package:intl/intl.dart' as intl;
 
 class WalletsMainScreen extends StatefulWidget {
   @override
@@ -19,6 +22,8 @@ class WalletsMainScreen extends StatefulWidget {
 class _WalletsMainScreenState extends State<WalletsMainScreen> {
   WalletsBloc walletsBloc;
   WalletsEntity tempEntity;
+  final AppLocalizations local = AppLocalizations();
+
   @override
   void initState() {
     walletsBloc = WalletsBloc();
@@ -41,10 +46,9 @@ class _WalletsMainScreenState extends State<WalletsMainScreen> {
           top: true,
           bottom: false,
           child: Directionality(
-            textDirection:
-                Localizations.localeOf(context).toString().contains("ar")
-                    ? TextDirection.ltr
-                    : TextDirection.rtl,
+            textDirection: local.locale.toString().contains("ar")
+                ? TextDirection.rtl
+                : TextDirection.ltr,
             child: Scaffold(
               backgroundColor: Colors.white,
               body: BlocConsumer<WalletsBloc, WalletState>(
@@ -93,18 +97,18 @@ class _WalletsMainScreenState extends State<WalletsMainScreen> {
         ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(44.0),
+            padding: const EdgeInsets.all(20.0),
             child: ListView.builder(
               itemCount: data.length,
               itemBuilder: (context, index) {
                 WalletsData element = data[index];
                 return Padding(
-                  padding: const EdgeInsets.only(bottom: 24.0),
+                  padding: const EdgeInsets.only(bottom: 20.0),
                   child: WalletItem(
                     imagePath: element.icon,
-                    title: element.name,
-                    value: element.balance,
-                    unit: "SP",
+                    title: element.walletName,
+                    value: formatter.format(double.parse(element.balance)),
+                    unit: PreferenceUtils().user.data.currency,
                     onPressDelete: () {
                       walletsBloc.add(DeleteWalletEvent(walletID: element.id));
                     },

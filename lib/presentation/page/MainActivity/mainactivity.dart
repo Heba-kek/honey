@@ -26,7 +26,6 @@ class MainActivity extends StatefulWidget {
 
 class _MainActivityState extends State<MainActivity> {
   HomeBloc homeBloc;
-  SpecificLocalizationDelegate _specificLocalizationDelegate;
   String langSave;
   @override
   void initState() {
@@ -46,17 +45,6 @@ class _MainActivityState extends State<MainActivity> {
 
     langSave = preferences.getString('lang');
     print("lang saved == $langSave");
-    //langSave=lang1;
-    if (langSave == 'ar') {
-      _specificLocalizationDelegate =
-          SpecificLocalizationDelegate(new Locale("ar"));
-
-      AppLocalizations.load(new Locale("ar"));
-    } else {
-      _specificLocalizationDelegate =
-          SpecificLocalizationDelegate(new Locale("en"));
-      AppLocalizations.load(new Locale("en"));
-    }
   }
 
   @override
@@ -70,10 +58,7 @@ class _MainActivityState extends State<MainActivity> {
           );
         } else {
           if (snapshot.data is GetHomeLoaded) {
-            return Directionality(
-                textDirection:
-                    langSave == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-                child: mainWidget());
+            return mainWidget();
           } else if (snapshot.data is Error) {
             return Center(
               child: Text(snapshot.data.toString()),

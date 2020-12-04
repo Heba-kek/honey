@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:honey/Core/Helpers/CustomColors.dart';
+import 'package:honey/Core/PreferenceUtils.dart';
 import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletTypeEntity.dart';
 import 'package:honey/application/Wallets/bloc.dart';
@@ -60,9 +61,9 @@ class _CreateCreditWalletState extends State<CreateCreditWallet> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: Localizations.localeOf(context).toString().contains("ar")
-          ? ui.TextDirection.ltr
-          : ui.TextDirection.rtl,
+      textDirection: local.locale.contains("ar")
+          ? ui.TextDirection.rtl
+          : ui.TextDirection.ltr,
       child: BlocProvider(
         create: (context) => walletsBloc,
         child: Container(
@@ -144,7 +145,7 @@ class _CreateCreditWalletState extends State<CreateCreditWallet> {
                       WaleetCurrentBalance(
                         title: local.lbCurrentBalance,
                         currentBalancecontroller: currentCashController,
-                        unit: "Sp",
+                        unit: PreferenceUtils().user.data.currency,
                       ),
                       WalletDatePicker(
                         showYellowDivider:

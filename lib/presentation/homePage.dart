@@ -65,7 +65,6 @@ class HomeScreen extends StatefulWidget {
 
 class HomeFragment extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
-  SpecificLocalizationDelegate _specificLocalizationDelegate;
   String langSave;
   int currentTab = 0;
   int _selectedDrawerIndex = 0;
@@ -92,11 +91,6 @@ class HomeFragment extends State<HomeScreen>
     print("lang saved == $langSave");
     //langSave=lang1;
     if (langSave == 'ar') {
-      _specificLocalizationDelegate =
-          SpecificLocalizationDelegate(new Locale("ar"));
-
-      AppLocalizations.load(new Locale("ar"));
-
       for (var i = 0; i < widget.drawerItemsAr.length; i++) {
         var d = widget.drawerItemsAr[i];
 
@@ -108,10 +102,6 @@ class HomeFragment extends State<HomeScreen>
         ));
       }
     } else {
-      _specificLocalizationDelegate =
-          SpecificLocalizationDelegate(new Locale("en"));
-      AppLocalizations.load(new Locale("en"));
-
       for (var i = 0; i < widget.drawerItemEn.length; i++) {
         var d = widget.drawerItemEn[i];
 
@@ -240,190 +230,195 @@ class HomeFragment extends State<HomeScreen>
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        key: _scaffoldKey,
-        backgroundColor: Color(0xFFEEEEEE),
-        drawer: new Drawer(
-            child: new SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              new DrawerHeader(
-                decoration: BoxDecoration(
-                  color: CustomColors.mainYellowColor,
-                ),
-                child: null,
-              ),
-              new Column(children: drawerOptions)
-            ],
-          ),
-        )),
-        appBar: AppBar(
-          //  centerTitle: true,  automaticallyImplyLeading: false,
-          titleSpacing: 0.0,
-
-          title: Container(
-              height: 100,
-              width: 130,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  PopupMenuButton<CustomPopupMenu>(
-                    padding: EdgeInsets.all(0.0),
-                    elevation: 0.0,
-                    offset: Offset(0, 10),
-                    icon: Icon(
-                      Icons.language,
-                      color: Colors.black,
-                    ),
-                    initialValue: _selectedChoices,
-                    onCanceled: () {
-                      print('You have not chossed anything');
-                    },
-                    tooltip: 'This is tooltip',
-                    onSelected: _select,
-                    itemBuilder: (BuildContext context) {
-                      return choices.map((CustomPopupMenu choice) {
-                        return PopupMenuItem<CustomPopupMenu>(
-                          value: choice,
-                          child: Text(choice.title),
-                        );
-                      }).toList();
-                    },
+    return Directionality(
+      textDirection: AppLocalizations().locale.toString().contains("ar")
+          ? TextDirection.rtl
+          : TextDirection.ltr,
+      child: SafeArea(
+        top: false,
+        child: Scaffold(
+          extendBodyBehindAppBar: true,
+          key: _scaffoldKey,
+          backgroundColor: Color(0xFFEEEEEE),
+          drawer: new Drawer(
+              child: new SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                new DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: CustomColors.mainYellowColor,
                   ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: IconButton(
-                      icon: ImageIcon(
-                        AssetImage("assets/images/bell.png"),
+                  child: null,
+                ),
+                new Column(children: drawerOptions)
+              ],
+            ),
+          )),
+          appBar: AppBar(
+            //  centerTitle: true,  automaticallyImplyLeading: false,
+            titleSpacing: 0.0,
+
+            title: Container(
+                height: 100,
+                width: 130,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    PopupMenuButton<CustomPopupMenu>(
+                      padding: EdgeInsets.all(0.0),
+                      elevation: 0.0,
+                      offset: Offset(0, 10),
+                      icon: Icon(
+                        Icons.language,
                         color: Colors.black,
                       ),
-                      onPressed: () {},
+                      initialValue: _selectedChoices,
+                      onCanceled: () {
+                        print('You have not chossed anything');
+                      },
+                      tooltip: 'This is tooltip',
+                      onSelected: _select,
+                      itemBuilder: (BuildContext context) {
+                        return choices.map((CustomPopupMenu choice) {
+                          return PopupMenuItem<CustomPopupMenu>(
+                            value: choice,
+                            child: Text(choice.title),
+                          );
+                        }).toList();
+                      },
                     ),
-                  ),
-                  Container(
-                    child: Stack(
-                      children: <Widget>[
-                        Icon(
-                          Icons.account_circle,
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: IconButton(
+                        icon: ImageIcon(
+                          AssetImage("assets/images/bell.png"),
                           color: Colors.black,
                         ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                          child: Container(
-                            child: Padding(
-                              padding: EdgeInsets.all(2),
-                              child: Text(
-                                '3',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10),
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(600),
-                                color: Colors.red),
-                          ),
-                        )
-                      ],
+                        onPressed: () {},
+                      ),
                     ),
-                  )
-                ],
-              ),
-              color: Color(0xff707070).withOpacity(0.14)),
-          elevation: 0,
-          leading: Container(
-              color: Color(0xff707070).withOpacity(0.14),
-              child: IconButton(
-                icon: Icon(
-                  Icons.menu,
-                  color: Colors.black,
-                ),
-                onPressed: () {
-                  _scaffoldKey.currentState.openDrawer();
-                },
-              )),
-          actions: [
-            Container(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Row(
-                  children: <Widget>[
-                    Image.asset("assets/images/honeyBeeLogo.png"),
-                    Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: HoneyBeeTitle(
-                          fontSize: 16,
-                        ))
+                    Container(
+                      child: Stack(
+                        children: <Widget>[
+                          Icon(
+                            Icons.account_circle,
+                            color: Colors.black,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                            child: Container(
+                              child: Padding(
+                                padding: EdgeInsets.all(2),
+                                child: Text(
+                                  '3',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 10),
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(600),
+                                  color: Colors.red),
+                            ),
+                          )
+                        ],
+                      ),
+                    )
                   ],
                 ),
-              ),
-              color: Color(0xff707070).withOpacity(0.14),
-            )
-          ],
-          backgroundColor: Colors.transparent,
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                "assets/images/newpro.png",
-                height: 40,
-                width: 40,
-              ),
-              title: Text(''),
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                "assets/images/newset.png",
-                height: 40,
-                width: 40,
-              ),
-              title: Text(''),
-            ),
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _selectedDrawerIndex = 0;
-                  });
-                },
-                child: Image.asset(
-                  "assets/images/newhome.png",
+                color: Color(0xff707070).withOpacity(0.14)),
+            elevation: 0,
+            leading: Container(
+                color: Color(0xff707070).withOpacity(0.14),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {
+                    _scaffoldKey.currentState.openDrawer();
+                  },
+                )),
+            actions: [
+              Container(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  child: Row(
+                    children: <Widget>[
+                      Image.asset("assets/images/honeyBeeLogo.png"),
+                      Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: HoneyBeeTitle(
+                            fontSize: 16,
+                          ))
+                    ],
+                  ),
+                ),
+                color: Color(0xff707070).withOpacity(0.14),
+              )
+            ],
+            backgroundColor: Colors.transparent,
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            items: [
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  "assets/images/newpro.png",
                   height: 40,
                   width: 40,
                 ),
+                title: Text(''),
               ),
-              title: Text(''),
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                "assets/images/newde.png",
-                height: 40,
-                width: 40,
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  "assets/images/newset.png",
+                  height: 40,
+                  width: 40,
+                ),
+                title: Text(''),
               ),
-              title: Text(''),
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                "assets/images/newfav.png",
-                height: 40,
-                width: 40,
+              BottomNavigationBarItem(
+                icon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedDrawerIndex = 0;
+                    });
+                  },
+                  child: Image.asset(
+                    "assets/images/newhome.png",
+                    height: 40,
+                    width: 40,
+                  ),
+                ),
+                title: Text(''),
               ),
-              title: Text(''),
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          elevation: 15,
-          backgroundColor: Colors.white,
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: CustomColors.mainYellowColor,
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  "assets/images/newde.png",
+                  height: 40,
+                  width: 40,
+                ),
+                title: Text(''),
+              ),
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  "assets/images/newfav.png",
+                  height: 40,
+                  width: 40,
+                ),
+                title: Text(''),
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            onTap: _onItemTapped,
+            elevation: 15,
+            backgroundColor: Colors.white,
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: CustomColors.mainYellowColor,
+          ),
+          body: _getDrawerItemWidget(_selectedDrawerIndex),
         ),
-        body: _getDrawerItemWidget(_selectedDrawerIndex),
       ),
     );
   }

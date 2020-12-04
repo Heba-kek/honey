@@ -113,7 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbToday": MessageLookupByLibrary.simpleMessage("Today Schedule"),
         "lbMeeting": MessageLookupByLibrary.simpleMessage("Meetings"),
         "lbhealth": MessageLookupByLibrary.simpleMessage("Health Managment"),
-        "lbTime": MessageLookupByLibrary.simpleMessage("Times"),
+        "lbTime": MessageLookupByLibrary.simpleMessage("Time"),
         "lbRemain": MessageLookupByLibrary.simpleMessage("Remain"),
         "lbJan": MessageLookupByLibrary.simpleMessage("January"),
         "lbFab": MessageLookupByLibrary.simpleMessage("February"),

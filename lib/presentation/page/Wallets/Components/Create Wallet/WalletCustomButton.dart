@@ -12,8 +12,8 @@ class WalletCustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
-      width: 200,
+      height: 40,
+      width: 150,
       decoration: BoxDecoration(
           border: Border.all(color: CustomColors.mainYellowColor, width: 1),
           borderRadius: BorderRadius.all(

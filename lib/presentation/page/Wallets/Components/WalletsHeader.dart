@@ -20,10 +20,12 @@ class WalletsHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(16, 6, 16, 6),
-            child: SvgPicture.asset(
-              "assets/images/SVG/walletIcon.svg",
-              fit: BoxFit.fill,
+            padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
+            child: Center(
+              child: SvgPicture.asset(
+                "assets/images/SVG/walletIcon.svg",
+                fit: BoxFit.fill,
+              ),
             ),
           ),
           Padding(
@@ -32,7 +34,7 @@ class WalletsHeader extends StatelessWidget {
               local.lbWallets,
               style: TextStyle(
                 fontFamily: 'Times New Roman',
-                fontSize: 20,
+                fontSize: 18,
                 color: const Color(0xff090808),
               ),
               textAlign: TextAlign.center,
@@ -41,12 +43,12 @@ class WalletsHeader extends StatelessWidget {
           Flexible(fit: FlexFit.tight, child: SizedBox()),
           if (showAdd)
             Padding(
-              padding: const EdgeInsetsDirectional.only(end: 24),
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
               child: IconButton(
                   icon: Icon(
                     Icons.add,
                     color: Colors.white,
-                    size: 40,
+                    size: 30,
                   ),
                   onPressed: onPressAdd),
             ),
