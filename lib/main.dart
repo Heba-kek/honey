@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:honey/Core/PreferenceUtils.dart';
 import 'package:honey/Core/Router/Router.dart' as honeyRoute;
 import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/application/Wallets/bloc.dart';
@@ -118,6 +119,7 @@ class _MyHomePageState extends State<MyHomePage>
     });
 
     startTime();
+    PreferenceUtils.init();
     super.initState();
   }
 
