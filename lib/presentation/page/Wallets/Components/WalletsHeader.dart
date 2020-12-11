@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:honey/Core/Helpers/CustomColors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:honey/Core/lang/localss.dart';
@@ -33,8 +34,8 @@ class WalletsHeader extends StatelessWidget {
             child: Text(
               local.lbWallets,
               style: TextStyle(
-                fontFamily: 'Times New Roman',
-                fontSize: 18,
+                fontFamily: "Ebrima",
+                fontSize: 20,
                 color: const Color(0xff090808),
               ),
               textAlign: TextAlign.center,

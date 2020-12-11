@@ -28,7 +28,7 @@ class HideWallet extends StatelessWidget {
               Expanded(
                 child: WalletHelper.getAutoSizeTextWith(
                   title: local.lbHideWallet,
-                  maxFontSize: 20,
+                  maxFontSize: 14,
                   minFontSize: 10,
                   maxLines: 1,
                 ),
@@ -40,14 +40,16 @@ class HideWallet extends StatelessWidget {
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsetsDirectional.only(end: 16.0),
-            child: WalletHelper.getAutoSizeTextWith(
-                title: local.lbHideWalletDescription,
-                maxFontSize: 20,
-                minFontSize: 10,
-                maxLines: 2,
-                fontColor: Colors.grey[800]),
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsetsDirectional.only(end: 16.0, bottom: 8.0),
+              child: WalletHelper.getAutoSizeTextWith(
+                  title: local.lbHideWalletDescription,
+                  maxFontSize: 14,
+                  minFontSize: 10,
+                  maxLines: 2,
+                  fontColor: Colors.grey[800]),
+            ),
           ),
         ],
       ),

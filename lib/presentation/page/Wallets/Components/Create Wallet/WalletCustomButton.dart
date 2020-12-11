@@ -24,7 +24,7 @@ class WalletCustomButton extends StatelessWidget {
       child: FlatButton(
         child: Text(
           buttonTitle,
-          style: TextStyle(fontSize: 24),
+          style: TextStyle(fontSize: 16, fontFamily: "Ebrima"),
         ),
         onPressed: onPress,
       ),

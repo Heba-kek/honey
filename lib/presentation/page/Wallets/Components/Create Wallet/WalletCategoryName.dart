@@ -28,7 +28,7 @@ class WalletCategoryName extends StatelessWidget {
           ),
           WalletHelper.getAutoSizeTextWith(
             title: title,
-            maxFontSize: 20,
+            maxFontSize: 16,
             minFontSize: 10,
             maxLines: 1,
           ),

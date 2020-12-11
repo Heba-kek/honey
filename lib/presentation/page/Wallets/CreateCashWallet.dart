@@ -148,21 +148,16 @@ class _CreateCashWalletState extends State<CreateCashWallet> {
                 WalletCustomButton(
                   buttonTitle: local.lbcreate,
                   onPress: () {
-                    if ((bankNameController.text.isEmpty && widget.isBank) ||
-                        currentCashController.text.isEmpty) {
-                      UIHelper.showHelperToast(local.lbFeildsAreRequired);
-                    } else {
-                      walletsBloc.add(AddWalletEvent(
-                          balance: currentCashController.text,
-                          name: bankNameController.text,
-                          isHidden: hideWallet ? "1" : "0",
-                          walletType: widget.walletTypeData.id,
-                          date: DateFormat('dd/MM/yyyy').format(DateTime.now()),
-                          time: DateFormat.jm().format(DateTime.now()),
-                          paymentDate: "",
-                          projectValue: "",
-                          reminderDate: ""));
-                    }
+                    walletsBloc.add(AddWalletEvent(
+                        balance: currentCashController.text,
+                        name: bankNameController.text,
+                        isHidden: hideWallet ? "1" : "0",
+                        walletType: widget.walletTypeData.id,
+                        date: DateFormat('dd/MM/yyyy').format(DateTime.now()),
+                        time: DateFormat.jm().format(DateTime.now()),
+                        paymentDate: "",
+                        projectValue: "",
+                        reminderDate: ""));
                   },
                 ),
               ],

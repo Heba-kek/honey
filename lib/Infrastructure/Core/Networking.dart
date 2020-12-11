@@ -51,7 +51,8 @@ class ApiProvider {
       }, onError: (DioError error) async {
         print('error calling dio method');
 
-        if (error.response?.statusCode == 404) {
+        if (error.response?.statusCode == 404 ||
+            error.response?.statusCode == 400) {
           print(error.response.data.toString());
           return error.response;
         }

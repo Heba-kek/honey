@@ -30,31 +30,39 @@ class WalletItem extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            padding: EdgeInsets.all(12),
-            height: 50,
-            width: 50,
-            child: SvgPicture.network(imagePath),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: SvgPicture.network(imagePath),
+              ),
+              Expanded(
+                child: WalletHelper.getAutoSizeTextWith(
+                    title: title, maxLines: 1, maxFontSize: 12),
+              ),
+            ],
           ),
           Expanded(
             flex: 2,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: WalletHelper.getAutoSizeTextWith(title: title),
+            child: Center(
+              child: WalletHelper.getAutoSizeTextWith(
+                  title: value, maxLines: 1, maxFontSize: 14),
             ),
           ),
           Expanded(
-            flex: 2,
-            child: WalletHelper.getAutoSizeTextWith(title: value),
-          ),
-          Expanded(
-            flex: 1,
-            child: WalletHelper.getAutoSizeTextWith(title: unit),
+            flex: 0,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.only(end: 12.0),
+              child: WalletHelper.getAutoSizeTextWith(
+                  title: unit, maxLines: 1, maxFontSize: 12),
+            ),
           ),
           Padding(
             padding:
-                EdgeInsetsDirectional.only(top: 14.0, bottom: 14.0, end: 8),
+                EdgeInsetsDirectional.only(top: 20.0, bottom: 20.0, end: 8),
             child: Container(
               width: 1,
               color: CustomColors.mainYellowColor,

@@ -14,6 +14,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:honey/presentation/page/Wallets/Components/bottomHomeButton.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'Components/WalletHelper.dart';
+
 class WalletsMainScreen extends StatefulWidget {
   @override
   _WalletsMainScreenState createState() => _WalletsMainScreenState();
@@ -83,38 +85,62 @@ class _WalletsMainScreenState extends State<WalletsMainScreen> {
   }
 
   Widget getBody(List<WalletsData> data) {
-    return Column(
+    return Stack(
       children: [
-        WalletsHeader(
-          onPressAdd: () {
-            Navigator.of(context)
-                .pushNamed(RouteNames.selectWalletCategory)
-                .then((value) {
-              walletsBloc.add(GetWalletsEvent());
-            });
-          },
-          showAdd: true,
-        ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: ListView.builder(
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                WalletsData element = data[index];
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: WalletItem(
-                    imagePath: element.icon,
-                    title: element.walletName,
-                    value: formatter.format(double.parse(element.balance)),
-                    unit: PreferenceUtils().user.data.currency,
-                    onPressDelete: () {
-                      walletsBloc.add(DeleteWalletEvent(walletID: element.id));
-                    },
-                  ),
-                );
+        Column(
+          children: [
+            WalletsHeader(
+              onPressAdd: () {
+                Navigator.of(context)
+                    .pushNamed(RouteNames.selectWalletCategory)
+                    .then((value) {
+                  walletsBloc.add(GetWalletsEvent());
+                });
               },
+              showAdd: true,
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: ListView.builder(
+                  itemCount: data.length,
+                  itemBuilder: (context, index) {
+                    WalletsData element = data[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 20.0),
+                      child: WalletItem(
+                        imagePath: element.icon,
+                        title: element.walletName,
+                        value: formatter.format(double.parse(element.balance)),
+                        unit: PreferenceUtils().user.data.currency,
+                        onPressDelete: () {
+                          walletsBloc
+                              .add(DeleteWalletEvent(walletID: element.id));
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+            )
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 24.0),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: InkWell(
+              onTap: () {},
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SvgPicture.asset(WalletHelper.svgPath + "exchange1.svg"),
+                  Text(
+                    local.lbExchange,
+                    style: TextStyle(fontSize: 14, fontFamily: "Ebrima"),
+                  )
+                ],
+              ),
             ),
           ),
         )

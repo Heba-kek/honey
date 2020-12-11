@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: honeyRoute.Router.generateRoute,
       title: 'Flutter Demo',
       theme: ThemeData(
-        fontFamily: "Times New Roman",
+        fontFamily: "Ebrima",
         primarySwatch: Colors.blue,
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and

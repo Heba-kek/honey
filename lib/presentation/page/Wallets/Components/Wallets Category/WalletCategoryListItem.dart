@@ -14,7 +14,6 @@ class WalletCategoryListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 60,
-      padding: EdgeInsets.all(12.0),
       decoration: BoxDecoration(
           color: CustomColors.mainGreyColor,
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -28,7 +27,10 @@ class WalletCategoryListItem extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: SvgPicture.network(imagePath),
           ),
-          Text(title),
+          Text(
+            title,
+            style: TextStyle(fontFamily: "Ebrima", fontSize: 16),
+          ),
         ],
       ),
     );

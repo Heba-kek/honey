@@ -28,7 +28,7 @@ class WalletNumberPicker extends StatelessWidget {
           Expanded(
             child: WalletHelper.getAutoSizeTextWith(
               title: title,
-              maxFontSize: 20,
+              maxFontSize: 16,
               minFontSize: 10,
               maxLines: 1,
             ),
@@ -66,7 +66,10 @@ class WalletNumberPicker extends StatelessWidget {
                   if (selectedValue != null)
                     Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: Text(selectedValue.toString()),
+                      child: Text(
+                        selectedValue.toString(),
+                        style: TextStyle(fontSize: 16),
+                      ),
                     ),
                   Icon(Icons.arrow_drop_down_sharp)
                 ],

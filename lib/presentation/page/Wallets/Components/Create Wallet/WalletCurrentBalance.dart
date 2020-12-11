@@ -34,7 +34,7 @@ class WaleetCurrentBalance extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: WalletHelper.getAutoSizeTextWith(
               title: this.title,
-              maxFontSize: 20,
+              maxFontSize: 16,
               minFontSize: 10,
               maxLines: 1,
             ),
@@ -48,6 +48,7 @@ class WaleetCurrentBalance extends StatelessWidget {
           // ),
           Expanded(
               child: TextField(
+            style: TextStyle(fontSize: 16, fontFamily: "Ebrima"),
             keyboardType: keyboardType,
             controller: currentBalancecontroller,
             decoration: InputDecoration(
@@ -62,7 +63,7 @@ class WaleetCurrentBalance extends StatelessWidget {
             padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8, 24, 8),
             child: WalletHelper.getAutoSizeTextWith(
               title: unit,
-              maxFontSize: 20,
+              maxFontSize: 16,
               minFontSize: 10,
               maxLines: 1,
             ),

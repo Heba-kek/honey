@@ -42,14 +42,14 @@ class WalletDatePicker extends StatelessWidget {
                 children: [
                   WalletHelper.getAutoSizeTextWith(
                     title: local.lbDate,
-                    maxFontSize: 20,
+                    maxFontSize: 16,
                     minFontSize: 10,
                     maxLines: 1,
                     fontColor: Colors.grey[600],
                   ),
                   WalletHelper.getAutoSizeTextWith(
                       title: DateFormat('dd/MM/yyyy').format(DateTime.now()),
-                      maxFontSize: 20,
+                      maxFontSize: 16,
                       minFontSize: 10,
                       maxLines: 1,
                       fontColor: Colors.grey[600]),
@@ -68,13 +68,13 @@ class WalletDatePicker extends StatelessWidget {
                 children: [
                   WalletHelper.getAutoSizeTextWith(
                       title: local.lbTime,
-                      maxFontSize: 20,
+                      maxFontSize: 16,
                       minFontSize: 10,
                       maxLines: 1,
                       fontColor: Colors.grey[600]),
                   WalletHelper.getAutoSizeTextWith(
                       title: DateFormat.jm().format(DateTime.now()),
-                      maxFontSize: 20,
+                      maxFontSize: 16,
                       minFontSize: 10,
                       maxLines: 1,
                       fontColor: Colors.grey[600]),

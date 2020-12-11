@@ -131,7 +131,7 @@ class _SelectWalletCategoryState extends State<SelectWalletCategory> {
                     }
                   },
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 24),
+                    padding: EdgeInsets.only(bottom: 15),
                     child: WalletCategoryListItem(
                       title: element.name,
                       imagePath: element.icon,

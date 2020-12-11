@@ -929,6 +929,10 @@ class AppLocalizations {
     return Intl.message('All fields are required', name: 'lbFeildsAreRequired');
   }
 
+  String get lbExchange {
+    return Intl.message('Exhange money between wallets', name: 'lbExchange');
+  }
+
 //and add all the text you have inside the app that you need to make it in
 
 //arabic and english launguages

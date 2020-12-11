@@ -158,22 +158,16 @@ class _CreateSavingProjectWalletState extends State<CreateSavingProjectWallet> {
                       WalletCustomButton(
                         buttonTitle: local.lbcreate,
                         onPress: () {
-                          if (projectValueController.text.isEmpty ||
-                              projectStartValueController.text.isEmpty ||
-                              projectNameController.text.isEmpty) {
-                            UIHelper.showHelperToast(local.lbFeildsAreRequired);
-                          } else {
-                            walletsBloc.add(AddWalletEvent(
-                              projectValue: projectValueController.text,
-                              balance: projectStartValueController.text,
-                              name: projectNameController.text,
-                              isHidden: hideWallet ? "1" : "0",
-                              walletType: widget.walletTypeData.id,
-                              date: DateFormat('dd/MM/yyyy')
-                                  .format(DateTime.now()),
-                              time: DateFormat.jm().format(DateTime.now()),
-                            ));
-                          }
+                          walletsBloc.add(AddWalletEvent(
+                            projectValue: projectValueController.text,
+                            balance: projectStartValueController.text,
+                            name: projectNameController.text,
+                            isHidden: hideWallet ? "1" : "0",
+                            walletType: widget.walletTypeData.id,
+                            date:
+                                DateFormat('dd/MM/yyyy').format(DateTime.now()),
+                            time: DateFormat.jm().format(DateTime.now()),
+                          ));
                         },
                       ),
                     ],

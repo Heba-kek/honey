@@ -12,7 +12,8 @@ class WalletHelper {
       Color fontColor = Colors.black}) {
     return AutoSizeText(
       title,
-      style: TextStyle(fontSize: maxFontSize, color: fontColor),
+      style: TextStyle(
+          fontSize: maxFontSize, color: fontColor, fontFamily: "Ebrima"),
       maxFontSize: maxFontSize,
       minFontSize: minFontSize,
       maxLines: maxLines,

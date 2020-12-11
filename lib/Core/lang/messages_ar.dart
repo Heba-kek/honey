@@ -421,5 +421,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الرصيد الابتدائي"),
         "lbFeildsAreRequired":
             MessageLookupByLibrary.simpleMessage("جميع الحقول مطلوبة"),
+        "lbExchange":
+            MessageLookupByLibrary.simpleMessage("تحويل ارصدة بين المحفطات"),
       };
 }
