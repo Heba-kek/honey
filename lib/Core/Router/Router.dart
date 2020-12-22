@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletTypeEntity.dart';
 import 'package:honey/presentation/page/Wallets/CreatCreditWallet.dart';
+import 'package:honey/presentation/page/Wallets/CreatOtherWallet.dart';
 import 'package:honey/presentation/page/Wallets/CreateCashWallet.dart';
 import 'package:honey/presentation/page/Wallets/CreateSavingProjectWallt.dart';
 import 'package:honey/presentation/page/Wallets/SelectWalletCategory.dart';
@@ -11,6 +12,7 @@ class RouteNames {
   static const createCasheWallet = "/CreateCashWallet";
   static const creatCreditWallet = "/CreateCreditWallet";
   static const savingProjectWallet = "/SavingProjectWallet";
+  static const otherWallet = "/OtherWallet";
 }
 
 class Router {
@@ -46,6 +48,15 @@ class Router {
 
         return MaterialPageRoute(
             builder: (_) => CreateSavingProjectWallet(
+                  walletTypeData: walletElement,
+                ));
+
+      case RouteNames.otherWallet:
+        Map<String, dynamic> data = settings.arguments as Map<String, dynamic>;
+        WalletTypeData walletElement = data["WalletTypeData"] as WalletTypeData;
+
+        return MaterialPageRoute(
+            builder: (_) => CreateOtherWallet(
                   walletTypeData: walletElement,
                 ));
       default:

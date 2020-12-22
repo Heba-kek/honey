@@ -34,13 +34,18 @@ class _CreateSavingProjectWalletState extends State<CreateSavingProjectWallet> {
   final TextEditingController projectValueController = TextEditingController();
   final TextEditingController projectStartValueController =
       TextEditingController();
+  final FocusNode node = FocusNode();
 
   WalletsBloc walletsBloc;
   bool hideWallet = false;
 
+  TimeOfDay time = TimeOfDay.now();
+  DateTime date = DateTime.now();
+
   @override
   void initState() {
     walletsBloc = WalletsBloc();
+    node.requestFocus();
     super.initState();
   }
 
@@ -132,6 +137,7 @@ class _CreateSavingProjectWalletState extends State<CreateSavingProjectWallet> {
                         currentBalancecontroller: projectNameController,
                         keyboardType: TextInputType.text,
                         unit: "",
+                        node: node,
                       ),
                       WaleetCurrentBalance(
                         title: local.lbProjectValue,
@@ -143,7 +149,20 @@ class _CreateSavingProjectWalletState extends State<CreateSavingProjectWallet> {
                         currentBalancecontroller: projectStartValueController,
                         unit: PreferenceUtils().user.data.currency,
                       ),
-                      WalletDatePicker(),
+                      WalletDatePicker(
+                        onDayChanged: (tempDay) {
+                          setState(() {
+                            date = tempDay;
+                          });
+                        },
+                        onTimeChanged: (tempTime) {
+                          setState(() {
+                            time = tempTime;
+                          });
+                        },
+                        selectedDay: date,
+                        selectedTime: time,
+                      ),
                       HideWallet(
                         onChangedSwitch: (bool value) {
                           setState(() {
@@ -153,22 +172,29 @@ class _CreateSavingProjectWalletState extends State<CreateSavingProjectWallet> {
                         switchValue: hideWallet,
                       ),
                       Expanded(
+                        flex: 1,
                         child: Container(),
                       ),
-                      WalletCustomButton(
-                        buttonTitle: local.lbcreate,
-                        onPress: () {
-                          walletsBloc.add(AddWalletEvent(
-                            projectValue: projectValueController.text,
-                            balance: projectStartValueController.text,
-                            name: projectNameController.text,
-                            isHidden: hideWallet ? "1" : "0",
-                            walletType: widget.walletTypeData.id,
-                            date:
-                                DateFormat('dd/MM/yyyy').format(DateTime.now()),
-                            time: DateFormat.jm().format(DateTime.now()),
-                          ));
-                        },
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: WalletCustomButton(
+                          buttonTitle: local.lbcreate,
+                          onPress: () {
+                            walletsBloc.add(AddWalletEvent(
+                              projectValue: projectValueController.text,
+                              balance: projectStartValueController.text,
+                              name: projectNameController.text,
+                              isHidden: hideWallet ? "1" : "0",
+                              walletType: widget.walletTypeData.id,
+                              date: DateFormat('dd/MM/yyyy').format(date),
+                              time: time.format(context),
+                            ));
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Container(),
                       ),
                     ],
                   ),

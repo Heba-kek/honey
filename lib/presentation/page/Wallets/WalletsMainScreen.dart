@@ -7,6 +7,7 @@ import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletsEntity.dart';
 import 'package:honey/application/Wallets/WalletsBloc.dart';
 import 'package:honey/application/Wallets/bloc.dart';
+import 'package:honey/presentation/Common/Helpers.dart';
 import 'package:honey/presentation/Common/ProgressWidget.dart';
 import 'package:honey/presentation/page/Wallets/Components/WalletItem.dart';
 import 'package:honey/presentation/page/Wallets/Components/WalletsHeader.dart';
@@ -101,49 +102,52 @@ class _WalletsMainScreenState extends State<WalletsMainScreen> {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(25.0),
                 child: ListView.builder(
                   itemCount: data.length,
                   itemBuilder: (context, index) {
                     WalletsData element = data[index];
                     return Padding(
-                      padding: const EdgeInsets.only(bottom: 20.0),
+                      padding: const EdgeInsets.only(bottom: 10.0),
                       child: WalletItem(
                         imagePath: element.icon,
                         title: element.walletName,
                         value: formatter.format(double.parse(element.balance)),
                         unit: PreferenceUtils().user.data.currency,
                         onPressDelete: () {
-                          walletsBloc
-                              .add(DeleteWalletEvent(walletID: element.id));
+                          showAlertDialog(context, () {
+                            Navigator.of(context).pop();
+                            walletsBloc
+                                .add(DeleteWalletEvent(walletID: element.id));
+                          });
                         },
                       ),
                     );
                   },
                 ),
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 24.0),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: InkWell(
+                  onTap: () {},
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SvgPicture.asset(WalletHelper.svgPath + "exchange1.svg"),
+                      Text(
+                        local.lbExchange,
+                        style: TextStyle(fontSize: 14, fontFamily: "Ebrima"),
+                      )
+                    ],
+                  ),
+                ),
+              ),
             )
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 24.0),
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: InkWell(
-              onTap: () {},
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SvgPicture.asset(WalletHelper.svgPath + "exchange1.svg"),
-                  Text(
-                    local.lbExchange,
-                    style: TextStyle(fontSize: 14, fontFamily: "Ebrima"),
-                  )
-                ],
-              ),
-            ),
-          ),
-        )
       ],
     );
   }

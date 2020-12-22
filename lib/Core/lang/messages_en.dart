@@ -444,5 +444,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("All fields are required"),
         "lbExchange": MessageLookupByLibrary.simpleMessage(
             "Transfer balance between wallets"),
+        "lbOthers": MessageLookupByLibrary.simpleMessage("Other"),
+        "lbConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to proceed?")
       };
 }

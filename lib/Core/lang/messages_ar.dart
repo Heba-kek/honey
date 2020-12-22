@@ -423,5 +423,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("جميع الحقول مطلوبة"),
         "lbExchange":
             MessageLookupByLibrary.simpleMessage("تحويل ارصدة بين المحفطات"),
+        "lbOthers": MessageLookupByLibrary.simpleMessage("اخرى"),
+        "lbConfirmation": MessageLookupByLibrary.simpleMessage(
+            "هل انت متاكد من تنفيذ العملية؟")
       };
 }

@@ -19,7 +19,7 @@ class HideWallet extends StatelessWidget {
       height: 100,
       decoration: BoxDecoration(
         border: Border(
-            bottom: BorderSide(color: CustomColors.mainYellowColor, width: 2)),
+            bottom: BorderSide(color: CustomColors.mainYellowColor, width: 1)),
       ),
       child: Column(
         children: [

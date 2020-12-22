@@ -23,57 +23,59 @@ class WalletItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: 50,
       decoration: BoxDecoration(
         border: Border(
             bottom: BorderSide(color: CustomColors.mainYellowColor, width: 1)),
       ),
-      child: Row(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
+                padding: const EdgeInsets.only(bottom: 4.0),
                 child: SvgPicture.network(imagePath),
               ),
               Expanded(
-                child: WalletHelper.getAutoSizeTextWith(
-                    title: title, maxLines: 1, maxFontSize: 12),
+                flex: 2,
+                child: Center(
+                  child: WalletHelper.getAutoSizeTextWith(
+                      title: value, maxLines: 1, maxFontSize: 14),
+                ),
+              ),
+              Expanded(
+                flex: 0,
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.only(end: 12.0),
+                  child: WalletHelper.getAutoSizeTextWith(
+                      title: unit, maxLines: 1, maxFontSize: 12),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.only(bottom: 4.0, end: 8),
+                child: Container(
+                  width: 1,
+                  height: 14,
+                  color: CustomColors.mainYellowColor,
+                ),
+              ),
+              InkWell(
+                onTap: onPressDelete,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+                  child:
+                      SvgPicture.asset(WalletHelper.svgPath + "ic_trash.svg"),
+                ),
               ),
             ],
           ),
           Expanded(
-            flex: 2,
-            child: Center(
-              child: WalletHelper.getAutoSizeTextWith(
-                  title: value, maxLines: 1, maxFontSize: 14),
-            ),
-          ),
-          Expanded(
-            flex: 0,
-            child: Padding(
-              padding: const EdgeInsetsDirectional.only(end: 12.0),
-              child: WalletHelper.getAutoSizeTextWith(
-                  title: unit, maxLines: 1, maxFontSize: 12),
-            ),
-          ),
-          Padding(
-            padding:
-                EdgeInsetsDirectional.only(top: 20.0, bottom: 20.0, end: 8),
-            child: Container(
-              width: 1,
-              color: CustomColors.mainYellowColor,
-            ),
-          ),
-          InkWell(
-            onTap: onPressDelete,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-              child: SvgPicture.asset(WalletHelper.svgPath + "ic_trash.svg"),
-            ),
+            child: WalletHelper.getAutoSizeTextWith(
+                title: title, maxLines: 1, maxFontSize: 12),
           ),
         ],
       ),

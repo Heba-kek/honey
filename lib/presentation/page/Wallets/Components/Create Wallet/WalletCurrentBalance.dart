@@ -10,6 +10,7 @@ class WaleetCurrentBalance extends StatelessWidget {
   final String title;
   final String unit;
   final TextInputType keyboardType;
+  final FocusNode node;
 
   WaleetCurrentBalance({
     Key key,
@@ -17,6 +18,7 @@ class WaleetCurrentBalance extends StatelessWidget {
     this.unit,
     this.title,
     this.keyboardType = TextInputType.number,
+    this.node,
   }) : super(key: key);
 
   @override
@@ -25,7 +27,7 @@ class WaleetCurrentBalance extends StatelessWidget {
       height: 60,
       decoration: BoxDecoration(
         border: Border(
-            bottom: BorderSide(color: CustomColors.mainYellowColor, width: 2)),
+            bottom: BorderSide(color: CustomColors.mainYellowColor, width: 1)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -48,6 +50,7 @@ class WaleetCurrentBalance extends StatelessWidget {
           // ),
           Expanded(
               child: TextField(
+            focusNode: node,
             style: TextStyle(fontSize: 16, fontFamily: "Ebrima"),
             keyboardType: keyboardType,
             controller: currentBalancecontroller,
@@ -57,7 +60,7 @@ class WaleetCurrentBalance extends StatelessWidget {
                 enabledBorder: InputBorder.none,
                 errorBorder: InputBorder.none,
                 disabledBorder: InputBorder.none),
-            cursorColor: Colors.black,
+            cursorColor: CustomColors.mainYellowColor,
           )),
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8, 24, 8),

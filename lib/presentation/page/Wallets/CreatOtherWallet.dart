@@ -12,28 +12,26 @@ import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/HideW
 import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/WalletCategoryName.dart';
 import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/WalletCurrentBalance.dart';
 import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/WalletCustomButton.dart';
-import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/WalletDatePicket.dart';
 import 'package:honey/presentation/page/Wallets/Components/WalletsHeader.dart';
 import 'package:honey/presentation/page/Wallets/Components/bottomHomeButton.dart';
 import 'package:intl/intl.dart';
 import 'dart:ui' as ui;
 
-///cash and bank wallets
-class CreateCashWallet extends StatefulWidget {
-  final bool isBank;
+import 'Components/Create Wallet/WalletDatePicket.dart';
+
+class CreateOtherWallet extends StatefulWidget {
   final WalletTypeData walletTypeData;
 
-  const CreateCashWallet({Key key, this.isBank = false, this.walletTypeData})
-      : super(key: key);
+  const CreateOtherWallet({Key key, this.walletTypeData}) : super(key: key);
 
   @override
-  _CreateCashWalletState createState() => _CreateCashWalletState();
+  _CreateOtherWalletState createState() => _CreateOtherWalletState();
 }
 
-class _CreateCashWalletState extends State<CreateCashWallet> {
+class _CreateOtherWalletState extends State<CreateOtherWallet> {
   final AppLocalizations local = AppLocalizations();
   final TextEditingController currentCashController = TextEditingController();
-  final TextEditingController bankNameController = TextEditingController();
+  final TextEditingController otherNameController = TextEditingController();
   final FocusNode node = FocusNode();
   WalletsBloc walletsBloc;
   bool hideWallet = false;
@@ -126,14 +124,13 @@ class _CreateCashWalletState extends State<CreateCashWallet> {
                     title: widget.walletTypeData.name,
                   ),
                 ),
-                if (widget.isBank)
-                  WaleetCurrentBalance(
-                    title: local.lbBankName,
-                    currentBalancecontroller: bankNameController,
-                    keyboardType: TextInputType.text,
-                    unit: "",
-                    node: node,
-                  ),
+                WaleetCurrentBalance(
+                  title: local.lbOthers,
+                  currentBalancecontroller: otherNameController,
+                  keyboardType: TextInputType.text,
+                  unit: "",
+                  node: node,
+                ),
                 WaleetCurrentBalance(
                   title: local.lbCurrentBalance,
                   currentBalancecontroller: currentCashController,
@@ -172,7 +169,7 @@ class _CreateCashWalletState extends State<CreateCashWallet> {
                     onPress: () {
                       walletsBloc.add(AddWalletEvent(
                           balance: currentCashController.text,
-                          name: bankNameController.text,
+                          name: otherNameController.text,
                           isHidden: hideWallet ? "1" : "0",
                           walletType: widget.walletTypeData.id,
                           date: DateFormat('dd/MM/yyyy').format(date),

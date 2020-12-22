@@ -933,6 +933,14 @@ class AppLocalizations {
     return Intl.message('Exhange money between wallets', name: 'lbExchange');
   }
 
+  String get lbOthers {
+    return Intl.message('Other', name: 'lbOthers');
+  }
+
+  String get lbConfirmation {
+    return Intl.message('Confirmation', name: 'lbConfirmation');
+  }
+
 //and add all the text you have inside the app that you need to make it in
 
 //arabic and english launguages

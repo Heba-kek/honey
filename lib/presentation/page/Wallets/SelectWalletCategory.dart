@@ -83,7 +83,7 @@ class _SelectWalletCategoryState extends State<SelectWalletCategory> {
         ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 24),
             child: ListView.builder(
               itemCount: data.length,
               itemBuilder: (context, index) {
@@ -127,6 +127,9 @@ class _SelectWalletCategoryState extends State<SelectWalletCategory> {
                     } else if (element.id == "6") {
                       Navigator.of(context).pushNamed(
                           RouteNames.savingProjectWallet,
+                          arguments: {"WalletTypeData": element});
+                    } else {
+                      Navigator.of(context).pushNamed(RouteNames.otherWallet,
                           arguments: {"WalletTypeData": element});
                     }
                   },
