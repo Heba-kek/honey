@@ -4,6 +4,7 @@ import 'package:honey/Core/Helpers/CustomColors.dart';
 import 'package:honey/Core/PreferenceUtils.dart';
 import 'package:honey/Core/Router/Router.dart';
 import 'package:honey/Core/lang/localss.dart';
+import 'package:honey/Domain/Wallets/Entities/WalletTypeEntity.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletsEntity.dart';
 import 'package:honey/application/Wallets/WalletsBloc.dart';
 import 'package:honey/application/Wallets/bloc.dart';
@@ -109,18 +110,80 @@ class _WalletsMainScreenState extends State<WalletsMainScreen> {
                     WalletsData element = data[index];
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 10.0),
-                      child: WalletItem(
-                        imagePath: element.icon,
-                        title: element.walletName,
-                        value: formatter.format(double.parse(element.balance)),
-                        unit: PreferenceUtils().user.data.currency,
-                        onPressDelete: () {
-                          showAlertDialog(context, () {
-                            Navigator.of(context).pop();
-                            walletsBloc
-                                .add(DeleteWalletEvent(walletID: element.id));
-                          });
+                      child: InkWell(
+                        onTap: () async {
+                          if (element.id == "1") {
+                            await Navigator.of(context).pushNamed(
+                              RouteNames.updateCashWallet,
+                              arguments: {
+                                "isBank": false,
+                                "WalletTypeData": WalletTypeData(
+                                    id: element.id,
+                                    name: element.walletName,
+                                    icon: element.icon)
+                              },
+                            );
+                            walletsBloc.add(GetWalletsEvent());
+                          } else if (element.id == "197") {
+                            await Navigator.of(context).pushNamed(
+                              RouteNames.createCasheWallet,
+                              arguments: {
+                                "isBank": true,
+                                "WalletTypeData": WalletTypeData(
+                                    id: element.id,
+                                    name: element.name,
+                                    icon: element.icon)
+                              },
+                            );
+                          } else if (element.id == "3") {
+                            // Navigator.of(context).pushNamed(
+                            //   RouteNames.creatCreditWallet,
+                            //   arguments: {
+                            //     "type": CreateCreditType.CreditCard,
+                            //     "WalletTypeData": element
+                            //   },
+                            // );
+                          } else if (element.id == "4") {
+                            // Navigator.of(context).pushNamed(
+                            //   RouteNames.creatCreditWallet,
+                            //   arguments: {
+                            //     "type": CreateCreditType.PrePaidCard,
+                            //     "WalletTypeData": element
+                            //   },
+                            // );
+                          } else if (element.id == "5") {
+                            // Navigator.of(context).pushNamed(
+                            //   RouteNames.creatCreditWallet,
+                            //   arguments: {
+                            //     "type": CreateCreditType.ProjectBox,
+                            //     "WalletTypeData": element
+                            //   },
+                            // );
+                          } else if (element.id == "6") {
+                            // Navigator.of(context).pushNamed(
+                            //     RouteNames.savingProjectWallet,
+                            //     arguments: {"WalletTypeData": element});
+                          } else {
+                            // Navigator.of(context).pushNamed(
+                            //     RouteNames.otherWallet,
+                            //     arguments: {"WalletTypeData": element});
+                          }
+                          walletsBloc.add(GetWalletsEvent());
                         },
+                        child: WalletItem(
+                          imagePath: element.icon,
+                          title: element.walletName,
+                          value:
+                              formatter.format(double.parse(element.balance)),
+                          unit: PreferenceUtils().user.data.currency,
+                          onPressDelete: () {
+                            showAlertDialog(context, () {
+                              Navigator.of(context).pop();
+                              walletsBloc
+                                  .add(DeleteWalletEvent(walletID: element.id));
+                            });
+                          },
+                        ),
                       ),
                     );
                   },

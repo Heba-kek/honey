@@ -941,6 +941,10 @@ class AppLocalizations {
     return Intl.message('Confirmation', name: 'lbConfirmation');
   }
 
+  String get lbTransActionsDetails {
+    return Intl.message('Transactions details', name: 'lbTransActionsDetails');
+  }
+
 //and add all the text you have inside the app that you need to make it in
 
 //arabic and english launguages

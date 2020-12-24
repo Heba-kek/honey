@@ -446,6 +446,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Transfer balance between wallets"),
         "lbOthers": MessageLookupByLibrary.simpleMessage("Other"),
         "lbConfirmation": MessageLookupByLibrary.simpleMessage(
-            "Are you sure you want to proceed?")
+            "Are you sure you want to proceed?"),
+        "lbTransActionsDetails":
+            MessageLookupByLibrary.simpleMessage("Transaction detail")
       };
 }

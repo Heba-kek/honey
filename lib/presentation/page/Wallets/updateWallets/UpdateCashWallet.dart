@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:honey/Core/Helpers/CustomColors.dart';
 import 'package:honey/Core/PreferenceUtils.dart';
 import 'package:honey/Core/lang/localss.dart';
+import 'package:honey/Domain/Wallets/Entities/WalletDetailsEntity.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletTypeEntity.dart';
 import 'package:honey/application/Wallets/WalletsBloc.dart';
 import 'package:honey/application/Wallets/bloc.dart';
@@ -19,23 +20,21 @@ import 'package:intl/intl.dart';
 import 'dart:ui' as ui;
 
 ///cash and bank wallets
-class CreateCashWallet extends StatefulWidget {
+class UpdateCashWallet extends StatefulWidget {
   final bool isBank;
   final WalletTypeData walletTypeData;
-  final bool isEditing;
 
-  const CreateCashWallet(
-      {Key key,
-      this.isBank = false,
-      this.walletTypeData,
-      this.isEditing = true})
-      : super(key: key);
+  const UpdateCashWallet({
+    Key key,
+    this.isBank = false,
+    this.walletTypeData,
+  }) : super(key: key);
 
   @override
-  _CreateCashWalletState createState() => _CreateCashWalletState();
+  _UpdateCashWalletState createState() => _UpdateCashWalletState();
 }
 
-class _CreateCashWalletState extends State<CreateCashWallet> {
+class _UpdateCashWalletState extends State<UpdateCashWallet> {
   final AppLocalizations local = AppLocalizations();
   final TextEditingController currentCashController = TextEditingController();
   final TextEditingController bankNameController = TextEditingController();
@@ -43,13 +42,18 @@ class _CreateCashWalletState extends State<CreateCashWallet> {
   WalletsBloc walletsBloc;
   bool hideWallet = false;
 
+  WalletDetailsData walletDetailsData;
+
   TimeOfDay time = TimeOfDay.now();
   DateTime date = DateTime.now();
 
   @override
   void initState() {
     walletsBloc = WalletsBloc();
-    node.requestFocus();
+    print("test dani");
+    print(widget.walletTypeData.id);
+    walletsBloc.add(
+        GetWalletDetailsEvent(walletID: widget.walletTypeData.id.toString()));
     super.initState();
   }
 
@@ -81,24 +85,40 @@ class _CreateCashWalletState extends State<CreateCashWallet> {
                     return Center(
                       child: Text(state.message),
                     );
-                  } else if (state is Loaded) {
-                    if (state.basicSuccessEntity.code.toString() == "1") {
-                      WidgetsBinding.instance.addPostFrameCallback((_) {
-                        int count = 0;
-                        Navigator.popUntil(context, (route) {
-                          return count++ == 2;
-                        });
-                      });
+                  } else if (state is GetWalletDetailsLoaded) {
+                    if (state.walletDetailsEntity.code == "1") {
+                      walletDetailsData = state.walletDetailsEntity.data;
+                      bankNameController.text =
+                          walletDetailsData.details[0].name;
+                      currentCashController.text =
+                          walletDetailsData.details[0].balance;
+                      hideWallet =
+                          walletDetailsData.details[0].disappear == "1";
+
+                      date = DateTime.parse(walletDetailsData.details[0].date);
+                      time = TimeOfDay(
+                          hour: int.parse(
+                              walletDetailsData.details[0].time.split(":")[0]),
+                          minute: int.parse(
+                              walletDetailsData.details[0].time.split(":")[1]));
+
+                      walletsBloc.add(InitialEvent());
                     } else {
-                      WidgetsBinding.instance.addPostFrameCallback((_) {
-                        UIHelper.showHelperToast(state.basicSuccessEntity.msg);
-                      });
+                      return Center(
+                        child: Text(state.walletDetailsEntity.msg),
+                      );
                     }
+                  } else if (state is Loaded) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      UIHelper.showHelperToast(state.basicSuccessEntity.msg);
+                    });
                     walletsBloc.add(InitialEvent());
                   } else if (state is Loading) {
                     return progressWidget();
                   }
-                  return getBody();
+                  return walletDetailsData != null
+                      ? getBody(walletDetailsData)
+                      : Container();
                 },
                 listener: (context, state) {},
               ),
@@ -110,7 +130,7 @@ class _CreateCashWalletState extends State<CreateCashWallet> {
     );
   }
 
-  Widget getBody() {
+  Widget getBody(WalletDetailsData data) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Column(
@@ -170,42 +190,34 @@ class _CreateCashWalletState extends State<CreateCashWallet> {
                   flex: 1,
                   child: Container(),
                 ),
-                if (!widget.isEditing)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: WalletCustomButton(
-                      buttonTitle: local.lbcreate,
-                      onPress: () {
-                        walletsBloc.add(AddWalletEvent(
-                            balance: currentCashController.text,
-                            name: bankNameController.text,
-                            isHidden: hideWallet ? "1" : "0",
-                            walletType: widget.walletTypeData.id,
-                            date: DateFormat('dd/MM/yyyy').format(date),
-                            time: time.format(context),
-                            paymentDate: "",
-                            projectValue: "",
-                            reminderDate: ""));
-                      },
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      WalletCustomButton(
+                        buttonTitle: local.lbEdit,
+                        onPress: () {
+                          walletsBloc.add(UpdateWalletEvent(
+                              walletId: widget.walletTypeData.id,
+                              balance: currentCashController.text,
+                              name: bankNameController.text,
+                              isHidden: hideWallet ? "1" : "0",
+                              walletType: widget.walletTypeData.id,
+                              date: DateFormat('dd/MM/yyyy').format(date),
+                              time: time.format(context),
+                              paymentDate: "",
+                              projectValue: "",
+                              reminderDate: ""));
+                        },
+                      ),
+                      WalletCustomButton(
+                        buttonTitle: local.lbTransActionsDetails,
+                        onPress: () {},
+                      ),
+                    ],
                   ),
-                if (widget.isEditing)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        WalletCustomButton(
-                          buttonTitle: local.lbEdit,
-                          onPress: () {},
-                        ),
-                        WalletCustomButton(
-                          buttonTitle: local.lbTransActionsDetails,
-                          onPress: () {},
-                        ),
-                      ],
-                    ),
-                  ),
+                ),
                 Expanded(
                   flex: 2,
                   child: Container(),

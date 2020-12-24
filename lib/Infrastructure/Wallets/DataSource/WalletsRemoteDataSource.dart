@@ -29,7 +29,9 @@ class WalletRemoteDataSource extends WalletsDataSource {
   @override
   Future<WalletDetailsModel> getWalletDetails(Map<String, dynamic> data) async {
     final response = await _provider.fetchData(
-        method: HttpMethod.GET, url: APINames.getWallets, bodyData: data);
+        method: HttpMethod.GET,
+        url: APINames.getWalletDetails,
+        queryParameters: data);
 
     return WalletDetailsModel.fromJson(response);
   }

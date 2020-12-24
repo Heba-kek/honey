@@ -76,6 +76,7 @@ class ApiProvider {
           }
           print("user_id $id");
           print("queryParamsTemp $queryParamsTemp");
+          print(queryParameters);
           response =
               await _dio.get(apiURLPost, queryParameters: queryParamsTemp);
 

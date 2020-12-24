@@ -6,6 +6,7 @@ import 'package:honey/presentation/page/Wallets/CreatOtherWallet.dart';
 import 'package:honey/presentation/page/Wallets/CreateCashWallet.dart';
 import 'package:honey/presentation/page/Wallets/CreateSavingProjectWallt.dart';
 import 'package:honey/presentation/page/Wallets/SelectWalletCategory.dart';
+import 'package:honey/presentation/page/Wallets/updateWallets/UpdateCashWallet.dart';
 
 class RouteNames {
   static const selectWalletCategory = "/SelectWalletCategory";
@@ -13,6 +14,7 @@ class RouteNames {
   static const creatCreditWallet = "/CreateCreditWallet";
   static const savingProjectWallet = "/SavingProjectWallet";
   static const otherWallet = "/OtherWallet";
+  static const updateCashWallet = "/UpdateCashWallet";
 }
 
 class Router {
@@ -27,12 +29,22 @@ class Router {
         bool isBank = data["isBank"] as bool;
         WalletTypeData walletElement = data["WalletTypeData"] as WalletTypeData;
         return MaterialPageRoute(
-            builder: (_) => CreateCashWallet(
+            builder: (_) => UpdateCashWallet(
                   isBank: isBank,
                   walletTypeData: walletElement,
                 ));
 
       case RouteNames.creatCreditWallet:
+        Map<String, dynamic> data = settings.arguments as Map<String, dynamic>;
+        CreateCreditType screenType = data["type"] as CreateCreditType;
+        WalletTypeData walletElement = data["WalletTypeData"] as WalletTypeData;
+        return MaterialPageRoute(
+            builder: (_) => CreateCreditWallet(
+                  screenType: screenType,
+                  walletTypeData: walletElement,
+                ));
+
+      case RouteNames.updateCashWallet:
         Map<String, dynamic> data = settings.arguments as Map<String, dynamic>;
         CreateCreditType screenType = data["type"] as CreateCreditType;
         WalletTypeData walletElement = data["WalletTypeData"] as WalletTypeData;

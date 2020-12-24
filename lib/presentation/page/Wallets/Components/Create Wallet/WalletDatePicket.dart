@@ -35,7 +35,11 @@ class WalletDatePicker extends StatelessWidget {
         onTap: () {
           showCustomDatePicker(
               context: context,
-              selectedDate: DateTime.now(),
+              selectedDate: selectedDay == null
+                  ? DateTime.now()
+                  : selectedDay.isAfter(DateTime(1990))
+                      ? selectedDay
+                      : DateTime.now(),
               onChanged: onDayChanged,
               onConfirmed: () {
                 showCustomTimePicker(
