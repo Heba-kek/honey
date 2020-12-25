@@ -9,8 +9,16 @@ class WalletsHeader extends StatelessWidget {
 
   final Function onPressAdd;
   final bool showAdd;
+  final bool showDelete;
+  final Function onPressedDelete;
 
-  WalletsHeader({Key key, this.onPressAdd, this.showAdd}) : super(key: key);
+  WalletsHeader(
+      {Key key,
+      this.onPressAdd,
+      this.showAdd,
+      this.showDelete = false,
+      this.onPressedDelete})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +60,17 @@ class WalletsHeader extends StatelessWidget {
                     size: 30,
                   ),
                   onPressed: onPressAdd),
+            ),
+          if (showDelete)
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
+              child: IconButton(
+                  icon: Icon(
+                    Icons.delete,
+                    color: Colors.grey,
+                    size: 30,
+                  ),
+                  onPressed: onPressedDelete),
             ),
         ],
       ),

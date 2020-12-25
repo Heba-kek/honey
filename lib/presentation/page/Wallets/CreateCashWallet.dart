@@ -22,14 +22,12 @@ import 'dart:ui' as ui;
 class CreateCashWallet extends StatefulWidget {
   final bool isBank;
   final WalletTypeData walletTypeData;
-  final bool isEditing;
 
-  const CreateCashWallet(
-      {Key key,
-      this.isBank = false,
-      this.walletTypeData,
-      this.isEditing = true})
-      : super(key: key);
+  const CreateCashWallet({
+    Key key,
+    this.isBank = false,
+    this.walletTypeData,
+  }) : super(key: key);
 
   @override
   _CreateCashWalletState createState() => _CreateCashWalletState();
@@ -170,42 +168,24 @@ class _CreateCashWalletState extends State<CreateCashWallet> {
                   flex: 1,
                   child: Container(),
                 ),
-                if (!widget.isEditing)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: WalletCustomButton(
-                      buttonTitle: local.lbcreate,
-                      onPress: () {
-                        walletsBloc.add(AddWalletEvent(
-                            balance: currentCashController.text,
-                            name: bankNameController.text,
-                            isHidden: hideWallet ? "1" : "0",
-                            walletType: widget.walletTypeData.id,
-                            date: DateFormat('dd/MM/yyyy').format(date),
-                            time: time.format(context),
-                            paymentDate: "",
-                            projectValue: "",
-                            reminderDate: ""));
-                      },
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: WalletCustomButton(
+                    buttonTitle: local.lbcreate,
+                    onPress: () {
+                      walletsBloc.add(AddWalletEvent(
+                          balance: currentCashController.text,
+                          name: bankNameController.text,
+                          isHidden: hideWallet ? "1" : "0",
+                          walletType: widget.walletTypeData.id,
+                          date: DateFormat('dd/MM/yyyy').format(date),
+                          time: time.format(context),
+                          paymentDate: "",
+                          projectValue: "",
+                          reminderDate: ""));
+                    },
                   ),
-                if (widget.isEditing)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        WalletCustomButton(
-                          buttonTitle: local.lbEdit,
-                          onPress: () {},
-                        ),
-                        WalletCustomButton(
-                          buttonTitle: local.lbTransActionsDetails,
-                          onPress: () {},
-                        ),
-                      ],
-                    ),
-                  ),
+                ),
                 Expanded(
                   flex: 2,
                   child: Container(),

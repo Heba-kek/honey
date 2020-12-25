@@ -7,6 +7,7 @@ import 'package:honey/Domain/Wallets/Entities/WalletDetailsEntity.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletTypeEntity.dart';
 import 'package:honey/application/Wallets/WalletsBloc.dart';
 import 'package:honey/application/Wallets/bloc.dart';
+import 'package:honey/presentation/Common/Helpers.dart';
 import 'package:honey/presentation/Common/ProgressWidget.dart';
 import 'package:honey/presentation/page/Helper/UIHelper.dart';
 import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/HideWallet.dart';
@@ -16,6 +17,7 @@ import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/Walle
 import 'package:honey/presentation/page/Wallets/Components/Create%20Wallet/WalletDatePicket.dart';
 import 'package:honey/presentation/page/Wallets/Components/WalletsHeader.dart';
 import 'package:honey/presentation/page/Wallets/Components/bottomHomeButton.dart';
+import 'package:honey/presentation/page/Wallets/Components/walletDeleteDialog.dart';
 import 'package:intl/intl.dart';
 import 'dart:ui' as ui;
 
@@ -111,6 +113,8 @@ class _UpdateCashWalletState extends State<UpdateCashWallet> {
                   } else if (state is Loaded) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       UIHelper.showHelperToast(state.basicSuccessEntity.msg);
+
+                      Navigator.of(context).pop();
                     });
                     walletsBloc.add(InitialEvent());
                   } else if (state is Loading) {
@@ -138,6 +142,27 @@ class _UpdateCashWalletState extends State<UpdateCashWallet> {
           WalletsHeader(
             onPressAdd: () {},
             showAdd: false,
+            showDelete: true,
+            onPressedDelete: () {
+              showDialog(
+                context: context,
+                builder: (_) => DeleteDialog(
+                  description: local.lbWalletDeleteWarning,
+                  dialogTitle: local.lbWarning,
+                  titleColor: Colors.red,
+                  onPressedDelete: () {
+                    walletsBloc.add(
+                        DeleteWalletEvent(walletID: widget.walletTypeData.id));
+                    Navigator.of(context).pop();
+                  },
+                  walletNameAndIcon: WalletCategoryName(
+                    imagePath: widget.walletTypeData.icon,
+                    title: widget.walletTypeData.name,
+                    showDivider: false,
+                  ),
+                ),
+              );
+            },
           ),
           Expanded(
               child: Padding(

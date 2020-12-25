@@ -96,7 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("هل تريد تعديل تاريخ ؟ "),
         "lbDeleteDate":
             MessageLookupByLibrary.simpleMessage("حذف تاريخ التذكير ؟ "),
-        "lbCancel": MessageLookupByLibrary.simpleMessage("إغلاق"),
+        "lbCancel": MessageLookupByLibrary.simpleMessage("الغاء"),
         "lbMsgDelete": MessageLookupByLibrary.simpleMessage(
             "اضغط على زر موافق لحذف هذا التاريخ  نهائيا"),
         "lbCreditor": MessageLookupByLibrary.simpleMessage("دائن"),
@@ -427,6 +427,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbConfirmation": MessageLookupByLibrary.simpleMessage(
             "هل انت متاكد من تنفيذ العملية؟"),
         "lbTransActionsDetails":
-            MessageLookupByLibrary.simpleMessage("تفاصيل المعاملات")
+            MessageLookupByLibrary.simpleMessage("تفاصيل المعاملات"),
+        "lbWarning": MessageLookupByLibrary.simpleMessage("تنبيه  !"),
+        "lbWalletDeleteWarning": MessageLookupByLibrary.simpleMessage(
+            "في حال حذف هذه المحفظة سيتم حذف جميع المعاملات المرتبطة بها")
       };
 }

@@ -112,7 +112,7 @@ class _WalletsMainScreenState extends State<WalletsMainScreen> {
                       padding: const EdgeInsets.only(bottom: 10.0),
                       child: InkWell(
                         onTap: () async {
-                          if (element.id == "1") {
+                          if (element.walletTypeId == "1") {
                             await Navigator.of(context).pushNamed(
                               RouteNames.updateCashWallet,
                               arguments: {
@@ -124,9 +124,9 @@ class _WalletsMainScreenState extends State<WalletsMainScreen> {
                               },
                             );
                             walletsBloc.add(GetWalletsEvent());
-                          } else if (element.id == "197") {
+                          } else if (element.walletTypeId == "2") {
                             await Navigator.of(context).pushNamed(
-                              RouteNames.createCasheWallet,
+                              RouteNames.updateCashWallet,
                               arguments: {
                                 "isBank": true,
                                 "WalletTypeData": WalletTypeData(
@@ -135,7 +135,7 @@ class _WalletsMainScreenState extends State<WalletsMainScreen> {
                                     icon: element.icon)
                               },
                             );
-                          } else if (element.id == "3") {
+                          } else if (element.walletTypeId == "3") {
                             // Navigator.of(context).pushNamed(
                             //   RouteNames.creatCreditWallet,
                             //   arguments: {
@@ -143,7 +143,7 @@ class _WalletsMainScreenState extends State<WalletsMainScreen> {
                             //     "WalletTypeData": element
                             //   },
                             // );
-                          } else if (element.id == "4") {
+                          } else if (element.walletTypeId == "4") {
                             // Navigator.of(context).pushNamed(
                             //   RouteNames.creatCreditWallet,
                             //   arguments: {
@@ -151,7 +151,7 @@ class _WalletsMainScreenState extends State<WalletsMainScreen> {
                             //     "WalletTypeData": element
                             //   },
                             // );
-                          } else if (element.id == "5") {
+                          } else if (element.walletTypeId == "5") {
                             // Navigator.of(context).pushNamed(
                             //   RouteNames.creatCreditWallet,
                             //   arguments: {
@@ -159,7 +159,7 @@ class _WalletsMainScreenState extends State<WalletsMainScreen> {
                             //     "WalletTypeData": element
                             //   },
                             // );
-                          } else if (element.id == "6") {
+                          } else if (element.walletTypeId == "6") {
                             // Navigator.of(context).pushNamed(
                             //     RouteNames.savingProjectWallet,
                             //     arguments: {"WalletTypeData": element});

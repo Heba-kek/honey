@@ -448,6 +448,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbConfirmation": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to proceed?"),
         "lbTransActionsDetails":
-            MessageLookupByLibrary.simpleMessage("Transaction detail")
+            MessageLookupByLibrary.simpleMessage("Transaction detail"),
+        "lbWarning": MessageLookupByLibrary.simpleMessage("Warning  !"),
+        "lbWalletDeleteWarning": MessageLookupByLibrary.simpleMessage(
+            "in case you delete this wallet it will delete all of its transactions")
       };
 }

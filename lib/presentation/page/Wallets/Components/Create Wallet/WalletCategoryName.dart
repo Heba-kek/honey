@@ -7,8 +7,10 @@ import 'package:honey/presentation/page/Wallets/Components/WalletHelper.dart';
 class WalletCategoryName extends StatelessWidget {
   final String imagePath;
   final String title;
+  final bool showDivider;
 
-  const WalletCategoryName({Key key, this.imagePath, this.title})
+  const WalletCategoryName(
+      {Key key, this.imagePath, this.title, this.showDivider = true})
       : super(key: key);
 
   @override
@@ -17,10 +19,13 @@ class WalletCategoryName extends StatelessWidget {
       height: 60,
       decoration: BoxDecoration(
         border: Border(
-            bottom: BorderSide(color: CustomColors.mainYellowColor, width: 1)),
+            bottom: showDivider
+                ? BorderSide(color: CustomColors.mainYellowColor, width: 1)
+                : BorderSide.none),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: showDivider ? MainAxisSize.max : MainAxisSize.min,
         children: [
           Padding(
             padding: EdgeInsets.all(8),

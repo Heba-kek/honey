@@ -19,6 +19,7 @@ class WalletsData {
     this.icon,
     this.balance,
     this.walletName,
+    this.walletTypeId,
   });
 
   final String id;
@@ -26,6 +27,7 @@ class WalletsData {
   final String icon;
   final String balance;
   final String walletName;
+  final String walletTypeId;
 
   factory WalletsData.fromJson(Map<String, dynamic> json) => WalletsData(
         id: json["id"] == null ? null : json["id"],
@@ -33,6 +35,8 @@ class WalletsData {
         icon: json["icon"] == null ? null : json["icon"],
         balance: json["balance"] == null ? null : json["balance"],
         walletName: json["wallet_name"] == null ? null : json["wallet_name"],
+        walletTypeId:
+            json["wallet_type_id"] == null ? null : json["wallet_type_id"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -41,5 +45,6 @@ class WalletsData {
         "icon": icon == null ? null : icon,
         "balance": balance == null ? null : balance,
         "wallet_name": walletName == null ? null : walletName,
+        "wallet_type_id": walletTypeId == null ? null : walletTypeId,
       };
 }

@@ -29,7 +29,7 @@ class Router {
         bool isBank = data["isBank"] as bool;
         WalletTypeData walletElement = data["WalletTypeData"] as WalletTypeData;
         return MaterialPageRoute(
-            builder: (_) => UpdateCashWallet(
+            builder: (_) => CreateCashWallet(
                   isBank: isBank,
                   walletTypeData: walletElement,
                 ));
@@ -46,11 +46,11 @@ class Router {
 
       case RouteNames.updateCashWallet:
         Map<String, dynamic> data = settings.arguments as Map<String, dynamic>;
-        CreateCreditType screenType = data["type"] as CreateCreditType;
+        bool isBank = data["isBank"] as bool;
         WalletTypeData walletElement = data["WalletTypeData"] as WalletTypeData;
         return MaterialPageRoute(
-            builder: (_) => CreateCreditWallet(
-                  screenType: screenType,
+            builder: (_) => UpdateCashWallet(
+                  isBank: isBank,
                   walletTypeData: walletElement,
                 ));
 

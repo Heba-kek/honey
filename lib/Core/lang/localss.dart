@@ -945,6 +945,14 @@ class AppLocalizations {
     return Intl.message('Transactions details', name: 'lbTransActionsDetails');
   }
 
+  String get lbWarning {
+    return Intl.message('Warning', name: 'lbWarning');
+  }
+
+  String get lbWalletDeleteWarning {
+    return Intl.message('Delete Warning', name: 'lbWalletDeleteWarning');
+  }
+
 //and add all the text you have inside the app that you need to make it in
 
 //arabic and english launguages
