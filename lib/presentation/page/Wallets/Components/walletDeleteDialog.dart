@@ -36,15 +36,22 @@ class _DeleteDialogState extends State<DeleteDialog>
     super.initState();
 
     controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 450));
+        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     scaleAnimation =
-        CurvedAnimation(parent: controller, curve: Curves.elasticInOut);
+        CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn);
 
     controller.addListener(() {
       setState(() {});
     });
 
     controller.forward();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -97,7 +104,9 @@ class _DeleteDialogState extends State<DeleteDialog>
                             WalletCustomButton(
                               buttonTitle: local.lbCancel,
                               onPress: () {
-                                Navigator.of(context).pop();
+                                controller.reverse().then((value) {
+                                  Navigator.of(context).pop();
+                                });
                               },
                             )
                           ],

@@ -1,6 +1,7 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:honey/Domain/BasicSuccessEntity.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletDetailsEntity.dart';
+import 'package:honey/Domain/Wallets/Entities/WalletDetailsReportEntity.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletTypeEntity.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletsEntity.dart';
 import 'package:honey/Domain/Wallets/WalletsRepository.dart';
@@ -72,6 +73,18 @@ class WalletRepositoryIMPL extends WalletsRepository {
   Future<BasicSuccessEntity> deleteWallet(Map<String, dynamic> data) async {
     if (await networkInfo.isConnected) {
       BasicSuccessEntity model = await remoteDataSource.deleteWallet(data);
+
+      return model;
+    } else {
+      throw NoInternetConnectionException();
+    }
+  }
+
+  Future<WalletDetailsReportEntity> walletReport(
+      Map<String, dynamic> data) async {
+    if (await networkInfo.isConnected) {
+      WalletDetailsReportEntity model =
+          await remoteDataSource.getWalletDetailsReport(data);
 
       return model;
     } else {

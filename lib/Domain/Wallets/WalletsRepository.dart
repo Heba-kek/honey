@@ -1,5 +1,6 @@
 import 'package:honey/Domain/BasicSuccessEntity.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletDetailsEntity.dart';
+import 'package:honey/Domain/Wallets/Entities/WalletDetailsReportEntity.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletTypeEntity.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletsEntity.dart';
 
@@ -10,4 +11,5 @@ abstract class WalletsRepository {
   Future<BasicSuccessEntity> addWallet(Map<String, dynamic> data);
   Future<BasicSuccessEntity> updateWallet(Map<String, dynamic> data);
   Future<BasicSuccessEntity> deleteWallet(Map<String, dynamic> data);
+  Future<WalletDetailsReportEntity> walletReport(Map<String, dynamic> data);
 }

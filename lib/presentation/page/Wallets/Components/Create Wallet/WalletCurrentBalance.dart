@@ -11,15 +11,17 @@ class WaleetCurrentBalance extends StatelessWidget {
   final String unit;
   final TextInputType keyboardType;
   final FocusNode node;
+  final bool isEnabled;
 
-  WaleetCurrentBalance({
-    Key key,
-    this.currentBalancecontroller,
-    this.unit,
-    this.title,
-    this.keyboardType = TextInputType.number,
-    this.node,
-  }) : super(key: key);
+  WaleetCurrentBalance(
+      {Key key,
+      this.currentBalancecontroller,
+      this.unit,
+      this.title,
+      this.keyboardType = TextInputType.number,
+      this.node,
+      this.isEnabled = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +52,7 @@ class WaleetCurrentBalance extends StatelessWidget {
           // ),
           Expanded(
               child: TextField(
+            enabled: isEnabled,
             focusNode: node,
             style: TextStyle(fontSize: 16, fontFamily: "Ebrima"),
             keyboardType: keyboardType,

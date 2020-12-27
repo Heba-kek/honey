@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:honey/Core/Helpers/CustomColors.dart';
 import 'package:honey/Core/PreferenceUtils.dart';
+import 'package:honey/Core/Router/Router.dart';
 import 'package:honey/Core/lang/localss.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletDetailsEntity.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletTypeEntity.dart';
@@ -146,6 +147,7 @@ class _UpdateCashWalletState extends State<UpdateCashWallet> {
             onPressedDelete: () {
               showDialog(
                 context: context,
+                barrierDismissible: false,
                 builder: (_) => DeleteDialog(
                   description: local.lbWalletDeleteWarning,
                   dialogTitle: local.lbWarning,
@@ -238,7 +240,15 @@ class _UpdateCashWalletState extends State<UpdateCashWallet> {
                       ),
                       WalletCustomButton(
                         buttonTitle: local.lbTransActionsDetails,
-                        onPress: () {},
+                        onPress: () {
+                          Navigator.of(context).pushNamed(
+                            RouteNames.cashWalletDetailsReport,
+                            arguments: {
+                              "isBank": true,
+                              "WalletTypeData": widget.walletTypeData
+                            },
+                          );
+                        },
                       ),
                     ],
                   ),

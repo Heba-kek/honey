@@ -95,6 +95,20 @@ class WalletsBloc extends Bloc<WalletsEvent, WalletState> {
           },
         );
       }
+    } else if (event is WalletDetailsReportEvent) {
+      yield Loading();
+
+      try {
+        final result = await walletsRepository.walletReport(event.toMap());
+        yield GetWalletDetailsReportLoaded(result);
+      } catch (e) {
+        yield Error(
+          e.toString(),
+          () {
+            this.add(event);
+          },
+        );
+      }
     } else {
       yield initialState;
     }

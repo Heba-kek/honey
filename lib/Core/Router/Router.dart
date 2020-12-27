@@ -6,6 +6,7 @@ import 'package:honey/presentation/page/Wallets/CreatOtherWallet.dart';
 import 'package:honey/presentation/page/Wallets/CreateCashWallet.dart';
 import 'package:honey/presentation/page/Wallets/CreateSavingProjectWallt.dart';
 import 'package:honey/presentation/page/Wallets/SelectWalletCategory.dart';
+import 'package:honey/presentation/page/Wallets/updateWallets/CashWalletDetailsReport.dart';
 import 'package:honey/presentation/page/Wallets/updateWallets/UpdateCashWallet.dart';
 
 class RouteNames {
@@ -15,6 +16,7 @@ class RouteNames {
   static const savingProjectWallet = "/SavingProjectWallet";
   static const otherWallet = "/OtherWallet";
   static const updateCashWallet = "/UpdateCashWallet";
+  static const cashWalletDetailsReport = "/CashWalletDetailsReport";
 }
 
 class Router {
@@ -51,6 +53,15 @@ class Router {
         return MaterialPageRoute(
             builder: (_) => UpdateCashWallet(
                   isBank: isBank,
+                  walletTypeData: walletElement,
+                ));
+
+      case RouteNames.cashWalletDetailsReport:
+        Map<String, dynamic> data = settings.arguments as Map<String, dynamic>;
+        bool isBank = data["isBank"] as bool;
+        WalletTypeData walletElement = data["WalletTypeData"] as WalletTypeData;
+        return MaterialPageRoute(
+            builder: (_) => CashWalletDetailsReport(
                   walletTypeData: walletElement,
                 ));
 

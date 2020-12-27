@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblphone": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "locale": MessageLookupByLibrary.simpleMessage("ar"),
         "title": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
-        "lbTotal": MessageLookupByLibrary.simpleMessage("المجموع"),
+        "lbTotal": MessageLookupByLibrary.simpleMessage("الإجمالي"),
         "lbBank": MessageLookupByLibrary.simpleMessage("بنك"),
         "lbTReport": MessageLookupByLibrary.simpleMessage("عدد التقارير"),
         "lbTReports": MessageLookupByLibrary.simpleMessage("تقرير"),
@@ -430,6 +430,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تفاصيل المعاملات"),
         "lbWarning": MessageLookupByLibrary.simpleMessage("تنبيه  !"),
         "lbWalletDeleteWarning": MessageLookupByLibrary.simpleMessage(
-            "في حال حذف هذه المحفظة سيتم حذف جميع المعاملات المرتبطة بها")
+            "في حال حذف هذه المحفظة سيتم حذف جميع المعاملات المرتبطة بها"),
+        "lbPaidName": MessageLookupByLibrary.simpleMessage("المدفوع")
       };
 }

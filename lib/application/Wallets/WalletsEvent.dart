@@ -176,3 +176,22 @@ class UpdateWalletEvent extends WalletsEvent {
     };
   }
 }
+
+class WalletDetailsReportEvent extends WalletsEvent {
+  final String walletID;
+  final String startDate;
+  final String endDate;
+
+  WalletDetailsReportEvent({this.walletID, this.startDate, this.endDate});
+
+  @override
+  List<Object> get props => [this.walletID, this.startDate, this.endDate];
+
+  Map<String, dynamic> toMap() {
+    return {
+      "wallet_id": walletID,
+      "end_date": endDate,
+      "start_date": startDate,
+    };
+  }
+}

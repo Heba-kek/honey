@@ -451,6 +451,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Transaction detail"),
         "lbWarning": MessageLookupByLibrary.simpleMessage("Warning  !"),
         "lbWalletDeleteWarning": MessageLookupByLibrary.simpleMessage(
-            "in case you delete this wallet it will delete all of its transactions")
+            "in case you delete this wallet it will delete all of its transactions"),
+        "lbPaidName": MessageLookupByLibrary.simpleMessage("Paid")
       };
 }

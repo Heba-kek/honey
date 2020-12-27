@@ -57,4 +57,5 @@ class APINames {
   static final addWallet = "Wallet_Api/AddWallet";
   static final updateWallet = "Wallet_Api/UpdateWallet";
   static final deleteWallet = "Wallet_Api/DeleteWallet";
+  static final getWalletReport = "Wallet_Api/WalletReport";
 }

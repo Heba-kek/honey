@@ -1,6 +1,7 @@
 import 'package:honey/Infrastructure/Core/BasicSuccessModel.dart';
 import 'package:honey/Infrastructure/Wallets/DataSource/WalletsDataSource.dart';
 import 'package:honey/Infrastructure/Wallets/Model/WalletDetailsModel.dart';
+import 'package:honey/Infrastructure/Wallets/Model/WalletDetailsReportModel.dart';
 import 'package:honey/Infrastructure/Wallets/Model/WalletTypeModel.dart';
 import 'package:honey/Infrastructure/Wallets/Model/WalletsModel.dart';
 
@@ -29,6 +30,12 @@ class WalletLocalDataSource extends WalletsDataSource {
   }
 
   Future<BasicSuccessModel> deleteWallet(Map<String, dynamic> data) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<WalletDetailsReportModel> getWalletDetailsReport(
+      Map<String, dynamic> data) {
     throw UnimplementedError();
   }
 }

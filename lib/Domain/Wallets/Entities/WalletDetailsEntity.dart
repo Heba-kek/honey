@@ -69,7 +69,7 @@ class Detail {
   final String name;
   final String paymentDate;
   final String reminderDate;
-  final String projectValue;
+  final int projectValue;
   final String disappear;
   final String userId;
   final int paymentValue;

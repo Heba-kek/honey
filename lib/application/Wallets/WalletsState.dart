@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:honey/Domain/BasicSuccessEntity.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletDetailsEntity.dart';
+import 'package:honey/Domain/Wallets/Entities/WalletDetailsReportEntity.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletTypeEntity.dart';
 import 'package:honey/Domain/Wallets/Entities/WalletsEntity.dart';
 
@@ -59,4 +60,13 @@ class GetWalletDetailsLoaded extends WalletState {
 
   @override
   List<Object> get props => [this.walletDetailsEntity];
+}
+
+class GetWalletDetailsReportLoaded extends WalletState {
+  final WalletDetailsReportEntity walletDetailsReportEntity;
+
+  GetWalletDetailsReportLoaded(this.walletDetailsReportEntity);
+
+  @override
+  List<Object> get props => [this.walletDetailsReportEntity];
 }

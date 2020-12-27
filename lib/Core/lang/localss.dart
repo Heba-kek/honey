@@ -953,6 +953,10 @@ class AppLocalizations {
     return Intl.message('Delete Warning', name: 'lbWalletDeleteWarning');
   }
 
+  String get lbPaidName {
+    return Intl.message('Paid', name: 'lbPaidName');
+  }
+
 //and add all the text you have inside the app that you need to make it in
 
 //arabic and english launguages

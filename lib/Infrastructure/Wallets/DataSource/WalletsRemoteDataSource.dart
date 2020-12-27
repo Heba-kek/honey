@@ -2,6 +2,7 @@ import 'package:honey/Infrastructure/Core/APINames.dart';
 import 'package:honey/Infrastructure/Core/BasicSuccessModel.dart';
 import 'package:honey/Infrastructure/Core/Networking.dart';
 import 'package:honey/Infrastructure/Wallets/Model/WalletDetailsModel.dart';
+import 'package:honey/Infrastructure/Wallets/Model/WalletDetailsReportModel.dart';
 import 'package:honey/Infrastructure/Wallets/Model/WalletTypeModel.dart';
 import 'package:honey/Infrastructure/Wallets/Model/WalletsModel.dart';
 
@@ -34,6 +35,17 @@ class WalletRemoteDataSource extends WalletsDataSource {
         queryParameters: data);
 
     return WalletDetailsModel.fromJson(response);
+  }
+
+  @override
+  Future<WalletDetailsReportModel> getWalletDetailsReport(
+      Map<String, dynamic> data) async {
+    final response = await _provider.fetchData(
+        method: HttpMethod.GET,
+        url: APINames.getWalletReport,
+        queryParameters: data);
+
+    return WalletDetailsReportModel.fromJson(response);
   }
 
   Future<BasicSuccessModel> addWallet(Map<String, dynamic> data) async {

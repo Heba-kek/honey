@@ -8,15 +8,20 @@ class WalletCategoryName extends StatelessWidget {
   final String imagePath;
   final String title;
   final bool showDivider;
+  final double height;
 
   const WalletCategoryName(
-      {Key key, this.imagePath, this.title, this.showDivider = true})
+      {Key key,
+      this.imagePath,
+      this.title,
+      this.showDivider = true,
+      this.height = 60})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: height,
       decoration: BoxDecoration(
         border: Border(
             bottom: showDivider
