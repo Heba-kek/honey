@@ -19,6 +19,7 @@ import 'package:honey/presentation/page/Wallets/Components/WalletsHeader.dart';
 import 'package:honey/presentation/page/Wallets/Components/bottomHomeButton.dart';
 import 'package:honey/presentation/page/Wallets/Components/walletDeleteDialog.dart';
 import 'package:honey/presentation/page/Wallets/updateWallets/monthsSlider.dart';
+import 'package:horizontal_data_table/horizontal_data_table.dart';
 import 'package:intl/intl.dart';
 import 'dart:ui' as ui;
 import 'package:honey/Core/Extension/StringExtension.dart';
@@ -46,6 +47,8 @@ class _CashWalletDetailsReportState extends State<CashWalletDetailsReport> {
   bool hideWallet = false;
 
   WalletDetailsReportData walletDetailsReportData;
+
+  bool showReport = true;
 
   @override
   void initState() {
@@ -92,6 +95,7 @@ class _CashWalletDetailsReportState extends State<CashWalletDetailsReport> {
                     if (state.walletDetailsReportEntity.code == "1") {
                       walletDetailsReportData =
                           state.walletDetailsReportEntity.data;
+
                       walletsBloc.add(InitialEvent());
                     } else {
                       return Center(
@@ -112,7 +116,19 @@ class _CashWalletDetailsReportState extends State<CashWalletDetailsReport> {
                 },
                 listener: (context, state) {},
               ),
-              bottomNavigationBar: BottomHomeButton(),
+              bottomNavigationBar: BottomHomeButton(
+                showReportButoon: true,
+                onPressReportButton: () {
+                  setState(() {
+                    showReport = true;
+                  });
+                },
+                onPressShowReguralPage: () {
+                  setState(() {
+                    showReport = false;
+                  });
+                },
+              ),
             ),
           ),
         ),
@@ -155,7 +171,7 @@ class _CashWalletDetailsReportState extends State<CashWalletDetailsReport> {
               child: Padding(
             padding: EdgeInsets.only(top: 24),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0, right: 24),
@@ -210,14 +226,57 @@ class _CashWalletDetailsReportState extends State<CashWalletDetailsReport> {
                   child: WaleetCurrentBalance(
                     title: local.lbCurrentBalance,
                     currentBalancecontroller: TextEditingController(
-                        text: StringComma.withComma(data.balance[0].balance)),
+                      text: data?.balance != null && data.balance.length > 0
+                          ? StringComma.withComma(data.balance[0].balance)
+                          : "",
+                    ),
                     isEnabled: false,
-                    unit: data.currency[0].name,
+                    unit: data?.currency != null && data.currency.length > 0
+                        ? data.currency[0].name
+                        : "",
                   ),
                 ),
-                if (data.expenses.length > 0)
-                  Expanded(
-                      child: getReportCell(data.expenses, data.currency[0]))
+                if (data?.expenses != null && data.expenses.length > 0)
+                  showReport
+                      ? Flexible(
+                          child:
+                              _getBodyWidget(walletDetailsReportData.expenses))
+                      : Expanded(
+                          child:
+                              getReportCell(data.expenses, data.currency[0])),
+                if (data?.total != null && data.total.length > 0)
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                    child: Container(
+                        padding: EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: CustomColors.mainYellowColor,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            WalletHelper.getAutoSizeTextWith(
+                                title: local.lbTotalSpending,
+                                fontColor: Colors.black,
+                                maxFontSize: 16),
+                            WalletHelper.getAutoSizeTextWith(
+                                title: StringComma.withComma(
+                                    data?.total[0].total.toString()),
+                                fontColor: Colors.black,
+                                maxFontSize: 16),
+                            WalletHelper.getAutoSizeTextWith(
+                                title: data.currency.length > 0
+                                    ? data.currency[0].name
+                                    : "",
+                                fontColor: Colors.black,
+                                maxFontSize: 16),
+                          ],
+                        )),
+                  ),
               ],
             ),
           ))
@@ -373,6 +432,86 @@ class _CashWalletDetailsReportState extends State<CashWalletDetailsReport> {
             title: " " + currency,
             fontColor: Colors.grey[800],
             maxFontSize: 16),
+      ],
+    );
+  }
+
+  Widget _getBodyWidget(List<Expense> expenses) {
+    double elementWidth = MediaQuery.of(context).size.width / 3;
+    return HorizontalDataTable(
+      leftHandSideColumnWidth: elementWidth,
+      rightHandSideColumnWidth: elementWidth * 2,
+      isFixedHeader: true,
+      headerWidgets: _getTitleWidget(
+        MediaQuery.of(context).size.width / 3,
+      ),
+      leftSideItemBuilder: (context, index) {
+        return _getBodyItemWidget(StringComma.withComma(expenses[index].total),
+            elementWidth, index % 2 != 0);
+      },
+      rightSideItemBuilder: (context, index) {
+        return Row(
+          children: [
+            _getBodyItemWidget(
+                expenses[index].date, elementWidth, index % 2 != 0),
+            _getBodyItemWidget(
+                expenses[index].details, elementWidth, index % 2 != 0),
+          ],
+        );
+      },
+      itemCount: expenses.length,
+      rowSeparatorWidget: const Divider(
+        color: Colors.yellow,
+        height: 1.0,
+        thickness: 1.0,
+      ),
+      leftHandSideColBackgroundColor: Colors.black,
+    );
+  }
+
+  List<Widget> _getTitleWidget(double width) {
+    return [
+      _getTitleItemWidget(AppLocalizations().lbTotal, width),
+      _getTitleItemWidget(AppLocalizations().lbDate, width),
+      _getTitleItemWidget(AppLocalizations().lbDes, width),
+    ];
+  }
+
+  Widget _getTitleItemWidget(String label, double width) {
+    return Container(
+      color: CustomColors.praimarydark,
+      child: Center(
+        child: Text(label,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+      ),
+      height: 40,
+      width: width,
+      alignment: Alignment.center,
+    );
+  }
+
+  Widget _getBodyItemWidget(String label, double width, bool isEven) {
+    return Row(
+      children: [
+        Container(),
+        Container(
+          color: isEven ? Colors.grey[200] : Colors.white,
+          child: Center(
+            child: Text(label,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontWeight: FontWeight.w500, color: Colors.black)),
+          ),
+          height: 36,
+          width: width - 2,
+          alignment: Alignment.center,
+        ),
+        Container(
+          height: 36,
+          width: 2,
+          color: CustomColors.mainYellowColor,
+        )
       ],
     );
   }

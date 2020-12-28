@@ -3,6 +3,17 @@ import 'package:flutter_svg/svg.dart';
 import 'package:honey/Core/Helpers/CustomColors.dart';
 
 class BottomHomeButton extends StatelessWidget {
+  final bool showReportButoon;
+  final Function onPressReportButton;
+  final Function onPressShowReguralPage;
+
+  const BottomHomeButton(
+      {Key key,
+      this.showReportButoon = false,
+      this.onPressReportButton,
+      this.onPressShowReguralPage})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,16 +30,29 @@ class BottomHomeButton extends StatelessWidget {
           ),
         ],
       ),
-      child: Center(
-        child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).pop();
-          },
-          child: SvgPicture.asset(
-            "assets/images/SVG/ic_home.svg",
-            fit: BoxFit.fill,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          if (showReportButoon)
+            GestureDetector(
+                onTap: onPressReportButton,
+                child: SvgPicture.asset("assets/images/SVG/ic_home.svg")),
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              child: SvgPicture.asset(
+                "assets/images/SVG/ic_home.svg",
+                fit: BoxFit.fill,
+              ),
+            ),
           ),
-        ),
+          if (showReportButoon)
+            GestureDetector(
+                onTap: onPressShowReguralPage,
+                child: SvgPicture.asset("assets/images/SVG/ic_home.svg")),
+        ],
       ),
     );
   }

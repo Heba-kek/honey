@@ -431,6 +431,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lbWarning": MessageLookupByLibrary.simpleMessage("تنبيه  !"),
         "lbWalletDeleteWarning": MessageLookupByLibrary.simpleMessage(
             "في حال حذف هذه المحفظة سيتم حذف جميع المعاملات المرتبطة بها"),
-        "lbPaidName": MessageLookupByLibrary.simpleMessage("المدفوع")
+        "lbPaidName": MessageLookupByLibrary.simpleMessage("المدفوع"),
+        'lbTotalSpending': MessageLookupByLibrary.simpleMessage("إجمالي الصرف")
       };
 }
